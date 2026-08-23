@@ -1,0 +1,62 @@
+infra:
+  name: Infraestructura y operaciones
+  description: Software que opera o sostiene otros sistemas en ejecución.
+  children:
+    infra.observability:
+      name: Observabilidad
+      description: Métricas, trazas, logs y alertas.
+    infra.orchestration:
+      name: Orquestación y despliegue
+      description: Programación de cargas, despliegue y gestión de clústeres.
+    infra.networking:
+      name: Redes
+      description: Proxies, balanceadores, service mesh y transporte.
+data:
+  name: Datos
+  description: Movimiento, almacenamiento y análisis de datos.
+  children:
+    data.pipelines:
+      name: Pipelines y ETL
+      description: Ingesta, transformación y orquestación de datos.
+    data.storage:
+      name: Almacenamiento
+      description: Bases de datos, motores de consulta y formatos.
+ai:
+  name: Inteligencia artificial
+  description: Entrenamiento, inferencia y sistemas construidos sobre modelos.
+  children:
+    ai.training:
+      name: Entrenamiento
+      description: Bucles de entrenamiento, fine-tuning y datasets.
+    ai.serving:
+      name: Inferencia
+      description: Servido de modelos, batching y aceleración.
+    ai.agents:
+      name: Agentes
+      description: Bucles agénticos, herramientas y orquestación de modelos.
+devtools:
+  name: Herramientas de desarrollo
+  description: Software cuyo usuario final es quien programa.
+  children:
+    devtools.build:
+      name: Build y empaquetado
+      description: Compilación, dependencias y distribución.
+    devtools.testing:
+      name: Testing y calidad
+      description: Frameworks de test, linters y análisis estático.
+    devtools.libraries:
+      name: Librerías y SDK
+      description: Bibliotecas de propósito general y SDK de integración.
+business:
+  name: Dominio de negocio
+  description: Software que resuelve un problema de un sector concreto.
+  children:
+    business.payments:
+      name: Pagos
+      description: Cobros, facturación, conciliación y cumplimiento financiero.
+    business.health:
+      name: Salud
+      description: Historia clínica, dispositivos y datos sanitarios.
+    business.geo:
+      name: Geoespacial
+      description: Mapas, rutas y datos de localización.
