@@ -1,0 +1,19 @@
+set_id: B2
+question: ¿Cuál es la actividad vigente del proyecto?
+visible:
+  - text: Originalmente un fork del planificador de tareas; hoy es una librería de trazas.
+    label: current
+    note: Lo vigente va después del punto y coma.
+  - text: Hasta la v2 servíamos modelos; la v3 es un framework de agentes.
+    label: current
+    note: Dos actividades, una caducada.
+  - text: Proyecto de observabilidad, ahora deprecado en favor del estándar del ecosistema.
+    label: historical
+    note: Deprecado, pero la actividad descrita sigue siendo la suya.
+held_out:
+  - text: Empezamos midiendo latencia y seguimos en ello cinco años después.
+    label: current
+    note: Menciona el pasado sin cambiar de actividad.
+  - text: El README lleva sin tocarse desde el rediseño, que lo convirtió en un cliente HTTP.
+    label: current
+    note: La pista temporal apunta al revés de lo que sugiere el verbo.

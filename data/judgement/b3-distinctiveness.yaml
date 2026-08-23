@@ -1,0 +1,22 @@
+set_id: B3
+question: ¿Basta este nombre para identificar el proyecto en una búsqueda?
+visible:
+  - text: core
+    label: generic
+    note: Homónimos por millares.
+  - text: quipuswap-indexer
+    label: distinctive
+    note: Compuesto y raro.
+  - text: platform-utils
+    label: generic
+    note: Dos palabras genéricas no suman distintividad.
+held_out:
+  - text: mercury
+    label: generic
+    note: Una sola palabra, común, y fuera de cualquier lista de términos técnicos.
+  - text: k9s-mirror-ng
+    label: distinctive
+    note: Corto, pero inequívoco.
+  - text: data-platform-core-utils
+    label: generic
+    note: 'Largo y aun así genérico: mata la heurística de longitud.'

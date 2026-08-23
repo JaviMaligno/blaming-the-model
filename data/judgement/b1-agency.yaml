@@ -1,0 +1,22 @@
+set_id: B1
+question: ¿El proyecto realiza esta actividad o se limita a integrarse con quien la realiza?
+visible:
+  - text: Cliente en Python para la API de un proveedor de cobros.
+    label: third_party
+    note: Envoltorio explícito.
+  - text: Motor de conciliación de cobros con soporte para varios adquirentes.
+    label: own
+    note: La actividad es propia aunque nombre a terceros.
+  - text: Bindings de bajo nivel para la librería de cifrado del sistema.
+    label: third_party
+    note: La palabra bindings lo delata, y por eso invita al atajo.
+held_out:
+  - text: 'No es un wrapper: implementamos el protocolo de liquidación desde cero.'
+    label: own
+    note: Contiene la palabra wrapper, negada. Mata el matching literal.
+  - text: Hablamos el mismo protocolo que el servicio oficial, sin depender de él.
+    label: own
+    note: Sin ninguna palabra de la lista.
+  - text: Una fachada cómoda sobre el SDK que ya usas.
+    label: third_party
+    note: Ni wrapper ni cliente ni bindings.

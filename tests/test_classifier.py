@@ -26,8 +26,10 @@ def taxonomy() -> Taxonomy:
 
 
 def snapshot(description: str | None = "SDK de cobros para comercios") -> RepoSnapshot:
-    texts = ["pagos api cliente", "pagos api cliente", "pagos api cliente",
-             "guia de instalacion", "notas de version"]
+    # Los tres primeros mencionan el nombre, asi que los alcanza la consulta
+    # inicial; los otros dos solo casan con consultas posteriores.
+    texts = ["acme pay api cliente de cobros", "acme pay guia rapida",
+             "acme pay referencia", "docs de instalacion", "notas de version"]
     return RepoSnapshot(
         slug="acme-pay",
         name="acme pay",
