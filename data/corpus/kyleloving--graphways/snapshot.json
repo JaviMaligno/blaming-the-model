@@ -1,0 +1,58 @@
+{
+  "slug": "kyleloving--graphways",
+  "name": "graphways",
+  "description": null,
+  "documents": [
+    {
+      "url": "https://github.com/kyleloving/graphways#0",
+      "title": "Introducción",
+      "text": "Graphways [![PyPI Version][pypi-version-badge]][pypi-link] [![Crates.io Version][crates-version-badge]][crates-link] [![Python Versions][python-versions-badge]][pypi-link] [![CI][ci-badge]][ci-link] [![Documentation][docs-badge]][docs-link] [![License: MIT][license-badge]][license-link] Graphways is a Rust-powered Python library for fast local reachability, routing, and isochrone analysis on OpenStreetMap road networks. It builds a reusable SpatialGraph once, then runs repeated network-aware queries directly in process without deploying a routing server. Graphways is designed for workflows that need the street network as a practical analysis primitive: accessibility studies, urban analytics, site selection, agent-based simulations, notebook exploration, and application backends that need low-latency local graph operations.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/kyleloving/graphways#1",
+      "title": "Installation",
+      "text": "Install the Python package from PyPI: Or add the Rust crate to Cargo.toml : To build the Python extension from source, install Rust and maturin, then run:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/kyleloving/graphways#2",
+      "title": "Usage",
+      "text": "SpatialGraph is the central object. Reachability and network-time prism queries return lightweight graph views over the parent graph, so inspection and GeoJSON export do not copy the full road network. Routes, snap diagnostics, and isochrones return structured Python objects. Call .to geojson() when you need serialized GeoJSON for mapping or data tools.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/kyleloving/graphways#3",
+      "title": "Features",
+      "text": "- Build reusable walking, biking, driving, and custom-access OSM road graphs. - Load from Overpass XML, existing OSM XML strings, or local OSM PBF files. - Query nearest nodes with an R-tree spatial index. - Compute reachability over the road network from a single origin. - Generate isochrones with one graph search and triangulated contour extraction. - Route point-to-point with distance, duration, geometry, and cumulative times. - Build network-time prisms for \"what can I visit between A and B?\" analysis. - Export nodes, edges, routes, POIs, and isochrones as GeoJSON.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/kyleloving/graphways#4",
+      "title": "Documentation",
+      "text": "Start with the [quickstart][docs-quickstart], then see the [Python graph API][docs-python-graph] and [Rust API notes][docs-rust-api]. The examples directory and documentation show common workflows: - building graphs from places, XML, and PBF files - computing walking and driving isochrones - routing between coordinates - querying reachable nodes and graph views - working with POIs and GeoJSON output",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/kyleloving/graphways#5",
+      "title": "Network Services",
+      "text": "SpatialGraph.from place(...) , gw.geocode(...) , and POI fetching use public OpenStreetMap services by default. Graphways sends a descriptive User-Agent, rate-limits Nominatim geocoding requests, and retries transient 429 / 5xx responses. For production workloads, local mirrors, or stricter service policies, configure the service layer with environment variables: Use SpatialGraph.from pbf(...) when you need fully offline graph construction.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/kyleloving/graphways#6",
+      "title": "Performance",
+      "text": "Graphways is optimized for repeated local queries over the same area. Graph construction is paid once; subsequent reachability, routing, and isochrone queries reuse the in-memory graph and spatial index. The benchmark suite compares steady-state graphways queries against NetworkX / OSMnx baselines and includes staged timings for graph construction versus per-query work: Current benchmarks are intentionally kept in benchmarks/ rather than treated as a universal claim. Performance depends on graph size, network profile, machine, cache state, and output geometry settings.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/kyleloving/graphways#7",
+      "title": "License",
+      "text": "Graphways is open source and licensed under the MIT license. OpenStreetMap data is licensed separately; when using OSM-derived outputs, follow the [OpenStreetMap attribution guidelines][osm-copyright]. [ci-badge]: https://github.com/kyleloving/graphways/actions/workflows/ci.yml/badge.svg [ci-link]: https://github.com/kyleloving/graphways/actions/workflows/ci.yml [crates-link]: https://crates.io/crates/graphways [crates-version-badge]: https://img.shields.io/crates/v/graphways [docs-badge]: https://github.com/kyleloving/graphways/actions/workflows/docs.yml/badge.svg [docs-link]: https://kyleloving.github.io/graphways/ [license-badge]: https://img.shields.io/badge/license-MIT-green [license-link]: https://github.com/kyleloving/graphways/blob/main/LICENSE [pypi-link]: https://pypi.org/project/graphways/ [pypi-version-badge]: https://img.shields.io/pypi/v/graphways [python-versions-badge]: https://img.shields.io/pypi/pyversions/graphways [docs-python-graph]: https://kyleloving.github.io/graphways/python-graph/ [docs-quickstart]: https://kyleloving.github.io/graphways/quickstart/ [docs-rust-api]: https://kyleloving.github.io/graphways/rust-api/ [osm-copyright]: https://www.openstreetmap",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-30",
+  "source_url": "https://github.com/kyleloving/graphways",
+  "stars": 19
+}

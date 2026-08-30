@@ -1,0 +1,94 @@
+{
+  "slug": "jeyben--fixedformat4j",
+  "name": "fixedformat4j",
+  "description": "Lightweight Java library for reading and writing fixed-width / fixed-length flat files using annotations on POJOs — for banking, payroll, EDI, mainframe, and batch integrations.",
+  "documents": [
+    {
+      "url": "https://github.com/jeyben/fixedformat4j#0",
+      "title": "Introducción",
+      "text": "FixedFormat4J &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Documentation — Quick Start · Annotations · Examples · Changelog · Benchmarks A lightweight, non-intrusive Java library for reading and writing fixed-width flat-file records using annotations. Originally published in 2008 and actively maintained ever since. Dramatically faster since 1.7.0 — field metadata caching and MethodHandle dispatch deliver 1.6× to 13.8× throughput gains over earlier releases, depending on record size and field types, verified by JMH microbenchmarks.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jeyben/fixedformat4j#1",
+      "title": "Why FixedFormat4J?",
+      "text": "Fixed-width flat files are the lingua franca of banking, payroll, EDI, and government data exchange. Every character has a meaning — no delimiters, no headers, just positional fields that have to land exactly right. Consider a typical payroll settlement line: That single line encodes: employee ID ( 00423 ), department code ( 2 ), name ( SMITH ), net pay in implied cents ( 0000185000 = $1,850.00), direction ( CR ), pay date ( 20260418 ), region code ( 003 ). Without FixedFormat4J you write the parsing by hand for every field — and a symmetric block of String.format calls for export: With FixedFormat4J you declare the layout once — as annotations on a plain Java class — and never write parsing or formatting code again: Works with Lombok — place @Field directly on fields and let Lombok generate the getters and setters. @Getter @Setter @NoArgsConstructor and you're done. No boilerplate, no hand-written accessors. Spring-ready — FixedFormatManagerImpl is a plain Java object with no Spring dependency. Register it once as a @Bean and inject it wherever you need it: For every annotation attribute, type, and advanced option see the Annotations reference.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jeyben/fixedformat4j#2",
+      "title": "Compared to alternatives",
+      "text": "FixedFormat4J BeanIO FlatWorm Manual substring ------------------------ ---------------------------- ------------------- ------------------- -------------------- Configuration Java annotations XML schema file XML schema file none External schema file no yes yes no Spring integration drop-in @Bean separate module manual manual Enum support built-in ( @FixedFormatEnum ) built-in limited manual Custom formatters yes ( FixedFormatter ) yes limited n/a Lombok support yes (field annotations) no no no Active maintenance yes limited no n/a FixedFormat4J's annotation-only approach means no external schema files to version, no XML to keep in sync with your Java classes, and no framework-specific integration layer to pull in.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jeyben/fixedformat4j#3",
+      "title": "1. Add the dependency",
+      "text": "FixedFormat4J is published to Maven Central . No repository configuration or authentication is needed. Maven Gradle (Groovy DSL) Gradle (Kotlin DSL) Ivy Requires Java 11 or later . If you want log output, add an SLF4J binding such as logback-classic ; without one the library still works, just silently. See Get It for full setup instructions.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jeyben/fixedformat4j#4",
+      "title": "2. Annotate your record class",
+      "text": "- @Record marks the class as a fixed-format record. - @Field goes on the getter or directly on the field (since 1.5.0); offset is 1-based . - Each mapped field needs a getter and a setter.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jeyben/fixedformat4j#5",
+      "title": "Using Lombok instead",
+      "text": "Place @Field on the fields, let Lombok generate the getters and setters, and the result is identical.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jeyben/fixedformat4j#6",
+      "title": "Using Java records instead",
+      "text": "On JDK 16+ the same mapping works as a Java record (since 1.9.0) — annotate the record components; no setters and no no-arg constructor are needed: Every annotation — @Field , @Fields , @FixedFormatPattern , @FixedFormatDecimal , @FixedFormatNumber , @FixedFormatBoolean , @FixedFormatEnum — applies to record components exactly as to getter methods, including nested @Record components and repeating fields. load() binds all parsed values through the canonical constructor in one call, and export() reads the component accessors ( record.name() ). The library itself still runs on Java 11 — record binding activates only when a record class is encountered.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jeyben/fixedformat4j#7",
+      "title": "4. Export to a string",
+      "text": "Every field is re-padded to its declared length using the configured alignment and padding character.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jeyben/fixedformat4j#8",
+      "title": "5. Read a file line by line",
+      "text": "FixedFormatReader (since 1.8.1) reads files and streams directly, routing each line to the right record class: See File Processing for the full API including streaming process() , charset overloads, and per-line error strategies.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jeyben/fixedformat4j#9",
+      "title": "Writing the same field at multiple offsets",
+      "text": "@Fields groups multiple @Field annotations on a single getter, writing the same value at two or more positions — useful for legacy formats that duplicate a field:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jeyben/fixedformat4j#10",
+      "title": "Supported types",
+      "text": "ByTypeFormatter maps Java types to the right formatter automatically. All of the following work out of the box — no formatter = attribute required: Java type Supplementary annotation Notes --- --- --- String — padded or trimmed to declared length Integer / int @FixedFormatNumber sign handling, zero-padding Long / long @FixedFormatNumber Short / short @FixedFormatNumber Double / double @FixedFormatDecimal Float / float @FixedFormatDecimal BigDecimal @FixedFormatDecimal implied decimals, optional delimiter Boolean / boolean @FixedFormatBoolean configurable trueValue / falseValue literals Character / char — single character LocalDate @FixedFormatPattern e.g. \"yyyyMMdd\" LocalDateTime @FixedFormatPattern e.g. \"yyyyMMddHHmmss\" java.util.Date @FixedFormatPattern legacy date support Any Enum @FixedFormatEnum LITERAL (name) or NUMERIC (ordinal) Nested @Record class — recursive load / export For any type not in this table, implement FixedFormatter and reference it via formatter = on @Field .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jeyben/fixedformat4j#11",
+      "title": "Documentation",
+      "text": "Full documentation is available at https://jeyben.github.io/fixedformat4j/ : - Quick Start — step-by-step walkthrough - Annotations reference — every annotation attribute explained - Examples — financial records, booleans, file processing, custom formatters - File Processing — reading files and streams with FixedFormatReader - Nested Records — embedding one record inside another - Compile-time Validation — optional fixedformat4j-processor artifact that turns @Field / @Record misconfigurations into javac errors - Schema Introspection — query the field layout of a @Record class at runtime via FixedFormatIntrospector - Metrics — optional fixedformat4j-micrometer artifact with load/export timers and parse-error counters for any Micrometer registry - FAQ - Changelog Reports: - Mutation Report — latest PIT mutation testing results (updated on release)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jeyben/fixedformat4j#12",
+      "title": "Benchmarks",
+      "text": "JMH microbenchmarks compare load() and export() performance across releases. Charts are published at jeyben.github.io/fixedformat4j/benchmarks. To run benchmarks locally (requires Java 11 and 1.6.1 on Maven Central): Results are written to docs/assets/benchmarks/ as JMH JSON.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jeyben/fixedformat4j#13",
+      "title": "Contributing",
+      "text": "1. Fork the repository and create a feature branch. 2. Write a failing test first — TDD is required; see CLAUDE.md for the full workflow. 3. Run export JAVA HOME=$(/usr/libexec/java home -v 11) && mvn test to verify everything passes. 4. Open a pull request against master . Bug reports and feature requests are welcome as GitHub issues.",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-30",
+  "source_url": "https://github.com/jeyben/fixedformat4j",
+  "stars": 53
+}

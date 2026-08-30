@@ -1,0 +1,70 @@
+{
+  "slug": "stackabletech--listener-operator",
+  "name": "listener-operator",
+  "description": "Kubernetes operator for exposing pods through listeners, load balancers and NodePorts. Part of the Stackable Data Platform (SDP).",
+  "documents": [
+    {
+      "url": "https://github.com/stackabletech/listener-operator#0",
+      "title": "Introducción",
+      "text": "Stackable Listener Operator Documentation Stackable Data Platform Platform Docs Discussions Discord A CSI provider intended to provide an abstract way to expose a single Pod to the outside network, while hiding details about the cluster from the application developer. It is part of the Stackable Data Platform, a curated selection of the best open source data apps like Apache Kafka®, OpenSearch, Trino or Apache Spark™, all working together seamlessly. Based on Kubernetes, it runs everywhere – on prem or in the cloud.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/stackabletech/listener-operator#1",
+      "title": "Building",
+      "text": "As a user you do not need to build the operator yourself, but for development purposes you can read the build instructions to learn how to build the operator.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/stackabletech/listener-operator#2",
+      "title": "Documentation",
+      "text": "The stable documentation for this operator can be found in our Stackable Data Platform documentation. If you are interested in the most recent state of this repository, check out the nightly docs instead. The documentation for all Stackable products can be found at docs.stackable.tech. If you have a question about the Stackable Data Platform, contact us via our homepage or ask a public question in our Discussions forum.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/stackabletech/listener-operator#3",
+      "title": "About The Stackable Data Platform",
+      "text": "This operator is written and maintained by Stackable and it is part of a larger data platform. Stackable makes it easy to operate data applications in any Kubernetes cluster. The data platform offers many operators, new ones being added continuously. All our operators are designed and built to be easily interconnected and to be consistent to work with. The Stackable GmbH is the company behind the Stackable Data Platform. Offering professional services, paid support plans and custom development. We love open-source!",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/stackabletech/listener-operator#4",
+      "title": "Supported Platforms",
+      "text": "We develop and test our operators on the following cloud platforms: AKS on Microsoft Azure EKS on Amazon Web Services (AWS) GKE on Google Cloud Platform (GCP) IONOS Cloud Managed Kubernetes K3s Kubernetes (for an up to date list of supported versions please check the release notes in our docs) Red Hat OpenShift",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/stackabletech/listener-operator#5",
+      "title": "Other Operators",
+      "text": "These are the operators that are currently part of the Stackable Data Platform: Stackable Operator for Apache Airflow Stackable Operator for Apache Druid Stackable Operator for Apache HBase Stackable Operator for Apache Hadoop HDFS Stackable Operator for Apache Hive Stackable Operator for Apache Kafka Stackable Operator for Apache NiFi Stackable Operator for OpenSearch Stackable Operator for Apache Spark Stackable Operator for Apache Superset Stackable Operator for Trino Stackable Operator for Apache ZooKeeper And our internal operators: Commons Operator Listener Operator OpenPolicyAgent Operator Secret Operator",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/stackabletech/listener-operator#6",
+      "title": "Contributing",
+      "text": "Contributions are welcome. Follow our Contributors Guide to learn how you can contribute. All contributors will have to sign a Contributor License Agreement. This is enforced automatically when you submit a Pull Request where a bot will guide you through the process.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/stackabletech/listener-operator#7",
+      "title": "Support",
+      "text": "Get started with the community edition! If you want professional support, we offer subscription plans and custom licensing.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/stackabletech/listener-operator#8",
+      "title": "Sponsor",
+      "text": "If you want to support our work but don't need professional support please consider sponsoring our work.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/stackabletech/listener-operator/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog All notable changes to this project will be documented in this file. [Unreleased] Changed - Bump stackable-operator to 0.114.0 ([ 411]). - Bump stackable-operator to 0.115.0 ([ 416]). Fixed - BREAKING: Honour serviceAccount.name , which the ServiceAccount and both CSI workloads previously ignored in favour of a hardcoded name. serviceAccount.create=false now requires serviceAccount.name ; it used to fall back to the namespace default ServiceAccount, which lacks the operator ClusterRole ([ 418]). [ 411]: https://github.com/stackabletech/listener-operator/pull/411 [ 416]: https://github.com/stackabletech/listener-operator/pull/416 [ 418]: https://github.com/stackabletech/listener-operator/pull/418 [26.7.0] - 2026-07-21 [26.7.0-rc1] - 2026-07-16 Changed - Bump stackable-operator to 0.113.3 and snafu to 0.9 ([ 401]). - Document Helm deployed RBAC permissions and remove unnecessary permissions ([ 380], [ 397]). Fixed - Refuse to overwrite a pre-existing Service that is not owned by the reconciled Listener . This prevents a principal with create access on Listener from hijacking arbitrary same-named Services in the namespace via the operator's cluster-wide write permissions ([ ",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-30",
+  "source_url": "https://github.com/stackabletech/listener-operator",
+  "stars": 9
+}

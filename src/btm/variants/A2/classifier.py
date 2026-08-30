@@ -18,7 +18,7 @@ from btm.system.tools import ToolBox
 from btm.system.trace import Trace
 
 # Número de documentos recuperados que se adjuntan al prompt.
-CONTEXT_DOCUMENTS = 3
+CONTEXT_DOCUMENTS = 4
 RULE = "Clasifica por el dominio de aplicación principal del proyecto."
 
 
@@ -33,7 +33,11 @@ class Classification(BaseModel):
 def query_plan(snapshot: RepoSnapshot) -> list[str]:
     """Las consultas que se lanzarán para este repositorio."""
     name = snapshot.name.replace("-", " ")
-    return [name, f"{name} docs", f"{name} sitio oficial"]
+    return [
+        name,
+        f"{name} installation usage instalacion uso",
+        f"{name} features examples caracteristicas ejemplos",
+    ]
 
 
 def build_prompt(snapshot: RepoSnapshot, taxonomy: Taxonomy, documents: list[str]) -> str:
@@ -65,7 +69,7 @@ def classify(
     tools = ToolBox(snapshot, taxonomy, run_id=run_id)
 
     queries = query_plan(snapshot)
-    hits: list[str] = []
+    per_query: list[list[str]] = []
     answered = 0
     for query in queries:
         try:
@@ -77,7 +81,7 @@ def classify(
         found = tools.search(query)
         answered += 1
         trace.record("tool_result", name="search", query=query, urls=[h.url for h in found])
-        hits.extend(h.url for h in found)
+        per_query.append([h.url for h in found])
 
     ceiling = budget.declared_ceiling(answered=answered, planned=len(queries))
     trace.record(
@@ -85,7 +89,18 @@ def classify(
         planned=len(queries), declared_ceiling=ceiling,
     )
 
-    ordered = list(dict.fromkeys(hits))[:CONTEXT_DOCUMENTS]
+    # El contexto se reparte entre las consultas: cada una cede su mejor
+    # resultado antes de que ninguna ceda el segundo.
+    ordered: list[str] = []
+    seen: set[str] = set()
+    for depth in range(max((len(urls) for urls in per_query), default=0)):
+        for urls in per_query:
+            if depth < len(urls) and urls[depth] not in seen:
+                seen.add(urls[depth])
+                ordered.append(urls[depth])
+        if len(ordered) >= CONTEXT_DOCUMENTS:
+            break
+    ordered = ordered[:CONTEXT_DOCUMENTS]
     trace.record("context_documents", urls=ordered)
     documents = [tools.fetch_page(url) for url in ordered]
 

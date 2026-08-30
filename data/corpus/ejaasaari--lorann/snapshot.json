@@ -1,0 +1,46 @@
+{
+  "slug": "ejaasaari--lorann",
+  "name": "lorann",
+  "description": "[NeurIPS'24] Approximate Nearest Neighbor search using reduced-rank regression, with extremely fast queries, tiny memory usage, and rapid indexing on modern vector embeddings.",
+  "documents": [
+    {
+      "url": "https://github.com/ejaasaari/lorann#0",
+      "title": "Introducción",
+      "text": "LoRANN Approximate nearest neighbor search library implementing reduced-rank regression (NeurIPS '24), a technique enabling extremely fast queries, tiny memory usage, and rapid indexing on modern embedding datasets. --- - Header-only C++17 library with Python bindings - Query speed matching state-of-the-art graph methods but with tiny memory usage - Optimized for modern high-dimensional (d 100) embedding data sets - Optimized for modern CPU architectures with acceleration for AVX2, AVX-512, and ARM NEON - State-of-the-art query speed for GPU batch queries (experimental) - Supported data types: float32, float16, bfloat16, uint8, binary - Supported distances: (negative) inner product, Euclidean distance, cosine distance - Support for index serialization",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ejaasaari/lorann#1",
+      "title": "Python",
+      "text": "Install the module with pip install lorann [!TIP] On macOS, it is recommended to use the Homebrew version of Clang as the compiler: A minimal example for indexing and querying a dataset using LoRANN is provided below: The data matrix should have type float32 , float16 , uint8 , or uint16 (for bfloat16). For binary data (packed into uint8 bytes using e.g. numpy.packbits ), use LorannBinaryIndex . The distance should be either lorann.L2 (for squared Euclidean distance), lorann.IP (for inner product), or lorann.HAMMING (only for binary data). For cosine distance, normalize vectors to unit norm and use lorann.IP . For a more detailed example, see examples/example.py. Python documentation",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ejaasaari/lorann#2",
+      "title": "C++",
+      "text": "LoRANN is a header-only library so no installation is required: just include the header lorann/lorann.h . A C++ compiler with C++17 support (e.g. gcc/g++ = 7) is required. [!TIP] It is recommended to target the correct instruction set (e.g., by using -march=native ) as LoRANN makes heavy use of SIMD intrinsics. The quantized version of LoRANN can use AVX-512 VNNI instructions, available in Intel Cascade Lake (and later) and AMD Zen 4, for improved performance. Usage is similar to the Python version: For a complete example, see examples/cpp. C++ documentation",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ejaasaari/lorann#3",
+      "title": "GPU",
+      "text": "Hardware accelerators such as GPUs and TPUs can be used to speed up ANN search for queries that arrive in batches. GPU support in LoRANN is experimental and available only as a Python module. For index building, the GPU is currently used only partially. Usage is similar to the CPU version, just with a different import: The GPU submodule is implemented with and depends on PyTorch, but a native CUDA implementation would provide better performance and will be available in the future. All index structures are by default saved as torch.float32 to ensure numerical stability. However, for most embedding datasets, better performance can be obtained by passing dtype=torch.float16 to the index constructor. For a complete example, see examples/gpu example.py",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ejaasaari/lorann#4",
+      "title": "Citation",
+      "text": "If you use the library in an academic context, please consider citing the following paper: Jääsaari, E., Hyvönen, V., Roos, T. LoRANN: Low-Rank Matrix Factorization for Approximate Nearest Neighbor Search. Advances in Neural Information Processing Systems 37 (2024): 102121-102153. ~~~~ @article{Jaasaari2024lorann, title={{LoRANN}: Low-Rank Matrix Factorization for Approximate Nearest Neighbor Search}, author={J{\\\"a}{\\\"a}saari, Elias and Hyv{\\\"o}nen, Ville and Roos, Teemu}, journal={Advances in Neural Information Processing Systems}, volume={37}, pages={102121--102153}, year={2024} } ~~~~",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ejaasaari/lorann#5",
+      "title": "License",
+      "text": "LoRANN is available under the MIT License (see LICENSE). Note that third-party libraries in the lorann folder may be distributed under other open source licenses (see licenses).",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-30",
+  "source_url": "https://github.com/ejaasaari/lorann",
+  "stars": 52
+}

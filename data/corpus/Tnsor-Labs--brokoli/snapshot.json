@@ -1,0 +1,58 @@
+{
+  "slug": "Tnsor-Labs--brokoli",
+  "name": "brokoli",
+  "description": "Brokoli — self-hosted data pipeline orchestration",
+  "documents": [
+    {
+      "url": "https://github.com/Tnsor-Labs/brokoli#0",
+      "title": "Introducción",
+      "text": "Brokoli The open-source data platform for building, running, and explaining data pipelines. Website · Documentation · Quick Start · Features · Examples --- It starts as a single ~30MB binary with a visual editor, parallel DAG execution, built-in data quality, real-time monitoring, and a Python SDK — no infrastructure required beyond the binary itself. The important part is the complete operating loop: define a pipeline, run it, see the physical plan and evidence behind the result, and trace the data that was affected. Start locally, then keep the same pipeline when you need more workers or stronger governance. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Tnsor-Labs/brokoli#1",
+      "title": "Option A: Install Script",
+      "text": "Open http://localhost:8080 , create your admin account, choose the Hello World template, and click Run . You should have a successful run, an output CSV, and an execution record in a few minutes. For the complete first-success path, see the five-minute getting started guide.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Tnsor-Labs/brokoli#2",
+      "title": "Features",
+      "text": "Single binary, no infrastructure. Runs on any Linux/macOS machine with no external dependencies. SQLite by default; swap to PostgreSQL with a connection string. Visual pipeline editor. Drag-and-drop canvas with 15 node types, zoom/pan, inline node config, dry-run preview, and YAML import/export. No code required for common ETL patterns. Built-in data quality. 10 quality rules (not null, unique, min/max, range, regex, row count, type check, freshness, no blank), auto-profiling on every node output, and schema drift detection across runs. Parallel DAG execution. Wave-based Kahn's algorithm, per-node retry with exponential backoff, resume from failure, cross-pipeline dependencies with trigger-mode chaining, condition branching. Explainable operations. Live run status and log streaming over WebSocket, physical execution plans, run evidence, artifacts, profiling, a run calendar heatmap, and cross-pipeline lineage. Secrets and connections. AES-256-GCM encryption at rest, 7 connection types (Postgres, MySQL, SQLite, HTTP, SFTP, S3, Generic), typed variables with ${var.key} resolution in any config field. Authentication. httpOnly cookie sessions, JWT auth, API key support, role-based acces",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Tnsor-Labs/brokoli#3",
+      "title": "Brokoli Cloud",
+      "text": "Brokoli Cloud builds on the open-source core with team and governance features — SSO/OIDC, audit logging, workspaces with RBAC, Git Sync, data contracts, column-level lineage, PII detection, OpenLineage export, and Kubernetes execution. Free tier available. Try it now ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Tnsor-Labs/brokoli#4",
+      "title": "Configuration",
+      "text": "Flag Default Description --- --- --- --port / -p 8080 HTTP server port --db ./brokoli.db SQLite path or postgres://... URI --api-key — Enable API key authentication Environment variable Description --- --- BROKOLI APP URL Base URL for Slack deep links BROKOLI JWT SECRET Persistent JWT signing secret BROKOLI CORS ORIGINS Allowed CORS origins (comma-separated) BROKOLI MAX CONCURRENT RUNS Max parallel pipeline runs (default: 4) ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Tnsor-Labs/brokoli#5",
+      "title": "License",
+      "text": "Apache 2.0 — see LICENSE. Enterprise features are available under a separate commercial license. Contact us for pricing.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Tnsor-Labs/brokoli/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to Brokoli Welcome — this is the canonical contributing guide for the Brokoli OSS core. brokoli-sdk and brokoli-ee have their own short guides that link back here for anything shared. Where to start - docs/adr/README.md explains the architecture and, importantly, how to propose changing it. Read the ADR for the area you're touching before writing code. - RELEASING.md explains the release cadence and where a given issue sits in it. - Issues carrying the current milestone are the best place to start — they're written with enough context to implement from, and usually reference the ADR that motivated them. Claiming an issue Comment on the issue to claim it. Substantial issues (the kind with a companion ADR) are usually split into a few independently-landable milestones inside the issue body — pick one at a time rather than trying to land the whole thing in one PR. If you're not sure where to start on an issue, ask on the issue itself; that's what it's there for. Branches, commits, PRs - Branch names: feat/short-description or fix/short-description . - PR titles follow Conventional Commits ( feat: ... , fix: ... , docs: ... ) — the title becomes the squash-merge commit mes",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/Tnsor-Labs/brokoli/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog All notable changes to Brokoli are documented in this file. The format is based on Keep a Changelog, and this project loosely follows Semantic Versioning. Every entry names its owner. With more than one contributor in the codebase, \"who shipped this\" is part of the record, not something to reconstruct from git archaeology. [Unreleased] [0.11.0] - 2026-08-30 Added - TypeScript code-node capabilities are advertised honestly (ADR-030, 426, A5) -- @hc12r. /api/capabilities now reports code languages and code js wrapper version , and adds code-typescript only when Node =20 actually resolves at server startup. Hosts without Node continue to expose the Python-only capability set, so SDK preflight refuses TypeScript before persistence rather than allowing a runtime failure. - Code nodes run on a warm worker pool (ADR-029, 419- 423) -- @hc12r. Long-lived Python workers over a framed, versioned Unix-socket protocol replace spawn-per-invocation: interpreter and pandas/pyarrow boot are paid once per worker, not once per node run -- measured 71.6ms to 3.3ms per execution (21.7x) on the expansion fan-out shape. Crash isolation strictly improves (a dying worker costs one execution and a",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-30",
+  "source_url": "https://github.com/Tnsor-Labs/brokoli",
+  "stars": 5
+}

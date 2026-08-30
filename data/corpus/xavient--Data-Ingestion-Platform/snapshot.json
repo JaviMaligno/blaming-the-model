@@ -1,0 +1,64 @@
+{
+  "slug": "xavient--Data-Ingestion-Platform",
+  "name": "Data-Ingestion-Platform",
+  "description": null,
+  "documents": [
+    {
+      "url": "https://github.com/xavient/Data-Ingestion-Platform#0",
+      "title": "Introducción",
+      "text": "Data Ingestion Platform(DiP) Check out the real time data ingestion using Data Ingestion Platform (DiP) which harness the powers of Apache Apex, Apache Flink, Apache Spark and Apache Storm to give real time data ingestion and visualization. DiP comes along with a UI which allows to switch between multiple data streaming engines and combines them under one single platform.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/xavient/Data-Ingestion-Platform#1",
+      "title": "DiP Features",
+      "text": "- Multiple Sources - Multiple File Formats - Easy to use UI - Data Visualization - High Level API’s - Java, Scala , Client bindings",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/xavient/Data-Ingestion-Platform#2",
+      "title": "DiP Technology Stack",
+      "text": "- Source System – Web Client - Messaging System – Apache Kafka - Target System – HDFS, Apache HBase, Apache Hive - Reporting System – Apache Phoenix, Apache Zeppelin - Streaming API’s – Apache Apex, Apache Flink, Apache Spark and Apache Storm - Programming Language – Java - IDE – Eclipse - Build tool – Apache Maven - Operating System – CentOS 7",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/xavient/Data-Ingestion-Platform#3",
+      "title": "DiP Architecture",
+      "text": "The DiP architecture has four blocks in the middle layer one for each streaming engine namely Apex Streaming, Flink Streaming, Spark Streaming and Storm Streaming respectively.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/xavient/Data-Ingestion-Platform#4",
+      "title": "DiP comes with an easy to use UI that offers the following features –",
+      "text": "- Switch easily between the supported streaming engines just by clicking on a radio button. - Supports xml, json and tsv data formats - Use text area to enter data manually for getting processed - Process files for batch processing by simply uploading them",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/xavient/Data-Ingestion-Platform#5",
+      "title": "DiP on Apex",
+      "text": "Apache Apex is an enterprise grade native YARN big data-in-motion platform that unifies stream processing as well as batch processing. It processes big data in-motion in a highly scalable, highly performant, fault tolerant, stateful, secure, distributed, and an easily operable way. Blog link - https://techblog.xavient.com/real-time-data-ingestion-dip-apache-apex-co-dev-opportunity/ GitHub link - https://github.com/XavientInformationSystems/Data-Ingestion-Platform/tree/master/dataingest-apex",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/xavient/Data-Ingestion-Platform#6",
+      "title": "DiP on Flink",
+      "text": "Apache Flink is an open source platform for distributed stream and batch data processing. Flink's core is a streaming dataflow engine that provides data distribution, communication, and fault tolerance for distributed computations over data streams. Blog link- https://techblog.xavient.com/data-ingestion-platformdip-real-time-data-analysis-flink-streaming/ GitHub link - https://github.com/XavientInformationSystems/Data-Ingestion-Platform/tree/master/dataingest-flink",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/xavient/Data-Ingestion-Platform#7",
+      "title": "DiP on SparkStreaming",
+      "text": "Spark Streaming is an extension of the core Spark API that enables scalable, high-throughput, fault-tolerant stream processing of live data streams. Blog link - https://techblog.xavient.com/real-time-data-ingestion-dip-spark-streaming-co-dev-opportunity/ GitHub link - https://github.com/XavientInformationSystems/Data-Ingestion-Platform/tree/master/dataingest-spark",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/xavient/Data-Ingestion-Platform#8",
+      "title": "DiP on Storm",
+      "text": "Apache Storm is a free and open source distributed real time computation system. Storm makes it easy to reliably process unbounded streams of data, doing for real time processing what Hadoop did for batch processing. Storm is simple, can be used with any programming language, and is a lot of fun to use! Blog link - https://techblog.xavient.com/real-time-data-ingestion-easy-and-simple-co-dev-opportunity/ GitHub link - https://github.com/XavientInformationSystems/Data-Ingestion-Platform/tree/master/dataingest-storm Credits Xavient Technical team Neeraj Sabharwal Mohiuddin Khan Inamdar Gautam Marya Puneet Singh Sumit Chauhan",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-30",
+  "source_url": "https://github.com/xavient/Data-Ingestion-Platform",
+  "stars": 51
+}

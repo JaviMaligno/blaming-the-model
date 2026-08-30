@@ -1,0 +1,208 @@
+{
+  "slug": "harumiWeb--xlflow",
+  "name": "xlflow",
+  "description": "AI-Agent-ready CLI framework for editing, testing, running, tracing, and diffing Excel VBA projects.",
+  "documents": [
+    {
+      "url": "https://github.com/harumiWeb/xlflow#0",
+      "title": "Introducción",
+      "text": "Excel VBA development, rebuilt for CLI-first humans and AI agents. Official Documentation English 日本語 :surfing man: xlflow xlflow is an Excel VBA development framework for the AI agent era. It turns .xlsm workbooks, .xlam Excel add-ins, and .xlsb Excel Binary Workbooks into a source-controlled, CLI-driven development workflow where VBA can be exported, edited, linted, imported, tested, and executed from the command line. [!TIP] Think of xlflow as a development harness around Excel VBA: it does not replace Excel, but it makes Excel VBA projects much easier to operate from terminals, scripts, CI-like local checks, and AI coding agents.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#1",
+      "title": "Demo",
+      "text": "These samples were created by an AI agent using xlflow with only minimal natural language instructions. Macro that summarizes world news in Excel using NewsAPI Macro that retrieves stock prices and displays them in Excel Macro that generates QR codes using cell colors and displays them in Excel Macro that allows playing Tetris within Excel Macro that allows playing Space Invader on a UserForm Rich calendar picker Legal Act Data Search Tool Pac-Man style game ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#2",
+      "title": "Why xlflow?",
+      "text": "Traditional VBA development is still heavily tied to the Excel UI and the Visual Basic Editor. That works for small manual edits, but it becomes painful when you want repeatable development, source control, tests, diffs, or AI-agent-assisted changes. Pain in normal VBA development What xlflow adds ------------------------------------------------------------ ----------------------------------------------------------------- VBA code is trapped inside .xlsm / .xlam / .xlsb files Export/import VBA as .bas , .cls , and .frm source files UserForms cannot be handled declaratively Generate UserForms from YAML definitions with xlflow form build Runtime failures are hard to locate Return structured errors, diagnostics, and terminal logs Workbook changes are hard to review Compare values, formulas, sheets, and exported VBA source AI agents cannot safely operate Excel through the UI Provide stable CLI commands and JSON output ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#3",
+      "title": "What xlflow can do",
+      "text": "Area Capabilities ------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- Source control Export and import standard modules, class modules, UserForms, and document modules Formula snapshots Extract worksheet formulas and defined names into region-based JSONL files with xlflow formulas pull or refresh them with xlflow pull --formulas Execution Run macros from the CLI with typed arguments Testing Discover and run VBA test procedures Formatting Conservative, non-destructive VBA formatting for .bas and .cls source files Linting Catch Option Explicit omissions, Select / Activate , broad error handling, implicit variants, unqualified Excel objects, public module fields, and interactive operations Debugging Collect terminal logs and return runtime diagnostics Diffing Compare workbook cell values, formulas, sheet structure, and exported VBA source AI agents Return stable JSON and install bundled Skills for Codex, Claude, Cursor, Gemini, GitHub Copilot-style agent workflows, and other agents LSP Server Provides features like c",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#4",
+      "title": "Requirements",
+      "text": "Requirement Needed for -------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- Windows Excel COM automation Microsoft Excel new , init , list forms , inspect form , form snapshot , form build , form export-image , pull , push , run , export-image , edit , test , macros , doctor Trust access to the VBA project object model Reading and writing VBA projects [!NOTE] Commands that do not require Excel COM, such as lint , fmt , formulas pull , parts of diff , and Go unit tests, can be verified in non-Excel environments. [!NOTE] xlflow uses the .NET bridge for Excel COM operations. The legacy PowerShell bridge was removed in v0.16.0; supported bridge modes are auto and dotnet . [!WARNING] In Excel, enable Trust access to the VBA project object model before using commands that read or write VBA code. Without it, pull , push , run , and related commands may fail even when Excel itself is installed. Details In Excel options, please enable \"Trust Center\" → \"Macro Settings\" → \"Trust access to the VBA project object model\". ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#5",
+      "title": "Uninstall",
+      "text": "Use the same script in file mode when you want to remove the PATH entry and the %LOCALAPPDATA%\\xlflow installation directory:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#6",
+      "title": "winget",
+      "text": "Use upgrade to update an existing installation: [!NOTE] winget availability may lag behind a GitHub Release while the manifest is submitted and accepted upstream. Use the installer script, Scoop, or the GitHub Releases ZIP when you need the newest release immediately.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#7",
+      "title": "GitHub Releases",
+      "text": "Download prebuilt Windows and Linux x64 binaries from: https://github.com/harumiWeb/xlflow/releases [!IMPORTANT] Commands that interact with workbooks still require Microsoft Excel , Excel COM automation, and Trust access to the VBA project object model on Windows. The Windows release ZIP includes both xlflow.exe and xlflow-excel-bridge.exe . Workbook-backed commands use the bundled .NET bridge in auto mode. The Linux x64 archive contains the WSL/frontend CLI only and does not include the Windows .NET bridge. Release artifacts are built natively per OS because xlflow uses CGO for VBA source parsing: Windows releases use MSYS2 UCRT64 GCC, and Linux releases use the native Ubuntu GCC toolchain. [!WARNING] xlflow-excel-bridge.exe avoids PowerShell execution policy, but it can still be blocked by AppLocker, WDAC, Defender or EDR policy, antivirus reputation, or unsigned-executable rules. The published checksum and GitHub attestation verify artifact integrity and provenance; they do not provide Windows Authenticode signing. Verify the downloaded Windows ZIP against the published checksums.txt file: The reported SHA256 must match the entry for xlflow windows x86 64.zip in checksums.txt .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#8",
+      "title": "Go install",
+      "text": "go install may contact the Go module mirror and checksum database configured in your Go environment. For direct source checkout development and CI, treat the Go version declared in go.mod as the supported toolchain source of truth; the repository CI and release workflows resolve Go from that file. [!WARNING] go install installs xlflow only. It does not install the packaged .NET bridge sidecar xlflow-excel-bridge.exe used by Windows release ZIPs. The Windows release archive includes the .NET bridge sidecar. From a source checkout, use task install so both xlflow.exe and xlflow-excel-bridge.exe are installed together. Verify the installation: For development checkout usage: With Taskfile: ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#9",
+      "title": "WSL Development",
+      "text": "WSL can be used as the editing and automation frontend while Windows remains the Excel execution backend. Excel is not started inside WSL; workbook commands are delegated to the Windows xlflow.exe , which then uses the bundled .NET bridge and Microsoft Excel COM automation. Recommended setup: 1. Install xlflow on Windows first, using the installer, winget, Scoop, or the Windows release ZIP. 2. Install the WSL frontend from a WSL shell: 3. Keep xlflow projects under a Windows-mounted path such as /mnt/c/dev/my-vba-project . [!WARNING] Projects under WSL-only paths such as /home/user/project are not supported for delegated Excel automation because Windows Excel and COM need a Windows-visible workbook path. Run diagnostics from WSL before starting work: Use xlflow doctor --workbook --json when you also want to verify that Windows Excel can open the configured workbook. If the Windows executable is not discoverable from WSL, point xlflow at it explicitly: For day-to-day macro development, use a session so Excel stays open across the edit loop: If run , test , or bridge cleanup returns while Excel/VBA may still be active, xlflow quarantines the workbook. Follow-up workbook commands retu",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#10",
+      "title": "1. Create or initialize a project",
+      "text": "Create a new xlflow project and macro-enabled workbook: Omit the extension to default to .xlsm , or request an Excel add-in or binary workbook project explicitly: new automatically pushes the scaffolded VBA modules into the new workbook, so a later pull starts from the same initial source. Or start from an existing workbook or add-in: init automatically pulls VBA out of the copied workbook into src/ , so you can edit source files immediately without a separate bootstrap pull . Install the AI agent Skill during project creation: Interactive xlflow new and xlflow init render a welcome banner and may check the latest GitHub Release through the GitHub Releases API. Disable that request for one invocation with --no-update-check , or set XLFLOW NO UPDATE CHECK=1 to disable it for interactive scaffolding in your environment.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#11",
+      "title": "2. Check the Excel automation environment",
+      "text": "[!TIP] doctor is lightweight by default. If you need to prove the configured workbook can be opened, run xlflow doctor --workbook --json . If pull , push , run , or test fails because of Excel, COM, bridge, VBIDE, or workbook-open settings, run doctor first.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#12",
+      "title": "3. Export VBA into source files",
+      "text": "Edit the exported .bas , .cls , and .frm files under src/ with your normal editor. When folder mode is enabled, nested directories under each configured source root are mapped to Rubberduck-compatible @Folder(...) annotations during push .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#13",
+      "title": "5. Discover and run macros",
+      "text": "For unattended automation, prefer headless mode: If the macro uses XlflowUI.MsgBox or XlflowUI.InputBox , keep the run headless by providing scripted responses. Add --ui-stream when you want realtime dialog visibility in the terminal while preserving JSON stdout: --ui-stream writes lines such as xlflow: ui kind=msgbox id=confirm-save source=default result=yes to stderr and keeps InputBox values redacted by default. When --ui-stream is enabled, the final JSON result also includes the same dialog activity under top-level ui.events . If the macro intentionally shows file pickers, message boxes, or UserForms, use interactive mode:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#14",
+      "title": "6. Lint and test",
+      "text": "When a test run uses XlflowUI , you can use the same response flags and realtime stream: ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#15",
+      "title": "Installing the Skill",
+      "text": "When having an AI agent edit VBA using xlflow, it is recommended to install the Skill provided by xlflow into the agent's environment. You can also install it at the same time you launch a project. If you wish to manage skills using a manager such as vercel-labs/skills, please install the skill as follows.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#16",
+      "title": "Creating a project",
+      "text": "While you can leave the creation of the project itself to an AI agent, it is recommended that the initial project setup be performed by a human.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#17",
+      "title": "Letting an AI agent edit",
+      "text": "Using the installed skill, please provide instructions for what you want to achieve in natural language. The bundled xlflow skill also teaches agents when to add --ui-stream for headless XlflowUI flows, how to keep stdout JSON-safe, and how to interpret the final human-readable UI section or JSON ui.events payload.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#18",
+      "title": "Human-assisted Excel sessions",
+      "text": "Use attach when a human has Excel open and you want to validate the active workbook before working with it: [!NOTE] attach is a safety check. It confirms that the active Excel workbook matches the configured excel.path ; it does not change the target used by pull , push , or run . attach , session , runner , list forms , ui button , edit , and new also use the .NET bridge in Windows auto mode.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#19",
+      "title": "GUI-heavy macros",
+      "text": "Inspect GUI boundaries before deciding whether a macro can run headlessly: Result Recommended action ------------------------------------------------------------- ---------------------------------------------------------- No GUI boundaries xlflow run ... --headless --json File picker, InputBox , modal MsgBox , or UserForm detected Use XlflowUI.MsgBox and XlflowUI.InputBox GUI code wraps core logic Refactor core logic into parameterized headless procedures [!WARNING] Headless automation and modal Excel UIs do not work well together. We recommend using inspect-gui before unattended execution and replacing existing MsgBox or InputBox calls with XlflowUI . When XlflowUI.bas is present, bare MsgBox / InputBox calls are rejected during source preflight because VBA can bind them to XlflowUI instead of the built-ins. Use XlflowUI wrappers by default, or explicitly call VBA.Interaction.MsgBox / VBA.Interaction.InputBox for intentional native dialogs.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#20",
+      "title": "Runtime-aware VBA branches",
+      "text": "New xlflow new projects include src/modules/Xlflow/XlflowRuntime.bas . During xlflow run and xlflow test , xlflow injects a workbook-scoped execution mode marker before user VBA starts, so code can branch without process inspection hacks. run --headless resolves to headless , run --interactive resolves to interactive , and test resolves to test . Plain run falls back to interactive unless the xlflow process environment sets XLFLOW MODE=interactive headless ci agent test . ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#21",
+      "title": "VS Code Extension",
+      "text": "To provide what we believe to be the most user-friendly Excel VBA macro development tool, xlflow also offers a compatible VS Code extension. This extension enables you to access most of the core functionality provided by the xlflow CLI through a graphical user interface. Furthermore, by integrating with an LSP server, it delivers several valuable features for manual code editing, including: - Type inference-based auto-completion - Definition jumping - Real-time diagnostics You can install it from the Visual Studio Marketplace. [!IMPORTANT] Note that the xlflow extension is primarily a wrapper that facilitates calling the xlflow CLI through a GUI. When using this extension, you must also ensure to install the xlflow CLI simultaneously. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#22",
+      "title": "Command map",
+      "text": "Command Purpose Typical usage ------------------- ----------------------------------------------------------------------- ---------------------------------------------------------------------------- new Create a new xlflow project and .xlsm workbook or .xlam add-in xlflow new Book.xlsm init Initialize xlflow from an existing workbook or add-in xlflow init Book.xlsm doctor Diagnose Excel, COM, .NET bridge, VBIDE, and optional workbook access xlflow doctor --workbook --json attach Validate the workbook currently active in Excel xlflow attach --active --json backup list List rollback-capable workbook backups xlflow backup list --json backup prune Preview or delete old managed workbook backups xlflow backup prune --keep-last 20 --dry-run --json pull Export VBA components into src/ xlflow pull --json push Import VBA source back into the workbook xlflow push --json rollback Restore the workbook from a saved backup xlflow rollback --latest --json session Keep the configured workbook open for fast loops xlflow session start status Show project, source, workbook, and session state xlflow status --json save Save the workbook held by a session xlflow save --session --json recovery Verify and ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#23",
+      "title": "Commands in detail",
+      "text": "Detailed command behavior, options, JSON payloads, and troubleshooting notes now live in the documentation site. - Command reference - JSON output - Configuration - Troubleshooting Use the README as a quick overview and the documentation site as the source for command-level details. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#24",
+      "title": "Configuration",
+      "text": "xlflow reads xlflow.toml from the project root. project.entry is used when xlflow run is invoked without a macro name. [backup.retention] enables automatic pruning after successful backup-producing push and rollback operations. It is disabled by default, affects only backups for the configured workbook, and never deletes invalid or legacy backup entries. Use [lint].disabled rules = [\"VB007\"] when the project intentionally uses dialogs or UserForms and you want to suppress VB007 warnings. This only affects lint output; xlflow run --headless still blocks GUI boundaries. Legacy per-rule booleans such as forbid interactive input = false are still accepted for compatibility, but are deprecated. Syntax safety lint rules for typographic quotes, C-style quote escapes, unclosed or mismatched procedures, and malformed line-continuation underscores are always enabled because they prevent VBE compile dialogs before push or run opens Excel. Use [analyze].disabled rules = [\"VBA205\"] to disable configurable analyzer rules. Analyzer diagnostics VBA101 through VBA106 are always enabled. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#25",
+      "title": "xlflow Dedicated Built-in Modules",
+      "text": "In new projects, the following helper modules are scaffolded on the workbook side: - src/modules/Xlflow/XlflowRuntime.bas - src/modules/Xlflow/XlflowUI.bas - src/modules/Xlflow/XlflowDebug.bas - src/modules/Xlflow/XlflowAssert.bas The purpose of each module is as follows: - XlflowRuntime is used for branching execution modes: interactive , headless , ci , agent , and test . - XlflowUI wraps MsgBox , InputBox , Application.GetOpenFilename , Application.FileDialog , Application.GetSaveAsFilename , and folder pickers, allowing the same VBA to be used for both interactive and unattended execution. - XlflowDebug mirrors XlflowDebug.Log to the terminal during xlflow run / xlflow test while maintaining standard VBA Immediate Window output. - XlflowAssert provides workbook-side assertions for scalar equality, strict type-sensitive equality, Null / Empty , numeric tolerances, strings, arrays, Range.Value2 , and object identity. Example: In unattended execution, you provide dialog responses via the CLI. If you want to treat a headless file dialog as \"Cancelled,\" use @cancel . To introduce bundled helper modules into an existing project, you can use the following commands during bootstrap or ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#26",
+      "title": "JSON output",
+      "text": "Every command can return AI-agent-friendly JSON by passing --json . The basic envelope is: On failure, status is failed , and error.code and error.message are returned. [!TIP] AI agents and automation scripts should treat status , command , error.code , and command-specific top-level fields as the primary contract. workbook recovery required is an operational safety failure, not normal lock contention. Inspect coordination.recovery with xlflow status --json and follow the returned recovery actions. Force clearing removes only xlflow's marker; it does not stop VBA or repair Excel state. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#27",
+      "title": "Exit codes",
+      "text": "Code Meaning ---: ----------------------------------------------------------------- 0 Success 1 Validation failure, such as lint, macro, or test failure 2 CLI argument or configuration error 3 Operational/environment failure, including busy or recovery state [!NOTE] diff returns exit code 0 even when differences are found. Inspect diff.summary.total diffs to determine whether inputs differ. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#28",
+      "title": "Development setup",
+      "text": "Use this section when you are developing xlflow from a source checkout and need the full local toolchain, including source-only commands, the Go CLI, the .NET Excel bridge, and Excel COM workflows.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#29",
+      "title": "Required tools",
+      "text": "Requirement Needed for -------------------------------------------- ---------------------------------------------------------------------------- Windows x64 Full workbook-backed development and Excel COM verification Go version from go.mod Building and testing the Go CLI MSYS2 UCRT64 mingw-w64-ucrt-x86 64-gcc Building the CGO-based tree-sitter VBA integration used by inspect symbols .NET SDK 8.0 or later Building xlflow-excel-bridge.exe Task Running repository tasks such as task install Microsoft Excel End-to-end workbook commands and release-grade COM verification Trust access to the VBA project object model VBA import/export, compile, UserForm, run, and test workflows xlflow inspect symbols uses tree-sitter-vba through Go CGO bindings. Because of that, a working Windows C compiler is now required when building xlflow from source. Use MSYS2 UCRT64 GCC rather than older TDM-GCC installations. Install the MSYS2 compiler: Then build/install from the repository with the UCRT64 compiler selected: If task install produces an xlflow.exe that fails with The specified executable is not a valid application for this OS platform , check the active C compiler: This failure can happen when CGO ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow#30",
+      "title": "Excel COM verification",
+      "text": "Source-only tests can run without Excel, but changes that touch workbook automation, VBA import/export, macro execution, sessions, UserForms, or the bridge need real Windows Excel verification. Before release-grade validation, enable Trust access to the VBA project object model in Excel and install with task install so both xlflow.exe and xlflow-excel-bridge.exe are present in your Go bin directory. For repeated workbook-backed checks, prefer a session-backed workflow:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to xlflow Thank you for your interest in contributing to xlflow. xlflow is a weekend/side project, so responses to issues, discussions, and pull requests may be slow. That said, contributions are very welcome. Bug reports, feature ideas, documentation improvements, tests, real-world feedback, and pull requests are all appreciated. Project goal xlflow aims to make Excel VBA development more CLI-first and agent-friendly. The core idea is to provide a safe proof loop for Excel VBA work: When contributing, please keep the following goals in mind: - Make Excel VBA easier to develop from the CLI - Make workflows safe and understandable for AI agents - Prefer deterministic JSON output for automation - Avoid UI-driven or modal workflows when possible - Preserve user workbooks and source files safely - Keep failure messages actionable Ways to contribute You can help in many ways: - Report bugs - Suggest features - Improve documentation - Improve examples - Add or improve tests - Test xlflow with real Excel workbooks - Improve Windows / Excel / VBIDE compatibility - Improve AI agent workflow guidance - Improve error messages and JSON output Real-world feedback is especially valu",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/harumiWeb/xlflow/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog All notable changes to xlflow will be documented in this file. Unreleased - Removed ineffective VBA227 inline suppressions from scaffolded XlflowAssert , XlflowUI , and XlflowDebug helpers so xlflow analyze no longer reports unused inline suppression warnings for new projects or installed helper modules. - Fixed false-positive VBA249 array-unallocated findings for indexed uses that follow a branch-local ReDim inside straight-line Select Case clauses. v0.31.1 - Kept LSP completion, signature help, hover, and definition responsive while Full diagnostics and workspace semantic indexing run. Analysis now uses a bounded priority budget with interactive capacity, prompt cancellation of obsolete semantic work, and opt-in wait/worker telemetry without changing diagnostic or symbol ordering. - Fixed Full LSP diagnostics stalling indefinitely on giant VBA modules. The editor path now reuses the open-document expression index, prepares Excel helper summaries and project constants once per revision, and analyzes large procedure sets with the same bounded parallelism as batch analysis while preserving diagnostic ordering and cancellation. - Kept LSP document changes responsive while d",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-30",
+  "source_url": "https://github.com/harumiWeb/xlflow",
+  "stars": 68
+}

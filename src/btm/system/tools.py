@@ -29,7 +29,7 @@ class ToolBox:
         wanted = tokens(query)
         scored: list[tuple[float, int, SearchHit]] = []
         for position, document in enumerate(self.snapshot.documents):
-            overlap = len(wanted & tokens(document.text))
+            overlap = len(wanted & tokens(f"{document.title} {document.text}"))
             score = overlap / max(len(wanted), 1)
             scored.append(
                 (score, position, SearchHit(url=document.url, title=document.title, score=score))

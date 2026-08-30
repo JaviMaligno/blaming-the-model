@@ -1,0 +1,70 @@
+{
+  "slug": "bolajiwahab--pgrubic",
+  "name": "pgrubic",
+  "description": "PostgreSQL linter and formatter for schema migrations and design best practices.",
+  "documents": [
+    {
+      "url": "https://github.com/bolajiwahab/pgrubic#0",
+      "title": "Introducción",
+      "text": "pgrubic pgrubic is a PostgreSQL linter and formatter for schema migrations and design best practices.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/bolajiwahab/pgrubic#1",
+      "title": "Features",
+      "text": "- Over 100+ rules - Automatic violation correction (e.g., automatically add concurrently to index create statements) - River style code formatting for DML statements - Almost identical styling with pg dump for DDL statements - Python 3.12+ compatibility - Automatic caching to avoid reformatting unchanged files - Violations suppression, statement level, and file level - Can be used as a library in your own Python projects, not just as a CLI tool",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/bolajiwahab/pgrubic#2",
+      "title": "via Web Browser",
+      "text": "Lint, format, and fix your migrations directly in your browser, no installation required: Try it online",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/bolajiwahab/pgrubic#3",
+      "title": "Usage",
+      "text": "For linting, try any of the following: Sample output from linting: For formatting, try any of the following:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/bolajiwahab/pgrubic#4",
+      "title": "Configuration",
+      "text": "pgrubic can be configured via the [ pgrubic.toml ] file in either the current directory, up to the root directory or the path set by the PGRUBIC CONFIG PATH environment variable. Config values can also be overridden using the --config command-line argument, which accepts a TOML = pair and may be repeated, e.g. --config \"lint.target-postgres-version = 17\" . The following configuration options are available in the [ pgrubic.toml ] with the following defaults: Some configuration options can be supplied via CLI arguments such as --check , --diff , --fix .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/bolajiwahab/pgrubic#5",
+      "title": "Rules",
+      "text": "There are 100+ rules. All rules are enabled by default. For a complete list, see rules.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/bolajiwahab/pgrubic#6",
+      "title": "Contributing",
+      "text": "We welcome and greatly appreciate contributions. If you would like to contribute, please see the contributing guidelines.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/bolajiwahab/pgrubic#7",
+      "title": "Support",
+      "text": "Encountering issues? Take a look at the existing GitHub issues, and don't hesitate to open a new one.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/bolajiwahab/pgrubic#8",
+      "title": "Acknowledgments",
+      "text": "pgrubic is inspired by a number of similar tools such as Strong Migrations, squabble, squawk, pgextwlist, Don't Do This and schemalint. pgrubic is built upon the shoulders of: - pglast - Python bindings to libpg query - libpg query - PostgreSQL parser outside of the server environment",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/bolajiwahab/pgrubic/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "2.1.0 (2026-08-27) Feat - config : expose configuration model factories ( 268) 2.0.0 (2026-08-22) Feat - cli : allow lint violations to exit with 0 via -e, --exit-zero ( 256) - validate config ( 252) - config : support config overrides from cli ( 248) - expose configuring output of special functions ( 246) - make type casting configurable ( 245) Fix - cli : avoid rewriting and misreporting already-formatted files ( 257) - rule : prevent duplicate-index state from leaking across lint sessions ( 255) - rule : crash on fix in US020 ( 254) - formatter : honor configured formatting in function printers ( 250) - config : replace list values when merging configuration ( 249) - deps : bump python from a7fb1e6 to ce40764 in the docker group ( 243) Refactor - narrow typing any annotations ( 253) - standardize configured streams across formatters ( 247) 1.3.0 (2026-08-10) Feat - improve table formatter ( 241) - Add configurable uppercase and lowercase SQL keyword formatting ( 236) Fix - deps : bump python from cea0e60 to a7fb1e6 in the docker group ( 240) - deps : bump gitpython from 3.1.54 to 3.1.58 ( 238) 1.2.1 (2026-08-01) Fix - formatter : rename compact-lists-margin to compact-parenthesi",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-30",
+  "source_url": "https://github.com/bolajiwahab/pgrubic",
+  "stars": 18
+}

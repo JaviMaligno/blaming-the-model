@@ -1,0 +1,262 @@
+{
+  "slug": "jacovinus--snoutdb",
+  "name": "snoutdb",
+  "description": null,
+  "documents": [
+    {
+      "url": "https://github.com/jacovinus/snoutdb#0",
+      "title": "Introducción",
+      "text": "SnoutDB From an unfamiliar file to ranked findings and reproducible queries. Most data tools are excellent once you know the schema and the question. SnoutDB targets the step before that. Point it at an unfamiliar CSV, JSONL, log, or .snout file:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#1",
+      "title": "What Hunt returns",
+      "text": "Every hunt run answers five questions at once, in a single page of output you can read in seconds: 1. What kind of file is this? A severity stack and per-level counts summarise the distribution of events at a glance. 2. What is normal in here? The frequent patterns block lists the most common message templates per severity, with a time range so you know whether they happened all day or only inside a window. 3. What should I look at first? The attention block ranks findings by a severity-aware score — errors, critical bursts, anomalous concentrations, missing data, metric tails, time spikes, and dominant contributors all flow into the same ranking. 4. When did each finding happen? Every ranked finding ships with a one-line sparkline showing where its events fall inside the file's full timeline — distinguishing a sharp burst, a slow ramp, or a steady scatter without leaving the page. 5. How do I reproduce the evidence? Each finding comes with a shell-safe SnoutDB command that re-runs the underlying slice of data, so the answer is always one command away from being verified. --verbose expands each finding with a full-width histogram, peak count and time, first/last match timestamps, a",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#2",
+      "title": "Hunt: Automatic Local Analysis",
+      "text": "Hunt is SnoutDB's primary discovery workflow. It is deterministic, explainable, and runs locally without an account, network service, data upload, telemetry, or an LLM dependency. Capability What Hunt reports --- --- Severity overview Normalized CRITICAL , ERROR , WARN , INFO , DEBUG , TRACE , and unknown levels Frequent context Common message templates with counts and time ranges Attention ranking Severity-aware, deterministic ordering of the strongest findings Generic analytics Concentration, error hotspots, metric outliers, null anomalies, temporal shifts, and top contributors Log analytics Message normalization, representative samples, temporal histograms, peaks, and first/last matches Reproduction Shell-safe SnoutDB commands for investigating the underlying evidence Structured output Stable JSON and JSONL without ANSI escape sequences Reports Color-free .txt or structured .md export with -o / --output The compact report is designed for quick triage. The verbose report is designed for investigation: Hunt accepts CSV, JSONL/NDJSON, supported log files, and .snout files. It does not currently accept stdin; import piped data to .snout first. Exported reports can contain samples de",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#3",
+      "title": "The Specific Advantage",
+      "text": "- It identifies what deserves attention. Hunt separates common background activity from ranked findings and preserves the evidence behind each result. - It proposes the first useful questions. Type inference alone tells you that a column is numeric. SnoutDB also decides whether it looks like a metric, dimension, identifier, or timestamp and uses that role to generate queries. - The result is executable, not just descriptive. Suggestions are ordinary CLI commands that can be inspected, changed, scripted, and rerun. - Operational files are first-class inputs. It reads CSV, JSONL, stdin, CLF, Combined, logfmt, syslog, and custom regex logs without a server or import step for discovery. - Discovery and repeated analysis stay in one workflow. Once a file is understood, it can be queried directly or saved as a typed .snout snapshot for repeated local work. - It is deliberately narrow. There is no service, account, notebook, or SQL dialect between the file and the first answer.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#4",
+      "title": "Choose the Right Tool",
+      "text": "Situation Better fit --- --- “I received this file and do not know its schema or what to investigate.” SnoutDB “I know the question and want SQL, joins, extensions, or broad analytical power.” DuckDB “I need mature record transformations in a Unix pipeline.” Miller or qsv “I want to explore the data interactively in a terminal UI.” VisiData “I primarily need to select or transform JSON documents.” jq SnoutDB should earn its place by shortening unknown file → useful investigation . If you already know the schema and query, a more mature tool will often be the better choice.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#5",
+      "title": "Try It in One Minute",
+      "text": "Requirements: Odin and a shell. The script builds SnoutDB, creates a temporary six-row dataset, runs sniff , runs Hunt against a bundled application-log fixture, executes a filtered percentile query, and creates a .snout snapshot. It uses no downloaded dataset or package-manager dependency.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#6",
+      "title": "Current Limits",
+      "text": "- SnoutDB is pre- v1.0.0 ; the CLI, C ABI, and .snout format may evolve. - Automated CI currently runs on macOS; other platforms should be considered experimental until they have dedicated runners. - Grouped queries and some transforms materialize typed tables in memory. - Percentiles are exact and retain values for each aggregate group. - .snout stores chunk statistics, but query-time chunk skipping is not yet implemented. - Hunt currently materializes supported inputs as a typed table and does not accept stdin. - Hunt configuration files and historical baselines are not yet implemented. - Findings are evidence-based analytical signals, not claims of root cause. See benchmarks/README.md for reproducible measurements. The current development baseline profiles a generated 5-million-row, 751 MiB CSV in approximately 6.8 seconds on an Apple M4 Pro.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#7",
+      "title": "Contents",
+      "text": "- Hunt: automatic local analysis - The specific advantage - Choose the right tool - Try it in one minute - Current limits - Version - How it works - What is a .snout file? - Community - License and data handling - Build - Step 1 — Look at your data - Step 2 — Get statistics on a column - Step 3 — Explore an unfamiliar file (sniff) - Hunt — Discover what deserves attention - Step 4 — Ask questions about your data - Step 5 — Save your data as a .snout file - Step 6 — Combine multiple files - Step 7 — Reshape your data (transform) - Step 8 — Analyze log files - Step 9 — Embed SnoutDB in your application (C API) - Large files - Timing - Quick reference - Real-world use cases - Benchmarks - Roadmap ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#8",
+      "title": "Version",
+      "text": "Current version: v0.2.1 . SnoutDB is early-stage software. The CLI, C ABI, and .snout format may still change before v1.0.0 . Check the installed CLI version with: See CHANGELOG.md for the contents of this snapshot. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#9",
+      "title": "How it works",
+      "text": "SnoutDB is a local, layered analytics pipeline. Raw files enter through streaming readers, become typed columnar data, and then flow through profiling, query, transformation, merge, or persistence operations.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#10",
+      "title": "Query lifecycle",
+      "text": "A grouped query is intentionally small and deterministic: load typed columns, select matching rows, build groups, update aggregate state, then sort and render.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#11",
+      "title": ".snout storage",
+      "text": "The native format is versioned and chunked. Each chunk contains one block per column, including null information and numeric min/max statistics. String and timestamp blocks use dictionary encoding when it is smaller than plain encoding. Capability Main packages What they do --- --- --- Read data ingest , storage Stream CSV, JSONL, logs, or read .snout Represent data core Typed structure-of-arrays tables with explicit ownership Understand data sniff Cardinality, roles, statistics, outliers, suggestions Discover findings hunt Severity, patterns, anomalies, ranking, evidence, reproduction Analyze data query , exec Filters, groups, sorting, counts, averages, percentiles Reshape data transform Rename, cast, derive, bucket, truncate, extract Combine data merge Append, consolidate, compact, and roll up Present results output , terminal Tables, CSV, JSON, and JSONL Embed SnoutDB cabi Experimental C ABI for native integrations The implementation is a dependency DAG with core at the bottom and no circular package dependencies. See ARCHITECTURE.md for the package-level design and ownership rules. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#12",
+      "title": "What is a .snout file?",
+      "text": "A .snout file is SnoutDB's native binary table format. It is the persisted form of a typed core.Table : column names, column types, null values, and data are stored together in one local file. Think of it as a reusable, query-ready snapshot of a CSV, JSONL file, log, or rollup result: For example:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#13",
+      "title": "Why use it?",
+      "text": "Benefit What it means --- --- Schema is preserved Types and nullable columns do not need to be inferred again Text parsing is avoided Repeated queries read typed binary values instead of reparsing CSV, JSON, or logs Columnar organization Values of the same column and type are stored together Compact repeated strings String and timestamp columns use dictionary encoding when it saves space Safer local persistence Files include magic bytes, versioning, size validation, and a footer Ready for data workflows .snout files can be queried, transformed, appended, consolidated, compacted, or rolled up Language embedding The C ABI can open .snout files directly with snout open",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#14",
+      "title": "What is inside?",
+      "text": "The format divides rows into chunks of up to 65,536 rows . Within each chunk, every column has its own typed block: - a null mask; - the encoded column values; - a null count; - numeric minimum and maximum values; - an encoding marker ( Plain or Dictionary ). This structure prepares the format for optimizations such as skipping chunks whose min/max range cannot match a filter. The metadata is already stored, but query-time chunk skipping is not yet implemented in v0.2.1 .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#15",
+      "title": "When should you create one?",
+      "text": "Use .snout when: - you will query the same raw dataset more than once; - parsing or schema inference is a noticeable part of the workflow; - you need to merge files collected by day, service, region, or source; - you want to save a transformed dataset or a compact rollup; - you are opening the data through the C ABI. Query the raw file directly when: - it is a one-off inspection; - you only need sniff , which can profile CSV, JSONL, and logs as a bounded-memory stream; - keeping the original text format is more important than reusable typed storage. .snout is an application format, not a general interchange standard. Keep the original source files when you need interoperability with other tools. The format is versioned and the v2 reader retains v1 compatibility, but the format may still evolve before SnoutDB v1.0.0 . ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#16",
+      "title": "Community",
+      "text": "Contributions and focused technical discussion are welcome. Resource Purpose --- --- Contributing Guide Setup, branches, commits, tests, benchmarks, and PR expectations Code of Conduct Expected behavior and enforcement Security Policy Private vulnerability reporting and supported versions Support Guide Usage questions, bugs, and feature requests Repository Guide Branch protection, merge strategy, labels, and releases Benchmarks Reproducible performance methodology and current baseline Roadmap Near-term priorities, path to v1.0, and non-goals The project uses short-lived branches, Conventional Commits, focused pull requests, strict Odin checks, and squash merges. Every behavior change should include tests; hot-path changes should include benchmark evidence. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#17",
+      "title": "License And Data Handling",
+      "text": "SnoutDB is distributed under the GNU Affero General Public License v3. The license text is the authoritative source for redistribution and modification terms; this summary is not legal advice. The experimental C ABI is part of the same AGPL-licensed project and is not distributed under a separate permissive exception. SnoutDB runs locally and does not include an account system, hosted service, data upload, or telemetry. Hunt reports may contain input-derived values, message samples, timestamps, paths, and reproduction commands. Treat exports as potentially sensitive and review or redact them before sharing. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#18",
+      "title": "1. Install Odin",
+      "text": "Install a current Odin release using the official installation guide. On macOS, Homebrew provides the shortest setup: Odin publishes builds for macOS, Linux, Windows, and several BSD targets. SnoutDB's automated validation currently runs on macOS.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#19",
+      "title": "3. Run tests",
+      "text": "All 343 tests should pass in under a second. Tests must run from the repo root because fixture paths are relative to tests/fixtures/ . ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#20",
+      "title": "Step 1 — Look at your data",
+      "text": "Before doing anything else, let SnoutDB tell you what's in a file: This shows you the column names, their types (number, text, true/false, date), and whether any values are missing. Example output — CSV: Example output — access log (CLF auto-detected): Reading from stdin: pipe data in by passing -f - . SnoutDB auto-detects CSV vs JSONL from the first line. Log files can also be piped — use log-import to write them to a temp .snout file first, or pipe directly into sniff : ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#21",
+      "title": "Step 2 — Get statistics on a column",
+      "text": "Want to know the range and distribution of a column? Example output — CSV column: Example output — log column (bytes transferred): p50 is the median. p95 and p99 are useful for spotting worst-case outliers — for example, even if the average response size is fine, p99 tells you what the heaviest 1% of responses look like. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#22",
+      "title": "Step 3 — Explore an unfamiliar file (sniff)",
+      "text": "If you have a file you've never seen before, sniff profiles every column automatically and suggests useful queries: Example output: SnoutDB reads the column names and classifies each one as a Dimension (a category you can group by, like region or country) or a Metric (a number you can measure, like delay or price). It then generates ready-to-run query commands for you. Metric columns also show σ (standard deviation) and outliers (values more than 3σ from the mean) — a quick signal for anomalous data before you write a single query. Example output — access log: Options: - --top 5 — show the 5 most common values per text column (default: 10) - --suggestions 3 — limit to 3 suggested queries - --format json — output as JSON for piping to other tools ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#23",
+      "title": "Hunt — Discover what deserves attention",
+      "text": "Use hunt when you want SnoutDB to move beyond profiling and rank the strongest signals automatically: The default (compact) view fits a triage decision on one screen — severity overview, frequent message templates per level, and a ranked list of attention findings where each row carries its own sparkline showing when the events happened inside the file's full timeline: Each compact finding row is laid out so the most important signal is closest to the eye: Switch to --verbose when you have decided to investigate one of those rows: Verbose mode includes: - findings ordered by severity; - full-width temporal histograms; - event count and share; - peak count and time; - first and last match; - bounded representative samples; - grouped commands to reproduce the evidence. Each finding shows when the events happened, how concentrated they are, and a sample with the variable parts ( , , URLs) intact so the original context is preserved: --verbose also lifts the INFO-pattern filter so frequent informational templates surface alongside the attention findings. The reproduce block is grouped by command — one entry per shared query rather than a repeated line per finding: Useful options: Optio",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#24",
+      "title": "Step 4 — Ask questions about your data",
+      "text": "The core command groups rows by a category and computes numbers for each group. It works on CSV, JSONL, .snout , and — after a quick log-import — on log files too. Basic pattern: Log file workflow: import once, then query as many times as you like:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#25",
+      "title": "Percentiles — understanding your worst cases",
+      "text": "p50 is the median (the middle value). p95 means \"95% of values are below this number\" — it tells you what the worst 5% of cases look like. p99 is the worst 1%. You can use any number from 0 to 99: p50 , p75 , p90 , p95 , p99 .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#26",
+      "title": "Error rate — fraction of \"true\" values",
+      "text": "If a column holds true/false values (like roaming or failed ), error rate tells you what fraction of rows are true : A result of 0.41 means 41% of rows in that group had error=true .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#27",
+      "title": "Distinct count — how many unique values per group?",
+      "text": "Use count distinct to count unique values of one column within each group, without pulling all the data out: The result column is named count distinct carrier . You can use count distinct on any column type — strings, numbers, or booleans.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#28",
+      "title": "Filtering rows before counting",
+      "text": "Use --where to focus on a subset: Filter operators: Operator Meaning ---------- --------- eq equals ne not equals lt less than le less than or equal gt greater than ge greater than or equal contains string contains text (case-sensitive) not-contains string does not contain text icontains string contains text (ASCII case-insensitive) is-null value is missing not-null value is present",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#29",
+      "title": "Output formats",
+      "text": "By default results are shown as a table. For scripts or piping to other tools: ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#30",
+      "title": "Step 5 — Save your data as a .snout file",
+      "text": "Import a raw file once to create a typed, reusable snapshot. See What is a .snout file? for its layout, benefits, and current limitations. The file can now be reused by query, transform, merge, rollup, and C ABI workflows without repeating raw-text schema inference. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#31",
+      "title": "Step 6 — Combine multiple files",
+      "text": "If you collect data in separate files (one per day, per source, etc.), you can merge them. A common pattern with logs: import each daily log file into .snout , then consolidate: Columns don't need to match exactly. If one file has a column the other doesn't, the missing rows are filled with empty/null values automatically. If the same column holds different types (say, integers in one file and decimals in another), SnoutDB promotes to the wider type automatically. The rollup output is a regular .snout file with one row per group. Aggregate columns are named after the function and source column — count , avg latency ms , p95 bytes — so you can query the result like any other file: ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#32",
+      "title": "Step 7 — Reshape your data (transform)",
+      "text": "Once data is in a .snout file, you can reshape it before querying. Multiple operations can be chained in a single command: You can chain multiple operations in one pass: Log file example — enrich an access log after import, then query the enriched file: ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#33",
+      "title": "Step 8 — Analyze log files",
+      "text": "SnoutDB auto-detects the format of .log , .access , and .error files. You only need --format when the file extension is ambiguous or when using a custom regex pattern: Supported formats: - clf — Apache/Nginx Common Log Format - combined — CLF plus referer and user agent columns - logfmt — key=value pairs (used by Logrus, Zap, etc.) - syslog — RFC 3164 ( Jun 11 10:00:01 host app[pid]: message ), with or without PRI prefix ( ) - app — application logs in YYYY-MM-DD HH:MM:SS [level] message format - bracketed — application logs with bracketed levels and mixed ISO timestamps - regex — custom format with (?P ...) named groups CLF timestamps are converted to ISO-8601 UTC automatically. Syslog timestamps use a 0000-MM-DD year placeholder (RFC 3164 does not include a year). ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#34",
+      "title": "Step 9 — Embed SnoutDB in your application (C API)",
+      "text": "SnoutDB ships a shared library ( libsnout ) with an experimental C ABI so you can call it from any language that supports FFI. The ABI may change before v1.0.0 . Build the library: Include the header: Example — load a CSV and run a group query from C: Log ingestion is currently exposed through the CLI. Convert a log to .snout with snout log-import , then open it from the C API with snout open . The same API works from Python ( ctypes ), Go ( cgo ), and any other language with C FFI. See examples/ for ready-to-run demos. API overview: Function Description --- --- snout import csv(path) Load a CSV file into an in-memory table snout import jsonl(path) Load a JSONL file snout open(path) Open an existing .snout file snout close(t) Free the table snout row count(t) Number of rows snout column count(t) Number of columns snout column name(t, col) Column name by index snout column type(t, col) Column type ( SNOUT TYPE constant) snout is null(t, row, col) 1 if the cell is null snout get string/int64/float64/bool(t, row, col) Read a cell value snout query(t, groups, aggs, where, n, sort, limit) Group-by aggregation snout result free(r) Free a query result snout result row/col count(r) Result ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#35",
+      "title": "Large files",
+      "text": "SnoutDB profiles large CSV, JSONL, and log files through streaming readers without first materializing a complete core.Table . Exact cardinality tracking is bounded by the --max-distinct setting. See benchmarks/README.md for the current environment, methodology, commands, and results. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#36",
+      "title": "Timing",
+      "text": "Every command prints how long it took to stderr, so your stdout stays clean. This works for every file type — CSV, JSONL, log files, and .snout : You can safely redirect stdout to a file or pipe without capturing the timing line: ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb#37",
+      "title": "Quick reference",
+      "text": "What you want Command --- --- Show the current version ./snout version See column names and types (CSV) ./snout csv-info file.csv See column names and types (log) ./snout log-info access.log Stats on one column (CSV) ./snout csv-stats file.csv column Stats on one column (log) ./snout log-import f.log f.snout && ./snout stats f.snout bytes Auto-explore and get query ideas (CSV) ./snout sniff -f file.csv Auto-explore and get query ideas (log) ./snout sniff -f access.log Automatically rank findings ./snout hunt file.log Inspect full Hunt evidence ./snout hunt file.log --verbose Export a Markdown Hunt report ./snout hunt file.log --verbose -o report.md Export a text Hunt report ./snout hunt file.log -o report.txt Emit Hunt JSON ./snout hunt file.log --format json Sniff from stdin (auto-detects CSV/JSONL) cat file.csv \\ ./snout sniff -f - Query data from stdin cat file.csv \\ ./snout -f - group=col -- count=rows Query application logs from stdin cat app.log \\ ./snout -f - group=level,message -- count=rows --logformat app Count rows per group ./snout -f file.csv group=col -- count=rows Count log requests by status ./snout -f access.snout group=status -- count=rows Average per group ./snou",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb/blob/main/docs/README.md",
+      "title": "docs/README.md",
+      "text": "SnoutDB A tiny embedded columnar database for metrics, logs, telemetry, and local analytics. Current version: v0.2.0 (early-stage; public interfaces may change before v1.0.0) Tagline SnoutDB turns messy raw data into valuable local metrics. Key Features - Raw ingestion (CSV, JSONL, logs) — including stdin ( -f - ) - Automatic schema inference - Columnar storage (.snout, chunked 64K rows, dictionary encoding) - Merge & consolidation across files with schema alignment - Rollups (aggregate during merge) - Sniff reports — column roles, top-N values, outlier detection (σ / 3σ rule), query suggestions - Hunt reports — severity, frequent patterns, ranked findings, histograms, reproducible commands, TXT/Markdown export - count distinct aggregate - Transforms: rename, cast, derive, bucket, date trunc, regex extract, json extract - Embedded C ABI (Python and Go examples) --- RFC / SPEC Status Doc Title Status --- --- --- RFC-0001 Vision ✅ Reference RFC-0002 File Format ✅ Implemented — TASK-0011 (v2 chunks + stats) RFC-0003 Query Engine ✅ Implemented — TASK-0010 (group/filter/sort/percentile/error rate) + count distinct RFC-0004 Sniff Engine ✅ Implemented — TASK-0006 (roles, top-N, query sugg",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to SnoutDB Thank you for helping improve SnoutDB. This project prioritizes: 1. Correctness 2. Simplicity 3. Maintainability 4. Performance Please read the Code of Conduct before participating. Maintainers should also follow the Repository Guide. Before You Start - Search existing issues before opening a new one. - Use an issue for behavior changes, new commands, file-format changes, or substantial refactors. - Small fixes, tests, and documentation corrections may go directly to a pull request. - Do not include generated fixtures, build outputs, local dependencies, or private data. Development Setup SnoutDB requires a current Odin toolchain. Follow the official Odin installation guide, then build and test from the repository root: Run the complete pre-release validation before requesting review: The validation covers the CLI, ingestion formats, storage, sniff, Hunt and its report exports, query, transform, merge, rollup, the C ABI, and available language examples. Repository Structure Path Responsibility --- --- core/ Shared table, column, error, and version types ingest/ CSV, JSONL, and log readers storage/ .snout reader, writer, and format sniff/ Profiling, roles, sta",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog v0.2.0 Hunt becomes SnoutDB's automatic local analysis workflow. Added - snout hunt for CSV, JSONL, logs, and .snout inputs. - Severity summaries, stacked overviews, frequent message patterns, and deterministic severity-aware finding ranking. - Compact and verbose Hunt reports with temporal histograms, peaks, first/last matches, representative samples, and reproduction commands. - JSON and JSONL Hunt output with a schema version and no ANSI escapes. - Color-free text and structured Markdown report export through -o / --output . - Application and bracketed application log formats. - contains , not-contains , and ASCII case-insensitive icontains string filters. Changed - Improved terminal wrapping for long values. - Expanded direct log querying and stdin log-format detection. - Documented Hunt as a primary product workflow and added its architecture, security considerations, limitations, and release validation. Compatibility - The .snout file format remains v2 with v1 read compatibility. - The experimental C ABI is unchanged. - Hunt output is new and remains pre-1.0. - Hunt does not yet support stdin or file-based configuration. v0.1.0 Initial versioned snapshot of SnoutDB.",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/jacovinus/snoutdb/blob/main/ARCHITECTURE.md",
+      "title": "ARCHITECTURE.md",
+      "text": "ARCHITECTURE.md Overview SnoutDB is a layered, single-binary columnar analytics tool. Data flows from ingestion into typed columns, then into profiling, automatic Hunt analysis, explicit queries, transformation, persistence, or rendering. Each layer is a separate Odin package with no circular dependencies. --- Package dependency graph No package imports cmd/snout . core imports nothing in this repo. The dependency graph is a DAG — no cycles. --- cmd/snout — CLI layer The CLI is split by command responsibility, all in package main : File Responsibility --- --- main.odin main() entry point, command dispatch switch, print usage() cmd dispatch.odin One run X() proc per command: csv-info , csv-import , log-import , rollup , etc. cmd query.odin run group command() — the -f file group=col -- agg=col pipeline + Pending Sort cmd sniff.odin run sniff command() — the sniff -f file pipeline with all sniff options cmd hunt.odin run hunt command() — Hunt loading, options, analysis, terminal/JSON output, and TXT/Markdown export loaders.odin load or exit() , resolve stdin path() , parse log opts() , path utilities display.odin print table info() , print numeric stats() , print written() , print pr",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-30",
+  "source_url": "https://github.com/jacovinus/snoutdb",
+  "stars": 9
+}

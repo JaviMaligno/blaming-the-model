@@ -1,0 +1,118 @@
+{
+  "slug": "vector-index-bench--vibe",
+  "name": "vibe",
+  "description": " Vector Index Benchmark for Embeddings (VIBE) is an extensible benchmark for approximate nearest neighbor search methods, or vector indexes, using modern embedding datasets. ",
+  "documents": [
+    {
+      "url": "https://github.com/vector-index-bench/vibe#0",
+      "title": "Introducción",
+      "text": "Vector Index Benchmark for Embeddings (VIBE) is an extensible benchmark for approximate nearest neighbor search methods, or vector indexes, using modern embedding datasets.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vector-index-bench/vibe#1",
+      "title": "Overview",
+      "text": "- 📊 Modern vector index benchmark with embedding datasets - 🎯 Includes datasets for both in-distribution and out-out-distribution settings - 🏆 Includes the most comprehensive collection of state-of-the-art vector search algorithms - 💎 Support for quantized datasets in both 8-bit integer and binary precision - 🖥️ Support for HPC environments with Slurm and NUMA - 🚀 Support for GPU algorithms",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vector-index-bench/vibe#2",
+      "title": "Results",
+      "text": "The current VIBE results can be viewed on our website: https://vector-index-bench.github.io The website also features several other tools and visualizations to explore the results. The results are run on Intel Xeon Gold 6230 (Cascade Lake) CPUs with support for AVX-512 instructions. All algorithms are benchmarked using a single core. The GPU algorithms are run using an NVIDIA V100 (32 GB). The next results update will use AMD Turin 9965 CPUs, while GPU algorithms will be run using NVIDIA GH200 (96 GB).",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vector-index-bench/vibe#3",
+      "title": "Publication",
+      "text": "E. Jääsaari, V. Hyvönen, M. Ceccarello, T. Roos, M. Aumüller. VIBE: Vector Index Benchmark for Embeddings. Journal of Data-centric Machine Learning Research, 2026.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vector-index-bench/vibe#4",
+      "title": "Alternative Benchmarks",
+      "text": "Please check out big-ann-benchmarks (NeurIPS 2021/2023) for the state-of-the-art in billion-scale ANN and constrained ANN, such as ANN under filtered or sparse workloads.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vector-index-bench/vibe#5",
+      "title": "Credits",
+      "text": "The evaluation code and some algorithm implementations in VIBE are based on the ann-benchmarks project.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vector-index-bench/vibe#6",
+      "title": "License",
+      "text": "VIBE is available under the MIT License (see LICENSE). The pyyaml library is also distributed in the vibe folder under the MIT License.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vector-index-bench/vibe#7",
+      "title": "Requirements",
+      "text": "- Linux - Apptainer (or Singularity) - Python 3.6 or newer For example, to install Apptainer on Ubuntu: Some algorithms may require that the CPU supports AVX-512 instructions and some algorithms may require an Intel CPU due to a dependency on Intel MKL. The GPU algorithms assume that an NVIDIA GPU is available. [!IMPORTANT] For accurate benchmarking, it is recommended to disable SMT/hyperthreading: On hybrid architectures (e.g., Intel Raptor Lake), it is recommended to disable efficiency (E) cores. If not running in an HPC or cloud environment, it is also recommended to set the performance governor and to check that transparent huge pages are set to madvise or never :",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vector-index-bench/vibe#8",
+      "title": "Building library images",
+      "text": "Building all library images can be done using Use ./install.sh --skip-gpu if you don't need GPU methods. To build an image for a single library: [!TIP] install.sh takes an argument --build-dir that specifies the temporary build directory. For example, to speed up the build in a cluster environment, you can set the build directory to a location on an SSD while the project files are on a slower storage medium. [!TIP] See an example Slurm job for building the libraries using Slurm.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vector-index-bench/vibe#9",
+      "title": "Running benchmarks",
+      "text": "The benchmarks for a single dataset can be run using run.py . For example: The run.py script does not depend on any external libraries and can therefore be used without a container or a virtual environment. Common options for run.py: - --parallelism n : Use n processes for benchmarking. - --module mod : Run the benchmark only for algorithms in module (library) mod . - --algorithm algo : Run the benchmark for only algorithm algo . - --count k : Run the benchmarks using k nearest neighbors (default 100). - --gpu : Run the benchmark in GPU mode. For all options, see The benchmark should take less than 24 hours to run for a given dataset using parallelism 12. We recommend having at least 16 GB of memory per used core. [!TIP] See an example Slurm job for running the benchmark using Slurm.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vector-index-bench/vibe#10",
+      "title": "Plotting results",
+      "text": "You should first build the plot.sif image: Before plotting, the current results must first be exported: The results for a dataset can then plotted with e.g.: To plot the radar chart above, use: For all available options, see: [!TIP] You can also use uv to directly run export results.py and plot.py without building the container image if preferable. The arguments for these scripts are the same as above.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vector-index-bench/vibe#11",
+      "title": "Creating datasets from scratch",
+      "text": "The benchmark code downloads precomputed embedding datasets. However, the datasets can also be recreated from scratch, and it is also possible to create new datasets by modifying the datasets.py file. Creating the datasets can be done using create dataset.sh . It first requires that dataset.sif is built: The VIBE CACHE environment variable should be set to a cache directory with at least 200 GB of free space when creating image embeddings using the Landmark or ImageNet datasets. Datasets can then be created using the --dataset argument (the --nv argument specifies that an available GPU can be used): [!TIP] See an example Slurm job for creating datasets using Slurm.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vector-index-bench/vibe#12",
+      "title": "Adding a new method to the benchmark",
+      "text": "VIBE is an on-going effort and we actively welcome new additions to the benchmarks. See the new method guide. In short, add your algorithm in the folder vibe/algorithms/{METHOD}/ by providing: - Python wrapper in module.py - Singularity container definition in image.def - Hyperparameter grid in config.yml Please refer to e.g. the hnswlib module for a reference implementation.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vector-index-bench/vibe#13",
+      "title": "Running the website locally",
+      "text": "The results website can be run locally by following the instructions in the website repository.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vector-index-bench/vibe#14",
+      "title": "In-distribution datasets",
+      "text": "Name Type n d Distance --- --- --- --- --- agnews-mxbai-1024-euclidean Text 769,382 1024 euclidean arxiv-nomic-768-normalized Text 1,344,643 768 any dpr-jina-768-normalized Text 20,969,760 768 any glove-200-cosine Word 1,192,514 200 cosine gooaq-distilroberta-768-normalized Text 1,475,024 768 any imagenet-clip-512-normalized Image 1,281,167 512 any inaturalist-resnet-2048-cosine Image 499,000 2048 cosine landmark-dino-768-cosine Image 760,757 768 cosine landmark-nomic-768-normalized Image 760,757 768 any msmarco-qwen-1024-normalized Text 8,840,823 1024 any yahoo-minilm-384-normalized Text 677,305 384 any",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vector-index-bench/vibe#15",
+      "title": "Out-of-distribution datasets",
+      "text": "Name Type n d Distance --- --- --- --- --- hotpotqa-harrier-640-normalized Text 5,233,329 640 any imagenet-align-640-normalized Text-to-Image 1,281,167 640 any laion-clip-512-normalized Text-to-Image 1,000,448 512 any yandex-200-cosine Text-to-Image 1,000,000 200 cosine cqadupstack-lemur-2048-ip Multi-vector 457,149 2048 IP cqadupstack-muvera-5120-ip Multi-vector 457,149 5120 IP yi-128-ip Attention 187,843 128 IP llama-128-ip Attention 256,921 128 IP",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vector-index-bench/vibe#16",
+      "title": "Deprecated datasets",
+      "text": "Deprecated datasets will remain available, but their benchmark results will not be updated in the future. Name Type n d Distance --- --- --- --- --- ccnews-nomic-768-normalized Text 495,328 768 any celeba-resnet-2048-cosine Image 201,599 2048 cosine coco-nomic-768-normalized Text-to-Image 282,360 768 any codesearchnet-jina-768-cosine Code 1,374,067 768 cosine simplewiki-openai-3072-normalized Text 260,372 3072 any",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vector-index-bench/vibe#17",
+      "title": "Algorithms",
+      "text": "Method Version -------- --------- ANNOY 1.17.3 FALCONN++ git+5fd3f17 FlatNav 0.1.2 CAGRA 26.04.00 GGNN 0.9 Glass git+d2296ec HNSW 0.8.0 HNSW-RaBitQ git+5ea4df0 IVF (Faiss) 1.14.3 IVF-PQ (Faiss) 1.14.3 IVF-RaBitQ git+5ea4df0 Jasper git+23647b9 LVQ (SVS) 0.4.0 LeanVec (SVS) 0.4.0 LoRANN 0.5 MLANN git+de8f9d6 MRPT 2.0.4 NGT-ONNG 2.7.4 NGT-QG 2.7.4 NSG 1.14.3 PAG git+ee34ed7 PDX git+93531b9 PUFFINN git+fd86b0d PyNNDescent 0.6.0 RoarGraph git+f2b49b6 ScaNN 1.4.2 SymphonyQG git+32a0019 Vamana (DiskANN) 0.7.0",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-30",
+  "source_url": "https://github.com/vector-index-bench/vibe",
+  "stars": 57
+}

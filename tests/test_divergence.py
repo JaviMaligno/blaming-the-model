@@ -51,17 +51,25 @@ def tied_snapshot() -> RepoSnapshot:
 def late_evidence_snapshot() -> RepoSnapshot:
     """La evidencia que identifica el proyecto sólo la alcanza la última consulta.
 
-    El README no dice a qué se dedica, y el documento que sí lo dice no menciona
-    el nombre: no lo encuentra ninguna de las tres consultas iniciales.
+    Cada sección responde a una consulta distinta del plan, y la única que dice
+    a qué se dedica el proyecto es la que habla de su propósito: no la alcanza
+    ninguna de las tres consultas iniciales.
     """
-    return _snapshot(
-        "evidencia-tardia",
-        [
-            "acme pay libreria de utilidades y helpers",
-            "changelog",
-            "que es esto procesamos cobros de comercios",
-            "licencia",
-            "contribuir",
+    sections = [
+        ("acme pay", "acme pay"),
+        ("Installation", "installation usage guide steps"),
+        ("Features", "features examples of the helpers"),
+        ("About", "overview purpose we process cobros for comercios"),
+        ("Changelog", "version notes"),
+        ("License", "mit"),
+    ]
+    return RepoSnapshot(
+        slug="evidencia-tardia",
+        name="acme pay",
+        description=None,
+        documents=[
+            Document(url=f"https://x.invalid/{i}", title=title, text=text, kind="docs")
+            for i, (title, text) in enumerate(sections)
         ],
     )
 

@@ -1,0 +1,76 @@
+{
+  "slug": "UnknownPlatypus--djangofmt",
+  "name": "djangofmt",
+  "description": "A fast, HTML aware, Django template formatter, written in Rust.",
+  "documents": [
+    {
+      "url": "https://github.com/UnknownPlatypus/djangofmt#0",
+      "title": "Introducción",
+      "text": "Djangofmt Docs Playground A fast, HTML aware, Django template formatter, written in Rust. Formatting 100k+ lines of HTML across 1.7k+ files from scratch. Heavily rely on the awesome markup fmt with some additions to support Django fully. - ⚡️ 70-120x faster than existing Django template formatters - 🐍 Installable via pip , uv or pipx - 🛡️ A strict HTML aware parser : invalid HTML is reported as an error instead of being silently mangled - 🎨 Formats / tags and attributes with dedicated formatters - 🔧 Lint rules with autofix , for automatic error correction (e.g., automatically sort Tailwind classes) - 🛠️ pyproject.toml and .editorconfig support - ⌨️ Editor integrations , a pre-commit hook and a browser playground",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/UnknownPlatypus/djangofmt#1",
+      "title": "Table of contents",
+      "text": "- Installation - Usage - Pre-commit hook - Configuration - Editor integration - Controlling the formatting - Lint rules - Known limitations - Benchmarks - Shell completions - Contributing",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/UnknownPlatypus/djangofmt#2",
+      "title": "Usage",
+      "text": "When given a directory, djangofmt recurses into it and formats all .html , .jinja , .jinja2 , and .j2 files it finds. It also respects .gitignore files.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/UnknownPlatypus/djangofmt#3",
+      "title": "Looking for a check mode ?",
+      "text": "djangofmt intentionally does not provide a built-in check functionality because CI is too late for a code formatter. We strongly recommend using pre-commit or any IDE \"format on save\" integration. That being said, you can emulate check capability by chaining with a git diff command like so:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/UnknownPlatypus/djangofmt#4",
+      "title": "Pre-commit hook",
+      "text": "See pre-commit for instructions. Sample .pre-commit-config.yaml : The separate repository enables installation without compiling the Rust code. By default, the configuration uses pre-commit's files option to detect all text files in directories named templates . If your templates are stored elsewhere, you can override this behavior by specifying the desired files in the hook configuration within your .pre-commit-config.yaml file.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/UnknownPlatypus/djangofmt#5",
+      "title": ".svg files support",
+      "text": "djangofmt can format svg files too. It will behave exactly the same way as if they were html files. There is a dedicated pre-commit hook for these:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/UnknownPlatypus/djangofmt#6",
+      "title": "Configuration",
+      "text": "Djangofmt can also be configured via a [tool.djangofmt] section in your pyproject.toml : Djangofmt looks for a pyproject.toml file by traversing directories upward from the current working directory. The first pyproject.toml found is used. If no file is found or the file doesn't contain a [tool.djangofmt] section, defaults are used. Djangofmt also reads EditorConfig settings from the nearest .editorconfig file: Command-line arguments always take precedence over pyproject.toml settings, which take precedence over .editorconfig settings. See Controlling the formatting for the behaviour of each option and how to opt into per-node overrides.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/UnknownPlatypus/djangofmt#7",
+      "title": "Shell completions",
+      "text": "You can generate shell completions for your preferred shell using the djangofmt completions command.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/UnknownPlatypus/djangofmt#8",
+      "title": "Contributing",
+      "text": "Contributions are welcome! Please see CONTRIBUTING.md for details on how to get started.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/UnknownPlatypus/djangofmt/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to djangofmt Prerequisites Djangofmt is written in Rust, so you'll need to install the Rust toolchain. You will also need uv to run various python tools and just to run development commands. Development To get started, bootstrap your environment: This will install all the necessary tools and dependencies. Before opening a pull request, make sure all checks are passing by running: This will run linting, formatting, and tests. Other tools / scripts You can run the benchmarks locally using just . To run the Python-based comparative benchmarks: See the benchmark README for more details. To run the Rust-based micro-benchmarks: You can also run the ecosystem check locally (it will run in CI anyway). See the README. Fuzzing The formatter can be fuzzed with cargo-fuzz (requires rustup toolchain install nightly and cargo install cargo-fuzz ): The fmt idempotency target formats arbitrary inputs twice under both the Django and the Jinja profile, and panics on any panic inside the formatter, non-idempotent output, or output that no longer parses. It is seeded with the in-repo test fixtures and benchmark templates. When a crash is found (an input file lands in fuzz/artifacts/fmt id",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/UnknownPlatypus/djangofmt/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog 0.2.12 - 2026-07-15 ⛰️ Features - (lint) Add table-header-missing-scope lint rule ( 345) - (4d9f72c) 🐛 Bug Fixes - (format) Skip formatting Django verbatim blocks ( 370) - (caf2fe4) 0.2.11 - 2026-06-26 ⛰️ Features - (format) Preserve single-line Django blocks inside attribute lists ( 360) - (ca3d825) - (format) Support .editorconfig configuration files ( 349) - (0df2c71) - (lint) Add duplicate-block-name lint rule - (4fe9aef) - (lint) Add rule selection (select/ignore + preview) ( 350) - (7d0eb76) - (playground) Add documentation link to navbar ( 351) - (0923257) 🐛 Bug Fixes - (format) Fix formatting of multiline django template tags ( 359) - (2908461) - (lint) Restore correct ANSI display in error messages ( 346) - (d4c21ba) 🚜 Refactor - (lint) Avoid double parse when fixing ( 362) - (621980e) - (lint) Drop redundant help on empty-attr-value rule ( 357) - (e10ed1e) - (lint) Cleanup RuleSet implementation and simplify ( 336) - (17c0668) - (misc) Minor cleanup ( 356) - (2b1346b) - (tests) Misc test simplification ( 348) - (cdda76a) 🧪 Testing - (bench) Isolate check ast cost from parsing ( 364) - (8251c11) - (clippy) Enable more clippy restriction rules ( 363) - (539450c) -",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-30",
+  "source_url": "https://github.com/UnknownPlatypus/djangofmt",
+  "stars": 90
+}

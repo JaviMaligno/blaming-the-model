@@ -53,3 +53,14 @@ El corpus se versiona en el repositorio. Los resultados guardados apuntan a un
 estado concreto del corpus: reemplazar o reescribir un snapshot invalida la
 comparación con lo ya registrado. Para corregir una captura, añadir una nueva en
 lugar de editar la existente.
+
+## Aptitud por avería
+
+No basta con que un repositorio sea realista: tiene que dar dónde a la avería
+que se le va a plantar. `python -m btm.harness.fitness --corpus data/corpus` lo
+mide sin gastar ninguna llamada a ningún modelo, comparando qué documentos
+llegan al modelo con y sin la avería.
+
+Que un repositorio salga apto no garantiza que la señal aparezca con el modelo
+real —eso lo decide el gate de calibración—, pero que no lo sea sí garantiza
+que no aparecerá.

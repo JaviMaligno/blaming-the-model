@@ -1,0 +1,154 @@
+{
+  "slug": "lance0--rustbgpd",
+  "name": "rustbgpd",
+  "description": "An API-first BGP daemon in Rust for programmable route-server and control-plane use cases",
+  "documents": [
+    {
+      "url": "https://github.com/lance0/rustbgpd#0",
+      "title": "Introducción",
+      "text": "rustbgpd Project site: An API-first BGP daemon in Rust for IXP route servers, route reflectors, and automation-heavy control planes. gRPC is the primary interface for all peer lifecycle, routing, and policy operations — the config file bootstraps initial state, then gRPC owns the truth. No restarts to add peers, change policy, or inject routes. And every route decision can explain itself from the live RIB: per-peer received / best / advertised views, best-path and export-gate explain, opt-in import-decision explain, retained rejected routes with reasons, BMP/MRT/metrics — with receipt-backed interop behind each claimed behavior. Measured, not marketed — every number below links to its published, reproducible receipt: - Policy reload at IXP scale (700 route-server clients × 400,400 routes, live churn, same harness / same host — the policy-file reload, not the IRR filter refresh below): new policy fully delivered to every member in 1.28–1.57 s p50 vs BIRD 3.3.1's 64–85 s and OpenBGPD 9.2's 201–206 s — rustbgpd/BIRD measured 2026-08-08, OpenBGPD measured 2026-08-30, IXP receipt matrix - IRR-scale filter reload (320 route-server members × 183,040 prefixes × 3,218,965 IRR filter entries",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#1",
+      "title": "Try it (60 seconds)",
+      "text": "The fastest way to see rustbgpd in action. Spins up the daemon with an FRR peer that advertises sample IPv4 and IPv6 prefixes — no real routers needed. --build asks Compose to build from the current checkout before startup. Without it, Compose may reuse an older docker-compose-rustbgpd image already on the host. Cached layers keep unchanged repeat builds quick. Once both containers are running (a few seconds): The Compose service supplies its committed, public test-only bearer token to in-container rbgp commands. It is for this runnable demo, not deployment. Select a peer, open its detail, then press r to browse the point-in-time unicast Best-RIB and explain export decisions for that peer. Press q to exit the TUI. When you're done: docker compose down .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#2",
+      "title": "Policy you can test before it touches a route",
+      "text": "Policies are written in .rpol — a typed, compiled language with named prefix/community sets (indexed matchers, not linear walks), parameterized policies, composition, and unit tests in the policy file itself . From the shipped route-server example: Then ask the daemon what would happen — before you commit anything: Edits hot-apply on SIGHUP, .rpol mixes freely with the existing TOML policy chains, and FRR route-map parity is proven route-for-route in interop (M80). Language reference: docs/rpol-language.md · explain surfaces: docs/explain.md · IXPs on arouteserver can render config from their existing general.yml / clients.yml : IXP filter-pipeline tutorial.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#3",
+      "title": "Why rustbgpd",
+      "text": "- API-first control plane — full gRPC surface across thirteen services (twelve native rustbgpd.v1 services plus the OpenConfig gnmi.gNMI service) and a thin CLI ( rbgp ): dynamic peer management, policy CRUD, route injection, streaming events, all without restarts - Native route explainability — \"why is this route (not) here?\" answered from the live RIB in one command. Best-path, export-gate, and filtered-route views are always on; the import -decision surface is opt-in ( [policy.explain] enabled = true ), because it retains a decision cache per session. The TUI also exposes the unicast export-gate slice for a selected peer (docs/explain.md) - Update-group fanout — peers with provably identical staged output share one staging pass: ~27x faster 100k-route convergence at 256 uniform RR clients (15.1 s to 0.56 s), measured 2026-07-03; v2 extends sharing to VPNv4/v6 with per-member RT filtering at emit (receipt) - Full BMP monitoring trio — per-collector Adj-RIB-In / Adj-RIB-Out (byte-exact wire PDUs) / Loc-RIB on one exporter, validated against pmacct, gobmp, and tshark at once - Modern protocol surface — MP-BGP, Add-Path, GR/LLGR, RPKI/RTR + ASPA, FlowSpec, Prefix ORF, large/extended",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#4",
+      "title": "Good fit",
+      "text": "- Internet exchange route servers — transparent mode, Add-Path, per-client best-path (RFC 7947 path-hiding mitigation), RPKI, Prefix ORF, per-member policy; start with the IXP evaluation matrix - Route reflectors — including VPNv4/v6, RT-Constrain, labeled-unicast, and BGP-LS reflection, GR/LLGR, and RFC 9107 Optimal Route Reflection - DDoS mitigation platforms — FlowSpec + RTBH route injection from automation - Cloud / AI-scale data-center fabrics — API-first BGP control, BFD, ECMP, EVPN/VXLAN alpha, and whitebox-friendly interop surfaces - Hosting provider prefix management — API-driven customer prefix announcements - SDN / network automation controllers — programmable BGP control plane - Route collectors and looking glasses — structured data via gRPC, MRT, BMP, plus a Birdwatcher-shaped status/peer/accepted/filtered/noexport subset via the shipped birdwatcher-adapter binary ( examples/birdwatcher-adapter carries the source and deployment notes) - Lab and test environments — clean API, structured logs, containerlab interop See docs/USE CASES.md for detailed deployment scenarios with architecture diagrams, example configs, and API workflows, and the feature tour for exactly which ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#5",
+      "title": "Not the best fit today",
+      "text": "- Full general-purpose router deployments expecting default-on, fully policy-guarded FIB integration — Linux FIB integration is default-off and scoped to RFC 7999 discard routes and configured unicast tables (including ECMP and weighted multipath) - Large-scale production EVPN fabrics that need the full feature surface — VXLAN EVPN is functional and FRR-interop-tested but still alpha . VXLAN local-bias split-horizon remains the one open all-active correctness gate (ASIC/offload-dependent on the Linux softswitch — see ADR-0065); service-provider EVPN families such as MPLS / PBB / MVPN are deliberately out of the current VXLAN/Linux lane. See Current limitations for the alpha boundary and docs/evpn-enablement.md for the shipped feature ladder and standards-tail map - VPNv4 / VPNv6 PE roles — VRF import, MPLS label forwarding, and CE-facing attachment circuits are out of scope; the shipped SAFI-128 support is the route-reflector / controller-feed slice only - Environments that need the breadth of FRR's multi-decade feature surface - Operators who want a CLI-first operational model See docs/COMPARISON.md for a detailed feature comparison with FRR, BIRD, GoBGP, and OpenBGPd.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#6",
+      "title": "Pre-built tarball (no toolchain required)",
+      "text": "Every tagged release ships static-named per-arch tarballs, so releases/latest/download/ always fetches the current version: Four binaries: the daemon, the rbgp CLI, rs-config-render (the IXP route-server config renderer — harmless if you don't run one), and the optional Alice-LG birdwatcher-adapter . The tarball also carries man pages and bash/zsh/fish completions under share/ , plus the version-matched Grafana overview and Alpha EVPN dashboards, Prometheus alert rules, and promtool test suite under share/monitoring/ ( /usr/share/doc/rustbgpd/monitoring/ after a .deb / .rpm install) — the install walkthrough covers installing those and pinning a specific version.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#7",
+      "title": "Docker",
+      "text": "Tagged releases publish versioned images to GHCR (for this release, ghcr.io/lance0/rustbgpd:0.68.0 ); alternatively, build locally:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#8",
+      "title": "Quick start (bare metal)",
+      "text": "For running rustbgpd on a real host with real peers, see docs/QUICKSTART.md. It covers starter config generation, --check / --diff , local UDS access, HTTP probes, runtime peer operations, remote mTLS access, standalone Docker, and systemd. The cookbook has complete receipt-proven recipes for the common deployment shapes: iBGP route reflector at scale, L3VPN reflection, IXP route server, BMP/event/MRT monitoring feed, EVPN fabric RR, and .rpol policy. IXPs running arouteserver can render rustbgpd configuration from their existing general.yml / clients.yml and wire up an Alice-LG looking glass — the IXP filter-pipeline tutorial walks it end to end. For operators coming from FRR, BIRD, or ARouteServer, the CLI keeps familiar entry points for the daily checks: rbgp summary , rbgp rib recv , rbgp rib sent , rbgp policy counters , and rbgp doctor for a redacted support bundle. See the CLI command map.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#9",
+      "title": "Performance vs the incumbents",
+      "text": "The IXP route-server receipt matrix runs rustbgpd, BIRD 3.3.1, and OpenBGPD 9.2 through the same harness on the same host — 700 route-server clients × 400,400 routes with live churn, each incumbent at its documented strongest configuration, receiver-side timestamps, two independent campaign runs, losses published alongside wins: KPI (700 clients × 400,400 routes unless noted, p50) rustbgpd BIRD 3.3.1 OpenBGPD 9.2 --- --- --- --- Sessions Established 0.7 s 18.2–20.5 s 83.6–105.7 s Cold start, full table to all members 4.8–5.0 s 60.9–63.3 s 326.0–347.8 s Policy reload: UPDATE stall 0.42–0.60 s 1.70–2.70 s 0.213–0.238 s Policy reload: new policy fully delivered 1.28–1.57 s 64.3–84.5 s 200.8–206.4 s IRR-scale filter reload: steady-state completion (320 members × 183,040 routes × 3,218,965 IRR entries) 3.25–3.77 s ~11.5–13.6 s ~56–59 s (9.1) Flapstorm: withdraw propagation 0.31–0.47 s 0.47–0.61 s 8.22–9.55 s Flapstorm: re-announce 0.49–0.55 s 2.85–3.74 s 17.36–17.82 s Settled RSS (S2, runs A/B) 419 / 419 MiB 422 / 412 MiB 795 / 801 MiB Settled RSS (S3, runs A/B) 441 / 451 MiB 337 / 328 MiB 831 / 827 MiB The rustbgpd/BIRD figures are the v0.64.0 same-host refresh (2026-08-08); OpenBGPD i",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#10",
+      "title": "gRPC API",
+      "text": "Twelve native rustbgpd.v1 services cover the daemon's operational surface — Global, Config, Neighbor, Policy (23 RPCs including explain, dry-run, per-term stats, and bounded validation-policy posture), PeerGroup, Rib, BFD, RPKI, Event, Injection, Control, and Evpn — plus a separate gnmi.gNMI service for OpenConfig BGP telemetry and the first transaction-backed config subset. Config changes get the full Junos-style transactional quartet: rbgp config plan (commit check), rbgp config diff (show compare, annotated with live reload impact), rbgp config apply --confirm-id --confirm-timeout (commit confirmed, with a crash-safe boot revert), and rbgp config rollback N against a bounded on-disk history of applied configs — rollback routes through the same transaction engine as apply, so it gets the same impact preview, receipts, and confirm window. Details: docs/OPERATIONS.md. The full service/RPC table and per-RPC examples: docs/API.md. gNMI operator guide: docs/GNMI.md.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#11",
+      "title": "Design choices",
+      "text": "rustbgpd is intentionally built around: - gRPC-driven control instead of a large interactive CLI surface - A pure FSM crate with no I/O — (State, Event) - (State, Vec ) - Single-owner routing state instead of shared mutable state across tasks - Bounded channels for all inter-task communication — backpressure, not locks - Explicit protocol feature boundaries with ADRs and test-backed development Designed around an API-first operating model similar to GoBGP, with a smaller and more explicit internal architecture. Rationale: docs/DESIGN.md; crate graph and runtime model: ARCHITECTURE.md.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#12",
+      "title": "Deployment examples",
+      "text": "Example Description --------- ------------- examples/docker-compose/ Quick-start with Docker Compose — rustbgpd + FRR peer with sample routes examples/minimal/ Smallest working config — single eBGP peer examples/route-server/ IXP route server with RPKI, Add-Path + per-client best-path, rpol hygiene policy examples/ddos-mitigation/ FlowSpec + RTBH for automated DDoS mitigation examples/hosting-provider/ iBGP route injector for customer prefix management examples/linux-edge-fib/ Linux edge host with explicit ADR-0061 [[fib tables]] unicast FIB programming examples/route-collector/ Passive collector with MRT dumps and BMP export examples/rr-evpn-fabric/ EVPN Route Reflector for a VXLAN-EVPN DC fabric (RFC 7432, RR role) examples/evpn-vtep-leaf/ Leaf VTEP with local [[evpn instances]] declarations (declarative EVPN instance schema) examples/envoy-mtls/ Remote gRPC access via Envoy mTLS proxy examples/systemd/ systemd unit file with security hardening",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#13",
+      "title": "Security posture",
+      "text": "- Default listener: Unix domain socket at /var/lib/rustbgpd/grpc.sock — local-only, no TCP exposure - Optional read-only listeners: expose monitoring/query RPCs without exposing mutating control RPCs - Remote access: native gRPC mTLS on the TCP listener ( tls cert file / tls key file / tls client ca file ), or an Envoy mTLS proxy front-end for multi-host fan-out — never plaintext TCP off-host - Network controls: put gRPC on a management VLAN/interface and firewall it to known hosts Full guidance and deployment tiers: docs/SECURITY.md.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#14",
+      "title": "Testing and correctness",
+      "text": "Evidence-driven development: fuzz targets on the wire decoder, property tests on the FSM, automated containerlab interop, extensive workspace tests, and an architecture decision record for every protocol and design choice. Evidence Details ---------- --------- Workspace tests Unit, integration, and property tests ( cargo test --workspace ) Wire fuzzing libFuzzer harnesses on message and attribute decoders, run nightly in CI Interop suites Automated interop suite (see docs/INTEROP.md for the full matrix), primarily against FRR 10.3.1 plus GoBGP 3.37.0 / 4.6.0 / 4.7.0 across established labs; M76/M77/M83/M103/M104 use GoBGP 4.8.0, which also appears in the local M105 observation, and M83 uses FRR 10.7.0. StayRTR backs RTR coverage; BIRD 2.0.12 anchors M0 and immutable legacy/differential labs, BIRD 2.19.2 covers M83/M85/M93/M95/M100/M104, BIRD 3.3.1 covers the TCP-AO smoke, and BIRD 3.3.2 covers M101 plus local M105. A foundation tier is gated on every PR, privileged Linux dataplane smokes run in hosted kernel-dataplane CI, and longer soaks / platform-diversity scripts remain local. Operational proof Consolidated receipts for CI interop, hosted kernel dataplane, benchmarks, memory pr",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#15",
+      "title": "Current limitations",
+      "text": "The short version: rustbgpd is still not a general-purpose router replacement. Linux FIB integration is opt-in, EVPN is Linux/VXLAN alpha, VPNv4/VPNv6 is RR / controller-feed only, and a few transport/runtime edges remain deliberately scoped. See docs/LIMITATIONS.md for the full boundary.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#16",
+      "title": "Project status",
+      "text": "Alpha — suitable for lab, data-center fabric pilots, IX route-server pilots, and programmable control-plane deployments where you are comfortable with an evolving API. Dimension Current state ----------- --------------- Target use case Data-center fabric pilots, IXP route servers, programmable BGP control planes, lab/test environments Maturity Public alpha (v0.68.0) Adopter support Reporting channels, compatibility boundaries, and proof limits are documented in SUPPORT.md. Narrow stable contract The machine-pinned route-server / route-reflector v1 contract covers only its inventoried control-plane roles and surfaces; the project and all unlisted features remain alpha. Implemented Dual-stack BGP/MP-BGP, Add-Path, GR/LLGR, RPKI/RTR, ASPA path verification, FlowSpec, BMP, MRT, BFD, EVPN/VXLAN (alpha), and full gRPC/CLI management. Linux FIB integration is default-off and scoped to RFC 7999 discard routes and configured unicast tables (including ECMP and weighted multipath); broader routing-suite features remain future work. Supported OS Linux x86 64 and aarch64 only; see the platform support contract. Requires CAP NET BIND SERVICE for port 179. Runtime Rust 1.95+ (workspace MSRV — set",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#17",
+      "title": "Documentation",
+      "text": "Evaluating an IXP route server? Follow this path: 1. Review the one-page capability matrix. 2. Choose the hand-written, ARouteServer-driven, or IXP Manager-driven provisioning mode. 3. Apply the shadow pilot's mode-specific zero-blast-radius boundary. For all documentation, start with the task-oriented documentation index. The table below remains a compact root-level map. Document Content ---------- --------- docs/feature-tour.md The full-depth feature tour behind the README highlights docs/cookbook/ Scenario recipes with receipt-proven configs: RR at scale, L3VPN RR, IXP route server, monitoring feed, EVPN fabric RR, policy quickstart docs/USE CASES.md Deployment scenarios: DDoS, hosting, IX, SDN, collector ARCHITECTURE.md Crate graph, runtime model, ownership, data flow docs/DESIGN.md Tradeoffs, protocol scope, rationale docs/API.md gRPC API reference with examples for every RPC docs/CONFIGURATION.md Config reference and examples, plus editor integration via the shipped JSON Schema ( docs/rustbgpd.schema.json ) docs/QUICKSTART.md Bare-metal first run: starter config, validate, run, verify, operate docs/LIMITATIONS.md Current product boundaries and known non-goals docs/deployment.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#18",
+      "title": "License",
+      "text": "Licensed under either of - Apache License, Version 2.0 (LICENSE-APACHE or ) - MIT license (LICENSE-MIT or ) at your option.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd#19",
+      "title": "Contribution",
+      "text": "Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any additional terms or conditions.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd/blob/main/docs/README.md",
+      "title": "docs/README.md",
+      "text": "rustbgpd documentation The docs are organized by what you are trying to do (Diátaxis): tutorials to learn, how-to guides to get a task done, reference to look something up, and explanation to understand why. Every file in docs/ is indexed below under its primary bucket. Tutorials — learning by doing Start here if you have never run the daemon. Doc What it teaches ----- ----------------- QUICKSTART.md Single daemon on a host: starter config, gRPC socket, health probes, and the rbgp CLI ../examples/docker-compose/ Two-node lab: rustbgpd peered with FRR over Docker Compose, no host setup ../examples/evpn-vtep-leaf/ Leaf-mode EVPN VTEP config walkthrough (iBGP to spine RRs, kernel dataplane) How-to guides — task-oriented recipes and runbooks Doc What it gets done ----- ------------------- cookbook/ Scenario recipes with receipt-proven configs: RR at scale, L3VPN RR, IXP route server, monitoring feed, EVPN fabric RR, policy quickstart, migration, and the operator runbooks below cookbook/peer-flap-triage.md Runbook: a peer is flapping — what to look at, in order cookbook/rr-pair-day2.md Runbook: day-2 operations on a redundant RR pair — GR sanity, adding clients, safe config edits cookbo",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing Development Setup - Rust 1.95+ (edition 2024 — workspace MSRV; raised to 1.95 because the bundled SQLite build (libsqlite3-sys) uses the cfg select! macro stabilized in Rust 1.95) - protobuf-compiler ( apt-get install protobuf-compiler on Debian/Ubuntu) - Linux x86 64 for native daemon/runtime CI; Linux aarch64 is cross-built - Non-Linux work is limited to portable components; see the platform support contract - Docker + containerlab for interop tests Building Code Style All PRs must pass (enforced by CI in .github/workflows/ci.yml ): - cargo fmt --check - python3 scripts/check-clippy-reasons.py - cargo clippy --workspace --all-targets -- -D warnings - cargo test --workspace Documentation changes additionally pass python3 scripts/check public tracker ids.py , enforced by .github/workflows/public-docs-contract.yml because the main lane ignores Markdown. Published docs name the thing directly, link the ADR, or cite the GitHub PR number — never a private issue-tracker ID an external reader cannot resolve. Optional local task runner The repository includes an optional just task runner for a curated local baseline. It does not add a build dependency, and the recipes are not",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog All notable changes to rustbgpd will be documented in this file. Format based on Keep a Changelog. This project follows Semantic Versioning. --- [Unreleased] [0.68.0] — 2026-08-30 Release framing — broader control surfaces, faster route-server release. v0.68 closes the externally reported gRPC address-family gap: neighbor and peer-group mutations now accept every family the configuration file supports. In the fully reusable homogeneous-wire-profile receipt, releasing 400,400 routes across 700 peers drops from a 53.613 s median to 0.797 s (about 67x); mixed profiles form separate cohorts or keep the exact per-member fallback. IPv6 link-local BFD, RPKI cache and validation APIs, structured NOTIFICATION telemetry, broader pinned interoperability, rustbgpd-wire 0.19.0, rustbgpd-fsm 0.6.0, and the first rustbgpd-rpki 0.1.0 publish alongside. Added - M100 adds a hosted, proof-only 20-cell receiver differential for an exact 0xa0 Partial-flag corpus across released rustbgpd 0.67.0, BIRD 2.19.2, OpenBGPD 9.2, and FRR 10.3.1. MED, ORIGINATOR ID, CLUSTER LIST, MP REACH, and MP UNREACH outcomes are frozen as accept, same-session withdrawal, treat-as-withdraw, or reset with exact UPDA",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/lance0/rustbgpd/blob/main/ARCHITECTURE.md",
+      "title": "ARCHITECTURE.md",
+      "text": "Architecture Update this file when crate boundaries, runtime ownership, or cross-crate contracts change. Do not put milestone or status content here. --- Crate Dependency Graph The daemon binary ( src/ ) depends on every crate above; it wires them together and owns the runtime actors that are not themselves crates (the unicast Linux FIB, the BFD socket actor, and the EVPN dataplane glue). Crate summary Crate Description ------- ------------- rustbgpd-wire BGP message codec. Zero internal deps. Independently published and fuzzed. rustbgpd-fsm RFC 4271 state machine. Pure -- no tokio, no sockets, no tasks. Independently published for embedders. rustbgpd-bfd RFC 5880/5881 single-hop BFD: control-packet codec + sans-IO session state machine. Pure -- no tokio, no sockets (ADR-0067). The UDP/timer actor that drives it lives in the daemon binary ( src/bfd runtime.rs ). rustbgpd-transport Tokio TCP glue. Owns BGP peer session I/O and drives the FSM. rustbgpd-rib Adj-RIB-In, Loc-RIB best-path, Adj-RIB-Out. Single-task ownership, no locks. rustbgpd-policy Policy engine: prefix/community/AS PATH matching, route modifications. rustbgpd-rpki RPKI origin validation: RTR client, VRP table, multi-",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-30",
+  "source_url": "https://github.com/lance0/rustbgpd",
+  "stars": 60
+}
