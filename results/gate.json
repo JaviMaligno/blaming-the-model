@@ -1,0 +1,188 @@
+[
+  {
+    "slug": "jacovinus--snoutdb",
+    "variant": "A1",
+    "diverged": true,
+    "differs": true,
+    "ceiling": false,
+    "passes": true,
+    "codes": [
+      "data.storage",
+      "infra.observability"
+    ],
+    "healthy_codes": [
+      "infra.observability"
+    ]
+  },
+  {
+    "slug": "NoahTheDuke--lazytest",
+    "variant": "A1",
+    "diverged": false,
+    "differs": true,
+    "ceiling": false,
+    "passes": false,
+    "codes": [
+      "devtools.testing"
+    ],
+    "healthy_codes": [
+      "devtools.testing"
+    ]
+  },
+  {
+    "slug": "harumiWeb--xlflow",
+    "variant": "A1",
+    "diverged": true,
+    "differs": true,
+    "ceiling": false,
+    "passes": true,
+    "codes": [
+      "ai.agents",
+      "devtools.libraries",
+      "devtools.testing"
+    ],
+    "healthy_codes": [
+      "ai.agents",
+      "devtools.libraries",
+      "devtools.testing"
+    ]
+  },
+  {
+    "slug": "jacovinus--snoutdb",
+    "variant": "A2",
+    "diverged": true,
+    "differs": true,
+    "ceiling": false,
+    "passes": true,
+    "codes": [
+      "data.storage",
+      "infra.observability"
+    ],
+    "healthy_codes": [
+      "data.storage",
+      "infra.observability"
+    ]
+  },
+  {
+    "slug": "graygnuorg--pound",
+    "variant": "A2",
+    "diverged": false,
+    "differs": true,
+    "ceiling": false,
+    "passes": true,
+    "codes": [
+      "infra.networking"
+    ],
+    "healthy_codes": [
+      "infra.networking"
+    ]
+  },
+  {
+    "slug": "Radiergummi--cetacean",
+    "variant": "A2",
+    "diverged": true,
+    "differs": true,
+    "ceiling": false,
+    "passes": true,
+    "codes": [
+      "infra.observability",
+      "infra.orchestration"
+    ],
+    "healthy_codes": [
+      "infra.observability",
+      "infra.orchestration"
+    ]
+  },
+  {
+    "slug": "jacovinus--snoutdb",
+    "variant": "A3",
+    "diverged": true,
+    "differs": true,
+    "ceiling": false,
+    "passes": true,
+    "codes": [
+      "data.storage",
+      "devtools.libraries",
+      "infra.observability"
+    ],
+    "healthy_codes": [
+      "data.storage",
+      "infra.observability"
+    ]
+  },
+  {
+    "slug": "NoahTheDuke--lazytest",
+    "variant": "A3",
+    "diverged": false,
+    "differs": true,
+    "ceiling": false,
+    "passes": false,
+    "codes": [
+      "devtools.testing"
+    ],
+    "healthy_codes": [
+      "devtools.testing"
+    ]
+  },
+  {
+    "slug": "harumiWeb--xlflow",
+    "variant": "A3",
+    "diverged": true,
+    "differs": true,
+    "ceiling": false,
+    "passes": true,
+    "codes": [
+      "devtools.libraries",
+      "devtools.testing"
+    ],
+    "healthy_codes": [
+      "ai.agents",
+      "devtools.libraries",
+      "devtools.testing"
+    ]
+  },
+  {
+    "slug": "jacovinus--snoutdb",
+    "variant": "A4",
+    "diverged": false,
+    "differs": true,
+    "ceiling": true,
+    "passes": true,
+    "codes": [
+      "infra.observability"
+    ],
+    "healthy_codes": [
+      "infra.observability"
+    ]
+  },
+  {
+    "slug": "harumiWeb--xlflow",
+    "variant": "A4",
+    "diverged": true,
+    "differs": true,
+    "ceiling": true,
+    "passes": true,
+    "codes": [
+      "devtools.libraries",
+      "devtools.testing"
+    ],
+    "healthy_codes": [
+      "ai.agents",
+      "devtools.libraries",
+      "devtools.testing"
+    ]
+  },
+  {
+    "slug": "lenaxia--k8s-mechanic",
+    "variant": "A4",
+    "diverged": false,
+    "differs": true,
+    "ceiling": true,
+    "passes": true,
+    "codes": [
+      "infra.orchestration"
+    ],
+    "healthy_codes": [
+      "infra.orchestration"
+    ]
+  }
+]

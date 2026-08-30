@@ -22,9 +22,9 @@ class AzureModel:
         from openai import AzureOpenAI
 
         client = AzureOpenAI(
-            azure_endpoint=os.environ["BTM_AZURE_ENDPOINT"],
-            api_key=os.environ["BTM_AZURE_KEY"],
-            api_version=os.environ.get("BTM_API_VERSION", "2026-01-01"),
+            azure_endpoint=os.environ.get("BTM_AZURE_ENDPOINT") or os.environ["AZURE_API_BASE"],
+            api_key=os.environ.get("BTM_AZURE_KEY") or os.environ["AZURE_API_KEY"],
+            api_version=os.environ.get("BTM_API_VERSION") or os.environ.get("AZURE_API_VERSION", "2025-04-01-preview"),
         )
         response = client.chat.completions.create(model=self.deployment, messages=messages)
         return response.choices[0].message.content or ""
