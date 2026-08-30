@@ -1,0 +1,27 @@
+{
+  "caso-f": {
+    "files": 3,
+    "digest": "5fc1893dee753499",
+    "manifest": {
+      "BRIEF.md": "aca50c70de6f0530",
+      "ejecuciones.md": "98c40886dc05e69f",
+      "pasadas.md": "f10f5d9a88faee26"
+    }
+  },
+  "caso-g": {
+    "files": 10,
+    "digest": "33c8686e047c5e73",
+    "manifest": {
+      "BRIEF.md": "aa34762561eaa38e",
+      "code/__init__.py": "e3b0c44298fc1c14",
+      "code/budget.py": "791fb101c0e860ac",
+      "code/classifier.py": "0bf4894d7d50bd09",
+      "code/corpus.py": "9975ae99fa33378c",
+      "code/model.py": "d3d44e5b439211f5",
+      "code/taxonomy.py": "fbb25f7706faf5d0",
+      "code/tools.py": "d08e1a52b973d050",
+      "code/trace.py": "40c8d6e584e0ba90",
+      "pasadas.md": "f10f5d9a88faee26"
+    }
+  }
+}
