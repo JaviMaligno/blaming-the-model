@@ -1,0 +1,33 @@
+# Exclusiones para GitGuardian.
+#
+# Este repo dispara detectores de secretos por dos motivos, ninguno de ellos un
+# secreto. Se documentan aquí en vez de silenciarlos sin más, porque una
+# exclusión sin justificación es la manera de que el día que haya una fuga de
+# verdad nadie se entere.
+#
+# 1. `data/` son cincuenta READMEs de proyectos públicos de GitHub, capturados
+#    con su API. Documentación de terceros, llena de menciones a `password`,
+#    `token` y `api-key` en tablas de variables de entorno y ejemplos de
+#    configuración: "PASSWORD=yourpassword", "password: admin", o el servidor de
+#    pruebas de NixOS/hydra que arranca con la contraseña "foobar". Uno de los
+#    repositorios del corpus documenta precisamente cómo redactar secretos, y
+#    lista esos patrones como lo que su herramienta busca. Todo ello lleva años
+#    público en sus repositorios de origen.
+#
+# 2. `results/frozen*.json` son manifiestos de integridad: el SHA-256 de cada
+#    fichero de los escenarios, que es lo que permite comprobar que no se
+#    tocaron después de ver los resultados. Un detector de entropía no
+#    distingue un hash de una clave.
+#
+# Lo que NO se excluye, y por tanto sigue vigilado: `src/`, `tests/`, `docs/` y
+# la configuración. Las credenciales de Azure se leen de variables de entorno y
+# no se escriben nunca a disco; `ground-truth/` está fuera del control de
+# versiones.
+
+version: 2
+
+secret:
+  ignored-paths:
+    - "data/**"
+    - "results/frozen*.json"
+  show-secrets: false
