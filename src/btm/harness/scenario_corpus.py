@@ -3,14 +3,18 @@
 Esto es arnés: nunca se entrega. Lo que se entrega son los snapshots que salen
 de aquí, y ésos no pueden confesar nada.
 
-Dos cosas distinguen a este corpus del de `data/corpus/`:
+El corpus es captura corriente y nada más: mismas reglas que `data/corpus/`,
+URLs con owner, cero datos inventados. Lo que lo distingue es a quién mete
+dentro y a quién deja fuera:
 
-- Se captura con `short_name_urls=True` (véase `btm.harness.ingest`), de modo
-  que dos proyectos homónimos publican documentos con las mismas URLs. La
-  colisión no está escrita en ningún sitio: existe entre dos ficheros, y sólo
-  aparece si alguien cruza las URLs de todos los snapshots. `audit()` es la
-  versión de arnés de ese mismo cruce, y sirve para lo contrario: comprobar que
-  las ÚNICAS colisiones son las cuatro buscadas, y que ninguna es un accidente.
+- Incluye cuatro pares de proyectos homónimos —dos repositorios distintos que
+  se llaman igual—. Sus snapshots no comparten ni una URL; lo único que
+  comparten es el nombre corto y la numeración de sus secciones, que es lo que
+  el paquete usa para indexar las páginas leídas. La coincidencia no está
+  escrita en ningún fichero: es una propiedad de dos ficheros leídos a la vez, y
+  sólo importa por cómo el código de arriba construye su clave. `audit()`
+  comprueba las dos mitades: que ninguna URL se repita entre proyectos
+  distintos, y que los únicos nombres repetidos sean los cuatro buscados.
 - Cada repositorio de relleno se clasifica varias veces con el sistema sano y
   se descarta si no responde siempre lo mismo. Sin ese cribado, un repositorio
   que oscila por su cuenta se confunde con uno contaminado, y el hecho del que
@@ -35,12 +39,13 @@ from pydantic import BaseModel
 from btm.harness.ingest import capture, write
 from btm.harness.model import AzureModel
 from btm.system.classifier import classify
-from btm.system.corpus import RepoSnapshot, load_all
+from btm.system.corpus import Document, RepoSnapshot, load_all
 from btm.system.taxonomy import Taxonomy
+from btm.variants.A5.pages import section_of
 
-# Con menos URLs compartidas el par no da para sembrar la caché: el documento
-# contaminado tiene que poder entrar en la ventana de contexto de la víctima.
-MIN_SHARED_URLS = 3
+# Con menos páginas en común el par no da para sembrar la caché: el documento
+# ajeno tiene que poder entrar en la ventana de contexto de la víctima.
+MIN_SHARED_PAGES = 3
 
 # Repositorios que responden distinto de una corrida sana a otra, y que por eso
 # no pueden estar en el corpus: un cambio de etiqueta suyo se confundiría con
@@ -74,25 +79,43 @@ class Pair(NamedTuple):
 PAIRS = (
     Pair("orion", donor="pinterest--orion", victim="orion-rs--orion"),
     Pair("badger", donor="outcaste-io--badger", victim="badger-cash--badger"),
-    Pair("atlas", donor="karam-ajaj--atlas", victim="yoonic--atlas"),
+    Pair("atlas", donor="karam-ajaj--atlas", victim="dawarich-app--atlas"),
     Pair("sentry", donor="jasonrichardsmith--sentry", victim="samueleaton--sentry"),
+    Pair("otter", donor="AmadeusITGroup--otter", victim="rackerlabs--otter"),
+    Pair("relay", donor="getsentry--relay", victim="puppetlabs--relay"),
+    Pair("phoenix", donor="ACINQ--phoenix", victim="fabiospampinato--phoenix"),
 )
 
 
 class Audit(BaseModel):
-    """El cruce de URLs de todo el corpus, leído al revés."""
+    """El corpus cruzado consigo mismo, por URL y por clave de página."""
 
     shared_within_pair: dict[str, int]
     stray: dict[str, list[str]]
     missing: list[str]
+    shared_urls: dict[str, list[str]]
 
     @property
     def ok(self) -> bool:
         return (
             not self.missing
             and not self.stray
-            and all(n >= MIN_SHARED_URLS for n in self.shared_within_pair.values())
+            and not self.shared_urls
+            and all(n >= MIN_SHARED_PAGES for n in self.shared_within_pair.values())
         )
+
+
+def page_key(snapshot: RepoSnapshot, document: Document) -> str:
+    """Con qué se identifica una página en el índice que usa el paquete.
+
+    Nombre del proyecto y sección, tal y como los compone `section_of` en el
+    módulo entregado: se importa de allí para que esta comprobación siga a la
+    clave de verdad en vez de a una copia suya. Para una sección de README la
+    sección es el número del fragmento, que dos homónimos numeran igual; para
+    un documento sin fragmento es la url entera, que lleva owner y por tanto
+    no la comparte nadie.
+    """
+    return f"{snapshot.name}#{section_of(document.url)}"
 
 
 def url_collisions(snapshots: list[RepoSnapshot]) -> dict[str, list[str]]:
@@ -104,21 +127,35 @@ def url_collisions(snapshots: list[RepoSnapshot]) -> dict[str, list[str]]:
     return {url: sorted(slugs) for url, slugs in sorted(owners.items()) if len(slugs) > 1}
 
 
+def key_collisions(snapshots: list[RepoSnapshot]) -> dict[str, list[str]]:
+    """Las claves de página que produce más de un repositorio."""
+    owners: dict[str, set[str]] = {}
+    for snapshot in snapshots:
+        for document in snapshot.documents:
+            owners.setdefault(page_key(snapshot, document), set()).add(snapshot.slug)
+    return {key: sorted(slugs) for key, slugs in sorted(owners.items()) if len(slugs) > 1}
+
+
 def audit(snapshots: list[RepoSnapshot], pairs: list[Pair] | tuple[Pair, ...]) -> Audit:
-    """Comprueba que colisiona lo que tiene que colisionar, y sólo eso."""
+    """Comprueba que coincide lo que tiene que coincidir, y sólo eso."""
     present = {s.slug for s in snapshots}
     missing = [slug for pair in pairs for slug in (pair.donor, pair.victim) if slug not in present]
 
     declared = {frozenset((pair.donor, pair.victim)): pair.name for pair in pairs}
     shared = dict.fromkeys((pair.name for pair in pairs), 0)
     stray: dict[str, list[str]] = {}
-    for url, slugs in url_collisions(snapshots).items():
+    for key, slugs in key_collisions(snapshots).items():
         name = declared.get(frozenset(slugs))
         if name is None:
-            stray[url] = slugs
+            stray[key] = slugs
         else:
             shared[name] += 1
-    return Audit(shared_within_pair=shared, stray=stray, missing=missing)
+    return Audit(
+        shared_within_pair=shared,
+        stray=stray,
+        missing=missing,
+        shared_urls=url_collisions(snapshots),
+    )
 
 
 class Screening(BaseModel):
@@ -170,15 +207,15 @@ def _described(slug: str, roots: list[Path]) -> bool:
 
 def _capture(args: argparse.Namespace) -> None:
     args.out.mkdir(parents=True, exist_ok=True)
-    roots = [args.pairs, args.corpus]
+    # La captura anterior manda sobre la decisión de la descripción; con el
+    # destino vacío, la heredan los corpus de los que salió cada repositorio.
+    roots = [args.out, args.pairs, args.corpus]
     members = [slug for pair in PAIRS for slug in (pair.donor, pair.victim)]
     targets = members + filler_slugs(args.corpus)[: args.filler]
 
     def one(slug: str) -> tuple[str, dict | None]:
         return slug, capture(
-            slug.replace("--", "/", 1),
-            keep_description=_described(slug, roots),
-            short_name_urls=True,
+            slug.replace("--", "/", 1), keep_description=_described(slug, roots)
         )
 
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
@@ -202,6 +239,8 @@ def _screen(args: argparse.Namespace) -> None:
     taxonomy = Taxonomy.load(args.taxonomy)
     members = {slug for pair in PAIRS for slug in (pair.donor, pair.victim)}
     snapshots = [s for s in load_all(args.out) if s.slug not in members]
+    if args.only:
+        snapshots = [s for s in snapshots if s.slug in set(args.only)]
     print(f"{len(snapshots)} repositorios de relleno × {args.runs} corridas sanas "
           f"con {args.deployment}")
 
@@ -211,6 +250,14 @@ def _screen(args: argparse.Namespace) -> None:
         )
 
     payload = [{"slug": r.slug, "codes": r.codes, "stable": r.stable} for r in results]
+    if args.only and args.report.exists():
+        # Recribado parcial: se reemplazan sólo las entradas pedidas.
+        previous = json.loads(args.report.read_text(encoding="utf-8"))
+        refreshed = {entry["slug"] for entry in payload}
+        payload = sorted(
+            [e for e in previous if e["slug"] not in refreshed] + payload,
+            key=lambda e: e["slug"],
+        )
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     for r in sorted(results, key=lambda r: (r.stable, r.slug)):
@@ -225,9 +272,11 @@ def main() -> None:
     parser.add_argument("--out", type=Path, default=Path("data/scenario"))
     parser.add_argument("--taxonomy", type=Path, default=Path("data/taxonomy.yaml"))
     parser.add_argument("--report", type=Path, default=Path("results/scenario-cribado.json"))
-    parser.add_argument("--filler", type=int, default=40)
+    parser.add_argument("--filler", type=int, default=43)
     parser.add_argument("--runs", type=int, default=5)
     parser.add_argument("--workers", type=int, default=8)
+    parser.add_argument("--only", nargs="*", default=None,
+                        help="cribar sólo estos slugs, conservando el resto del informe")
     parser.add_argument("--deployment", default=os.environ.get("BTM_DEPLOYMENT", "gpt-5-mini"))
     parser.add_argument("stage", choices=("capture", "audit", "screen"))
     args = parser.parse_args()

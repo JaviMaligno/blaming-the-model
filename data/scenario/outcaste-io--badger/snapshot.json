@@ -4,91 +4,91 @@
   "description": "Fast Key-Value DB in Go",
   "documents": [
     {
-      "url": "https://github.com/badger#0",
+      "url": "https://github.com/outcaste-io/badger#0",
       "title": "Introducción",
       "text": "BadgerDB NOTE: v4 is a leaner version of Badger being used by 0xfast.com . It doesn't have Value Log, Write Ahead Log, Write Transactions (only read transactions), and all writes are done via WriteBatch or via HandoverSkiplist. I (Manish) am maintaining this fork. --- BadgerDB is an embeddable, persistent and fast key-value (KV) database written in pure Go. It is the underlying database for Dgraph, a fast, distributed graph database. It's meant to be a performant alternative to non-Go-based key-value stores like RocksDB.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/badger#1",
+      "url": "https://github.com/outcaste-io/badger#1",
       "title": "Project Status [March 24, 2020]",
       "text": "Badger is stable and is being used to serve data sets worth hundreds of terabytes. Badger supports concurrent ACID transactions with serializable snapshot isolation (SSI) guarantees. A Jepsen-style bank test runs nightly for 8h, with --race flag and ensures the maintenance of transactional guarantees. Badger has also been tested to work with filesystem level anomalies, to ensure persistence and consistency. Badger is being used by a number of projects which includes Dgraph, Jaeger Tracing, UsenetExpress, and many more. The list of projects using Badger can be found here. Badger v1.0 was released in Nov 2017, and the latest version that is data-compatible with v1.0 is v1.6.0. Badger v2.0 was released in Nov 2019 with a new storage format which won't be compatible with all of the v1.x. Badger v2.0 supports compression, encryption and uses a cache to speed up lookup. The [Changelog] is kept fairly up-to-date. For more details on our version naming schema please read Choosing a version. [Changelog]:https://github.com/outcaste-io/badger/blob/main/CHANGELOG.md",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/badger#2",
+      "url": "https://github.com/outcaste-io/badger#2",
       "title": "Table of Contents",
       "text": "Getting Started + Installing - Installing Badger Command Line Tool - Choosing a version Badger Documentation Resources + Blog Posts Design + Comparisons + Benchmarks Projects Using Badger Contributing Contact",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/badger#3",
+      "url": "https://github.com/outcaste-io/badger#3",
       "title": "Installing",
       "text": "Badger v2 and later require Go Modules. To start using Badger, install Go 1.12 or above and run the following command to retrieve the library. This will retrieve the library.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/badger#4",
+      "url": "https://github.com/outcaste-io/badger#4",
       "title": "Installing Badger Command Line Tool",
       "text": "Download and extract the latest Badger DB release from https://github.com/outcaste-io/badger/releases and then run the following commands. This will install the badger command line utility into your $GOBIN path.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/badger#5",
+      "url": "https://github.com/outcaste-io/badger#5",
       "title": "Choosing a version",
       "text": "BadgerDB is a pretty special package from the point of view that the most important change we can make to it is not on its API but rather on how data is stored on disk. This is why we follow a version naming schema that differs from Semantic Versioning. - New major versions are released when the data format on disk changes in an incompatible way. - New minor versions are released whenever the API changes but data compatibility is maintained. Note that the changes on the API could be backward-incompatible - unlike Semantic Versioning. - New patch versions are released when there's no changes to the data format nor the API. Following these rules: - v1.5.0 and v1.6.0 can be used on top of the same files without any concerns, as their major version is the same, therefore the data format on disk is compatible. - v1.6.0 and v2.0.0 are data incompatible as their major version implies, so files created with v1.6.0 will need to be converted into the new format before they can be used by v2.0.0. For a longer explanation on the reasons behind using a new versioning naming schema, you can read VERSIONING.md.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/badger#6",
+      "url": "https://github.com/outcaste-io/badger#6",
       "title": "Migrating from dgraph-io/badger to outcaste-io/badger",
       "text": "If you're currently using dgraph-io/badger, you can migrate to outcaste-io/badger by using pattern replacement with gofmt to update all the import paths in your project's Go files:",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/badger#7",
+      "url": "https://github.com/outcaste-io/badger#7",
       "title": "Blog Posts",
       "text": "1. Introducing Badger: A fast key-value store written natively in Go 2. Make Badger crash resilient with ALICE 3. Badger vs LMDB vs BoltDB: Benchmarking key-value databases in Go 4. Concurrent ACID Transactions in Badger",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/badger#8",
+      "url": "https://github.com/outcaste-io/badger#8",
       "title": "Design",
       "text": "Badger was written with these design goals in mind: - Write a key-value database in pure Go. - Use latest research to build the fastest KV database for data sets spanning terabytes. - Optimize for SSDs. Badger’s design is based on a paper titled [WiscKey: Separating Keys from Values in SSD-conscious Storage][wisckey] . [wisckey]: https://www.usenix.org/system/files/conference/fast16/fast16-papers-lu.pdf",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/badger#9",
+      "url": "https://github.com/outcaste-io/badger#9",
       "title": "Comparisons",
       "text": "Feature Badger RocksDB BoltDB ------- ------ ------- ------ Design LSM tree with value log LSM tree only B+ tree High Read throughput Yes No Yes High Write throughput Yes Yes No Designed for SSDs Yes (with latest research 1 ) Not specifically 2 No Embeddable Yes Yes Yes Sorted KV access Yes Yes Yes Pure Go (no Cgo) Yes No Yes Transactions Yes, ACID, concurrent with SSI 3 Yes (but non-ACID) Yes, ACID Snapshots Yes Yes Yes TTL support Yes Yes No 3D access (key-value-version) Yes 4 No No 1 The [WISCKEY paper][wisckey] (on which Badger is based) saw big wins with separating values from keys, significantly reducing the write amplification compared to a typical LSM tree. 2 RocksDB is an SSD optimized version of LevelDB, which was designed specifically for rotating disks. As such RocksDB's design isn't aimed at SSDs. 3 SSI: Serializable Snapshot Isolation. For more details, see the blog post Concurrent ACID Transactions in Badger 4 Badger provides direct access to value versions via its Iterator API. Users can also specify how many versions to keep per key via Options.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/badger#10",
+      "url": "https://github.com/outcaste-io/badger#10",
       "title": "Benchmarks",
       "text": "We have run comprehensive benchmarks against RocksDB, Bolt and LMDB. The benchmarking code, and the detailed logs for the benchmarks can be found in the [badger-bench] repo. More explanation, including graphs can be found the blog posts (linked above). [badger-bench]: https://github.com/dgraph-io/badger-bench",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/badger#11",
+      "url": "https://github.com/outcaste-io/badger#11",
       "title": "Projects Using Badger",
       "text": "Below is a list of known projects that use Badger: Dgraph - Distributed graph database. Jaeger - Distributed tracing platform. go-ipfs - Go client for the InterPlanetary File System (IPFS), a new hypermedia distribution protocol. Riot - An open-source, distributed search engine. emitter - Scalable, low latency, distributed pub/sub broker with message storage, uses MQTT, gossip and badger. OctoSQL - Query tool that allows you to join, analyse and transform data from multiple databases using SQL. Dkron - Distributed, fault tolerant job scheduling system. smallstep/certificates - Step-ca is an online certificate authority for secure, automated certificate management. Sandglass - distributed, horizontally scalable, persistent, time sorted message queue. TalariaDB - Grab's Distributed, low latency time-series database. Sloop - Salesforce's Kubernetes History Visualization Project. Immudb - Lightweight, high-speed immutable database for systems and applications. Usenet Express - Serving over 300TB of data with Badger. gorush - A push notification server written in Go. 0-stor - Single device object store. Dispatch Protocol - Blockchain protocol for distributed application data analytics. ",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/badger/blob/main/docs/README.md",
+      "url": "https://github.com/outcaste-io/badger/blob/main/docs/README.md",
       "title": "docs/README.md",
       "text": "Badger Docs If you are looking for Badger's documentation, you might find https://dgraph.io/docs/badger much more readable. Getting Started We use Hugo for our documentation. Running locally 1. Download and install the latest patch of Hugo version v0.69.x from here. 2. Run hugo server within the docs folder. 3. Visit http://localhost:1313 to see the documentation site. Contributing If you're interested in contributing to Badger, please review our guidelines. Contact - Please use discuss.dgraph.io for questions, feature requests, and discussions. - Follow us on Twitter @dgraphlabs.",
       "kind": "docs"
     },
     {
-      "url": "https://github.com/badger/blob/main/CONTRIBUTING.md",
+      "url": "https://github.com/outcaste-io/badger/blob/main/CONTRIBUTING.md",
       "title": "CONTRIBUTING.md",
       "text": "Contribution Guide Before you get started Code of Conduct Your First Contribution Find a good first topic Setting up your development environment Fork the project Clone the project New branch for a new code Test Commit and push Create a Pull Request Sign the CLA Get a code review Before you get started Code of Conduct Please make sure to read and observe our Code of Conduct. Your First Contribution Find a good first topic You can start by finding an existing issue with the good first issue or help wanted labels. These issues are well suited for new contributors. Setting up your development environment Badger uses Go Modules to manage dependencies. The version of Go should be 1.12 or above. Fork the project - Visit https://github.com/outcaste-io/badger - Click the Fork button (top right) to create a fork of the repository Clone the project New branch for a new code Get your local master up to date: Create a new branch from the master: And now you can finally add your changes to project. Test Build and run all tests: Commit and push Commit your changes: When the changes are ready to review: Create a Pull Request Just open https://github.com/$GITHUB USER/badger/pull/new/my new feature",
       "kind": "docs"
     },
     {
-      "url": "https://github.com/badger/blob/main/CHANGELOG.md",
+      "url": "https://github.com/outcaste-io/badger/blob/main/CHANGELOG.md",
       "title": "CHANGELOG.md",
       "text": "Changelog All notable changes to this project will be documented in this file. The format is based on Keep a Changelog. [3.2202.0] - 2022-02-14 Changed - Change module import to \"github.com/outcaste-io/badger/v3\" . [3.2103.1] - 2021-07-08 Fixed - fix(compaction): copy over the file ID when building tables 1713 - fix: Fix conflict detection for managed DB ( 1716) - fix(pendingWrites): don't skip the pending entries with version=0 ( 1721) Features - feat(zstd): replace datadog's zstd with Klauspost's zstd ( 1709) [3.2103.0] - 2021-06-02 Breaking - Subscribe: Add option to subscribe with holes in prefixes. ( 1658) Fixed - fix(compaction): Remove compaction backoff mechanism ( 1686) - Add a name to mutexes to make them unexported ( 1678) - fix(merge-operator): don't read the deleted keys ( 1675) - fix(discard): close the discard stats file on db close ( 1672) - fix(iterator): fix iterator when data does not exist in read only mode ( 1670) - fix(badger): Do not reuse variable across badger commands ( 1624) - fix(dropPrefix): check properly if the key is present in a table ( 1623) Performance - Opt(Stream): Optimize how we deduce key ranges for iteration ( 1687) - Increase value threshol",
       "kind": "docs"

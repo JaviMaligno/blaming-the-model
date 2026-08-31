@@ -14,6 +14,7 @@ from btm.harness.a5_facts import (
     fix_fact,
     ground_truth,
     prompt_bytes_fact,
+    sampling_tail,
     stability_fact,
 )
 from btm.harness.passes import PassResult, ProjectRun, Served, SoloRun, sha256
@@ -194,12 +195,6 @@ def test_with_the_repaired_key_no_label_moves() -> None:
     assert fact.ok and fact.changes == [] and fact.passes == 2
 
 
-def test_one_moved_label_sinks_the_repair() -> None:
-    repaired = [PassResult(pass_id="p1", hashseed=1, keyed=True, order=["v"],
-                           projects=[project("v", "z.z", "PROMPT PROPIO")])]
-    assert not fix_fact(repaired, BASE).ok
-
-
 # --- los paquetes -------------------------------------------------------
 
 
@@ -329,3 +324,96 @@ def test_each_direction_reports_how_deep_the_other_project_got() -> None:
     assert row["context_documents"] == 1
     assert row["passes"] == 1 and row["flips"] == 1
     assert row["baseline_code"] == "a.a" and row["code"] == "b.b"
+
+
+# --- la cola de muestreo ------------------------------------------------
+
+
+def test_the_repair_separates_what_it_kills_from_what_it_cannot() -> None:
+    """Con la clave reparada no queda documento ajeno; el muestreo sigue ahí."""
+    repaired = [
+        PassResult(pass_id="p1", hashseed=1, keyed=True, order=["v", "d"],
+                   projects=[project("v", "a.a", "PROMPT PROPIO"),
+                             project("d", "a.a", "PROMPT D", position=1)]),
+        PassResult(pass_id="p2", hashseed=2, keyed=True, order=["v", "d"],
+                   projects=[project("v", "z.z", "PROMPT PROPIO"),
+                             project("d", "a.a", "PROMPT D", position=1)]),
+    ]
+    fact = fix_fact(repaired, BASE)
+    assert fact.foreign_documents_served == 0
+    assert fact.contaminated_changes == []
+    assert fact.unexplained_changes == []
+    assert [c[1] for c in fact.sampling_changes] == ["v"]
+    assert fact.ok
+
+
+def test_a_foreign_document_in_a_repaired_pass_sinks_the_repair() -> None:
+    dirty = served("v", "u1", "ajeno largo", "d", "propio")
+    repaired = [PassResult(pass_id="p1", hashseed=1, keyed=True, order=["v"],
+                           projects=[project("v", "z.z", "PROMPT AJENO LARGO",
+                                             served_docs=[dirty])])]
+    fact = fix_fact(repaired, BASE)
+    assert not fact.ok and fact.contaminated_changes and fact.foreign_documents_served == 1
+
+
+def test_a_changed_label_with_a_changed_prompt_and_no_donor_is_unexplained() -> None:
+    """Ni contaminación ni muestreo: el hecho se niega a llamarlo ninguna de las dos."""
+    repaired = [PassResult(pass_id="p1", hashseed=1, keyed=True, order=["v"],
+                           projects=[project("v", "z.z", "OTRO PROMPT")])]
+    fact = fix_fact(repaired, BASE)
+    assert not fact.ok and fact.unexplained_changes and fact.sampling_changes == []
+
+
+def test_the_tail_is_the_change_whose_prompt_is_the_one_of_the_solo_run() -> None:
+    passes = [
+        PassResult(pass_id="p1", hashseed=1, order=["v", "d"],
+                   projects=[project("v", "z.z", "PROMPT PROPIO"),
+                             project("d", "a.a", "PROMPT D", position=1)]),
+    ]
+    fact = sampling_tail(passes, BASE, lambda prompt: "a.a", samples=20, workers=2)
+    entry = fact.entries[0]
+    assert entry.slug == "v" and [e.pass_id for e in entry.events] == ["p1"]
+    assert entry.events[0].prompt_identical and entry.events[0].foreign_documents == 0
+    assert entry.agreement == 20 and entry.majority == "a.a"
+    assert entry.resampled_stable and fact.ok and fact.model_calls == 20
+
+
+def test_a_contaminated_change_is_not_tail() -> None:
+    dirty = served("v", "u1", "ajeno largo", "d", "propio")
+    passes = [PassResult(pass_id="p1", hashseed=1, order=["v"],
+                         projects=[project("v", "b.b", "PROMPT AJENO LARGO",
+                                           served_docs=[dirty])])]
+    assert sampling_tail(passes, BASE, lambda prompt: "a.a", samples=4).entries == []
+
+
+def test_a_tail_that_is_not_a_rare_sample_but_another_label_is_rejected() -> None:
+    """Si sobre los mismos bytes gana la etiqueta nueva, no era una muestra rara."""
+    passes = [PassResult(pass_id="p1", hashseed=1, order=["v"],
+                         projects=[project("v", "z.z", "PROMPT PROPIO")])]
+    codes = iter(["z.z"] * 10 + ["a.a"] * 10)
+    fact = sampling_tail(passes, BASE, lambda prompt: next(codes), samples=20, workers=1)
+    assert not fact.entries[0].resampled_stable and not fact.ok
+
+
+def test_a_rare_sample_over_the_same_bytes_is_the_tail_even_if_it_repeats() -> None:
+    """Dieciocho de veinte a la etiqueta de siempre: el cambio fue la muestra rara."""
+    passes = [PassResult(pass_id="p1", hashseed=1, order=["v"],
+                         projects=[project("v", "z.z", "PROMPT PROPIO")])]
+    codes = iter(["a.a"] * 18 + ["z.z"] * 2)
+    fact = sampling_tail(passes, BASE, lambda prompt: next(codes), samples=20, workers=1)
+    entry = fact.entries[0]
+    assert entry.majority == "a.a" and entry.agreement == 18
+    assert not entry.resampled_stable and fact.ok
+
+
+def test_the_package_clock_says_nothing_about_the_batch(tmp_path: Path) -> None:
+    """Un `ls -lt` del paquete no puede señalar a nadie.
+
+    `copytree` conserva la fecha de modificación de cada snapshot, y ésas sí
+    llevan orden: los que se capturaron primero son justo los que importan.
+    """
+    out = build_case(real_passes(), CORPUS, tmp_path / "caso-j", with_code=False)
+    paths = sorted(p for p in out.rglob("*"))
+    stamps = [p.stat().st_mtime for p in paths]
+    assert stamps == sorted(stamps)
+    assert len(set(stamps)) > 1 or len(stamps) == 1

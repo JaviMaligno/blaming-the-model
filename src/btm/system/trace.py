@@ -9,9 +9,6 @@ import json
 
 from pydantic import BaseModel
 
-# Kinds kept by the shallow log: the input of the run and its outcome.
-POOR_KINDS = ("input", "final")
-
 
 class TraceEvent(BaseModel):
     seq: int
@@ -32,11 +29,3 @@ class Trace:
 
     def to_jsonl(self) -> str:
         return "".join(f"{json.dumps(e.model_dump(), ensure_ascii=False)}\n" for e in self._events)
-
-    def poor(self) -> "Trace":
-        """Return a new trace with only the input and the final outcome."""
-        stripped = Trace()
-        for event in self._events:
-            if event.kind in POOR_KINDS:
-                stripped.record(event.kind, **event.payload)
-        return stripped

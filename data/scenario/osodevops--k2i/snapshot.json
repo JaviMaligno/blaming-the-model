@@ -4,109 +4,109 @@
   "description": null,
   "documents": [
     {
-      "url": "https://github.com/k2i#0",
+      "url": "https://github.com/osodevops/k2i#0",
       "title": "Introducción",
       "text": "K2I: Kafka to Apache Iceberg in One Rust Binary Stream final-form Kafka events into Apache Iceberg tables with Protobuf Schema Registry decoding, Arrow hot reads, Parquet writes, and Docker-verified DuckDB/Iceberg validation. --- K2I is an open-source, standalone Kafka-to-Iceberg ingestion engine written in Rust. It consumes a Kafka topic, decodes raw or Confluent-framed Protobuf messages, keeps recent rows visible through an Arrow-backed local read path, and flushes Parquet data files through Iceberg catalog commits. K2I is built for teams that want fresh lakehouse tables without operating a Flink job, Spark micro-batch pipeline, or Kafka Connect cluster for a simple final-form event stream. One process owns one configured Kafka topic and one configured Iceberg table today.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k2i#1",
+      "url": "https://github.com/osodevops/k2i#1",
       "title": "Use K2I When",
       "text": "- You have final-form Kafka events that should become analytics rows in Apache Iceberg. - You want a single Rust service/container instead of a stream-processing cluster for this ingestion job. - You need local fresh-read visibility before the next Iceberg snapshot is committed. - You use Confluent Schema Registry Protobuf and want additive schema evolution guarded by readiness checks. - You want local Docker E2E validation that proves the written Iceberg table is readable by DuckDB. K2I is not a general stream processing framework. Use Flink or another stream processor for joins, windows, stateful transformations, multi-source ETL, or complex CDC delete/update semantics.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k2i#2",
+      "url": "https://github.com/osodevops/k2i#2",
       "title": "Quick Local Proof",
       "text": "Run the real Iceberg/DuckDB flow locally: The script starts Kafka, Schema Registry, K2I, an Iceberg REST fixture, and the E2E runner. A passing run ends with: Run the local Iceberg load profile with 100,000 rows: Validate a published release image, rather than a local build:",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k2i#3",
+      "url": "https://github.com/osodevops/k2i#3",
       "title": "What K2I Does",
       "text": "Capability Current behavior --- --- Kafka ingest Uses rdkafka , manual offset management, batching, retry, and backpressure Payload decoding Raw bytes, JSON-compatible raw payloads, and Confluent-framed Protobuf Schema Registry Resolves Protobuf descriptors, caches schemas in memory and on disk, supports subject strategies Schema evolution Adds compatible nullable Protobuf fields and pauses readiness on breaking changes Hot reads Exposes local read-state RPC over a Unix socket with Arrow IPC rows and committed file references Iceberg writes Writes Parquet files and commits real Iceberg REST metadata through iceberg-rust Durability design Records offsets, flushes, files, schema events, and idempotency data in an append-only transaction log Operations HTTP health/readiness, Prometheus metrics, CLI commands, generated man pages, and Docker E2E scripts",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k2i#4",
+      "url": "https://github.com/osodevops/k2i#4",
       "title": "Architecture",
       "text": "K2I separates hot and cold visibility: Hot-path visibility is local and intended for co-located readers or sidecars. Cold-path visibility depends on flush thresholds, object-store writes, and Iceberg catalog commit timing.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k2i#5",
+      "url": "https://github.com/osodevops/k2i#5",
       "title": "K2I vs Alternatives",
       "text": "Dimension K2I Kafka Connect Iceberg Sink Flink Iceberg Sink Spark Micro-Batch Confluent TableFlow Moonlink --- --- --- --- --- --- --- Primary fit Final-form Kafka events to Iceberg Connector-based ingestion Stream processing and transforms Batch/micro-batch ETL Managed Confluent pipeline Postgres CDC to Iceberg Deployment Single Rust binary/container Kafka Connect cluster Flink cluster Spark runtime Managed service Service/extension stack Transformations Intentionally minimal SMT/basic connector config Strong Strong Limited/managed CDC-focused Hot reads Local Arrow read-state RPC No No native local hot path No No local hot path CDC-oriented Schema path Confluent Protobuf additive evolution Connector/schema dependent Engine dependent Job dependent Managed CDC/schema dependent Choose when Events are already analytics-shaped You already run Connect You need joins/windows/state Batch jobs are acceptable You use Confluent Cloud Source is Postgres See comparisons for the longer decision guide.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k2i#6",
+      "url": "https://github.com/osodevops/k2i#6",
       "title": "Docker",
       "text": "The image is published for linux/amd64 and linux/arm64 ; Docker pulls the matching architecture automatically. The GHCR package must be set to public separately from the GitHub repository visibility. Release CI verifies anonymous manifest access for the published tag and latest , and confirms both platforms are present.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k2i#7",
+      "url": "https://github.com/osodevops/k2i#7",
       "title": "From Source",
       "text": "Binary location: target/release/k2i Source builds require Rust 1.94+, CMake, and OpenSSL development libraries. Kerberos/GSSAPI support is not enabled by default; if you need it, add the gssapi feature to rdkafka and install the matching SASL development libraries for your platform.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k2i#8",
+      "url": "https://github.com/osodevops/k2i#8",
       "title": "Quick Start",
       "text": "Create a minimal configuration: Validate and run: Monitor: Use config/example.toml and the configuration reference for the complete set of options.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k2i#9",
+      "url": "https://github.com/osodevops/k2i#9",
       "title": "What Is Validated",
       "text": "The current implementation has been verified locally with: The Docker flows cover Protobuf schema evolution, schema-pause readiness behavior, read-state RPC, direct Parquet validation with DuckDB, real Iceberg REST metadata commits, snapshot growth, and DuckDB iceberg scan .",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k2i#10",
+      "url": "https://github.com/osodevops/k2i#10",
       "title": "Current Release Caveats",
       "text": "K2I is ready for a first public release as a production-oriented Kafka-to-Iceberg ingestion engine, but these areas should remain explicit follow-up items before broad production rollout: - Multi-partition flush and offset commit behavior needs continued hardening. - Startup recovery computes state, but Kafka seeking/deduplication and startup orphan cleanup need further wiring. - Kafka offset commits are async; broker durability acknowledgement is not confirmed by the current helper. - Transaction-log entries are flushed, but not every entry is fsynced individually. - S3, GCS, and Azure object stores are wired end to end. S3 is covered by a container-backed round-trip test (MinIO); GCS and Azure are covered only at the configuration and store-construction level, so validate their credentials in your own environment before rollout. - Maintenance commands and task implementations exist; scheduler wiring should be reviewed for each deployment. See Production Readiness for the detailed review checklist.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k2i#11",
+      "url": "https://github.com/osodevops/k2i#11",
       "title": "Documentation",
       "text": "Guide Description --- --- Kafka to Iceberg Main explanation of the K2I data path Quickstart Local proof and first manual run Configuration Complete TOML reference Architecture System design, ordering, and hot/cold reads Comparisons K2I vs Kafka Connect, Flink, Spark, TableFlow, and Moonlink DuckDB Iceberg Validation How local Docker E2E proves real Iceberg metadata Schema Registry Protobuf Protobuf decoding and schema evolution Iceberg REST Catalog REST catalog commit path and backend caveats Commands CLI command reference Man Pages Generated man pages for every CLI command and subcommand Deployment Deployment patterns and operational notes Troubleshooting Common issues and recovery guidance FAQ Short answers for common user questions Production Readiness Verification status, caveats, and follow-up issues",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k2i#12",
+      "url": "https://github.com/osodevops/k2i#12",
       "title": "FAQ",
       "text": "Is K2I a Kafka Connect plugin? No. K2I is a standalone Rust service with its own Kafka consumer, transaction log, writer, CLI, health server, and metrics server. Does K2I provide exactly-once delivery? K2I is designed for exactly-once-style durability by combining manual Kafka offset management, transaction-log recovery records, idempotency records, immutable Parquet writes, and atomic Iceberg commits. See the production-readiness caveats for the remaining hardening work. How fresh is data in K2I? Recent rows can be visible through the local read-state RPC before the next cold commit. Iceberg query engines see data after a flush writes Parquet and commits an Iceberg snapshot. Can DuckDB read tables written by K2I? Yes. The Docker Iceberg E2E validates K2I output with DuckDB direct Parquet reads and DuckDB iceberg scan against real Iceberg REST metadata. Is K2I a CDC tool? No. K2I is Kafka-native and optimized for append-oriented event streams. CDC updates/deletes and deletion vectors are outside the current scope. See the full FAQ.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k2i#13",
+      "url": "https://github.com/osodevops/k2i#13",
       "title": "Looking for Enterprise Apache Kafka Support?",
       "text": "OSO engineers are focused on deploying, operating, and maintaining Apache Kafka platforms. If you need SLA-backed support, security review, deployment help, or a broader data lakehouse strategy, contact or visit oso.sh/contact.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k2i#14",
+      "url": "https://github.com/osodevops/k2i#14",
       "title": "Contributing",
       "text": "- Report bugs with a minimal reproduction and relevant config. - Suggest features with the target workflow and failure mode. - Run the verification commands above before opening a PR that changes ingestion, schema, catalog, or CLI behavior. - Regenerate man pages after changing CLI help text, flags, or subcommands:",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k2i#15",
+      "url": "https://github.com/osodevops/k2i#15",
       "title": "Acknowledgments",
       "text": "K2I draws architectural inspiration from Moonlink by Mooncake Labs, adapted for Kafka-native final-form event streams rather than Postgres CDC. Built with: - rdkafka - arrow - parquet - iceberg - tokio - axum",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k2i/blob/main/docs/README.md",
+      "url": "https://github.com/osodevops/k2i/blob/main/docs/README.md",
       "title": "docs/README.md",
       "text": "K2I Documentation K2I is a standalone Rust service for Kafka-to-Apache-Iceberg ingestion. It consumes a configured Kafka topic, decodes raw or Confluent-framed Protobuf messages, keeps recent rows visible through an Arrow-backed local read path, and writes Parquet data files through Iceberg catalog commits. The current release docs are organized around the working implementation and local verification flows. Historical PRDs, research notes, and older website drafts live under archive. Start Here Guide Use It For --- --- Kafka to Iceberg Main explanation of the K2I data path Quickstart Local Docker proof and first manual run Configuration Complete TOML reference Architecture System design, ordering, and hot/cold visibility Comparisons K2I vs Kafka Connect, Flink, Spark, TableFlow, and Moonlink FAQ Short answers for common user questions Implementation Deep Dives Guide Use It For --- --- DuckDB Iceberg Validation Docker E2E, direct Parquet reads, and DuckDB iceberg scan Schema Registry Protobuf Confluent Protobuf decoding and schema evolution behavior Iceberg REST Catalog REST catalog commits and catalog backend caveats Commands CLI command reference and E2E scripts Man Pages Generat",
       "kind": "docs"
     },
     {
-      "url": "https://github.com/k2i/blob/main/CHANGELOG.md",
+      "url": "https://github.com/osodevops/k2i/blob/main/CHANGELOG.md",
       "title": "CHANGELOG.md",
       "text": "Changelog All notable changes to this project will be documented in this file. The format is based on Keep a Changelog, and this project adheres to Semantic Versioning. [Unreleased] [0.3.0] - 2026-07-28 Added - Implemented create gcs store() via object store::gcp::GoogleCloudStorageBuilder , falling through to Application Default Credentials (Workload Identity on GKE) when gcs service account path is unset. - Implemented create azure store() via object store::azure::MicrosoftAzureBuilder , falling through to DefaultAzureCredential (Managed Identity on AKS) when azure access key is unset. - Documented that omitting aws access key id / aws secret access key activates the AmazonS3Builder default credential chain (env vars → IMDS → IRSA), unblocking EKS with IRSA and EC2 instance profiles without explicit config. - Added gcs bucket name , gcs service account path , azure container name , azure storage account name , and azure access key fields to IcebergConfig for credential overrides and the Azure-required account name. Security - Secret now redacts in serde serialization as well as Debug , emitting REDACTED in place of the value. Config derives Serialize , so previously any code that",
       "kind": "docs"

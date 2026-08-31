@@ -4,43 +4,43 @@
   "description": null,
   "documents": [
     {
-      "url": "https://github.com/hospital-management-system#0",
+      "url": "https://github.com/htinaunglinlat-dev/hospital-management-system#0",
       "title": "Introducción",
       "text": "Healthcare Queue Management System A real-time queue tracking system for Outpatient Departments (OPD) in Myanmar hospitals.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/hospital-management-system#1",
+      "url": "https://github.com/htinaunglinlat-dev/hospital-management-system#1",
       "title": "Problem",
       "text": "Patients at Myanmar hospitals wait 3+ hours in crowded OPD waiting rooms with no visibility into doctor arrival or queue progression. They arrive as early as 7:00 AM for early token numbers, wasting time and exhausting already-sick individuals.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/hospital-management-system#2",
+      "url": "https://github.com/htinaunglinlat-dev/hospital-management-system#2",
       "title": "Solution",
       "text": "A mobile-optimized web app where: - Patients view real-time physician availability and queue status - Nurses manage tokens with a single click (start/complete) - The system sends automated notifications based on dynamically calculated wait times",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/hospital-management-system#3",
+      "url": "https://github.com/htinaunglinlat-dev/hospital-management-system#3",
       "title": "How It Works",
       "text": "When a nurse completes a token, all downstream wait times recalculate instantly. Patients receive notifications as their turn approaches.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/hospital-management-system#4",
+      "url": "https://github.com/htinaunglinlat-dev/hospital-management-system#4",
       "title": "Tech Stack",
       "text": "Layer Technology --- --- Framework TanStack Start (React 19, SSR) Routing TanStack Router (file-based) Styling Tailwind CSS v4 + shadcn/ui State TanStack Query + Store Forms TanStack Form + Zod v4 Deployment Netlify Testing Vitest + Testing Library",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/hospital-management-system#5",
+      "url": "https://github.com/htinaunglinlat-dev/hospital-management-system#5",
       "title": "Key Routes",
       "text": "Route Access Purpose --- --- --- / Public Select clinic, view queue /queue/:clinicId Public Live queue board /queue/:clinicId/token/:tokenId Public My token status /admin Staff Nurse dashboard /admin/session/:sessionId Staff Manage active session",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/hospital-management-system#6",
+      "url": "https://github.com/htinaunglinlat-dev/hospital-management-system#6",
       "title": "Deploy to Netlify",
       "text": "1. Push to GitHub 2. Import at app.netlify.com/start 3. Netlify auto-detects the build ( vite build → dist/client ) 4. Add environment variables in Site settings 5. Deploy",
       "kind": "readme"

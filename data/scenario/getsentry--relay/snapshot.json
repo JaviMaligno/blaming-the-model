@@ -1,0 +1,100 @@
+{
+  "slug": "getsentry--relay",
+  "name": "relay",
+  "description": "Sentry event forwarding and ingestion service.",
+  "documents": [
+    {
+      "url": "https://github.com/getsentry/relay#0",
+      "title": "Introducción",
+      "text": "Official Sentry Relay The Sentry Relay is a service that pushes some functionality from the Sentry SDKs as well as the Sentry server into a proxy process.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/getsentry/relay#1",
+      "title": "Documentation",
+      "text": "- Product documentation can be found at: https://docs.sentry.io/product/relay/. - Code and development documentation can be found at: https://getsentry.github.io/relay/.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/getsentry/relay#2",
+      "title": "License",
+      "text": "Like Sentry, Relay is licensed under the FSL. See the LICENSE.md file and this blog post for more information.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/getsentry/relay#3",
+      "title": "Development",
+      "text": "[!NOTE] Relay project has strict rules for AI usage. Please see the HOWTOAI.md. To build Relay, we require the latest stable Rust (install via rustup). The crate is split into a workspace with multiple features, so when running building or running tests always make sure to pass the --all and --all-features flags. The processing feature additionally requires a C compiler and CMake. To install cmake run brew install cmake . To install the development environment, run direnv allow then devenv sync . (Install devenv if you haven't already.) We use VSCode for development. This repository contains settings files configuring code style, linters, and useful features. When opening the project for the first time, make sure to install the Recommended Extensions , as they will allow editor assist during coding. The root of the repository contains a Makefile with useful commands for development: - make check : Runs code formatting checks and linters. This is useful before opening a pull request. - make test : Runs unit tests, integration tests and Python package tests (see below for more information). - make all : Runs all checks and tests. This runs most of the tasks that are also performed in",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/getsentry/relay#4",
+      "title": "Building and Running",
+      "text": "The easiest way to rebuild and run Relay for development is using cargo . Depending on the configuration, you may need to have a local instance of Sentry running. The standard build commands are also available as make targets. Note that release builds still generate debug information. For quickly verifying that Relay compiles after making some changes, you can also use cargo check :",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/getsentry/relay#5",
+      "title": "Features",
+      "text": "By default, Relay compiles without processing mode. This is the configuration used for Relays operating as proxys. There are two optional features: - processing : Enables event processing and ingestion functionality. This allows to enable processing in config. When enabled, Relay will produce events into a Kafka topic instead of forwarding to the configured upstream. Also, it will perform full event normalization, filtering, and rate limiting. - crash-handler : Allows native crash reporting for segfaults and out-of-memory situations when internal error reporting to Sentry is enabled. To enable a feature, pass it to the cargo invocation. For example, to run tests across all workspace crates with the processing feature enabled, run:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/getsentry/relay#6",
+      "title": "Tests",
+      "text": "The test suite comprises unit tests, an integration test suite and a separate test suite for the Python package. Unit tests are implemented as part of the Rust crates and can be run via: The integration test suite requires Python. The required version is specified in the .python-version file. By default, the integration test suite will create a virtualenv, build the Relay binary with processing enabled, and run a set of integration tests:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/getsentry/relay#7",
+      "title": "Snapshot tests",
+      "text": "We use insta for snapshot testing. It will run as part of the make test command to validate schema/protocol changes. To install the insta tool for reviewing snapshots run: After that you'll be able to review and automatically update snapshot files by running: Make sure to run the command if you've made any changes to the event schema/protocol. For more information see .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/getsentry/relay#8",
+      "title": "Linting",
+      "text": "We use rustfmt and clippy from the latest stable channel for code formatting and linting. To make sure that these tools are set up correctly and running with the right configuration, use the following make targets:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/getsentry/relay#9",
+      "title": "Debugging",
+      "text": "Developer builds do not include debug information by default. If you want to attach a debugger to your local Relay, you can use the provided dev-debug profile instead with cargo run --all-features --profile dev-debug .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/getsentry/relay#10",
+      "title": "Python and C-ABI",
+      "text": "Potentially, new functionality also needs to be added to the Python package. This first requires to expose new functions in the C ABI. For this, refer to the Relay C-ABI readme. We highly recommend to develop and test the python package in a virtual environment . Once the ABI has been updated and tested, ensure the virtualenv is active and install the package, which builds the native library. There are two ways to install this: For testing, we use ubiquitous pytest . Again, ensure that your virtualenv is active and the latest version of the native library has been installed. Then, run:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/getsentry/relay#11",
+      "title": "Usage with Sentry",
+      "text": "To develop Relay with an existing Sentry devserver, self-hosted Sentry installation, or Sentry SaaS, configure the upstream to the URL of the Sentry server in .relay/config.yml in the project root directory. For example, in local development set relay.upstream to http://localhost:8000/ . To test processing mode with a local development Sentry, use this configuration: Note that the Sentry devserver also starts a Relay in processing mode on port 3000 with similar configuration. That Relay does not interfere with your development build. To ensure SDKs send to your development instance, update the port in the DSN:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/getsentry/relay#12",
+      "title": "Release Management",
+      "text": "We use GitHub actions to release new versions. There are two separate projects to publish: - Relay binary is automatically released using Calendar Versioning on a monthly basis together with sentry (see ), so there should be no reason to create a release manually. That said, manual releases are possible with the \"Release\" action. Make sure that CHANGELOG.md is up-to-date before running the action. - Relay Python library along with the C-ABI are released with the \"Release Library\" action. Make sure that py/CHANGELOG.md is up-to-date before running the action. Press \"Run workflow\" and choose a new version. We use Semantic Versioning and release during the development cycle.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/getsentry/relay#13",
+      "title": "Instructions for changelogs",
+      "text": "For changes exposed to the Python package , add an entry to py/CHANGELOG.md . This includes, but is not limited to, event normalization, PII scrubbing, and the protocol. For changes to the Relay server , please add an entry to CHANGELOG.md under the following heading: 1. Features : for new user-visible functionality. 2. Bug Fixes : for user-visible bug fixes. 3. Internal : for features and bug fixes in internal operation, especially processing mode. To the changelog entry, please add a link to this PR (consider a more descriptive message): If none of the above apply, you can opt out by adding skip-changelog to the PR description.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/getsentry/relay/blob/master/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog Unreleased Breaking Changes : - Stop accepting the deprecated Expect-CT, HPKP, and Expect-Staple security reports and remove their event types and event schema fields. Such reports are now rejected at ingest with an invalid outcome ( security report type ), including events which an older upstream Relay already classified as hpkp , expectct , or expectstaple . ( 6230) Features : - Extract OTLP spans' client sample rate from TraceState. ( 6312) - Raise the size limit for the flags context to 128 KiB. ( 6310) - Add support for more inbound filters for logs, trace metrics and spans. ( 6306) - Raise the size limit for logs to 2 MiB. ( 6316) - Include the environment in the cron check-in routing key so a monitor's environments no longer share a single Kafka partition. ( 6331) Bug Fixes : - Store a normalized attachment content type in objectstore so that downloads are served with the correct type. ( 6319) Internal : - Implement Getter for sessions so generic inbound filters can match them by event.release and event.environment . ( 6325) Internal : - Update sentry-conventions to 0.20.0. ( 6315) 26.8.0 Features : - Reject spans, logs, trace metrics, replays when they are too old",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/getsentry/relay",
+  "stars": 393
+}

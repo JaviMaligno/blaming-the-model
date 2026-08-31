@@ -4,91 +4,91 @@
   "description": null,
   "documents": [
     {
-      "url": "https://github.com/cloacina#0",
+      "url": "https://github.com/colliery-io/cloacina#0",
       "title": "Introducción",
       "text": "Cloacina Cloacina is a workflow orchestration engine for Rust and Python , built by Colliery Software. Its only hard dependency is a database — PostgreSQL or SQLite. No broker, no queue, no coordinator. You run the same engine two co-equal ways : - Embed the library — add cloacina (Rust) or cloaca (Python) as a dependency and run orchestration inside your application, against a database you already operate. Embedding is a permanent, production-legitimate end-state — not a starter mode you graduate from. - Run the service — operate cloacina-server as a multi-tenant control plane with an HTTP/WebSocket API and web UI, and ship workflows to it as .cloacina packages. Cloacina is embedded-first by design: the engine is a genuine standalone library, and the server is built on top of it — not the other way around. Cloacina exposes two execution primitives : - Workflows — Durable, DB-backed DAGs with retries, recovery, and multi-tenancy. Pick this when work needs to survive process restart. - Computation graphs — In-process, deterministic, event-driven DAGs that fire on accumulator boundaries via reactors. Pick this when work is event-driven and latency-sensitive. Both surfaces share the r",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/cloacina#1",
+      "url": "https://github.com/colliery-io/cloacina#1",
       "title": "Features",
       "text": "- Two ways to run it — Embedded library inside your app, or cloacina-server loading packaged .cloacina archives over HTTP / WebSocket. - Two execution primitives — Durable workflows and in-process computation graphs; pick one or compose both on the same firing. - Resilient execution — Automatic retries, failure recovery, atomic task-completion commits, heartbeat-driven stale-claim recovery. - Type-safe workflows — Compile-time validation of task dependencies and data flow via the [task] / [workflow] attribute macros. - Database-backed — PostgreSQL or SQLite, selected at runtime by connection URL. - Multi-tenant — PostgreSQL schema-based isolation; fail-closed search path enforcement; 4-step decommission orchestration on the server. - Packaged workflows — Ship .cloacina source packages (Rust compiled server-side by cloacina-compiler , Python loaded as a source module tree); scaffold/validate/pack with cloacinactl package ; upload via CLI or HTTP API. - First-class Python — the cloaca PyPI wheel embeds the engine in your Python process; not a feature flag. - Client SDKs — Rust, Python, and TypeScript clients for calling a running server over HTTP/WebSocket. - Web UI — Operate and obs",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/cloacina#2",
+      "url": "https://github.com/colliery-io/cloacina#2",
       "title": "Rust library",
       "text": "Add Cloacina to your Cargo.toml : Cloacina supports both PostgreSQL and SQLite backends. The backend is selected automatically at runtime based on your connection URL - no compile-time configuration needed.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/cloacina#3",
+      "url": "https://github.com/colliery-io/cloacina#3",
       "title": "Python bindings ( cloaca )",
       "text": "The wheel bundles both database backends; the one you use is chosen at runtime by connection URL, same as Rust. See the embedded quick start for usage.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/cloacina#4",
+      "url": "https://github.com/colliery-io/cloacina#4",
       "title": "cloacinactl CLI",
       "text": "The operator + developer CLI (bundling the daemon as cloacinactl daemon ): See Installing cloacinactl for version pinning, system-wide installs, and supported platforms.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/cloacina#5",
+      "url": "https://github.com/colliery-io/cloacina#5",
       "title": "Quick Start",
       "text": "A one-task workflow, run in-process against SQLite: The same workflow in Python: For service-mode usage (running cloacina-server , uploading packaged workflows, executing over the HTTP API), see Run the Service.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/cloacina#6",
+      "url": "https://github.com/colliery-io/cloacina#6",
       "title": "Multi-Tenancy",
       "text": "Cloacina supports multi-tenant deployments with complete data isolation. PostgreSQL is the supported backend for production multi-tenancy.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/cloacina#7",
+      "url": "https://github.com/colliery-io/cloacina#7",
       "title": "Embedded mode — per-tenant runner",
       "text": "When you're embedding Cloacina as a library, construct one DefaultRunner per tenant pinned to a dedicated schema:",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/cloacina#8",
+      "url": "https://github.com/colliery-io/cloacina#8",
       "title": "Server mode — provisioned tenants over the HTTP API",
       "text": "When you're running cloacina-server , tenants are provisioned and decommissioned via the CLI and HTTP API. The server's TenantRunnerCache keeps a runner per tenant, with fail-closed search path enforcement at the DAL. See Configure a Multi-Tenant Deployment for the operational surface and Decommission a Tenant for the teardown recipe.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/cloacina#9",
+      "url": "https://github.com/colliery-io/cloacina#9",
       "title": "Properties",
       "text": "- Zero collision risk — Impossible for tenants to access each other's data. - No query changes — All existing DAL code works unchanged; multi-tenancy is enforced at the connection level. - Performance — No overhead from filtering every query. - Clean separation — Each tenant can run different schema versions, and decommissioning a tenant drops the schema cleanly.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/cloacina#10",
+      "url": "https://github.com/colliery-io/cloacina#10",
       "title": "Documentation",
       "text": "Complete Documentation & User Guide Start here: - Start Here — what Cloacina is, whether it fits, and which door to pick. - Installing cloacinactl — CLI one-liner + Docker + Helm. - Embed the Library — quick start and tutorials for Rust and Python, in-process. - Run the Service — deploy and operate cloacina-server . - Engine & Primitives — workflows, computation graphs, and the objects they're built from. - Reference — APIs, CLI, HTTP/WebSocket, configuration. Additional resources: - API Reference (Rust docs). - Tutorial sources. - Feature examples — including filtered-reactor , multi-tenant , packaged-graph . - Glossary — Every term in one place.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/cloacina#11",
+      "url": "https://github.com/colliery-io/cloacina#11",
       "title": "Contributing",
       "text": "Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/cloacina#12",
+      "url": "https://github.com/colliery-io/cloacina#12",
       "title": "License",
       "text": "This project is licensed under the Apache License 2.0 - see the LICENSE file for details.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/cloacina/blob/main/CONTRIBUTING.md",
+      "url": "https://github.com/colliery-io/cloacina/blob/main/CONTRIBUTING.md",
       "title": "CONTRIBUTING.md",
       "text": "Contributing to Cloacina This document covers the conventions that keep the repo verifiable. The most important one — the packaged example standard — exists because examples that nothing executes rot silently: this project has repeatedly found shipped, documented features that never worked, always in the gap between \"documented\" and \"run by a harness\". The packaged example standard (CLOACI-I-0138 / T-0886) Every example demonstrates its feature through the primary interface : Examples must not show the in-process DefaultRunner as the way to run or test anything. Embedded remains a legitimate production deployment mode, but examples and onboarding lead with the packaged/server path (maintainer decision D-3, 2026-07-10). Migrating a feature through the server path is also how server-path feature gaps get surfaced — loudly, which is the point. Where an example lives, and how it joins CI Place it under examples/features/ / / . Discovery is automatic and keyed on one thing: - has package.toml → it is a packaged gold-path example. It gets a angreal demos features command and joins the CI examples matrix via angreal demos matrix . No list to edit; a new directory IS the registration. - no",
       "kind": "docs"
     },
     {
-      "url": "https://github.com/cloacina/blob/main/CHANGELOG.md",
+      "url": "https://github.com/colliery-io/cloacina/blob/main/CHANGELOG.md",
       "title": "CHANGELOG.md",
       "text": "Changelog All notable changes to this project will be documented in this file. The format is based on Keep a Changelog, and this project adheres to Semantic Versioning. [Unreleased] [0.11.0] - 2026-08-30 Added - The web UI is now Rust end-to-end (CLOACI-I-0141) — the control plane is a Leptos/WASM app built on the Aurora Dark design pack ( colliery-io-aurora ), replacing the React SPA at strict parity (all 18 routes; the full Playwright e2e corpus passes against it). The UI consumes the same contract-tested cloacina-client SDK as the CLI — which now compiles for wasm32 with a browser WebSocket transport — so client drift can no longer split the UI from the SDKs. Served exactly as before (rust-embed, same origin, same URLs); live sessions survive the swap. - Reactive-layer high availability (CLOACI-T-0851 / ADR A-0012) — reactors and their accumulator state survive replica loss on a multi-replica server. Each reactor has exactly one owner, claimed via Postgres session-level advisory locks (one ownership session holding N locks); a self-check watchdog detects lock loss and halts the unowned copy, and surviving replicas claim and respawn orphaned reactors, restoring accumulator state ",
       "kind": "docs"

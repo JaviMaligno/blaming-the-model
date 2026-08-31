@@ -4,79 +4,79 @@
   "description": null,
   "documents": [
     {
-      "url": "https://github.com/aws-sft-grpo-budget-llm-finetune#0",
+      "url": "https://github.com/EsmaeilNarimissa/aws-sft-grpo-budget-llm-finetune#0",
       "title": "Introducción",
       "text": "Reasoning on a Budget: Reproducing DeepSeek R1 with SFT + GRPO on AWS (Qwen2.5B) TL;DR: Fine-tune an instruction-tuned LLM (Qwen2.5B) on reasoning tasks using a DeepSeek R1-inspired pipeline (SFT + GRPO). Achieve competitive alignment using rule-based rewards — all for under $100 on AWS SageMaker. 📖 Read the Full Article (Narimissa, 2025) Reasoning on a Budget: Miniaturizing DeepSeek R1 with SFT-GRPO Alignment for Instruction-Tuned LLMs 📌 DOI: 10.36227/techrxiv.174742969.91776650/v1 The article provides: - Theoretical background and motivation - Full details of the SFT and GRPO training stages - Reward function design and prompting conventions - Experimental results and analysis - Discussion of limitations and future work We recommend starting with the article for a comprehensive understanding of the codebase, design decisions, and how to reproduce or build upon our results. ---",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/aws-sft-grpo-budget-llm-finetune#1",
+      "url": "https://github.com/EsmaeilNarimissa/aws-sft-grpo-budget-llm-finetune#1",
       "title": "Pretrained Model",
       "text": "The trained model (after SFT and GRPO) is available on Hugging Face Hub: Essi-Narim/qwen2.5b-sft-grpo-reasoning You can load the model directly with Hugging Face Transformers: --- This project implements a modular DeepSeek R1-style training pipeline for reasoning-centric language models, using Supervised Fine-Tuning (SFT) and Group Relative Policy Optimization (GRPO). The pipeline is designed for both local development (VS Code, Jupyter) and scalable training on AWS SageMaker. ---",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/aws-sft-grpo-budget-llm-finetune#2",
+      "url": "https://github.com/EsmaeilNarimissa/aws-sft-grpo-budget-llm-finetune#2",
       "title": "Example Configuration Dictionaries",
       "text": "Below are example (sanitized) config dictionaries for SFT and GRPO. Replace all placeholders ( , , etc.) with your actual values. Never commit real AWS account IDs, S3 buckets, or credentials. ---",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/aws-sft-grpo-budget-llm-finetune#3",
+      "url": "https://github.com/EsmaeilNarimissa/aws-sft-grpo-budget-llm-finetune#3",
       "title": "Building & Using the SageMaker Docker Image",
       "text": "This project provides a custom Dockerfile for AWS SageMaker training in grpo-sagemaker-image/Dockerfile . Quick Steps: 1. Build the Docker image locally: 2. Test the image locally (optional, recommended): 3. Push to AWS ECR for SageMaker: - Create an ECR repository (if needed): - Authenticate Docker to ECR: - Tag and push your image: Full step-by-step instructions, including Windows CMD commands and troubleshooting, are provided in Docker image SM.ipynb .",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/aws-sft-grpo-budget-llm-finetune#4",
+      "url": "https://github.com/EsmaeilNarimissa/aws-sft-grpo-budget-llm-finetune#4",
       "title": "Training Stages",
       "text": "The pipeline consists of two main training phases: 1. Phase 1: Supervised Fine-Tuning (SFT) Script: src/train sft.py Goal: Adapt a pre-trained base language model to your domain or task using prompt-completion pairs. LoRA (Low-Rank Adaptation) is optionally supported for parameter-efficient fine-tuning. Note: All completions must be formatted with ... and ... tags, as required by the project rules. 2. Phase 2: Group Relative Policy Optimization (GRPO) Script: src/train grpo.py Goal: Further refine the SFT model using preference-based RL, guided by custom reward functions. Multiple completions are compared and scored. The trl library's GRPOTrainer is used for optimization. Reward Functions: Implemented in src/reward functions.py , all reward functions are composable and testable individually. Use the provided combine rewards() utility to create composite rewards for training.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/aws-sft-grpo-budget-llm-finetune#5",
+      "url": "https://github.com/EsmaeilNarimissa/aws-sft-grpo-budget-llm-finetune#5",
       "title": "Environment Setup",
       "text": "Note: This codebase is designed for modularity and SageMaker compatibility. All training scripts avoid Jupyter-only constructs and support S3 paths for outputs and checkpoints. Local development is supported via VS Code and the orchestration notebook. 1. Clone the repository: 2. Create and activate a virtual environment (recommended): 3. Install dependencies: 4. (Optional) AWS Configuration for SageMaker: Install AWS CLI: AWS CLI Installation Guide Configure AWS credentials: (You'll need your Access Key ID, Secret Access Key, default region, and output format). Ensure the associated IAM user/role has permissions for SageMaker, S3, IAM, etc. Install boto3 and sagemaker (already included in requirements.txt ).",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/aws-sft-grpo-budget-llm-finetune#6",
+      "url": "https://github.com/EsmaeilNarimissa/aws-sft-grpo-budget-llm-finetune#6",
       "title": "Option 1: Using the Orchestration Notebook (Local Execution)",
       "text": "The notebooks/main controller.ipynb provides a structured way to run the SFT and GRPO stages locally (ideal for testing and debugging on smaller datasets/models). 1. Launch Jupyter Lab or Jupyter Notebook: 2. Open notebooks/main controller.ipynb . 3. Configure the sft config and grpo config dictionaries within the notebook cells according to your local paths, model choices, and desired training parameters. 4. Execute the cells sequentially to run the SFT and then the GRPO training stages.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/aws-sft-grpo-budget-llm-finetune#7",
+      "url": "https://github.com/EsmaeilNarimissa/aws-sft-grpo-budget-llm-finetune#7",
       "title": "Option 2: Using Command-Line Scripts (Local or SageMaker Preparation)",
       "text": "The src/train sft.py and src/train grpo.py scripts can be run directly from the command line. They accept arguments for configuration, making them suitable for local runs or as entry points for SageMaker jobs. Example: Running SFT locally via CLI: Example: Running GRPO locally via CLI (after SFT): (Note: Replace placeholders like paths, model names, and JSON config strings with your actual values.)",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/aws-sft-grpo-budget-llm-finetune#8",
+      "url": "https://github.com/EsmaeilNarimissa/aws-sft-grpo-budget-llm-finetune#8",
       "title": "Launching SageMaker Jobs",
       "text": "Note: There is no scripts/ directory or launch grpo job.py in this codebase. To launch SageMaker jobs, use the SageMaker Python SDK and point to the appropriate entry script in src/ (see PRD.md for guidance). Ensure your Docker image is built from grpo-sagemaker-image/Dockerfile if using a custom environment. Usage: Important Notes for SageMaker: Replace placeholders (Account ID, Role Name, S3 paths, instance type) with your actual values. The --hyperparameters argument must be a valid JSON string. Crucially , paths inside this JSON ( base model path , dataset path , output dir ) must refer to the expected paths inside the SageMaker container (e.g., /opt/ml/input/data/train , /opt/ml/model ). Ensure the input data ( --s3-input-data ) and any required base models (if not loading from Hugging Face Hub) are correctly placed in S3 and accessible by the SageMaker execution role. You might need multiple input channels if providing a base model from S3.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/aws-sft-grpo-budget-llm-finetune#9",
+      "url": "https://github.com/EsmaeilNarimissa/aws-sft-grpo-budget-llm-finetune#9",
       "title": "Example Outputs (Placeholder)",
       "text": "This section will be updated after running the pipeline. - Example SFT and GRPO completions and reward logs will be provided once available.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/aws-sft-grpo-budget-llm-finetune#10",
+      "url": "https://github.com/EsmaeilNarimissa/aws-sft-grpo-budget-llm-finetune#10",
       "title": "Known Limitations & Future Extensions",
       "text": "Dataset Dependency: The quality and nature of the SFT and preference datasets heavily influence the final model performance. Reward Function Complexity: Designing effective reward functions that accurately capture desired reasoning traits can be challenging. Hyperparameter Tuning: Optimal hyperparameters (learning rates, batch sizes, LoRA config, GRPO beta, etc.) may require significant tuning. Scalability: Training very large models may require multi-GPU or distributed training setups beyond the current single-instance configuration. Possible Extensions: Implement more sophisticated reward functions (e.g., using a separate reward model). Integrate techniques like Direct Preference Optimization (DPO). Add robust evaluation metrics and test sets specific to reasoning tasks. Explore different base models. Implement distributed training support. ---",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/aws-sft-grpo-budget-llm-finetune#11",
+      "url": "https://github.com/EsmaeilNarimissa/aws-sft-grpo-budget-llm-finetune#11",
       "title": "Citation",
       "text": "If you use this code or build upon this training pipeline, please cite: Narimissa, Esmaeil. Reasoning on a Budget: Miniaturizing DeepSeek R1 with SFT-GRPO Alignment for Instruction-Tuned LLMs . TechRxiv, May 2025. DOI: 10.36227/techrxiv.174742969.91776650/v1",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/aws-sft-grpo-budget-llm-finetune#12",
+      "url": "https://github.com/EsmaeilNarimissa/aws-sft-grpo-budget-llm-finetune#12",
       "title": "Contact",
       "text": "For questions, feedback, or collaboration inquiries, please contact: Esmaeil Narimissa esmaeil.narimissa@gmail.com",
       "kind": "readme"

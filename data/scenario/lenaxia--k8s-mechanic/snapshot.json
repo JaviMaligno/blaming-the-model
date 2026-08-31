@@ -4,175 +4,175 @@
   "description": null,
   "documents": [
     {
-      "url": "https://github.com/k8s-mechanic#0",
+      "url": "https://github.com/lenaxia/k8s-mechanic#0",
       "title": "Introducción",
       "text": "k8s-mechanic Name change: This project was previously known as k8s-mendabot . It has been renamed to k8s-mechanic . The CRD API group has changed from remediation.mendabot.io to remediation.mechanic.io . Existing installations will require migration. k8s-mechanic is a Kubernetes controller that watches your cluster for failures, investigates them automatically, and opens pull requests on your GitOps repository with proposed fixes — all without leaving your cluster. When a Pod is crash-looping, a Deployment is degraded, or a Node goes NotReady, mechanic spawns an in-cluster OpenCode agent that inspects the live cluster, locates the relevant manifests in your GitOps repo, determines the root cause, and opens a PR. You review and merge. No external operators, no external databases, no persistent services outside your cluster.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#1",
+      "url": "https://github.com/lenaxia/k8s-mechanic#1",
       "title": "What it does",
       "text": "1. Detects failures — watches Pods, Deployments, StatefulSets, PVCs, Nodes, and Jobs natively via the Kubernetes API 2. Deduplicates by parent — repeated pod restarts from the same Deployment produce one investigation, not one per pod restart 3. Stabilises before acting — a configurable window (default: 120s) filters transient blips before dispatching 4. Investigates in-cluster — an agent Job runs with read-only RBAC, clones your GitOps repo, and inspects the live cluster 5. Opens a PR — with a structured body: summary, evidence, root cause, proposed fix, and confidence level Three possible outcomes per invocation: Outcome When Action --- --- --- Fix PR Root cause identified, confidence medium or high Opens a PR with a targeted manifest change Investigation PR Root cause unclear or confidence low Opens a PR with an investigation report, labelled needs-human-review Comment An open PR already exists for this fingerprint Comments with updated findings; no new PR Hard constraints enforced in the agent prompt: never commit directly to main ; never touch Kubernetes Secrets in the GitOps repo; exactly one outcome per invocation.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#2",
+      "url": "https://github.com/lenaxia/k8s-mechanic#2",
       "title": "Features",
       "text": "OpenCode agentic workflow — investigations are driven by OpenCode running inside your cluster. Works with any OpenAI-compatible LLM endpoint. Additional agent backends are planned. Detection — watches Pods, Deployments, StatefulSets, PVCs, Nodes, and Jobs natively. Covers CrashLoopBackOff , ImagePullBackOff , OOMKilled , degraded Deployments, unschedulable pods, failed Jobs, PVC provisioning failures, and unhealthy Nodes. Deduplication — findings are deduplicated by parent resource fingerprint ( sha256(namespace + kind + parentObject + sorted errors) ). Repeated pod restarts from the same Deployment produce one investigation. State is stored in RemediationJob CRD objects — survives watcher restarts, no external store required. Severity tiers — every finding is classified as critical , high , medium , or low based on the detected condition (e.g. CrashLoopBackOff 5 restarts → critical; OOMKilled → high; degraded-but-available Deployment → medium). A MIN SEVERITY env var on the watcher Deployment suppresses findings below the configured threshold. The agent receives the severity at runtime and calibrates its investigation depth accordingly — maximum thoroughness for critical, conserva",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#3",
+      "url": "https://github.com/lenaxia/k8s-mechanic#3",
       "title": "Security",
       "text": "Secret redaction — error text extracted from cluster state (pod Waiting.Message , node condition messages, etc.) is passed through a redaction filter before being stored in RemediationJob or injected into the agent. Patterns include URL credentials, base64-encoded values ≥ 40 chars, and common secret key prefixes ( password= , token= , api-key= , etc.). Prompt injection detection — Finding.Errors is bounded to 500 characters per field and wrapped in an explicit untrusted-data envelope in the prompt. Injection heuristics ( ignore. previous. instructions ) are detected and logged; configurable to suppress the finding entirely ( INJECTION DETECTION ACTION=suppress ). Agent network policy — an opt-in NetworkPolicy restricts agent Job egress to the cluster API server, GitHub, and the LLM endpoint. Enabled via networkPolicy.enabled: true in values.yaml . Requires a CNI that enforces NetworkPolicy (Cilium, Calico, etc.). Read-only agent RBAC — the agent holds only get/list/watch verbs cluster-wide. It cannot create, modify, or delete any Kubernetes resource. All cluster changes go through Git and your GitOps reconciler. Namespace-scoped agent RBAC — AGENT RBAC SCOPE=namespace switches the",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#4",
+      "url": "https://github.com/lenaxia/k8s-mechanic#4",
       "title": "Hardened mode",
       "text": "Hardened mode ( agent.hardenKubectl: true in values.yaml , off by default) adds additional read restrictions on top of the always-on defaults below. Always on (regardless of hardened mode) Control What it does --- --- kubectl write blocking apply , create , delete , edit , patch , replace , scale , label , annotate , taint , drain , cordon , uncordon , rollout restart/undo — all exit 1. All cluster changes go through Git and your GitOps reconciler. kubectl output redaction All kubectl output is piped through the redact binary. Any value matching a known secret pattern ( base64 ≥ 40 chars , password=… , token=… , etc.) is replaced with [REDACTED] . The wrapper hard-fails if redact is missing. Tool output redaction helm , flux , sops , talosctl , yq , stern , kubeconform , kustomize , age , age-keygen , and gh all have PATH-shadowing wrappers that pipe output through redact . Wrappers fail closed — if the redact binary is absent the tool exits 1. No secrets in environment variables No credentials or API keys are present in the agent process environment. All secret material is written to files before the agent starts and removed from the environment entirely. Hardened mode only Contro",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#5",
+      "url": "https://github.com/lenaxia/k8s-mechanic#5",
       "title": "Prerequisites",
       "text": "- Kubernetes = 1.28 - Helm = 3.14 - A GitHub App installed on your GitOps repository with: Contents (write), Pull Requests (write), Issues (write) - An OpenAI-compatible LLM API key",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#6",
+      "url": "https://github.com/lenaxia/k8s-mechanic#6",
       "title": "GitHub App permissions",
       "text": "Permission Level Purpose --- --- --- Contents Write Clone repository, create branches, push changes Pull requests Write Create and comment on pull requests Issues Write Reference issues in PR descriptions",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#7",
+      "url": "https://github.com/lenaxia/k8s-mechanic#7",
       "title": "github-app",
       "text": "The github-app Secret must contain three keys: The App ID is shown on the settings page for your GitHub App at https://github.com/settings/apps/ . Each user creates their own GitHub App; the project author has no visibility into your credentials, tokens, or repository. The Installation ID is the numeric suffix in the URL when you view your app's installation: https://github.com/organizations/ /settings/installations/ (personal accounts: https://github.com/settings/installations/ ). It is also returned by GET https://api.github.com/app/installations authenticated with the App JWT. The private key is used only in the agent Job's init container to exchange a short-lived installation token (1-hour TTL). It is never injected into the main agent container.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#8",
+      "url": "https://github.com/lenaxia/k8s-mechanic#8",
       "title": "llm-credentials-opencode",
       "text": "The llm-credentials-opencode secret holds the full OpenCode config as its provider-config key. The correct schema has model as a top-level key (format: \" / \" ); options belongs inside provider. , not at the root. Opencode is the only agentic provider available at the moment, more options will be coming later. Native OpenAI ( api.openai.com ) Custom OpenAI-compatible endpoint (self-hosted, Ollama, Azure, etc.) For any endpoint that is not api.openai.com , or that uses a model name not registered in the built-in OpenAI provider, you must define a custom provider with \"npm\": \"@ai-sdk/openai-compatible\" . You cannot reuse the built-in openai provider for a different base URL. Note: The agent also accepts the config via the OPENCODE CONFIG CONTENT environment variable (the full JSON string). This is the highest-precedence config layer and overrides the secret. All standard OpenCode schema keys are valid ( model , provider , $schema , etc.). Other providers OpenCode supports 75+ providers. Any provider with an OpenAI-compatible API (Ollama, LM Studio, llama.cpp, Azure OpenAI, Groq, Together AI, OpenRouter, DeepSeek, and many more) works with the custom-provider pattern shown above. For b",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#9",
+      "url": "https://github.com/lenaxia/k8s-mechanic#9",
       "title": "Helm values reference",
       "text": "All values.yaml keys and their defaults: Key Default Description --- --- --- image.repository ghcr.io/lenaxia/mechanic-watcher Watcher image repository image.tag \"\" (uses Chart.appVersion ) Watcher image tag image.pullPolicy IfNotPresent Image pull policy agent.image.repository ghcr.io/lenaxia/mechanic-agent Agent image repository agent.image.tag \"\" (uses Chart.appVersion ) Agent image tag gitops.repo required GitOps repository in org/repo format gitops.manifestRoot required Path within repo to manifests root watcher.stabilisationWindowSeconds 120 Seconds a finding must persist before dispatching watcher.maxConcurrentJobs 3 Maximum simultaneous agent Jobs watcher.minSeverity low Minimum severity to dispatch: critical , high , medium , or low watcher.remediationJobTTLSeconds 604800 TTL for completed RemediationJob objects (7 days) watcher.sinkType github Sink type for PR creation watcher.logLevel info Log level: debug, info, warn, error watcher.llmProvider openai LLM readiness gate: openai enables it; empty disables watcher.injectionDetectionAction log What to do when a prompt injection heuristic fires: log or suppress watcher.maxInvestigationRetries 3 Maximum Job retries per Remedi",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#10",
+      "url": "https://github.com/lenaxia/k8s-mechanic#10",
       "title": "Configuration validation",
       "text": "The watcher validates configuration at startup with clear error messages. Numeric validations: - MAX CONCURRENT JOBS : must be 0 - REMEDIATION JOB TTL SECONDS : must be 0 - STABILISATION WINDOW SECONDS : must be ≥ 0 Enum validations: - MIN SEVERITY : must be one of critical , high , medium , low (absent defaults to low ) Format validations: - GITOPS REPO : must be in owner/repo format",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#11",
+      "url": "https://github.com/lenaxia/k8s-mechanic#11",
       "title": "What the agent does",
       "text": "The agent runs OpenCode inside the cluster with read-only RBAC and follows a structured investigation: 1. Check for an existing open PR for this fingerprint — if found, comment on it and exit 2. kubectl describe and kubectl get events on the failing resource 3. Inspect related resources (owning Deployment, Endpoints, PVs, etc.) 4. Locate the relevant manifests in the cloned GitOps repository 5. Inspect Flux/Helm state with flux get all and helm list 6. Determine root cause and assign a confidence level (high / medium / low) 7. Validate proposed changes with kubeconform and kustomize build 8. Open a pull request with a structured body: summary, evidence, root cause, fix, confidence",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#12",
+      "url": "https://github.com/lenaxia/k8s-mechanic#12",
       "title": "RemediationJob lifecycle",
       "text": "- Pending — finding detected, waiting for a concurrent-job slot - Dispatched — batch/v1 Job created, waiting for pod scheduling - Running — agent pod is executing - Succeeded — agent Job completed; status.prRef holds the PR URL if one was opened - Failed — agent Job failed (exit non-zero or deadline exceeded); re-queued if RetryCount - Cancelled — source object was deleted while the investigation was in progress",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#13",
+      "url": "https://github.com/lenaxia/k8s-mechanic#13",
       "title": "Per-resource annotation control",
       "text": "Three annotations gate mechanic's behaviour on any watched resource (Pod, Deployment, StatefulSet, PVC, Node, Job) or on an entire Namespace: Annotation Value Effect --- --- --- mechanic.io/enabled \"false\" Permanently suppress all findings from this resource mechanic.io/skip-until \"YYYY-MM-DD\" Suppress findings until end-of-day UTC on this date mechanic.io/priority \"critical\" Bypass the stabilisation window — dispatch immediately Examples: Namespace-level gate: Annotating the Namespace object itself applies to all resources in that namespace. This suppresses every finding regardless of the resource's own annotations: The skip-until date is inclusive: findings are suppressed until midnight UTC at the start of the day after the specified date.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#14",
+      "url": "https://github.com/lenaxia/k8s-mechanic#14",
       "title": "Components",
       "text": "Component Description --- --- mechanic-watcher Go controller (controller-runtime) that watches Kubernetes resources, manages RemediationJob CRDs, and creates agent Jobs mechanic-agent Docker image containing opencode + kubectl + helm + flux + gh and supporting investigation tools",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#15",
+      "url": "https://github.com/lenaxia/k8s-mechanic#15",
       "title": "Agent image tools",
       "text": "Tool Version Purpose --- --- --- opencode 1.2.10 AI agent driver kubectl 1.35.1 Cluster inspection (read-only) helm 3.20.0 Chart metadata, template rendering flux 2.8.0 Flux status, trace, diff kustomize 5.8.1 Render and validate Kustomize overlays gh latest stable PR creation, listing, commenting kubeconform 0.7.0 Kubernetes manifest schema validation yq 4.52.4 YAML processing jq apt JSON processing stern 1.33.1 Multi-pod log tailing sops 3.12.1 Decrypt SOPS-encrypted secrets age 1.3.1 Decrypt age-encrypted files talosctl 1.12.4 Talos node inspection (requires talosconfig mount) All binaries are fetched from official releases with SHA256 checksum verification. The agent runs as non-root ( uid=1000 ).",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#16",
+      "url": "https://github.com/lenaxia/k8s-mechanic#16",
       "title": "Roadmap",
       "text": "Features under active development or planned: Area Feature Status --- --- --- Operability Kubernetes Events on RemediationJob ( kubectl describe rjob shows lifecycle) Shipped Operability Dry-run mode — investigate without opening PRs Shipped Reliability PermanentlyFailed phase — retry cap with dead-letter tombstone Shipped Reliability GitHub App token expiry fast-fail guard Shipped Accuracy Namespace-scoped provider filtering ( WATCH NAMESPACES , EXCLUDE NAMESPACES ) Shipped Accuracy Per-resource opt-out annotations ( mechanic.io/enabled , mechanic.io/skip-until , mechanic.io/priority ) Shipped Accuracy Multi-signal correlation (related findings grouped into one investigation) Shipped Accuracy Mandatory pre-PR manifest validation Shipped Impact PR auto-close when finding resolves Shipped Impact PR feedback iteration (respond to reviewer comments) Deferred Impact On-demand manual trigger Deferred Impact GitLab and Gitea sink support Evaluated Signal sources Prometheus / Alertmanager source provider Evaluated Signal sources cert-manager certificate expiry provider Evaluated See docs/BACKLOG/FEATURE TRACKER.md for the full product backlog with value/complexity ratings and implementati",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#17",
+      "url": "https://github.com/lenaxia/k8s-mechanic#17",
       "title": "Documentation",
       "text": "- docs/DESIGN/HLD.md — Architecture and design decisions - docs/DESIGN/lld/ — Component-level low-level designs - docs/BACKLOG/ — Implementation backlog and feature tracker - README-LLM.md — LLM implementation guide",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#18",
+      "url": "https://github.com/lenaxia/k8s-mechanic#18",
       "title": "Prerequisites",
       "text": "- Go 1.24+ - golangci-lint — extended linter suite - gitleaks — secrets scanner Install both with go install :",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#19",
+      "url": "https://github.com/lenaxia/k8s-mechanic#19",
       "title": "Git hooks",
       "text": "After cloning, install the pre-commit hook once: The hook runs on every git commit and enforces two checks: Check Tool What it catches --- --- --- Secrets scan gitleaks API keys, tokens, credentials in staged files Lint golangci-lint Type errors, unused code, security issues, formatting To bypass in an emergency: git commit --no-verify",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#20",
+      "url": "https://github.com/lenaxia/k8s-mechanic#20",
       "title": "Useful make targets",
       "text": "Target Description --- --- make lint Quick go vet check make lint-full Full golangci-lint run (same as pre-commit) make lint-secrets Full repo secrets scan with gitleaks make lint-security gosec HIGH/CRITICAL security check make test Full test suite with race detector make install-hooks (Re-)install git hooks after cloning",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#21",
+      "url": "https://github.com/lenaxia/k8s-mechanic#21",
       "title": "Community",
       "text": "- GitHub Discussions — github.com/lenaxia/k8s-mechanic/discussions — questions, ideas, architecture discussions, and show-and-tell - GitHub Issues — bugs and feature requests",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#22",
+      "url": "https://github.com/lenaxia/k8s-mechanic#22",
       "title": "Contributing",
       "text": "See CONTRIBUTING.md for development setup, coding standards, the DCO requirement, and how to find good first issues.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#23",
+      "url": "https://github.com/lenaxia/k8s-mechanic#23",
       "title": "Governance",
       "text": "See GOVERNANCE.md for the project's contributor ladder, decision-making process, and how to become a maintainer. The current maintainer list is in MAINTAINERS.md.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#24",
+      "url": "https://github.com/lenaxia/k8s-mechanic#24",
       "title": "GitHub Repository Topics",
       "text": "The following topics are set on this repository to aid discoverability. If you are maintaining a fork or related project, you may want to apply the same set: kubernetes gitops devops cloud-native operator controller remediation self-healing argocd flux automation Topics are configured via the GitHub web UI: repository page → gear icon next to \"About\" → Topics. ---",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic#25",
+      "url": "https://github.com/lenaxia/k8s-mechanic#25",
       "title": "Development Practices",
       "text": "This project follows structured SDLC practices throughout: - Backlog-driven — all features and epics are tracked in docs/BACKLOG/ , with explicit story breakdowns, acceptance criteria, and value/complexity ratings before implementation begins. - Security-reviewed — Epic 12 ran a structured security audit against mechanic's full attack surface: secret redaction, prompt injection detection, network policy, RBAC scoping, structured audit logging, and a formal penetration test plan with documented findings. All HIGH/CRITICAL findings were remediated before the epic was closed. - Documented — every significant session is recorded in docs/WORKLOGS/ , capturing design decisions, implementation notes, and the rationale behind changes as they happen. Development is AI-accelerated (primarily OpenCode), which allows the project to move quickly without compromising process rigour. The process keeps the work accountable.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/k8s-mechanic/blob/main/docs/README.md",
+      "url": "https://github.com/lenaxia/k8s-mechanic/blob/main/docs/README.md",
       "title": "docs/README.md",
       "text": "docs/ Purpose All project documentation lives here. This is the first place to look before making any change to the codebase. Structure - DESIGN/ — High-level and low-level design documents. Read these before touching any code. The HLD is the authoritative specification. - BACKLOG/ — Epics and user stories. One folder per epic. Check here for current implementation status and what to work on next. - WORKLOGS/ — Session-by-session progress log. Read the last few entries before starting a session to understand current state and pick up from documented next steps. Rules - Read the latest worklog entry before starting any work - Read the relevant LLD before touching any component - Update backlog story checklists as you complete tasks - Write a worklog entry before ending any meaningful session - Never leave the WORKLOGS/README.md index out of date",
       "kind": "docs"
     },
     {
-      "url": "https://github.com/k8s-mechanic/blob/main/CONTRIBUTING.md",
+      "url": "https://github.com/lenaxia/k8s-mechanic/blob/main/CONTRIBUTING.md",
       "title": "CONTRIBUTING.md",
       "text": "Contributing to k8s-mechanic Thank you for your interest in contributing. This document covers how to work within this project effectively and what is expected of contributors. --- Table of Contents 1. Code of Conduct 2. Developer Certificate of Origin (DCO) 3. Getting Started 4. Development Setup 5. Branching and Workflow 6. Coding Standards 7. Testing Requirements 8. Commit Messages 9. Pull Requests 10. Worklogs 11. Reporting Issues --- Code of Conduct This project follows the Contributor Covenant Code of Conduct. By participating you agree to uphold it. --- Developer Certificate of Origin (DCO) All contributions must carry a Developer Certificate of Origin sign-off. By adding Signed-off-by to your commit you certify that you wrote the code or otherwise have the right to submit it under the Apache 2.0 license. The full DCO text is at https://developercertificate.org. How to sign off: If you forget the sign-off, amend before opening the PR: Pull requests with missing sign-offs will not be merged. --- Getting Started Where to Begin If you are new to the project, the best entry points are: - Issues labelled good first issue — curated, self-contained tasks with clear acceptance crite",
       "kind": "docs"
     },
     {
-      "url": "https://github.com/k8s-mechanic/blob/main/CHANGELOG.md",
+      "url": "https://github.com/lenaxia/k8s-mechanic/blob/main/CHANGELOG.md",
       "title": "CHANGELOG.md",
       "text": "Changelog All notable changes to k8s-mechanic are documented here. This project follows Semantic Versioning. The format is based on Keep a Changelog. Pre-1.0: minor-version bumps may include breaking changes while the API is stabilising. Breaking changes are always called out explicitly. --- [Unreleased] --- [v0.3.12] — 2026-02-25 Fixed - FINDING FINGERPRINT env var truncated to 12 characters to prevent the base64 redaction pattern from matching the full 64-character hex fingerprint and substituting [REDACTED-BASE64] in the agent prompt. --- [v0.3.11] — 2026-02-25 Fixed - Deep-validation gap fixes for epic25 tool output redaction: wrapper test assertions, temp-file cleanup, and edge-case coverage. --- [v0.3.10] — 2026-02-25 Security (epic25 — tool call output redaction) This release closes pentest finding P-010 (HIGH) : raw stdout/stderr from every LLM-directed tool call was previously passed verbatim to the external LLM API, allowing a single kubectl get secret -o yaml call to send base64-encoded Secret data to a third-party service. - Added cmd/redact filter binary: reads stdin, applies domain.RedactSecrets , writes redacted output to stdout. Imports internal/domain directly — sa",
       "kind": "docs"

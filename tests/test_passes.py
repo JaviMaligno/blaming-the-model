@@ -18,14 +18,15 @@ from btm.harness.passes import (
     solo_labels,
 )
 from tests.test_a5 import (
+    ACME_README,
     ACME_TEXT,
-    BETA_TEXT,
-    SHARED_URL,
+    GLOBEX_README,
+    GLOBEX_TEXT,
     FakeModel,
     acme,
-    beta,
     colliding_corpus,
     disjoint_corpus,
+    globex,
 )
 
 TAXONOMY_PATH = Path(__file__).parents[1] / "data" / "taxonomy.yaml"
@@ -49,14 +50,15 @@ def pass_over(corpus: Path, dest: Path, model=None, **kwargs) -> PassResult:
 
 def test_the_recorder_notes_who_the_served_page_really_belonged_to(tmp_path: Path) -> None:
     result = pass_over(colliding_corpus(tmp_path), tmp_path / "tree")
-    shared = [s for p in result.projects for s in p.served if s.url == SHARED_URL]
+    # Los dos homónimos piden su sección `#0`, cada uno por su propia url.
+    shared = [s for p in result.projects for s in p.served if s.url.endswith("#0")]
     assert len(shared) == 2
     owners = {s.owner for s in shared}
     assert len(owners) == 1, "la primera lectura fija el propietario"
     owner = owners.pop()
     borrower = next(s for s in shared if s.slug != owner)
     assert borrower.foreign is True
-    assert borrower.sha256 == sha256(ACME_TEXT if owner == "acme-pay" else BETA_TEXT)
+    assert borrower.sha256 == sha256(ACME_TEXT if owner == "acme--pay" else GLOBEX_TEXT)
     assert borrower.sha256 != borrower.own_sha256
     assert borrower.in_context is True
 
@@ -71,7 +73,7 @@ def test_the_recorder_marks_as_its_own_what_each_project_did_publish(tmp_path: P
 
 def test_a_pass_records_the_order_and_the_prompt_of_every_project(tmp_path: Path) -> None:
     result = pass_over(colliding_corpus(tmp_path), tmp_path / "tree")
-    assert sorted(result.order) == ["acme-pay", "beta-mesh"]
+    assert sorted(result.order) == ["acme--pay", "globex--pay"]
     assert [p.slug for p in result.projects] == result.order
     for project in result.projects:
         assert project.prompt_bytes > 0
@@ -148,8 +150,8 @@ def test_a_different_seed_gives_a_different_order() -> None:
 # --- el árbol reparado no se entrega ------------------------------------
 
 
-def test_the_repaired_tree_keys_pages_by_project_and_url(tmp_path: Path) -> None:
+def test_the_repaired_tree_keys_pages_by_project_and_section(tmp_path: Path) -> None:
     batch = load_batch(tmp_path / "tree", keyed=True)
     cache = batch.PageCache()
-    assert cache.get_or_load(SHARED_URL, acme()) == ACME_TEXT
-    assert cache.get_or_load(SHARED_URL, beta()) == BETA_TEXT
+    assert cache.get_or_load(ACME_README, acme()) == ACME_TEXT
+    assert cache.get_or_load(GLOBEX_README, globex()) == GLOBEX_TEXT

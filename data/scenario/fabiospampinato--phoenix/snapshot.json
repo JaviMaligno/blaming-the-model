@@ -1,0 +1,118 @@
+{
+  "slug": "fabiospampinato--phoenix",
+  "name": "phoenix",
+  "description": "My Phoenix setup.",
+  "documents": [
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#0",
+      "title": "Installation",
+      "text": "This configuration uses a remap of the Caps Lock key to something more useful, the Hyper key ⇪ : basically just Ctrl + Alt + Cmd combined into one key. If you prefer you may skip the remap step while you try the configuration. 1. Install Phoenix. 2. Install Hyperkey to remap Caps lock to Hyper. 3. Execute mkdir ~/.config . 4. Execute cd ~/.config . 5. Execute git clone git@github.com:fabiospampinato/phoenix.git . 6. Restart Phoenix. 7. Enjoy!",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#1",
+      "title": "Customization",
+      "text": "To disable specific features, just comment out their corresponding require call in phoenix.js. To tweak some numbers, simply edit constants.js. Changing the specific shortcut used to trigger an action is pretty trivial. Don't forget to make a PR if you fixed something or implemented something cool :)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#2",
+      "title": "Sides",
+      "text": "Shortcut Description ---------------- ------------------------------ ⇪ + ↑ Move window to the top side ⇪ + → Move window to the right side ⇪ + ↓ Move window to the bottom side ⇪ + ← Move window to the left side",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#3",
+      "title": "Corners",
+      "text": "Shortcut Description ---------------- -------------------------------------- ⇪ + Q Move window to the top-left corner ⇪ + W Move window to the top-right corner ⇪ + S Move window to the bottom-right corner ⇪ + A Move window to the bottom-left corner",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#4",
+      "title": "Halves",
+      "text": "Shortcut Description ---------------- --------------------------- ⇪ + [ Move window to the 1st half ⇪ + ] Move window to the 2nd half",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#5",
+      "title": "Thirds",
+      "text": "Shortcut Description ---------------- ----------------------------- ⇪ + 1 Move window to the 1st column ⇪ + 2 Move window to the 2nd column ⇪ + 3 Move window to the 3rd column",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#6",
+      "title": "Quarters",
+      "text": "Shortcut Description ------------------------- ------------------------------ ⇪ + Shift + [ Move window to the 1st quarter ⇪ + Shift + ] Move window to the 2nd quarter ⇪ + Shift + ' Move window to the 3rd quarter ⇪ + Shift + \\\\ Move window to the 4th quarter",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#7",
+      "title": "Sixths",
+      "text": "Shortcut Description ------------------------ ---------------------------- ⇪ + Shift + Q Move window to the 1st sixth ⇪ + Shift + W Move window to the 2nd sixth ⇪ + Shift + E Move window to the 3rd sixth ⇪ + Shift + A Move window to the 4th sixth ⇪ + Shift + S Move window to the 5th sixth ⇪ + Shift + D Move window to the 6th sixth",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#8",
+      "title": "Center",
+      "text": "Shortcut Description ------------------------ ---------------------------------------------------- ⇪ + X Center the window ⇪ + Shift + X Center the window and set its dimensions to 1280x800",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#9",
+      "title": "Grow",
+      "text": "Shortcut Description ------------------------ --------------------------- ⇪ + Shift + ↑ Grow window from the top ⇪ + Shift + → Grow window from the right ⇪ + Shift + ↓ Grow window from the bottom ⇪ + Shift + ← Grow window from the left",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#10",
+      "title": "Expand",
+      "text": "Shortcut Description ---------------------------- ----------------------------------------- ⇪ + Space Toggle window expansion to fill the space ⇪ + Shift + Space Toggle window expansion to fullscreen",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#11",
+      "title": "Focus or Open",
+      "text": "Shortcut Description ---------------- -------------------------------------------------------------------------------- ⇪ + Focus to or open Notable ⇪ + C Focus to or open Chrome ⇪ + D Focus to or open Chrome Developer Tools ⇪ + V Focus to or open Visual Studio Code ⇪ + F Focus to or open Finder ⇪ + T Focus to or open Terminal ⇪ + G Focus to or open GitTower",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#12",
+      "title": "Spaces",
+      "text": "In order to make this work you have to open System Preferences - Keyboard - Shortcuts - Mission Control and bind all Switch to Desktop [NUMBER] actions to Ctrl + Alt + Cmd + Shift + [NUMBER] . There are actions up to the 9th desktop, but they may not be shown to you if you have less then 9 desktops currently open. Note : If you don't need wrapping support, you should just remap the Move left/right a space actions under System Preferences - Keyboard - Shortcuts - Mission Control . Shortcut Description --------------------------- ---------------------------- ⇪ + Tab Switch to the next space ⇪ + Shift + Tab Switch to the previous space",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#13",
+      "title": "Applications Icons",
+      "text": "Shortcut Description ------------------------ ------------------------------------------------------------------------- ⇪ + I For each window in the current space show an icon indicating its position ⇪ + Shift + I Display the current date and time",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#14",
+      "title": "Reload Phoenix",
+      "text": "Shortcut Description ------------------------ -------------- ⇪ + Shift + P Reload Phoenix",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#15",
+      "title": "Pause/Resume Application",
+      "text": "This can be used for saving battery, pausing single-player games etc. Shortcut Description ----------------- --------------------------------------- ⇪ + F8 Pause or resume the current application",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#16",
+      "title": "Quit Application",
+      "text": "Did you ever close 3+ Chrome windows instead of a single tab by mistake? Fear no more! Now in order to quit an app you have to trigger ⌘Q twice in a short timeframe. Stop wasting 10$ for something so basic. Shortcut Description --------------------------- ---------------- ⌘Q ⌘Q Quit application",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fabiospampinato/phoenix#17",
+      "title": "Additional Shortcuts",
+      "text": "Shortcut Description ----------------- ------------------------------- § Remapped to ⇪ + = Trigger the native color picker ⇪ + F6 Hide or show desktop icons",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/fabiospampinato/phoenix",
+  "stars": 406
+}

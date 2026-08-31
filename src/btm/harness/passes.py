@@ -13,8 +13,8 @@ distinto con un seed distinto, y `order` reproduce ese mismo orden sin gastar
 una llamada al modelo.
 
 Con `--keyed` se materializa el mismo árbol con `pages.py` sustituido por el de
-`btm/harness/fix/`, que compone la clave con `(slug, url)`. Es la prueba de
-arreglo: mismas pasadas, mismos seeds, misma inferencia.
+`btm/harness/fix/`, que compone la clave con el slug del proyecto. Es la prueba
+de arreglo: mismas pasadas, mismos seeds, misma inferencia.
 """
 
 import argparse
@@ -123,14 +123,14 @@ def _recording(base: type, log: list[Served]) -> type:
     class RecordingPageCache(base):
         def __init__(self) -> None:
             super().__init__()
-            # Quién presentó por primera vez cada texto concreto de cada url.
-            # No basta con la url: con la clave reparada dos proyectos guardan
-            # textos distintos bajo la misma, y cada uno es dueño del suyo.
-            self._owner: dict[tuple[str, str], str] = {}
+            # Quién presentó por primera vez cada texto. Se sigue por el texto
+            # y no por la url: la caché sirve el documento bajo la url que le
+            # pidieron, así que la url dice quién lo pidió, no de quién es.
+            self._owner: dict[str, str] = {}
 
         def get_or_load(self, url: str, snapshot) -> str:
             text = super().get_or_load(url, snapshot)
-            owner = self._owner.setdefault((url, sha256(text)), snapshot.slug)
+            owner = self._owner.setdefault(sha256(text), snapshot.slug)
             own = next((d.text for d in snapshot.documents if d.url == url), None)
             log.append(
                 Served(

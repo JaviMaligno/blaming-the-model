@@ -27,7 +27,7 @@ from pathlib import Path
 
 from btm.harness.divergence import SignalReport
 from btm.harness.variants import materialise
-from btm.system.trace import POOR_KINDS, Trace
+from btm.harness.trim import shallow
 
 VARIES = """# Encargo
 
@@ -54,21 +54,6 @@ cada corrida. Puedes pedir lo que te falte.
 """
 
 
-def _shallow(trace_jsonl: str) -> str:
-    """Deja sólo los eventos de entrada y de resultado.
-
-    Es el mismo registro que produce `Trace.poor()`, reconstruido desde el
-    JSON Lines: los eventos que quedan se vuelven a numerar desde cero, para que
-    el log no lleve huecos en `seq` delatando cuántos eventos no están.
-    """
-    kept = Trace()
-    for line in trace_jsonl.strip().splitlines():
-        event = json.loads(line)
-        if event["kind"] in POOR_KINDS:
-            kept.record(event["kind"], **event["payload"])
-    return kept.to_jsonl()
-
-
 def build_scenario(report: SignalReport, out_dir: Path, *, rich: bool = False) -> Path:
     """Escribe el paquete que se entrega: BRIEF, registros y código."""
     out = out_dir / report.slug
@@ -79,7 +64,7 @@ def build_scenario(report: SignalReport, out_dir: Path, *, rich: bool = False) -
     (out / "BRIEF.md").write_text(template.format(slug=report.slug, codes=codes), encoding="utf-8")
 
     for run in report.runs:
-        body = run.trace_jsonl if rich else _shallow(run.trace_jsonl)
+        body = run.trace_jsonl if rich else shallow(run.trace_jsonl)
         (out / "runs" / f"{run.run_id}.jsonl").write_text(body, encoding="utf-8")
 
     code_dir = out / "code"

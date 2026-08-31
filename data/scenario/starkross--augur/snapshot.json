@@ -4,55 +4,55 @@
   "description": "🇺🇦🇵🇱 A static analysis tool for OpenTelemetry Collector configurations. Built on OPA/Rego, it validates your pipelines, receivers, processors, and exporters against customizable policy rules – catching misconfigurations before they reach production",
   "documents": [
     {
-      "url": "https://github.com/augur#0",
+      "url": "https://github.com/starkross/augur#0",
       "title": "Introducción",
       "text": "--- Getting Started &nbsp;&nbsp;&bull;&nbsp;&nbsp; Getting Involved &nbsp;&nbsp;&bull;&nbsp;&nbsp; Getting In Touch Rules &nbsp;&nbsp;&bull;&nbsp;&nbsp; Usage &nbsp;&nbsp;&bull;&nbsp;&nbsp; Custom Policies &nbsp;&nbsp;&bull;&nbsp;&nbsp; Library &nbsp;&nbsp;&bull;&nbsp;&nbsp; Package --- augur A fast, opinionated linter for OpenTelemetry Collector configurations. Catches misconfigurations, security issues, and performance pitfalls before they hit production. Built with OPA/Rego — every rule is a plain .rego file you can read, override, or extend.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/augur#1",
+      "url": "https://github.com/starkross/augur#1",
       "title": "Why",
       "text": "The OpenTelemetry Collector is flexible, but that flexibility makes it easy to ship configs that silently drop data, leak secrets, or OOM under load. augur encodes hard-won operational knowledge into automated checks: - No memory limiter? You'll OOM in production. - Hardcoded API key? It'll end up in version control. - Batch processor in the wrong position? You're leaving performance on the table.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/augur#2",
+      "url": "https://github.com/starkross/augur#2",
       "title": "Binary releases",
       "text": "Download from GitHub Releases — available for Linux, macOS, and Windows (amd64/arm64).",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/augur#3",
+      "url": "https://github.com/starkross/augur#3",
       "title": "Usage",
       "text": "Flag Description Default ------ ------------- --------- -o, --output Output format: text , json , github text -s, --strict Treat warnings as errors false -q, --quiet Suppress warnings, show only failures false -k, --skip Comma-separated rule IDs to skip --no-color Disable colored output false -p, --policy Additional policy directory (merged with built-in rules)",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/augur#4",
+      "url": "https://github.com/starkross/augur#4",
       "title": "Multiple config files",
       "text": "When you pass more than one file, augur deep-merges them into a single effective config before linting — the same way the OpenTelemetry Collector combines multiple --config flags. Use - in place of a filename to read from stdin (may only appear once): Merge rules (matching the collector's confmap): Value type Behavior ------------ ---------- Map Deep-merged recursively. Later files add keys and override scalar leaves. Scalar Later file wins. Slice Replaced wholesale by the later file. To lint several standalone configs independently, invoke augur once per file.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/augur#5",
+      "url": "https://github.com/starkross/augur#5",
       "title": "Custom policies",
       "text": "All built-in rules live in rules/policy/ as standard Rego files. To add your own: 1. Create a directory with your custom rules: 2. Run with --policy : Custom policies are merged with the built-in rules — your rules run alongside all default checks.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/augur#6",
+      "url": "https://github.com/starkross/augur#6",
       "title": "Library usage",
       "text": "augur can also be embedded directly in a Go program. Import the top-level package and construct a Linter : Available entry points: Method Input -------- ------- Lint(ctx, label, map[string]any) Pre-parsed config map LintYAML(ctx, label, []byte) Raw YAML bytes LintFile(ctx, path) Single YAML file LintFiles(ctx, paths) Multiple files (deep-merged, same semantics as the CLI) Options passed to augur.New : Option Purpose -------- --------- WithPolicyDir(path) Add a filesystem directory of extra .rego policies WithPolicyFS(fsys, root) Add a custom io/fs.FS policy source (works with //go:embed ) WithoutBuiltinRules() Exclude the bundled OTEL- rule set WithSkipRules(ids...) Drop findings for the given rule IDs WithSeverities(sev...) Filter findings by severity (e.g., pass SeverityDeny for fail-only) A Linter compiles its policies once and is safe for concurrent use — construct a single instance and share it across goroutines. See examples/library for a runnable example.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/augur#7",
+      "url": "https://github.com/starkross/augur#7",
       "title": "Security",
       "text": "Every release is reproducibly built and signed: - CycloneDX SBOMs for every archive and every container image - Cosign keyless signatures (sigstore OIDC) on checksums.txt and on the published OCI image - SLSA Level 3 build provenance for binary artifacts Quick verification of a release: See SECURITY.md for the full verification recipe (binaries, images, SLSA provenance, SBOMs) and the vulnerability disclosure process.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/augur/blob/main/CONTRIBUTING.md",
+      "url": "https://github.com/starkross/augur/blob/main/CONTRIBUTING.md",
       "title": "CONTRIBUTING.md",
       "text": "Contributing Development Adding a new rule 1. Create or edit a .rego file in rules/policy/main/ (rules are grouped by category) 2. Add the rule as deny contains msg if { ... } (blocking) or warn contains msg if { ... } (advisory) 3. Format the message as \"OTEL-NNN: description.\" — the engine extracts the rule ID from this prefix 4. Add a test in the matching test.rego file 5. Run make test && make test-rego && make lint-rego to verify",
       "kind": "docs"

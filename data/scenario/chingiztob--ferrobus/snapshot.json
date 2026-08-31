@@ -4,31 +4,31 @@
   "description": null,
   "documents": [
     {
-      "url": "https://github.com/ferrobus#0",
+      "url": "https://github.com/chingiztob/ferrobus#0",
       "title": "Introducción",
       "text": "Ferrobus: Multimodal Transit Routing Library [!NOTE] This project is still in its early stages, and the API is subject to changes. Please check the documentation for the latest updates. High-performance multimodal routing library for geospatial analysis workflows. Built with a Rust core and providing a straightforward Python interface. It aims to be orders of magnitude faster than existing tools. Unlike alternatives such as R5 or OpenTripPlanner, Ferrobus doesn't require Java and installs without external dependencies. Core routing functionality is based on the RAPTOR (Round-based Public Transit Optimized Router) algorithm developed by Microsoft Research. For details, see Microsoft's research paper.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/ferrobus#1",
+      "url": "https://github.com/chingiztob/ferrobus#1",
       "title": "Features",
       "text": "- Multimodal Routing : Find optimal paths combining walking and public transit - Isochrones : Fast and uncertainty-aware - Travel Time Matrices : Compute travel times between multiple origin-destination pairs - Batch Processing : Efficient native multithreading - Time-Range Routing : Find journeys across a range of departure times with rRAPTOR - Detailed Journey Information : Get complete trip details (in progress ...) - Pareto-Optimal Routes : Discover multiple optimal routes with different trade-offs (in progress ...)",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/ferrobus#2",
+      "url": "https://github.com/chingiztob/ferrobus#2",
       "title": "Installation",
       "text": "To install Ferrobus, run: Pre-built wheels are available for the following platforms: - Windows : x86 64 - macOS : Apple Silicon (arm64) - Linux : x86 64 and arm64 (including musl-based systems like Alpine Linux and manylinux2014-compliant systems) Supported Python versions are CPython 3.9 and later , including PyPy 3.11 . If a pre-built binary is not available, the package will be built from source, requiring Rust to be installed. You can install Rust using rustup:",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/ferrobus#3",
+      "url": "https://github.com/chingiztob/ferrobus#3",
       "title": "Benchmarks",
       "text": "Ferrobus is designed for high performance and low memory footprint. Benchmarks are continuously run using CodSpeed to avoid regressions. Typical routing queries (including multimodal and batch operations) complete in milliseconds on modern hardware.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/ferrobus#4",
+      "url": "https://github.com/chingiztob/ferrobus#4",
       "title": "License",
       "text": "This package is open source and licensed under the MIT OR Apache-2.0 license. OpenStreetMap's open data license requires that derivative works provide proper attribution. For more details, see the OpenStreetMap copyright page.",
       "kind": "readme"

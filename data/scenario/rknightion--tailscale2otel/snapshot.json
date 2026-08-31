@@ -4,85 +4,85 @@
   "description": "Tailscale exporter for OpenTelemetry and Prometheus. Device fleet, network flow logs and audit logs as OTLP metrics & logs. Single Go binary, Grafana Cloud ready. Headscale supported.",
   "documents": [
     {
-      "url": "https://github.com/tailscale2otel#0",
+      "url": "https://github.com/rknightion/tailscale2otel#0",
       "title": "Introducción",
       "text": "tailscale2otel — Tailscale → OpenTelemetry & Prometheus exporter A single Go binary that turns your Tailscale tailnet into OpenTelemetry metrics, logs and traces over OTLP — or a Prometheus /metrics endpoint, or both at once. Network flow logs, configuration audit logs, device fleet health, key expiry, ACL risk, and tailscaled per-node metrics, exported to Grafana Cloud or any OTEL backend. Headscale is supported too. 📖 Full documentation: m7kni.io/tailscale2otel — Getting started · Installation · Configuration · Metrics catalog --- --- 308 metrics + 28 log-event types across 16 collectors 18 Tailscale API endpoints consumed polled, streamed, or webhook-driven 125 shipped rules 102 alert + 23 recording, Grafana-managed 2 Grafana dashboards tailnet + exporter health, v2 dynamic (Grafana 13+) OTLP push (gRPC/HTTP) and/or a Prometheus pull endpoint",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/tailscale2otel#1",
+      "url": "https://github.com/rknightion/tailscale2otel#1",
       "title": "Why this exists",
       "text": "Tailscale — the WireGuard-based mesh VPN — exposes a broad observability surface: network flow logs, configuration audit logs, a detailed device inventory, users, keys, DNS, ACL policy, device posture. But it has no Prometheus endpoint of its own , and it streams logs only to SIEM/storage sinks like Splunk or S3. The existing Tailscale exporters cover a slice of the device API and stop there. tailscale2otel turns those sources into semantic-convention-compliant OTEL telemetry. Its cardinality controls keep flow-log metrics within a fixed series budget.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/tailscale2otel#2",
+      "url": "https://github.com/rknightion/tailscale2otel#2",
       "title": "What it adds",
       "text": "- Network flow logs as both metrics and logs. Low-cardinality aggregate counters ( tailscale.network.io / .packets / .flows ) for dashboards and alerting, plus full-fidelity per-connection records as OTEL logs for drill-down — with a top-N rollup (busiest 500 pairs, rest folded to other ), opt-in port dimensions, and IANA service-name attribution so dst.port: 443 becomes https . Without the rollup, each endpoint pair becomes another metric series and the cost grows with the traffic graph. - Configuration audit logs → structured OTEL logs + a curated, security-categorized change counter , so you can alert on high-value tailnet changes without ingesting the whole stream. - Central tailscaled node-metrics polling. Scrapes each node's native client-metrics endpoint ( :5252 ) from one place instead of deploying a scraper per node — with automatic target discovery from the devices API (tag include/exclude, online-only, address family). Emits both the raw tailscaled series and 8 curated tailscale.node. metrics with folded low-cardinality attributes. - Beyond the device API. Users, auth keys / OAuth clients / API tokens (with expiry), tailnet settings, DNS, ACL policy (scored for structura",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/tailscale2otel#3",
+      "url": "https://github.com/rknightion/tailscale2otel#3",
       "title": "Start with a destination",
       "text": "- Grafana Cloud over OTLP pushes OpenTelemetry data to Grafana Cloud. - Prometheus pull exposes /metrics for a scraper you already operate. - stdout prints telemetry locally, with no observability backend. Ready-made configuration starters live under examples/config/ : Grafana Cloud OTLP, Prometheus pull, stdout, Headscale, and multi-tailnet/MSP. They keep credentials empty and document the environment or mounted-file forms to fill in. The canonical runnable Docker, Compose, Helm, and binary commands live in Getting Started. It explains the terms, how to supply Tailscale authentication, and what result proves each path works. For installation details such as release binaries, persistence, and secret mounts, see Installation.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/tailscale2otel#4",
+      "url": "https://github.com/rknightion/tailscale2otel#4",
       "title": "Where the telemetry goes",
       "text": "- OTLP push ( otlp.protocol: grpc http ) with first-class Grafana Cloud support — set otlp.grafana cloud.{instance id,token} and the Basic-auth header is built for you. Full TLS/mTLS knobs. Metrics and logs always; traces are opt-in ( tracing.enabled ) for the exporter's own self-observability, with exemplars linking API-duration histograms to the originating span. - Prometheus pull endpoint ( delivery.mode: prometheus or prometheus.enabled ) — GET /metrics on its own loopback-only listener by default ( 127.0.0.1:2112 ), with bearer/basic auth and TLS available for remote scrapers. Use it if you already run Prometheus and don't want an OTLP pipeline. - stdout for local debugging. OTLP→Prometheus naming: query the normalized name. Dots become underscores, monotonic counters gain total , units suffix ( By → bytes , s → seconds ), and a unit- 1 gauge gains ratio — so tailscale.network.io → tailscale network io bytes total . The full mapping is in the metrics catalog.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/tailscale2otel#5",
+      "url": "https://github.com/rknightion/tailscale2otel#5",
       "title": "Collectors",
       "text": "Collector Cadence Emits --- --- --- devices 60s online/last-seen/key-expiry/update gauges, NAT & connectivity quality, per-DERP latency, subnet routes, tailnet lock, fleet hygiene roll-ups. Feeds the enrichment cache flowlogs 60s aggregated traffic counters + per-connection flow logs auditlogs 60s audit-event logs + a categorized change counter k8s audit 60s (opt-in) tsrecorder Kubernetes API requests and terminal sessions from object storage users 300s user/role/status counts, per-user device & connection gauges, outstanding invites keys 300s expiry gauges and counts across auth keys, OAuth clients and API tokens oauth apps 300s OAuth-application inventory (alpha API; idles silently where unavailable) settings 600s tailnet feature-toggle gauges acl 600s ACL size, change detection (by ETag), structural risk scoring dns 600s nameserver / search-path / split-zone counts, MagicDNS flag contacts 600s contact verification status (the email itself is never emitted) webhooks 600s webhook-endpoint inventory + per-endpoint subscription counts posture integrations 600s MDM/EDR integration counts, sync health, matched devices log stream 600s Tailscale's own SIEM-sink delivery health + deliver",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/tailscale2otel#6",
+      "url": "https://github.com/rknightion/tailscale2otel#6",
       "title": "Logs: poll, stream or object store — pick one",
       "text": "Both flowlogs and auditlogs take a source of poll (default), stream , objectstore or both . Tailscale exports each log type to object storage independently, so each has its OWN destination ( collectors.flowlogs.objectstore / collectors.auditlogs.objectstore ) and nothing is inherited between them. Pick exactly one method per log type — running two risks double-counting, cross-source de-dup is only a best-effort failsafe, and the exporter WARNs at startup when it sees this. Object-store delivery is at-least-once. With the file checkpoint store, successful object identities and failed-object gaps survive restart; transient failures retry with bounded backoff, while invalid compressed objects are quarantined for operator acknowledgement. One object is all-or-nothing — every row is decoded before any is committed, so a mid-object failure emits nothing rather than a partial prefix — but the object as a unit replays if the process dies between emission and the checkpoint write. OTLP/backend acknowledgement is outside this boundary. Backfill has a hard ceiling of 14 day partitions — today plus the previous 13 days — under the default layout: partitioned , whatever initial lookback says. I",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/tailscale2otel#7",
+      "url": "https://github.com/rknightion/tailscale2otel#7",
       "title": "Dashboards, alerts & the admin UI",
       "text": "- Dashboards — deploy/grafana/ ships 2 dashboards on Grafana's v2 schema (Grafana 13+): Tailnet (is my tailnet healthy — devices, network, security, policy) and Exporter health (is the exporter healthy — collection, ingestion, delivery, runtime, cost), cross-linked to each other, with dynamic rendering so a section only appears when its data is present. Grafana 13+ is a hard requirement — 12.4 accepts the file with a 200 and renders nothing, and 11.5 rejects it with the misleading Dashboard title cannot be empty . This repository publishes them through GitSync; other deployments can import or provision the two JSON resources. See Dashboards. - Alerts — deploy/alerts/grafana-managed/ ships 102 alert rules and 23 recording rules (125 total) as rules.alerting.grafana.app manifests, one JSON per rule. Push them with gcx resources push -p deploy/alerts/grafana-managed . Every alert carries a runbook url , and 98 of 102 link a canonical dashboard panel. See Alerts and Runbooks. - Admin status page — on by default at 127.0.0.1:9091 . Liveness/readiness probes at /healthz and /readyz (never auth-gated), a live status page at / , and the same snapshot at /api/status.json : per-collector hea",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/tailscale2otel#8",
+      "url": "https://github.com/rknightion/tailscale2otel#8",
       "title": "Configuration",
       "text": "Layered, lowest precedence first: built-in defaults → optional YAML file → environment variables . Scalar and simple-list fields are settable as TS2OTEL + the dotted key path with between levels; maps and lists of structured entries stay in YAML: Config key Environment variable --- --- tailscale.auth.oauth.client secret TS2OTEL TAILSCALE AUTH OAUTH CLIENT SECRET otlp.endpoint TS2OTEL OTLP ENDPOINT collectors.flowlogs.interval TS2OTEL COLLECTORS FLOWLOGS INTERVAL An unrecognised TS2OTEL variable is logged as a WARN at startup — usually a typo. Authentication: prefer an OAuth client (auto-refreshing, least-privilege all:read ) over an API key. Keyless workload identity (OIDC token exchange, e.g. a Kubernetes projected service-account token) is also supported, and every secret has a file variant for Docker/Kubernetes secrets. → Full configuration reference · every TS2OTEL variable · config.example.yaml",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/tailscale2otel#9",
+      "url": "https://github.com/rknightion/tailscale2otel#9",
       "title": "Documentation",
       "text": "--- --- Getting started Zero to first metrics in Grafana Cloud Installation Docker, Helm, compose, binaries Configuration Every key, default and gotcha Metrics catalog All 308 metrics and 28 log events Node metrics Central tailscaled scraping Streaming & webhooks HEC receiver and webhooks Architecture How it fits together Security Data handling, PII, receiver auth Troubleshooting When it doesn't work Runbooks Alert investigation and remediation",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/tailscale2otel#10",
+      "url": "https://github.com/rknightion/tailscale2otel#10",
       "title": "Development",
       "text": "Small single-purpose packages under internal/ : telemetry (OTEL facade), collector (scheduler/registry/checkpoints + one package per source), tsapi (Tailscale client), provider / hsapi (control-plane abstraction + Headscale), flowlog / audit (records + processors), enrich (device cache), rdns , config , and the stream / webhook receivers. Four committed files are generated — run just gen before committing changes that touch them.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/tailscale2otel#11",
+      "url": "https://github.com/rknightion/tailscale2otel#11",
       "title": "API drift CI",
       "text": "Tailscale's API and OpenAPI spec evolve continuously (\"may change or break without notice\"), which has broken decoders here before. Eight lanes guard it: Lane When What it checks --- --- --- Schema-driven decode tests every PR (gates) synthesizes payloads from the vendored OpenAPI spec + known wire quirks (numeric proto , polymorphic audit old / new ) through the real decoders, plus a boundary matrix running every consumed operation against every boundary shape — null, empty container, nulled nullable fields, extreme values, an unknown enum member, an additive field, and a wrong container shape that must be rejected . Runs inside the normal go test -race ./... leg, which ci-success requires Exploratory fuzzing every PR (advisory) go test -fuzz over the HEC envelope, HEC timestamps and the flow/audit decoders. Deliberately not required: finding a NEW crasher is nondeterministic, so gating it would let an unrelated PR randomly block merges. Each target's seed corpus runs in the gated leg above, so a KNOWN crasher still blocks OpenAPI drift daily diffs the live spec against the vendored copy, scoped to consumed operations. Covers response fields, path/query/header parameters (required",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/tailscale2otel#12",
+      "url": "https://github.com/rknightion/tailscale2otel#12",
       "title": "License",
       "text": "Apache License 2.0 — full text in LICENSE ; third-party attribution and bundled notices/SBOMs in LICENSING.md .",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/tailscale2otel/blob/main/CHANGELOG.md",
+      "url": "https://github.com/rknightion/tailscale2otel/blob/main/CHANGELOG.md",
       "title": "CHANGELOG.md",
       "text": "Changelog 4.0.1 (2026-08-27) Bug Fixes acl: persist revision provenance (8b510f6) ci: follow GitSync dashboard path (e0d20a2) dashboards: repair live signal accuracy (d00c0ce) release: stream the latest-release response instead of buffering 64 KiB (59bae17) state: separate evidence durability from poll cursors (66fcb05) 4.0.0 (2026-08-27) ⚠ BREAKING CHANGES improve first-run delivery experience move the Go module path to /v4 ahead of the 4.0.0 release flowstore: rename flows.store.path to directory and surface backend health Features admin: add a bounded audit and webhook event explorer (8b655e9), closes 300 admin: add a per-tailnet selector to the status page (306a161), closes 325 admin: add defensive HTTP headers to every admin response (7d4aa8f), closes 322 admin: export the complete effective redacted configuration (fffa889), closes 320 admin: generate a privacy-safe support bundle (a7b49a6), closes 321 admin: list active configuration advisories on the status page and API (8491a31), closes 319 admin: make both embedded UIs keyboard-operable and screen-reader-legible (66ac88d), closes 327 admin: make UI polling single-flight, visibility-aware and backoff-capable (1b3176a), clos",
       "kind": "docs"

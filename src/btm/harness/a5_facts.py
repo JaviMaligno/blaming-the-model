@@ -312,38 +312,176 @@ def stability_fact(
 
 
 class FixFact(BaseModel):
+    """Lo que la clave reparada mata, y lo que no está en su mano matar."""
+
     passes: int
     projects_compared: int
-    changes: list[tuple[str, str, str, str]]
     foreign_documents_served: int
+    contaminated_changes: list[tuple[str, str, str, str]]
+    sampling_changes: list[tuple[str, str, str, str]]
+    unexplained_changes: list[tuple[str, str, str, str]]
+
+    @property
+    def changes(self) -> list[tuple[str, str, str, str]]:
+        return self.contaminated_changes + self.sampling_changes + self.unexplained_changes
 
     @property
     def ok(self) -> bool:
+        """La clave completa no deja pasar ni un documento ajeno.
+
+        Lo que se le exige a la reparación es lo que está en su mano: que no
+        sirva una página de otro proyecto y que ningún cambio de etiqueta
+        venga de una. Los cambios que quedan tienen el prompt byte a byte
+        igual al de la corrida suelta, así que no los pudo causar el índice de
+        páginas: son el suelo de muestreo del modelo, que ninguna clave toca.
+        Un cambio con el prompt distinto y sin documento ajeno no tendría
+        explicación, y por eso también hunde el hecho.
+        """
         return (
             self.passes > 0
-            and not self.changes
             and self.foreign_documents_served == 0
+            and not self.contaminated_changes
+            and not self.unexplained_changes
         )
 
 
 def fix_fact(passes: list[PassResult], solo: list[SoloRun]) -> FixFact:
-    """Con la clave reparada, ¿se mueve alguna etiqueta respecto de la corrida suelta?"""
-    baseline = {r.slug: r.code for r in solo}
-    changes: list[tuple[str, str, str, str]] = []
+    """Con la clave reparada, ¿qué se mueve todavía y por qué?"""
+    baseline = {r.slug: r for r in solo}
+    contaminated_changes: list[tuple[str, str, str, str]] = []
+    sampling_changes: list[tuple[str, str, str, str]] = []
+    unexplained_changes: list[tuple[str, str, str, str]] = []
     compared = 0
     foreign = 0
     for result in passes:
         for project in result.projects:
             compared += 1
             foreign += len(contaminated(project))
-            if baseline.get(project.slug) != project.code:
-                changes.append(
-                    (result.pass_id, project.slug, baseline.get(project.slug, "?"), project.code)
-                )
+            reference = baseline.get(project.slug)
+            if reference is None or reference.code == project.code:
+                continue
+            change = (result.pass_id, project.slug, reference.code, project.code)
+            if contaminated(project):
+                contaminated_changes.append(change)
+            elif reference.prompt_sha256 == project.prompt_sha256:
+                sampling_changes.append(change)
+            else:
+                unexplained_changes.append(change)
     return FixFact(
         passes=len(passes), projects_compared=compared,
-        changes=changes, foreign_documents_served=foreign,
+        foreign_documents_served=foreign,
+        contaminated_changes=contaminated_changes,
+        sampling_changes=sampling_changes,
+        unexplained_changes=unexplained_changes,
     )
+
+
+# --- la cola de muestreo ------------------------------------------------
+
+
+class TailEvent(BaseModel):
+    """Una corrida que cambió de etiqueta sin que le sirvieran nada ajeno."""
+
+    pass_id: str
+    slug: str
+    baseline_code: str
+    code: str
+    prompt_identical: bool
+    prompt_bytes: int
+    foreign_documents: int
+
+
+class TailEntry(BaseModel):
+    """Un proyecto de la cola, con su prompt remuestreado."""
+
+    slug: str
+    baseline_code: str
+    events: list[TailEvent]
+    samples: int
+    codes: dict[str, int]
+    majority: str
+    agreement: int
+
+    @property
+    def resampled_stable(self) -> bool:
+        return self.agreement >= STABILITY_THRESHOLD
+
+    @property
+    def ok(self) -> bool:
+        """Prompt idéntico al suelto en todas sus corridas, y remuestreo estable.
+
+        Lo primero es lo que descarta la contaminación sin discutirlo: el
+        índice de páginas no pudo intervenir en un prompt que no cambió ni un
+        byte. Lo segundo mide cuánto se mueve el modelo sobre esos mismos
+        bytes, que es lo único que queda por explicar.
+        """
+        return all(e.prompt_identical and e.foreign_documents == 0 for e in self.events)
+
+
+class TailFact(BaseModel):
+    """La parte de la tabla para la que el muestreo es la respuesta correcta."""
+
+    threshold: int = STABILITY_THRESHOLD
+    entries: list[TailEntry]
+    model_calls: int = 0
+
+    @property
+    def ok(self) -> bool:
+        """Cada evento de la cola es del modelo y sólo del modelo.
+
+        No se le pide al remuestreo que salga unánime: si saliera unánime la
+        corrida de la tabla no habría podido cambiar de etiqueta. Lo que se le
+        pide es que la etiqueta de la corrida suelta siga siendo la mayoritaria
+        sobre esos mismos bytes, que es lo que distingue una muestra rara de un
+        proyecto que en realidad tiene otra etiqueta.
+        """
+        return all(e.ok and e.majority == e.baseline_code for e in self.entries)
+
+
+def sampling_tail(
+    passes: list[PassResult],
+    solo: list[SoloRun],
+    sample,
+    *,
+    samples: int = 20,
+    workers: int = 8,
+) -> TailFact:
+    """Los cambios de etiqueta que ningún documento ajeno explica, remuestreados."""
+    baseline = {r.slug: r for r in solo}
+    events: dict[str, list[TailEvent]] = {}
+    for result in passes:
+        for project in result.projects:
+            reference = baseline.get(project.slug)
+            if reference is None or reference.code == project.code or contaminated(project):
+                continue
+            events.setdefault(project.slug, []).append(
+                TailEvent(
+                    pass_id=result.pass_id, slug=project.slug,
+                    baseline_code=reference.code, code=project.code,
+                    prompt_identical=reference.prompt_sha256 == project.prompt_sha256,
+                    prompt_bytes=project.prompt_bytes,
+                    foreign_documents=len([s for s in project.served if s.foreign]),
+                )
+            )
+
+    jobs = [(slug, baseline[slug].prompt) for slug in sorted(events) for _ in range(samples)]
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        answers = list(pool.map(lambda job: (job[0], sample(job[1])), jobs))
+
+    grouped: dict[str, list[str]] = {}
+    for slug, code in answers:
+        grouped.setdefault(slug, []).append(code)
+
+    entries = []
+    for slug in sorted(events):
+        top, agreement, counts = _tally(grouped[slug])
+        entries.append(
+            TailEntry(
+                slug=slug, baseline_code=baseline[slug].code, events=events[slug],
+                samples=samples, codes=counts, majority=top, agreement=agreement,
+            )
+        )
+    return TailFact(entries=entries, model_calls=len(jobs))
 
 
 def load_passes(paths: list[Path]) -> list[PassResult]:

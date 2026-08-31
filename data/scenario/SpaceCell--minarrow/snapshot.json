@@ -4,93 +4,93 @@
   "description": "Fast, minimal, and ergonomic zero-copy Apache Arrow tabular data implementation in Rust, with PyO3, Python bindings, NdArray, XArray, shared-memory and low-latency SIMD for data-engineering and columnar workloads. Bridge to Polars and Arrow-rs over FFI effortlessly.",
   "documents": [
     {
-      "url": "https://github.com/minarrow#0",
+      "url": "https://github.com/SpaceCell/minarrow#0",
       "title": "Introducción",
       "text": "Fast, minimal, and ergonomic Apache Arrow implementation in Rust, with PyO3 and Python bindings. Highlights : - < 2s compilation times ( 0.15s rebuilds ) - Rust to Python for 1m rows in under 220ns¹ - Guaranteed 64-byte SIMD alignment - Fully-typed throughout - Embed Python ML in Rust - Plug in Polars, Arrow, and Python with Zero-copy FFI, PyCapsule and PYO3 - NdArray and XArray implementations with native DLPack integration for bridging to Python AI/ML workloads. Limitations : - No Arrow lists or structs.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/minarrow#1",
+      "url": "https://github.com/SpaceCell/minarrow#1",
       "title": "Why Minarrow?",
       "text": "- Productive : Lean base dependencies help keep flow and library fast. - Fully typed : Enum dispatch ensures constant feedback through a strong compiler + IDE feedback loop - Fail fast : Errors that might slip through a dynamic dispatch boundary into run-time errors, stay compile-time. - Ergonomics : Convenient dot syntax, composable opt-up abstractions, and flexible signatures via liberal From trait implementations. - Speed : builds on the Vec64 crate so data is fully SIMD compatible for an extra layer of low-latency parallelism, with out of the box numeric, bitmask and string SIMD kernels to help get you started. - Minimal Dependencies : Small security surface - built from foundations. Only log , num-traits (and custom-built Vec64 ) in the base build.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/minarrow#2",
+      "url": "https://github.com/SpaceCell/minarrow#2",
       "title": "Typed Arrays",
       "text": "Six typed arrays back standard workloads: Type Description ------ ------------- IntegerArray i8 through u64 FloatArray f32, f64 StringArray UTF-8 with u32 or u64 offsets BooleanArray Bit-packed with null mask CategoricalArray Dictionary-encoded DatetimeArray Timestamps, dates, durations Semantic groupings ( NumericArray , TextArray , TemporalArray ) support flexibility call-site signatures and static dispatch. Array and Table ( RecordBatch ) sit on top, with chunked Super ( Vec ) versions for streaming. Bonus LAPACK-compatible Matrix and Cube types support analytical workload variations. NdArray n-dimensional numeric data, with chunked ( SuperNdArray ) and labelled ( XArray ) forms, and hands tensors to PyTorch, JAX, and NumPy zero-copy over DLPack.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/minarrow#3",
+      "url": "https://github.com/SpaceCell/minarrow#3",
       "title": "Arrow Interop",
       "text": "Embed Python in Rust. Bench in /examples. Normal Rust - use Polars, Arrow, convert at the boundary, stay native internally:",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/minarrow#4",
+      "url": "https://github.com/SpaceCell/minarrow#4",
       "title": "Array performance",
       "text": "Sum of 1,000 integers, averaged over 1,000 runs¹: Implementation Time ---------------- ------ Raw Vec 85 ns Minarrow IntegerArray (direct) 88 ns Minarrow IntegerArray (via enum) 124 ns Arrow-rs Int64Array (struct) 147 ns Arrow-rs Int64Array (dyn) 181 ns Minarrow's direct access is within the noise threshold of raw Vec performance whilst maintaining SIMD-compatible alignment.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/minarrow#5",
+      "url": "https://github.com/SpaceCell/minarrow#5",
       "title": "Python Roundtrip",
       "text": "- GIL acquisition (uncontended): 53ns - Rust to Python¹ 1m rows, 2 columns : 165ns - Python to Rust¹ 1m rows, 2 columns: 2.5μs See minarrow-pyo3/examples",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/minarrow#6",
+      "url": "https://github.com/SpaceCell/minarrow#6",
       "title": "Test machine",
       "text": "▎ ¹ = Intel Core Ultra 7 155H · 32 GB · Ubuntu 24.04 · 1.97-nightly release build.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/minarrow#7",
+      "url": "https://github.com/SpaceCell/minarrow#7",
       "title": "Feature Flags",
       "text": "Default features: views , chunked , large string , simd , select . Feature Description --------- ------------- views Zero-copy windowed access chunked SuperArray/SuperTable for streaming large string String arrays with 64-bit offsets simd SIMD kernels for Bitmask and arithmetic select Pandas-esque .c() / .r() selection Interop: Feature Description --------- ------------- cast arrow Arrow-rs conversion via to apache arrow() cast polars Polars conversion via to polars() / from polars() memfd Memfd-backed buffers for zero-copy cross-process sharing (Linux) Additional types: Feature Description --------- ------------- datetime Temporal array types as raw integer offsets datetime ops Datetime library functionality: ISO 8601 parsing, timezone-aware operations, arithmetic, component extraction extended numeric types i8, i16, u8, u16 variants extended categorical Categorical8/16/64 dictionary index widths scalar type Unified Scalar for aggregation results value type Catch-all Value enum for unified typing matrix 2D matrix with BLAS/LAPACK-compatible layout cube Stacks tables along an extra axis ndarray N-dimensional array for bridging into ML & AI, with a chunked version and native DLPack ",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/minarrow#8",
+      "url": "https://github.com/SpaceCell/minarrow#8",
       "title": "Ecosystem",
       "text": "Project Purpose --------- --------- minarrow-py Minarrow Python bindings minarrow-pyo3 Zero-copy Python interop via PyArrow vec64 Custom 64-byte aligned Vec for SIMD compatible workloads lightstream Zero-copy Arrow streaming over Tokio, TCP, QUIC, WebSocket, Unix sockets, and Stdio Lightning Analytics Engine Sub-millisecond, zero-config live streaming engine with statistical modelling and data processing.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/minarrow#9",
+      "url": "https://github.com/SpaceCell/minarrow#9",
       "title": "Contributing",
       "text": "Contributions are welcome, particularly in the following areas: 1. Nested types - List and Struct support 2. Bug fixes All contributions are subject to the Contributor Licence Agreement (CLA). See CONTRIBUTING.md for details.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/minarrow#10",
+      "url": "https://github.com/SpaceCell/minarrow#10",
       "title": "License",
       "text": "Copyright © 2025–2026 Peter Garfield Bower. Released under the Apache 2.0 License. See LICENSE for details.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/minarrow#11",
+      "url": "https://github.com/SpaceCell/minarrow#11",
       "title": "Acknowledgements",
       "text": "Minarrow is a from-scratch implementation of the Apache Arrow memory layout inspired by the standards pioneered by Apache Arrow, Arrow2, and Polars. Minarrow is not affiliated with Apache Arrow.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/minarrow#12",
+      "url": "https://github.com/SpaceCell/minarrow#12",
       "title": "SpaceCell",
       "text": "Minarrow is maintained by SpaceCell and forms part of its open-source foundation for high-performance data computing.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/minarrow/blob/main/CONTRIBUTING.md",
+      "url": "https://github.com/SpaceCell/minarrow/blob/main/CONTRIBUTING.md",
       "title": "CONTRIBUTING.md",
       "text": "Contributing to Minarrow Thank you for your interest in contributing to Minarrow! We welcome contributions from the community and appreciate your help! Contributor Licence Agreement By submitting a contribution to this repository, you agree to the Contributor Licence Agreement ( CLA.md ). Under the CLA, copyright in your contribution is assigned to the project maintainer. Contributors retain a licence to use their contributions under the project’s open-source licence. This ensures clear and consistent IP ownership and avoids ambiguity when accepting contributions from multiple authors, including cases where the maintainer cannot reasonably verify the original provenance of all submitted code. Getting Started Prerequisites - Rust 1.89.0-nightly or later - Git - Familiarity with Apache Arrow and low-level memory concepts (helpful but not required) Setting Up Your Development Environment 1. Fork the repository on GitHub 2. Clone your fork locally: 3. Add the upstream repository as a remote: 4. Install dependencies and run tests: Development Workflow Making Changes 1. Create a new branch for your feature or bugfix: 2. Make your changes, following the coding standards below 3. Add or up",
       "kind": "docs"
     },
     {
-      "url": "https://github.com/minarrow/blob/main/CHANGELOG.md",
+      "url": "https://github.com/SpaceCell/minarrow/blob/main/CHANGELOG.md",
       "title": "CHANGELOG.md",
-      "text": "Changelog All notable changes to minarrow are documented here. The format is based on Keep a Changelog, and this project adheres to Semantic Versioning. Minarrow Rust 0.17.0 - 2026-08-15 This release: - Corrects integer arithmetic rounding semantics for scalar - Adds Display for all public types - Includes a broad set of API additions and performance improvements. Numerical result changes Several arithmetic corrections in this release produce different results for integer inputs compared to 0.16.x. The affected operations are listed below so that users can validate downstream expectations. Please consider the below carefully before upgrading: - Integer array division now floors toward negative infinity. Previously the SIMD and scalar kernel paths used Rust's truncating / (toward zero). Both Divide and FloorDiv now floor consistently, matching Python and NumPy semantics. For example, -7 / 2 at the array kernel level was -3 and is now -4 . Unsigned integer division is unaffected. - Scalar integer division returns Scalar::Float64 . Scalar::Int64(-7) / Scalar::Int64(2) was Scalar::Int64(-3) and is now Scalar::Float64(-3.5) . Division by zero follows IEEE 754 (Inf/NaN) instead of panick",
+      "text": "Changelog All notable changes to minarrow are documented here. The format is based on Keep a Changelog, and this project adheres to Semantic Versioning. Minarrow Rust 0.18.0 (Unreleased) Added Decimal array support behind the decimal feature flag. Added DecimalArray for Decimal32, Decimal64, and Decimal128. Supports configurable precision and scale. Integrates with NumericArray , Array , Scalar , and Value , views and chunked arrays. FFI import/export, Arrow and Polars conversion. Arithmetic, comparisons, type conversion, and broadcasting. Scale-aware display formatting. Note: All decimal-specific functionality is gated with [cfg(feature = \"decimal\")] . MatrixV , a row-window view over Matrix , including Value integration. Cube conversion entry points for Value and Vec . Scalar::arrow type() for mapping scalar values to ArrowType . From and From implementations for Scalar and Value . One-element From implementations for primitive numeric types on Array and ArrayV . TryFrom for Value , with mixed-variant collections rejected. Fixed Bitmask shared storage is materialised before mutation to prevent writes through aliased storage. Matrix behaviour for scalar and Value integration. Null",
       "kind": "docs"
     }
   ],

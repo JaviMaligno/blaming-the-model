@@ -4,109 +4,109 @@
   "description": null,
   "documents": [
     {
-      "url": "https://github.com/laravel-billing#0",
+      "url": "https://github.com/cleaniquecoders/laravel-billing#0",
       "title": "Introducción",
       "text": "Laravel Billing A gateway-agnostic subscription & invoicing engine for Laravel — with an optional Livewire + Flux billing UI . One package to maintain — payment gateways are an extension point (a contract), not separate packages. Ships a built-in local gateway so any app has working billing on day one, plus optional, publishable customer-facing pages (plans, subscription management, invoices, receipts) — ideal for demo, development, UAT, and testing.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/laravel-billing#1",
+      "url": "https://github.com/cleaniquecoders/laravel-billing#1",
       "title": "Why this design",
       "text": "- One package, one repo. No per-gateway sub-packages. BayarCash, ToyyibPay, Chip, senangPay, Stripe… each app writes a small driver class implementing the PaymentGateway contract. The package never references a real gateway by name. - Batteries included. A first-class LocalGateway driver (no real money) is the default, so a fresh app can run the full subscribe → activate → invoice flow immediately. - Headless core, optional UI. Models, services, contract, events, manager — fully usable with no UI at all. Need billing pages fast? Enable the bundled Livewire + Flux UI (browse plans, subscribe, manage the subscription, list/inspect invoices, download invoice & receipt PDFs) behind your own auth middleware. Either way your app keeps control of routes and access. - Tenancy optional. The bill target is polymorphic: attach Billable to User (single-tenant) or Team / Workspace / Organization (multi-tenant). The package does not care. - Malaysia-friendly invoicing. MYR default, SST/SSM-aware invoice template, atomic sequential numbering — all configurable and neutral by default.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/laravel-billing#2",
+      "url": "https://github.com/cleaniquecoders/laravel-billing#2",
       "title": "Installation",
       "text": "Publish the config and (if using the database plan store) the migrations: Optionally publish the invoice/checkout views and the plan seeder: A fresh install defaults to BILLING GATEWAY=local , so demo/UAT works before any merchant account exists. To use the optional billing UI, install Livewire and Flux in your app (the package guards on their presence, so this is only needed if you enable the UI):",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/laravel-billing#3",
+      "url": "https://github.com/cleaniquecoders/laravel-billing#3",
       "title": "Charge for anything, not just a plan",
       "text": "The PaymentGateway contract's primitive is a one-off charge , described with no model from this package — so the bundled drivers work for an invoice, a top-up or a one-time fee, not only for a subscription. A plan checkout is the same thing described by a plan — createCheckout() maps one onto the other in the base class, so a driver only implements checkout() .",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/laravel-billing#4",
+      "url": "https://github.com/cleaniquecoders/laravel-billing#4",
       "title": "Ask, don't only wait",
       "text": "A webhook that was never delivered is indistinguishable from a payment that never happened. fetch() settles it: Implemented for Billplz, Stripe and toyyibPay. Gateways that are a signed redirect form with no query API throw, because inventing an endpoint would be worse than saying so.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/laravel-billing#5",
+      "url": "https://github.com/cleaniquecoders/laravel-billing#5",
       "title": "Make a model billable",
       "text": "Any model becomes billable by implementing the Billable contract and using the HasSubscriptions trait. HasSubscriptions provides billingEmail() , billingName() and billingAddress() defaults (override as needed) plus:",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/laravel-billing#6",
+      "url": "https://github.com/cleaniquecoders/laravel-billing#6",
       "title": "Plans — config and/or database",
       "text": "config('billing.plans') is always the canonical source. The store setting decides where reads come from: - store = 'config' — Plan instances are built on the fly from the array. No plans table needed. - store = 'database' — plans are read from the plans table; the publishable PlanSeeder hydrates it idempotently from config ( updateOrCreate on tier ). Limits are an open map ( seats , messages per month , api calls , …) — your app declares which meters exist. A null limit means unlimited .",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/laravel-billing#7",
+      "url": "https://github.com/cleaniquecoders/laravel-billing#7",
       "title": "Subscribe flow",
       "text": "checkout() creates a pending ( Incomplete ) subscription, delegates to the active driver, and correlates the eventual webhook by externalId . With the local gateway: - Approve on the dev-checkout page → a SubscriptionActivated event flows through the same code path a real gateway uses → subscription activates and an invoice is issued. - Decline → the subscription stays Incomplete . - Set BILLING LOCAL AUTO=true to auto-approve (great for CI/tests).",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/laravel-billing#8",
+      "url": "https://github.com/cleaniquecoders/laravel-billing#8",
       "title": "Webhooks (your app wires the route, the package does the work)",
       "text": "Billing::handle() replay-guards on providerEventId , locates the subscription by gateway subscription id / externalId , transitions status, calls IssueInvoice on activate/renew, and fires the matching event.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/laravel-billing#9",
+      "url": "https://github.com/cleaniquecoders/laravel-billing#9",
       "title": "Write your own gateway",
       "text": "Implement the single extension point and register the driver class in config. That's the entire surface. The manager resolves the class through the container, so constructor injection works. You can also register a driver at runtime:",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/laravel-billing#10",
+      "url": "https://github.com/cleaniquecoders/laravel-billing#10",
       "title": "Events",
       "text": "Listen to drive your own side effects (provision access, dunning, Slack notifications). The package itself only updates subscription/invoice state and issues invoices. SubscriptionActivated · SubscriptionRenewed · SubscriptionCanceled · PaymentSucceeded · PaymentFailed · InvoiceIssued",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/laravel-billing#11",
+      "url": "https://github.com/cleaniquecoders/laravel-billing#11",
       "title": "Invoicing",
       "text": "Invoices use atomic, row-locked sequential numbering ( INV-2026-000001 ) and are rendered to PDF from a brandless, SST/SSM-aware Blade template, stored via Laravel's Filesystem (disk configurable). Set seller details under config('billing.company') . Publish and override resources/views/vendor/billing/invoice-pdf.blade.php to brand it.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/laravel-billing#12",
+      "url": "https://github.com/cleaniquecoders/laravel-billing#12",
       "title": "Billing UI (optional)",
       "text": "The package ships a Livewire + Flux UI that closes the full subscribe → pay → invoice → receipt loop. It is opt-in and scoped to the authenticated billable. Plans Billing portal --- --- More screenshots and the full walkthrough: Billing UI docs. Requires livewire/livewire and livewire/flux in your app. Enable and scope it in config('billing.routes') : That registers: Route Name What it shows --- --- --- GET /billing/plans billing.plans Plan cards with monthly/annual toggle; Subscribe runs Billing::checkout() GET /billing billing.portal Overview (current subscription, cancel/resume) + Invoices tab with a detail modal GET /billing/success billing.success Payment-success receipt card (amount, number, Download invoice / receipt ) GET /billing/invoices/{invoice:uuid}/download billing.invoices.download Streams the stored invoice PDF GET /billing/invoices/{invoice:uuid}/receipt billing.invoices.receipt Streams a receipt PDF derived from the paid invoice The billable is resolved via config('billing.billable resolver') (defaults to request()- user() ); set it to scope billing to a Team / Workspace . Every query is constrained to that billable, and the download/receipt routes 403 on a foreig",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/laravel-billing#13",
+      "url": "https://github.com/cleaniquecoders/laravel-billing#13",
       "title": "Component ownership — package vs your app",
       "text": "Lives in the package Lives in your app --- --- Contracts\\PaymentGateway , Contracts\\Billable Concrete gateway drivers ( BayarCashGateway , …) Gateways\\LocalGateway (bundled default) The real gateway SDK dependency Models, migrations, enums, DTOs, events The Billable model + use HasSubscriptions IssueInvoice , PlanRepository , BillingManager , facade Custom routes/UI beyond the bundled pages, access-control middleware Webhook dispatcher Billing::handle() The webhook route + any environment/tenancy gating Brandless invoice PDF template + InvoiceIssuedMail Company/tax config values, branded template override Optional Livewire + Flux billing UI (publishable, overridable) Enabling/scoping the routes, livewire/flux install, branding UI: the package ships an optional Livewire + Flux billing UI (plans, subscription, invoices, receipts) plus the dev-only local checkout page. It is opt-in — disable billing.routes.enabled (or skip installing livewire/flux ) and the package stays fully headless. Publish and override the views to brand them, or build your own pages against the same models and facade.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/laravel-billing#14",
+      "url": "https://github.com/cleaniquecoders/laravel-billing#14",
       "title": "Documentation",
       "text": "Full documentation lives in docs/ : - Getting Started — install, make a model billable, define plans - Architecture — domain models, gateways, webhooks, events - Billing UI — pages, routes, invoices & receipts (with screenshots) - Configuration — every config/billing.php key - Development — workbench preview & testing - Examples — full cycle & custom gateway",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/laravel-billing#15",
+      "url": "https://github.com/cleaniquecoders/laravel-billing#15",
       "title": "Preview the UI locally (Testbench workbench)",
       "text": "The package ships a Testbench workbench so you can click through the full subscribe → pay → invoice → receipt flow with the real Flux UI: Open the root URL — it auto-logs in a demo billable and lands on /billing/plans . The workbench ( workbench/ , testbench.yaml ) configures a demo plan matrix ( config store), the local gateway with the dev \"Approve\" checkout page, and SST tax — mirroring what a host app sets in config/billing.php .",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/laravel-billing/blob/main/docs/README.md",
+      "url": "https://github.com/cleaniquecoders/laravel-billing/blob/main/docs/README.md",
       "title": "docs/README.md",
       "text": "Documentation Laravel Billing is a gateway-agnostic subscription and invoicing engine for Laravel, with an optional Livewire + Flux billing UI. It ships a built-in local gateway so any app has a working subscribe → pay → invoice → receipt flow on day one, and treats real payment gateways as a single contract you implement per app. Documentation Structure 01. Getting Started Install the package, make a model billable, and define your plan matrix. 02. Architecture The domain model, the gateway/webhook contract, and the events the engine fires. 03. Billing UI The optional Livewire + Flux pages (plans, portal, receipt) with screenshots, the routes they register, and how invoices and receipts are rendered and downloaded. 04. Configuration Every config/billing.php key and its environment variable. 05. Development Preview the UI locally with the Testbench workbench, and run the test suite. 06. Examples The full billing cycle end to end, and how to write a real gateway driver. Quick Start New to the package? Start with Installation, then Make a model billable. Finding Information - Concepts and design — see Architecture. - Customer-facing pages — see Billing UI. - Settings and env vars — s",
       "kind": "docs"
     },
     {
-      "url": "https://github.com/laravel-billing/blob/main/CHANGELOG.md",
+      "url": "https://github.com/cleaniquecoders/laravel-billing/blob/main/CHANGELOG.md",
       "title": "CHANGELOG.md",
       "text": "Changelog All notable changes to laravel-billing will be documented in this file. 2.0.1 - 2026-08-27 The one-off charge is now the primitive , and a plan checkout is a one-off charge described by a plan. 2.0.0 was tagged against the wrong commit and has been withdrawn — it contained none of the changes below. Use 2.0.1. Why Every bundled driver except Stripe and PayPal already created a one-off bill — Billplz posts to /bills , toyyibPay to createBill , Bayarcash to /payment-intents . The Plan and the PlanInterval were only ever used to derive four values: an amount, a description, who is paying, and where to send them back. Typing the contract on Plan and Billable therefore coupled ten drivers to this package's subscription tables for no reason, and made them unusable for the other thing a host application always eventually needs: charging for an invoice, a top-up, or a one-time fee . Added - DataTransferObjects\\CheckoutRequest — one payment to collect, described with no model from this package. Amount in minor units , never a float. Carries the caller's own reference , echoed back where the gateway allows it: an application charging invoice 1042 needs the gateway to return somethi",
       "kind": "docs"

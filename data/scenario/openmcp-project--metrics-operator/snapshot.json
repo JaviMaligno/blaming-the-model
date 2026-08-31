@@ -4,55 +4,55 @@
   "description": null,
   "documents": [
     {
-      "url": "https://github.com/metrics-operator#0",
+      "url": "https://github.com/openmcp-project/metrics-operator#0",
       "title": "Introducción",
       "text": "Metrics Operator A Kubernetes operator that collects counts and attributes of cluster resources and exports them as OpenTelemetry gauge metrics to configurable data sinks (e.g., Dynatrace).",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/metrics-operator#1",
+      "url": "https://github.com/openmcp-project/metrics-operator#1",
       "title": "Key Features",
       "text": "- Flexible targeting : Monitor any Kubernetes or Crossplane resource by GroupVersionKind - Federation : Aggregate metrics across multiple clusters - Rich dimensions : Extract labels, annotations, conditions, or any field as metric attributes - Comprehensive Resource Tracking : Quantifies and catalogs various resource types, providing a holistic view of resource distribution and utilization. - Multi-dimensional Analysis : Examines specific attributes and dimensions of resources, generating nuanced metrics for deeper understanding of system behavior. - Comparative Analytics : Enables side-by-side analysis of different resource configurations, highlighting patterns and potential imbalances in resource allocation. - Custom Component Focus : Tailored to monitor and analyze complex, custom-defined resources across your infrastructure. - Predictive Insights : Aggregates data over time to identify emerging trends, supporting data-driven decision making for future system enhancements. - Strategic Decision Support : Offers data-backed insights to guide product evolution. - Customizable Alerting System : Allows defining alerts based on specific metric thresholds, enabling proactive response t",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/metrics-operator#2",
+      "url": "https://github.com/openmcp-project/metrics-operator#2",
       "title": "Current Limitations",
       "text": "- Pod-level log aggregation & collection not currently supported - Pod metrics collection feature in backlog -",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/metrics-operator#3",
+      "url": "https://github.com/openmcp-project/metrics-operator#3",
       "title": "Documentation",
       "text": "Topic Description ------------------------------------------------------------ ----------------------------------------------------------------------- Installation Helm deployment and post-install setup Architecture Resource types, flows, and data model Usage Metric, ManagedMetric, FederatedMetric, FederatedManagedMetric examples Dimensions Configuration Projections, valueFrom, cardinality Metrics Export DataSink (OTLP push), ServiceMonitor (Prometheus scrape) Remote Cluster Access RemoteClusterAccess and FederatedClusterAccess RBAC Permissions required for monitored resources Development Local development with kind",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/metrics-operator#4",
+      "url": "https://github.com/openmcp-project/metrics-operator#4",
       "title": "Quickstart",
       "text": "Via Open Control Plane (name must match your ControlPlane resource): OR Via Helm: See Installation for full setup instructions including DataSink configuration.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/metrics-operator#5",
+      "url": "https://github.com/openmcp-project/metrics-operator#5",
       "title": "Support, Feedback, Contributing",
       "text": "Feature requests, bug reports, and contributions are welcome via GitHub issues. See our Contribution Guidelines.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/metrics-operator#6",
+      "url": "https://github.com/openmcp-project/metrics-operator#6",
       "title": "Security / Disclosure",
       "text": "Report security issues following our security policy. Do not open public GitHub issues for security problems.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/metrics-operator#7",
+      "url": "https://github.com/openmcp-project/metrics-operator#7",
       "title": "Code of Conduct",
       "text": "We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone. By participating in this project, you agree to abide by its Code of Conduct at all times.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/metrics-operator#8",
+      "url": "https://github.com/openmcp-project/metrics-operator#8",
       "title": "Licensing",
       "text": "Copyright OpenControlPlane contributors. Please see our LICENSE for copyright and license information. Detailed information including third-party components and their licensing/copyright information is available via the REUSE tool. --- OpenControlPlane is part of ApeiroRA , an EU Important Project of Common European Interest (IPCEI-CIS). Copyright Linux Foundation Europe. For web site terms of use, trademark policy and other project policies please see https://linuxfoundation.eu/en/policies .",
       "kind": "readme"

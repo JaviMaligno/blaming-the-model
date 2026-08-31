@@ -19,6 +19,7 @@ from pathlib import Path
 from btm.harness.a5_case import audit_package, build_case, freeze
 from btm.harness.a5_facts import (
     StabilityFact,
+    TailFact,
     determinism_fact,
     directions,
     fix_fact,
@@ -31,6 +32,18 @@ from btm.harness.a5_facts import (
 
 def _five(root: Path, name: str) -> list[Path]:
     return [root / name / f"p{i}.json" for i in range(1, 6)]
+
+
+def _tail_block(tail: TailFact) -> dict:
+    """La cola, tal y como se escribe en el ground truth y en los hechos."""
+    return {
+        "entries": [
+            entry.model_dump()
+            | {"resampled_stable": entry.resampled_stable, "ok": entry.ok}
+            for entry in tail.entries
+        ],
+        "events": sum(len(entry.events) for entry in tail.entries),
+    }
 
 
 def main() -> None:
@@ -52,6 +65,12 @@ def main() -> None:
     stability = StabilityFact.model_validate_json(
         (args.runs / "real" / "stability.json").read_text(encoding="utf-8")
     )
+    tail = TailFact.model_validate_json(
+        (args.runs / "real" / "tail.json").read_text(encoding="utf-8")
+    )
+    tail_keyed = TailFact.model_validate_json(
+        (args.runs / "real" / "tail-keyed.json").read_text(encoding="utf-8")
+    )
 
     # Las pasadas se renombran para el paquete: nada de p1..p5, que suena a
     # identificador interno, y nada que sugiera un orden de siembra.
@@ -59,6 +78,17 @@ def main() -> None:
         result.pass_id = f"pasada-{n}"
 
     truth = ground_truth(shared, solo, deployment=args.deployment, corpus=args.corpus)
+    # La lista blanca: qué corridas cambiaron de etiqueta sin que nadie les
+    # sirviera una página de otro proyecto. Para ésas la respuesta correcta es
+    # el muestreo, y quien lo diga acierta.
+    truth["sampling_tail"] = _tail_block(tail)
+    # La tabla por dirección: qué etiqueta da cada contexto congelado, veinte
+    # veces por lado. Es lo que impide leer al revés las direcciones donde la
+    # celda mayoritaria de la tabla es la corrupta.
+    truth["by_direction"] = [
+        e.model_dump() | {"labels_differ": e.labels_differ, "stable": e.stable}
+        for e in stability.projects
+    ]
     args.ground_truth.parent.mkdir(parents=True, exist_ok=True)
     args.ground_truth.write_text(
         json.dumps(truth, ensure_ascii=False, indent=2), encoding="utf-8"
@@ -84,7 +114,12 @@ def main() -> None:
                 for e in stability.projects
             ],
         },
-        "repair": repair.model_dump() | {"ok": repair.ok},
+        "repair": repair.model_dump() | {
+            "ok": repair.ok,
+            "sampling_resample": _tail_block(tail_keyed),
+        },
+        "sampling_tail": {"ok": tail.ok, "model_calls": tail.model_calls,
+                          "threshold": tail.threshold, **_tail_block(tail)},
     }
     facts["directions"] = {"ok": True, "rows": directions(shared, solo)}
     facts["changes_per_pass"] = {
@@ -99,8 +134,8 @@ def main() -> None:
     args.facts.write_text(json.dumps(facts, ensure_ascii=False, indent=2), encoding="utf-8")
 
     cases = {
-        "caso-h": build_case(shared, args.corpus, args.cases / "caso-h", with_code=False),
-        "caso-i": build_case(shared, args.corpus, args.cases / "caso-i", with_code=True),
+        "caso-j": build_case(shared, args.corpus, args.cases / "caso-j", with_code=False),
+        "caso-k": build_case(shared, args.corpus, args.cases / "caso-k", with_code=True),
     }
     offences = {name: audit_package(path) for name, path in cases.items()}
     if any(offences.values()):

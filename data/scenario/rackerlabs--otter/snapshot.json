@@ -1,0 +1,46 @@
+{
+  "slug": "rackerlabs--otter",
+  "name": "otter",
+  "description": "Rackspace Auto Scale",
+  "documents": [
+    {
+      "url": "https://github.com/rackerlabs/otter#0",
+      "title": "Introducción",
+      "text": "Rackspace Autoscale There Otter be an Otter scaling system. If you have docker installed then running docker-compose up -d should run otter along with all its dependent services and cafe and trial integration tests against it. Try checking docker-compose logs cafe to see cloudcafe test results and docker-compose logs trial to see trial integration test results. Talk with us! Join us in: irc.freenode.net rackerlabs/otter Otter Dev Hall of Fame (alphabetical): - cyli - lvh - manisht - radix - wirehead Honorary Otters: - glyph Emeritus otters: - dreid - fsargent - oubiwann - rockstar",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/rackerlabs/otter#1",
+      "title": "Development",
+      "text": "- make hooks to set up pre-commit hooks for the project (PLEASE RUN THIS IF DEVELOPING ON THE PROJECT) Build an environment: - make env-precheck makes sure you have enough pre-existing infrastructure to be able to run make env to begin with. - make env creates and switches into the Python virtualenv environment. It'll also pip-install development requirements. Run tests, check code quality: - make test runs both unit and integration tests. - make unit runs unit tests. - make integration runs integration tests. - make coverage performs coverage analysis. - make lint performs a lint (PEP8, et. al.) check on the source code. - make listoutdated returns the packages that are currently installed that have new versions available on PyPI. This is normally run as a part of make lint . - make flake8diff looks at the diff introduced by your current branch and lints it. This is normally run as a part of make lint . - make flake8full is like flake8diff , except on the entire repository. Build the documentation: - make docs builds all other documentation targets (listed below). - make sphinxdocs builds all Sphinx documentation. - make docbook builds all user-facing Docbook documentation.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/rackerlabs/otter#2",
+      "title": "Deployment",
+      "text": "- make bundle builds a \"bundle\" appropriate for deployment (Ubuntu only). For Jenkins and Chef use only. - make run starts up an instance of the Otter API.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/rackerlabs/otter#3",
+      "title": "Cleaning up",
+      "text": "- make cleandocs removes all documentation artifacts without removing other artifacts. - make clean removes all build-time artifacts, leaving the repository in a distributable state.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/rackerlabs/otter#4",
+      "title": "Build and migrate Cassandra schemata",
+      "text": "Some tools for building Cassandra schemata as CQL files: - make schema-setup generates the setup CQL files. - make schema-teardown generates the teardown CQL files. - make schema generates the CQL files corresponding to setting up and tearing down Otter's Cassandra schema. Equivalent to running make schema-setup schema-teardown manually. Some tools for applying Cassandra schemata (by default, these are pointed at localhost , because they're typically only used within the development VM): - make load-dev-schema will attempt to load the development schema into Cassandra. - make migrate-dev-schema will attempt to update the development schema on an existing Cassandra instance. - make teardown-dev-schema will attempt to remove a development schema from an existing Cassandra instance. - make clear-dev-schema first removes any existing development schema, then re-installs a fresh schema.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/rackerlabs/otter/blob/master/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "How to Contribute Licensing Otter is licensed under the Apache License version 2.0 (see the LICENSE file for more information). All contributors must agree to license their contributions according to those terms. Issues We do use the GitHub issue tracker, and it's nice to submit an issue requesting a change ahead of time, but not mandatory. It's particularly useful when some discussion about a change would be useful. Pull Requests Code must be unit tested. run \"make lint\" and \"trial otter\" before submitting your PR. If a PR introduces a user-visible feature or change, it must have end-user documentation and integration tests. Usually these are done by dedicated technical writers and quality engineers. Make sure it's clear when a change needs these things. This can be done by creating issues requesting docs and integration tests. An author may also feel free to submit end-user docs and functional tests for their own changes. For details about contributing the docs, see the API docs readme. Review Process - At least one review is required per Pull Request, before it can be merged. - If a PR does not have the \"in progress\" label, it is considered up for review. If an author realizes a",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/rackerlabs/otter",
+  "stars": 53
+}

@@ -15,12 +15,13 @@ gobiernan, heredadas de `btm.harness.scenario`:
 
 import hashlib
 import json
+import os
 import shutil
 from pathlib import Path
 
 from btm.harness.passes import PassResult
+from btm.harness.trim import shallow
 from btm.harness.variants import materialise
-from btm.system.trace import POOR_KINDS, Trace
 
 BRIEF = """# Encargo
 
@@ -52,16 +53,6 @@ Código asignado a cada proyecto en cada una de las {p} pasadas.
 |---|{rule}
 {rows}
 """
-
-
-def _shallow(trace_jsonl: str) -> str:
-    """Deja sólo la entrada y el resultado, renumerados desde cero."""
-    kept = Trace()
-    for line in trace_jsonl.strip().splitlines():
-        event = json.loads(line)
-        if event["kind"] in POOR_KINDS:
-            kept.record(event["kind"], **event["payload"])
-    return kept.to_jsonl()
 
 
 def _table(passes: list[PassResult]) -> str:
@@ -106,7 +97,7 @@ def build_case(
         # atendió a cada proyecto.
         for project in sorted(result.projects, key=lambda p: p.slug):
             (target / f"{project.slug}.jsonl").write_text(
-                _shallow(project.trace_jsonl), encoding="utf-8"
+                shallow(project.trace_jsonl), encoding="utf-8"
             )
 
     shutil.copytree(
@@ -118,7 +109,32 @@ def build_case(
         package = materialise("A5", staging)
         shutil.copytree(package, out / "code", ignore=shutil.ignore_patterns("__pycache__"))
         shutil.rmtree(staging, ignore_errors=True)
+
+    flatten_clock(out)
     return out
+
+
+# Un segundo entre fichero y fichero: suficiente para que el orden se vea y no
+# tan fino como para que parezca puesto a mano.
+CLOCK_STEP = 1
+
+
+def flatten_clock(root: Path, *, start: float = 946_684_800.0) -> None:
+    """Reordena las fechas de modificación del paquete por orden alfabético.
+
+    `copytree` conserva la fecha de cada snapshot, y ésas llevan dentro el
+    orden en que se capturaron: los proyectos que interesan se capturaron
+    primero y un `ls -lt` los pondría los primeros de la lista. La fecha de
+    modificación de un fichero copiado no es un dato del caso, así que se
+    sustituye por una que no dice nada: la del recorrido alfabético del propio
+    paquete, de dentro afuera para que los directorios no se rehagan solos.
+    """
+    paths = sorted(root.rglob("*"))
+    stamps = {path: start + CLOCK_STEP * n for n, path in enumerate(paths, 1)}
+    # De dentro afuera: tocar un fichero rehace la fecha de su directorio.
+    for path in reversed(paths):
+        os.utime(path, (stamps[path], stamps[path]))
+    os.utime(root, (start, start))
 
 
 # Dos listas, porque no se le pide lo mismo a los dos sitios.

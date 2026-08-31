@@ -4,37 +4,37 @@
   "description": "Wurzel is an open-source Python framework for advanced ETL pipelines in Retrieval-Augmented Generation (RAG) systems.",
   "documents": [
     {
-      "url": "https://github.com/wurzel#0",
+      "url": "https://github.com/telekom/wurzel#0",
       "title": "Introducción",
       "text": "wurzel wurzel is the german word for root. So with this framework we provide a combination of the best out of the whole domain of retrieval and beyond. wurzel is an open-source Python library built to address advanced Extract, Transform, Load (ETL) needs for Retrieval-Augmented Generation (RAG) systems. It is designed to streamline ETL processes while offering essential features like multi-tenancy , cloud-native deployment support , and job scheduling . The repository includes initial implementations for widely-used frameworks in the RAG ecosystem, such as Qdrant, Milvus, and Hugging Face, providing users with a strong starting point for building scalable and efficient RAG pipelines.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/wurzel#1",
+      "url": "https://github.com/telekom/wurzel#1",
       "title": "Features",
       "text": "- Advanced ETL Pipelines : Tailored for the specific needs of RAG systems. - Multi-Tenancy : Easily manage multiple tenants or projects within a single system. - Cloud-Native Deployment : Designed for seamless integration with Kubernetes, Docker, and other cloud platforms. - Scheduling Capabilities : Schedule and manage ETL tasks using built-in or external tools. - Framework Integrations : Pre-built support for popular tools like Qdrant, Milvus, and Hugging Face. - Type Security : By leveraging capabilities of pydantic and pandera we ensure type security",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/wurzel#2",
+      "url": "https://github.com/telekom/wurzel#2",
       "title": "Building your one step",
       "text": "For detailed instructions and examples on how to use wurzel, please refer to our official documentation.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/wurzel#3",
+      "url": "https://github.com/telekom/wurzel#3",
       "title": "Code of Conduct",
       "text": "This project has adopted the Contributor Covenant in version 2.1 as our code of conduct. Please see the details in our CODE OF CONDUCT.md. All contributors must abide by the code of conduct. By participating in this project, you agree to abide by its Code of Conduct at all times.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/wurzel#4",
+      "url": "https://github.com/telekom/wurzel#4",
       "title": "Licensing",
       "text": "This project follows the REUSE standard for software licensing. Each file contains copyright and license information, and license texts can be found in the ./LICENSES folder. For more information visit https://reuse.software/. You can find a guide for developers at https://telekom.github.io/reuse-template/.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/wurzel/blob/main/CONTRIBUTING.md",
+      "url": "https://github.com/telekom/wurzel/blob/main/CONTRIBUTING.md",
       "title": "CONTRIBUTING.md",
       "text": "Contributing to Wurzel We welcome contributions to Wurzel! Whether you're adding new features, improving documentation, or fixing bugs, your help is greatly appreciated. Take a look at the official docs on how to contribute. https://telekom.github.io/wurzel",
       "kind": "docs"

@@ -4,31 +4,31 @@
   "description": "Self-hosted, DAWA-compatible Danish address API — a local PostgreSQL + PostGIS mirror of the Datafordeler registers (DAR, DAGI, MAT, DS), in Go. DAWA shuts down 2026-07-01.",
   "documents": [
     {
-      "url": "https://github.com/notdawa#0",
+      "url": "https://github.com/karbowiak/notdawa#0",
       "title": "Introducción",
       "text": "notdawa A self-hosted, DAWA-compatible address API for Denmark, backed by a local mirror of the official Datafordeler registers (DAR, DAGI, MAT, DS). No runtime dependency on DAWA — which shuts down 2026-07-01 — and no dependency on Datafordeler's GraphQL. Data is pulled from Datafordeler's Fildownload service, transformed into DAWA's exact JSON shapes, and served from PostgreSQL + PostGIS behind a Huma v2 HTTP front, with OpenAPI + Scalar docs at /docs .",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/notdawa#1",
+      "url": "https://github.com/karbowiak/notdawa#1",
       "title": "Requirements",
       "text": "- Go 1.25+ - Docker (for the bundled PostgreSQL 17 + PostGIS 3.5), or your own Postgres + PostGIS - A Datafordeler apiKey — free from",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/notdawa#2",
+      "url": "https://github.com/karbowiak/notdawa#2",
       "title": "Run",
       "text": "Config is read from .env (or the environment): DATAFORDELER API KEY and DATABASE URL (defaults to the docker-compose database). The CLI has three commands: migrate , import , serve .",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/notdawa#3",
+      "url": "https://github.com/karbowiak/notdawa#3",
       "title": "Import the data",
       "text": "notdawa import downloads every register from Fildownload and loads it into Postgres in dependency order, printing the plan first and a live progress bar per entity. Groups: all (default), election , vejlinks , adresser-core , mat . Each loader truncates and reloads its table inside one transaction, so a re-import is an atomic snapshot swap — the API keeps serving the old data until the new data commits, and the mirror can't drift.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/notdawa#4",
+      "url": "https://github.com/karbowiak/notdawa#4",
       "title": "Keep it up to date",
       "text": "Datafordeler publishes a fresh full extract per register once a week (DAR Saturday, DAGI + MAT Sunday, DS Monday — each in a 03:00–06:00 window). Re-running notdawa import weekly is all you need; run it Tuesday morning, after the whole week's extracts have published: Daily deltas exist too, but applying them needs change-set logic the truncate-and-reload importer doesn't have — and only DAR (addresses) changes daily in a way users notice. A weekly full re-import keeps the mirror correct and drift-free with no extra moving parts.",
       "kind": "readme"

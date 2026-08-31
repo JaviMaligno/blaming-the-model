@@ -4,79 +4,79 @@
   "description": "Build/Runs your crystal application, watches files, and rebuilds/restarts app on file changes",
   "documents": [
     {
-      "url": "https://github.com/sentry#0",
+      "url": "https://github.com/samueleaton/sentry#0",
       "title": "Introducción",
       "text": "Sentry 🤖 Build/Runs your crystal application, watches files, and rebuilds/reruns app on file changes",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/sentry#1",
+      "url": "https://github.com/samueleaton/sentry#1",
       "title": "Installation",
       "text": "To install in your project, from the root directory of your project, run: If using Crystal version 0.24.2 try the following: If using Crystal version 0.23.1 or lower try the following: This will install the Sentry CLI tool. To use the Crystal API, see CRYSTAL API.md. Troubleshooting the install: This install script is just a convenience. If it does not work, simply: (1) place the files located in the src dir into a your project in a dev/ dir, and (2) compile sentry by doing crystal build --release dev/sentry cli.cr -o ./sentry .",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/sentry#2",
+      "url": "https://github.com/samueleaton/sentry#2",
       "title": "Usage",
       "text": "Assuming sentry.cr was correctly placed in [your project name]/dev/sentry.cr and compiled into the root of your app as sentry , simply run:",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/sentry#3",
+      "url": "https://github.com/samueleaton/sentry#3",
       "title": "Override Default Build Command",
       "text": "The default build command is crystal build ./src/[app name].cr . The release flag is omitted by default for faster compilation time while you are developing.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/sentry#4",
+      "url": "https://github.com/samueleaton/sentry#4",
       "title": "Override Default Files to Watch",
       "text": "The default files being watched are [\"./src/ / .cr\", \"./src/ / .ecr\"] . By specifying files to watch, the default will be omitted. So if you want to watch all of the file in your src directory, you will need to specify that like in the above example.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/sentry#5",
+      "url": "https://github.com/samueleaton/sentry#5",
       "title": "Show Info Before Running",
       "text": "This shows the values for the build command, run command, and watched files. Example",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/sentry#6",
+      "url": "https://github.com/samueleaton/sentry#6",
       "title": "Setting Build or Run Arguments",
       "text": "If you prefer granularity, you can specify arguments to the build or run commands using the --build-args or --run-args flags followed by a string of arguments.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/sentry#7",
+      "url": "https://github.com/samueleaton/sentry#7",
       "title": "Running shards install Before Starting",
       "text": "This is especially usefull when initiating Sentry from a Dockerfile or package.json file. It guarantees all the shards are installed before running.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/sentry#8",
+      "url": "https://github.com/samueleaton/sentry#8",
       "title": "Reading Configurations from a File",
       "text": "Sentry will automatically read configurations from .sentry.yml if it exists. This can be changed with -c FILE or --config=FILE . See the YAML.mapping definition in the Config class in the /src/sentry.cr file for valid file properties.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/sentry#9",
+      "url": "https://github.com/samueleaton/sentry#9",
       "title": "Removing Colorization",
       "text": "Sentry output is colorized by default. To remove colorization, pass the --no-color argument. Example",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/sentry#10",
+      "url": "https://github.com/samueleaton/sentry#10",
       "title": "Why?",
       "text": "(1) It is tiring to have to stop and restart an app on every change. (2) Docker! Stop and restarting your app is especially expensive (and annoying) when running the app in a docker container, where one would need to totally rebuild the docker image for every change. Now, for development, simply run sentry in your docker container, and it will rebuild the app from the docker container on any changes, without rebuilding the docker image/container.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/sentry#11",
+      "url": "https://github.com/samueleaton/sentry#11",
       "title": "Contributing",
       "text": "1. Fork it ( https://github.com/samueleaton/sentry/fork ) 2. Create your feature branch (git checkout -b feat-my-new-feature) 3. Commit your changes (git commit -am 'Add some feature') 4. Push to the branch (git push origin feat-my-new-feature) 5. Create a new Pull Request",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/sentry#12",
+      "url": "https://github.com/samueleaton/sentry#12",
       "title": "Disclaimer",
       "text": "Sentry is intended for use in a development environment, where failure is safe and expected 😉.",
       "kind": "readme"

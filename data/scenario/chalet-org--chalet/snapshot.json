@@ -4,37 +4,37 @@
   "description": null,
   "documents": [
     {
-      "url": "https://github.com/chalet#0",
+      "url": "https://github.com/chalet-org/chalet#0",
       "title": "Introducción",
       "text": "A cross-platform project format & build tool for C/C++ focused on usability and interoperability.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/chalet#1",
+      "url": "https://github.com/chalet-org/chalet#1",
       "title": "Introduction",
       "text": "Chalet is a command-line application that reads from a JSON or YAML project file, and compiles your C/C++ projects. Behind the scenes, Chalet performs a variety actions based on the type of project and the strategy requested by the user. It can build natively using its own system, or utilizing: Ninja, Make), MSBuild, and Xcode(build). Chalet project files focus on intuitive language designed to be easy to understand, while at the same time providing lots of control. Because the projects are JSON, they can be easily integrated with IDEs and other types of tooling, but depending on the compiler, Chalet also generates workspace/project files for Visual Studio, Xcode, CLion, Visual Studio Code, Zed and Code::Blocks. Visit https://www.chalet-work.space to learn more about Chalet. Visit https://www.chalet-work.space/docs for the full documentation. Explore some of the example repositories at: https://github.com/orgs/chalet-org/repositories?q=chalet-example",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/chalet#2",
+      "url": "https://github.com/chalet-org/chalet#2",
       "title": "Download",
       "text": "Grab the latest version from https://www.chalet-work.space/download or the Releases section of this repository. The actual release builds are still being fine-tuned, especially on Linux, so there may still be issues on various Linux distros.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/chalet#3",
+      "url": "https://github.com/chalet-org/chalet#3",
       "title": "External Libraries that make Chalet possible",
       "text": "- JSON for Modern C++ - MIT license - JSON schema validator for JSON for Modern C++ - MIT license - fmt - MIT license - stduuid - MIT license - Catch2 - BSL-1.0 license",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/chalet#4",
+      "url": "https://github.com/chalet-org/chalet#4",
       "title": "Build from Source",
       "text": "If you would like to build from source, and track the latest changes as they come out, please review the COMPILE.md document.",
       "kind": "readme"
     },
     {
-      "url": "https://github.com/chalet/blob/main/CONTRIBUTING.md",
+      "url": "https://github.com/chalet-org/chalet/blob/main/CONTRIBUTING.md",
       "title": "CONTRIBUTING.md",
       "text": "Contributing Thank you for taking the time to check out Chalet! If you'd like to contribute, there's several ways to do so. In no particular order: If you have questions, comments, or suggestions related to the future direction of Chalet, please start with the Discussions board. If it makes sense for the growth project, an enhancement issue will be created. The biggest contribution you can make right now is testing and using hte application. If during your testing, you find a bug -- or find something that doesn't make sense enough for the discussions board, but can be classified more as a bug or a design issue -- it can be brought up as an Issue. In it, please describe the bug as much as possible, the platform it was found on, the compiler toolchains and architecture. The more specific the description, the quicker it can be identified and fixed. If you feel like diving into the C++ portion of the code, find something to fix or improve, and want to open a Pull request, feel free to do so. The codebase is still hot off the presses, so there's certainly plenty of areas to improve. PRs may take some time to approve if for instance, it addresses one area of the codebase, but not others.",
       "kind": "docs"

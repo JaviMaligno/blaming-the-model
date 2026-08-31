@@ -8,15 +8,17 @@ descripción que publica el registro y los documentos de su repositorio. El
 README se trocea por secciones porque es así como lo indexa un buscador, y
 porque un README de un solo bloque no da materia para varias consultas.
 
-`short_name_urls` es el modo con el que se captura el corpus del escenario A5.
-Identifica cada documento por el nombre corto del repositorio (`repo.name`) en
-vez de por el nombre completo (`repo.full_name`): un descuido de captura de los
-que se cometen solos, y que sobre dos proyectos distintos que se llaman igual
-—`pinterest/orion` y `orion-rs/orion`— produce las MISMAS URLs. Esa colisión es
-lo que da de comer a la caché de páginas de la avería, y es también la única
-pista que el paquete entregado contiene: no está en ningún fichero suelto,
-sólo aparece al cruzar las URLs de dos snapshots. Por eso el descuido tiene que
-ser exactamente eso —un descuido creíble— y no una URL de forma rara.
+La captura no tiene modos ni variantes: emite lo que emitiría un crawler
+corriente, con el nombre completo del repositorio —owner incluido— en todas las
+URLs. Nada de lo que sale de aquí está inventado ni retocado, y ningún par de
+proyectos distintos comparte una URL: cruzar las URLs de todo el corpus no
+enseña nada, porque el corpus no esconde nada. Lo que hace que dos proyectos
+homónimos se pisen vive en el código del paquete, no en el dato.
+
+Hubo un modo `short_name_urls` que identificaba los documentos por `repo.name`
+en vez de por `repo.full_name`, para que dos homónimos publicasen las MISMAS
+URLs. Se retiró: esa forma de URL no la produce ningún crawler y un `grep`
+bastaba para verla.
 """
 
 import json
@@ -72,24 +74,19 @@ def split_readme(body: str) -> list[tuple[str, str]]:
     return sections
 
 
-def capture(
-    full_name: str, *, keep_description: bool = True, short_name_urls: bool = False
-) -> dict | None:
+def capture(full_name: str, *, keep_description: bool = True) -> dict | None:
     """Devuelve el snapshot de un repositorio, o None si no da para uno."""
     meta = _gh(f"repos/{full_name}")
     if meta is None:
         return None
     branch = meta.get("default_branch", "main")
-    # Con qué se identifican los documentos de este repositorio. El nombre
-    # corto no distingue a dos proyectos homónimos; véase el docstring.
-    prefix = meta["name"] if short_name_urls else full_name
     body = _raw(full_name, branch, "README.md") or _raw(full_name, branch, "readme.md")
     if not body:
         return None
 
     documents = [
         {
-            "url": f"https://github.com/{prefix}#{i}",
+            "url": f"https://github.com/{full_name}#{i}",
             "title": title,
             "text": text,
             "kind": "readme",
@@ -104,7 +101,7 @@ def capture(
         if len(text) >= MIN_SECTION_CHARS:
             documents.append(
                 {
-                    "url": f"https://github.com/{prefix}/blob/{branch}/{path}",
+                    "url": f"https://github.com/{full_name}/blob/{branch}/{path}",
                     "title": path,
                     "text": text,
                     "kind": "docs",
