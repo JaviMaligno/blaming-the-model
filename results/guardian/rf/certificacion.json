@@ -1,0 +1,165 @@
+{
+  "arm": "rf",
+  "repeats": 20,
+  "replays": [
+    {
+      "slug": "AmadeusITGroup--otter",
+      "pass_id": "pasada-1",
+      "prompt_sha256": "4a03d38775fe74d52d56c89a59073ac0fc79eff49545530d4490f9ff2d5032ec",
+      "label": "infra.orchestration",
+      "repeats": 20,
+      "reproduced": 20,
+      "codes": {
+        "infra.orchestration": 20
+      },
+      "failures": 0
+    },
+    {
+      "slug": "UnknownPlatypus--djangofmt",
+      "pass_id": "pasada-1",
+      "prompt_sha256": "463f9f79d6a0fa8316451a6869397a31919b9f1e2b24b2f3365315136b1894bc",
+      "label": "devtools.testing",
+      "repeats": 20,
+      "reproduced": 20,
+      "codes": {
+        "devtools.testing": 20
+      },
+      "failures": 0
+    },
+    {
+      "slug": "bolajiwahab--pgrubic",
+      "pass_id": "pasada-1",
+      "prompt_sha256": "03e366a4d350a2e5f755b9af28f8223b8c170be43ecf13e934d68392ced0d7b5",
+      "label": "devtools.testing",
+      "repeats": 20,
+      "reproduced": 20,
+      "codes": {
+        "devtools.testing": 20
+      },
+      "failures": 0
+    },
+    {
+      "slug": "colliery-io--cloacina",
+      "pass_id": "pasada-1",
+      "prompt_sha256": "5c1b88a5cde95c4c31150b66f17f6215c5cb151089af1b803104bc66fba88e2e",
+      "label": "infra.orchestration",
+      "repeats": 20,
+      "reproduced": 20,
+      "codes": {
+        "infra.orchestration": 20
+      },
+      "failures": 0
+    },
+    {
+      "slug": "getsentry--relay",
+      "pass_id": "pasada-1",
+      "prompt_sha256": "42a4acb1408948078f87e820d23da5db00b349c9f4083ba185c48b1e888db088",
+      "label": "infra.observability",
+      "repeats": 20,
+      "reproduced": 20,
+      "codes": {
+        "infra.observability": 20
+      },
+      "failures": 0
+    },
+    {
+      "slug": "karam-ajaj--atlas",
+      "pass_id": "pasada-1",
+      "prompt_sha256": "b1deaae005cff4e28e74fb97df078271a3551fa4bea6a2a8d753b64eac729f8a",
+      "label": "data.pipelines",
+      "repeats": 20,
+      "reproduced": 20,
+      "codes": {
+        "data.pipelines": 20
+      },
+      "failures": 0
+    },
+    {
+      "slug": "lance0--rustbgpd",
+      "pass_id": "pasada-1",
+      "prompt_sha256": "78fdc2f053bf3c80a4d5ad592264710f566cd20adfe7058f7a97ef220fb39649",
+      "label": "data.pipelines",
+      "repeats": 20,
+      "reproduced": 20,
+      "codes": {
+        "data.pipelines": 20
+      },
+      "failures": 0
+    },
+    {
+      "slug": "lenaxia--k8s-mechanic",
+      "pass_id": "pasada-1",
+      "prompt_sha256": "c8e03f944137777a3e29ea6cfc2f1460a8e4ef04122524af0fa096b97f977bce",
+      "label": "infra.orchestration",
+      "repeats": 20,
+      "reproduced": 20,
+      "codes": {
+        "infra.orchestration": 20
+      },
+      "failures": 0
+    },
+    {
+      "slug": "outcaste-io--badger",
+      "pass_id": "pasada-1",
+      "prompt_sha256": "22c76b9f983477a444db1a8959434834451ac9d017bf9c7dda7e499d9eb08b0c",
+      "label": "data.pipelines",
+      "repeats": 20,
+      "reproduced": 20,
+      "codes": {
+        "data.pipelines": 20
+      },
+      "failures": 0
+    },
+    {
+      "slug": "pinterest--orion",
+      "pass_id": "pasada-1",
+      "prompt_sha256": "03bc73f761a3006f2e7b3a0c41da683c7ee3fd34c9bcb6b41748a843764aee2d",
+      "label": "data.pipelines",
+      "repeats": 20,
+      "reproduced": 20,
+      "codes": {
+        "data.pipelines": 20
+      },
+      "failures": 0
+    },
+    {
+      "slug": "recurso-dev--recurso",
+      "pass_id": "pasada-1",
+      "prompt_sha256": "a6125b5f425ef9bbd83fd1bcd297afe9a0012ff38611581abe4bbc8c3d2ae305",
+      "label": "business.payments",
+      "repeats": 20,
+      "reproduced": 20,
+      "codes": {
+        "business.payments": 20
+      },
+      "failures": 0
+    },
+    {
+      "slug": "rknightion--tailscale2otel",
+      "pass_id": "pasada-1",
+      "prompt_sha256": "c8208e676e64c8b5b7a0257e56e7c759f2eb9171f66709ed31e9d42c0d3b5c8a",
+      "label": "data.pipelines",
+      "repeats": 20,
+      "reproduced": 20,
+      "codes": {
+        "data.pipelines": 20
+      },
+      "failures": 0
+    },
+    {
+      "slug": "tether-ai-research--qvac-fabric-llm-finetune",
+      "pass_id": "pasada-1",
+      "prompt_sha256": "7cc5810d9245ff1d37bb2cebf863e18ec8a97c409093f4947c628d1007847e1b",
+      "label": "ai.serving",
+      "repeats": 20,
+      "reproduced": 20,
+      "codes": {
+        "ai.serving": 20
+      },
+      "failures": 0
+    }
+  ],
+  "reproduced": 260,
+  "total": 260,
+  "fraction": 1.0
+}

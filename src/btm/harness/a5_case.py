@@ -55,7 +55,7 @@ Código asignado a cada proyecto en cada una de las {p} pasadas.
 """
 
 
-def _table(passes: list[PassResult]) -> str:
+def pass_table(passes: list[PassResult]) -> str:
     slugs = sorted({p.slug for result in passes for p in result.projects})
     by_pass = [result.by_slug() for result in passes]
     rows = []
@@ -88,7 +88,7 @@ def build_case(
         BRIEF.format(n=len(projects), p=len(passes), code=CODE_LINE if with_code else ""),
         encoding="utf-8",
     )
-    (out / "pasadas.md").write_text(_table(passes), encoding="utf-8")
+    (out / "pasadas.md").write_text(pass_table(passes), encoding="utf-8")
 
     for result in passes:
         target = out / "runs" / result.pass_id
@@ -176,12 +176,22 @@ def audited(root: Path) -> list[Path]:
     ]
 
 
-def audit_package(root: Path) -> list[tuple[str, str]]:
-    """Qué fichero dice qué palabra que no debería decir."""
+def audit_package(
+    root: Path,
+    *,
+    narrative: tuple[str, ...] = NARRATIVE_FORBIDDEN,
+    code: tuple[str, ...] = CODE_FORBIDDEN,
+) -> list[tuple[str, str]]:
+    """Qué fichero dice qué palabra que no debería decir.
+
+    Las dos listas se pueden cambiar porque cada pieza tiene su propio
+    mecanismo y sus propias hipótesis rivales, y lo que una no puede nombrar no
+    es exactamente lo que no puede nombrar otra.
+    """
     offences: list[tuple[str, str]] = []
     for path in audited(root):
         relative = path.relative_to(root)
-        words = CODE_FORBIDDEN if relative.parts[0] == "code" else NARRATIVE_FORBIDDEN
+        words = code if relative.parts[0] == "code" else narrative
         body = path.read_text(encoding="utf-8").lower()
         offences += [(str(relative), word) for word in words if word in body]
     return offences

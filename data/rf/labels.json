@@ -1,0 +1,521 @@
+{
+  "model": "gpt-5-mini",
+  "generated_at": "2026-08-31",
+  "corpus": "data/scenario",
+  "context": "todos los documentos del repositorio, sin truncar",
+  "labels": [
+    {
+      "slug": "ACINQ--phoenix",
+      "documents": 6,
+      "characters": 1956,
+      "text_sha256": "086c4b0d3a76816926a04f79bfe90cdbf26dfbbdea47f6a7b5006e1ef3d8df50",
+      "code": "business.payments",
+      "confidence": 0.95,
+      "justification": "Phoenix es una cartera (wallet) de Bitcoin que usa Lightning para enviar y recibir pagos y es self-custodial. Su funcionalidad principal es la gestión y transferencia de fondos (pagos), por lo que corresponde al dominio de business.payments."
+    },
+    {
+      "slug": "AmadeusITGroup--otter",
+      "documents": 19,
+      "characters": 8314,
+      "text_sha256": "50a6032552cb24efdafa9052108eadfdd53b4bc3786db40aa247b0f5e35dcc95",
+      "code": "devtools.libraries",
+      "confidence": 0.9,
+      "justification": "Otter es un framework modular y una plataforma común para acelerar el desarrollo de aplicaciones web Angular, con múltiples paquetes, devkits, herramientas de build/test y APIs para ser consumidas por desarrolladores. Su naturaleza principal es la de librería/SDK y conjunto de utilidades para desarrollo, por lo que encaja en devtools.libraries."
+    },
+    {
+      "slug": "EsmaeilNarimissa--aws-sft-grpo-budget-llm-finetune",
+      "documents": 13,
+      "characters": 6871,
+      "text_sha256": "473bfba6c4b70cbff8249bd39314fee4b123c6da784ccfc4d1d70b70cbfe7ca7",
+      "code": "ai.training",
+      "confidence": 0.92,
+      "justification": "El repositorio implementa un pipeline modular para ajustar y alinear modelos de lenguaje (SFT seguido de GRPO), incluye scripts de entrenamiento (src/train sft.py, src/train grpo.py), funciones de recompensa, configuración para SageMaker/ECR y artefactos de Docker; el foco principal es el entrenamiento y afinado de LLMs, no despliegue/serving ni infra de red o pipelines ETL."
+    },
+    {
+      "slug": "NoahTheDuke--lazytest",
+      "documents": 38,
+      "characters": 23932,
+      "text_sha256": "10d88364ed3c2b115f5f30b6606cea872fbfcd12f2a16fea9cc630d7971873d7",
+      "code": "devtools.testing",
+      "confidence": 0.93,
+      "justification": "Lazytest es un framework de pruebas para Clojure: define macros para tests, runners, reporteros, hooks y opciones de CLI para ejecutar y organizar suites — claramente encaja en Testing y calidad (devtools.testing)."
+    },
+    {
+      "slug": "NousResearch--smc-inference-server",
+      "documents": 9,
+      "characters": 4192,
+      "text_sha256": "9891490568a92827deeb062131e1956871d78ccf5847299071811cac427d8628",
+      "code": "ai.serving",
+      "confidence": 0.95,
+      "justification": "El proyecto implementa un servidor de inferencia para modelos de lenguaje (SMC Inference Server) que envuelve llamppl/vLLM con una API, orquesta múltiples backends en GPUs y está diseñado para ejecutar y benchmarkear inferencias (p. ej. MMLU). Su funcionalidad principal es servir y gestionar inferencia de modelos, por tanto encaja en ai.serving."
+    },
+    {
+      "slug": "SpaceCell--minarrow",
+      "documents": 15,
+      "characters": 7433,
+      "text_sha256": "5dece478d0193188330584f834a85d182b5654ae08f7787766ed1abd105f9ae8",
+      "code": "data.pipelines",
+      "confidence": 0.92,
+      "justification": "Minarrow es una implementación de datos tabulares columnar (Apache Arrow) orientada a cargas de trabajo de ingeniería de datos: zero-copy FFI con Polars/Arrow, streaming cero-copia, chunked arrays, NdArray/XArray para puente a ML y optimizaciones SIMD para ETL/transformaciones de columnas. No es principalmente una plataforma de orquestación, red, ni un servicio de IA; su foco es procesamiento y movimiento eficiente de datos (pipelines/ETL)."
+    },
+    {
+      "slug": "Tnsor-Labs--brokoli",
+      "documents": 8,
+      "characters": 5327,
+      "text_sha256": "6b10979cd4a20dc6013175eb25f24b04838e04968e5a7e2dc794849059fcc888",
+      "code": "data.pipelines",
+      "confidence": 0.95,
+      "justification": "BroKoli es una plataforma para definir, ejecutar y monitorizar pipelines de datos (visual editor de DAGs, ejecución paralela, reanudación desde fallo, dependencias entre pipelines). Incluye conectores ETL, control de calidad de datos, perfilado, lineage y evidencia de ejecución, por lo que su dominio principal es Pipelines y ETL."
+    },
+    {
+      "slug": "UnknownPlatypus--djangofmt",
+      "documents": 11,
+      "characters": 5174,
+      "text_sha256": "beeae153f76e856dc7db7321def983dbe80f5bde616146367ed9753079d5b4f3",
+      "code": "devtools.testing",
+      "confidence": 0.92,
+      "justification": "djangofmt es una herramienta de desarrollo centrada en formato y calidad de código (formateador y reglas de lint, integración con pre-commit y editores). Encaja en la categoría de Testing y calidad dentro de devtools."
+    },
+    {
+      "slug": "adamluzsi--testcase",
+      "documents": 10,
+      "characters": 4671,
+      "text_sha256": "3f0dc27a8f743d46ed03f752e65edc343d21476aee68a7c08ffb170c78cc23cb",
+      "code": "devtools.testing",
+      "confidence": 0.92,
+      "justification": "testcase es una biblioteca/herramienta para TDD/BDD en Go que proporciona utilidades para estructurar tests (nested/table/flat), fixtures reproducibles, control de orden y paralelismo, y componentes reutilizables para convertir unit tests en E2E. Su propósito principal es soportar testing y calidad, por lo que encaja en devtools.testing."
+    },
+    {
+      "slug": "badger-cash--badger",
+      "documents": 9,
+      "characters": 4715,
+      "text_sha256": "65f04ee4a6e46bd548229c7d01626007e313a737100a4873042d5f1681bbf711",
+      "code": "business.payments",
+      "confidence": 0.92,
+      "justification": "Badger es una cartera e identidad no custodial para Bitcoin Cash que permite mantener BCH y tokens, realizar micropagos, propinas, e‑commerce y autenticar compras en dapps (Badger Button, CashID, funcionalidades de pago). Su función principal es facilitar pagos y transacciones en BCH, por lo que encaja en business.payments."
+    },
+    {
+      "slug": "blackwell-systems--mcp-assert",
+      "documents": 15,
+      "characters": 8148,
+      "text_sha256": "c05b9bb3b20cf8f6db6521ef3fbed59a0dc2851ec7624a7d7f300dd646daf416",
+      "code": "devtools.testing",
+      "confidence": 0.93,
+      "justification": "mcp-assert es una herramienta para probar y validar servidores MCP: linting de esquemas, ejecución de suites de aserciones YAML, fuzzing, auditoría, integración CI (JUnit, GitHub Action) y plugins para pytest/Vitest. Su propósito principal es asegurar la calidad y correctitud de comportamiento sobre el transporte real, por lo que encaja claramente en Testing y calidad (devtools.testing)."
+    },
+    {
+      "slug": "bolajiwahab--pgrubic",
+      "documents": 10,
+      "characters": 3120,
+      "text_sha256": "b3e4ab8f2bfc7223ae23e4740598191394dc500c345bd1bc5fa1dff46c4f4f5c",
+      "code": "devtools.testing",
+      "confidence": 0.9,
+      "justification": "pgrubic es un linter/formatador para migraciones y prácticas de diseño de PostgreSQL, orientado a detectar y corregir violaciones de calidad y estilo en esquemas y migraciones — encaja claramente como herramienta de testing y calidad para desarrolladores (linting/QA), más que en redes, almacenamiento o despliegue."
+    },
+    {
+      "slug": "caerbannogwhite--preludio",
+      "documents": 12,
+      "characters": 3350,
+      "text_sha256": "f8e7386cfd458ce7239517bcd756f7c6e40658e4454d1b5a99f959b21ec9b8a2",
+      "code": "data.pipelines",
+      "confidence": 0.95,
+      "justification": "Preludio es un lenguaje orientado a la transformación y manipulación de datos (lectura/escritura de CSV, derive de columnas, joins, filtros, select, sort). Estas capacidades encajan directamente con pipelines y tareas ETL, por lo que su dominio principal es data.pipelines."
+    },
+    {
+      "slug": "chalet-org--chalet",
+      "documents": 6,
+      "characters": 2800,
+      "text_sha256": "65bd54439602202b585575984b0a426e71ff044a96592092d0a12778a8539da1",
+      "code": "devtools.build",
+      "confidence": 0.95,
+      "justification": "Chalet es una herramienta de construcción y formato de proyecto para C/C++ (CLI que genera y orquesta builds con Ninja, Make, MSBuild, Xcode, etc.), por lo que encaja en Build y empaquetado."
+    },
+    {
+      "slug": "chingiztob--ferrobus",
+      "documents": 5,
+      "characters": 2182,
+      "text_sha256": "27245f4481f24af8e519a31587db828780d655bfd8219bfb6d51a64038054560",
+      "code": "business.geo",
+      "confidence": 0.95,
+      "justification": "Ferrobus es una biblioteca de enrutamiento multimodal y análisis espacial (isochrones, matrices de tiempos de viaje, rutas en transporte público y a pie) diseñada para flujos de trabajo geoespaciales y basada en datos de OpenStreetMap; encaja claramente en el dominio geoespacial."
+    },
+    {
+      "slug": "cistec-com--openEHR2FHIRquestionnaire",
+      "documents": 13,
+      "characters": 6170,
+      "text_sha256": "c76bd32ecf5da28b54119536834d1441034d30dddc83ae09ce70fda13eedeae2",
+      "code": "business.health",
+      "confidence": 0.95,
+      "justification": "El proyecto convierte plantillas openEHR a recursos FHIR Questionnaire y transforma QuestionnaireResponse a composiciones openEHR FLAT. Trabaja con estándares clínicos (openEHR, FHIR R4/R5), menciona EHRbase, composiciones y terminologías sanitarias, y su caso de uso principal es la gestión/transformación de datos clínicos — por tanto corresponde al dominio de Salud."
+    },
+    {
+      "slug": "cleaniquecoders--laravel-billing",
+      "documents": 18,
+      "characters": 10328,
+      "text_sha256": "24f35b38efe6e96cb61c31af9664f6b3217fcafcb50d09989b87b52667a8a6ee",
+      "code": "business.payments",
+      "confidence": 0.95,
+      "justification": "Laravel Billing es un motor de suscripciones, facturación e integración con pasarelas de pago (drivers, webhooks, manejo de cobros únicos/planificados, emisión de facturas/recibos). Sus responsabilidades centrales son cobro y facturación, por lo que encaja claramente en el dominio de pagos."
+    },
+    {
+      "slug": "colliery-io--cloacina",
+      "documents": 15,
+      "characters": 7404,
+      "text_sha256": "9b98cf5a59cd04cfafba3db2af0be7085503bd8434937d6b5bcda65ca93c9068",
+      "code": "infra.orchestration",
+      "confidence": 0.95,
+      "justification": "Cloacina es explícitamente un motor de orquestación de workflows/DAGs (embebible o como servicio), con primitives de ejecución, runners multi-tenant, empaquetado de flujos y API/CLI/UI para desplegar y operar workflows. Por tanto su dominio principal es Orquestación y despliegue."
+    },
+    {
+      "slug": "davidcoles--vc5",
+      "documents": 7,
+      "characters": 6955,
+      "text_sha256": "f9d47425d8d19cec793be41f08ebd7252d02d6abb65f8af50bc522c20d7ab624",
+      "code": "infra.networking",
+      "confidence": 0.92,
+      "justification": "VC5 es un balanceador de carga de red (L4) basado en XDP/eBPF con DSR, soporte IPv6, distribución L2/L3, BGP para anuncio de VIPs, gestión de VLANs/multi‑NIC y manipulación de paquetes; sus funcionalidades y objetivos son claramente de redes/infraestructura de networking (la observabilidad incluida es secundaria)."
+    },
+    {
+      "slug": "dawarich-app--atlas",
+      "documents": 7,
+      "characters": 4941,
+      "text_sha256": "f5047c77f254bda46802717f71d02dafa21ef1b21f901f287a2f8793e32bfbf0",
+      "code": "business.geo",
+      "confidence": 0.95,
+      "justification": "Dawarich Atlas es una pila para mapas self‑hosted basada en OpenStreetMap y componentes FOSS, con basemap offline, búsqueda (Nominatim/Photon), enrutamiento (Valhalla/OTP), POIs y planificación de tránsito: claramente orientado al dominio geoespacial."
+    },
+    {
+      "slug": "drt-hub--drt",
+      "documents": 23,
+      "characters": 13695,
+      "text_sha256": "893c89aea9e4d1470aaa2feb21aee33da9969e4eaf4f8a7fcf4a7e807b5c4f93",
+      "code": "data.pipelines",
+      "confidence": 0.95,
+      "justification": "drt es una herramienta de Reverse ETL / activación de datos: define y ejecuta syncs desde almacenes (sources) a destinos (destinations), incluye conectores, motor de sincronización, CLI/CI integration y sensores. Su función principal es mover y transformar datos entre sistemas (pipelines/ETL), complementando herramientas como dbt y dlt."
+    },
+    {
+      "slug": "ejaasaari--lorann",
+      "documents": 6,
+      "characters": 3550,
+      "text_sha256": "1eff77d9254def9cd126bfc05e9133d889d535986babe43f24bb99ec76b5ed26",
+      "code": "ai.serving",
+      "confidence": 0.92,
+      "justification": "LoRANN es una biblioteca de búsqueda de vecinos más cercanos para embeddings, optimizada para consultas extremadamente rápidas, bajo consumo de memoria y construcción rápida de índices — características orientadas a la fase de inferencia/servicio (recuperación de vectores en producción). Aunque incluye herramientas de indexación, su propósito principal es el servicio de consultas sobre embeddings, por ello encaja mejor en ai.serving."
+    },
+    {
+      "slug": "fabiospampinato--phoenix",
+      "documents": 18,
+      "characters": 4724,
+      "text_sha256": "571fe86565ab1f6c784cc51efcb02af81107b898d07b13c52385f0c99ba396a4",
+      "code": "devtools.libraries",
+      "confidence": 0.86,
+      "justification": "Phoenix es un gestor/automatizador de ventanas y conjunto de atajos para macOS (config y scripts para mejorar productividad/desarrollo). No encaja en infra, datos, IA ni dominios de negocio; en la taxonomía dada lo más apropiado es devtools.libraries como herramienta/librería de utilidad para desarrolladores."
+    },
+    {
+      "slug": "fhir4ds--fhir4ds",
+      "documents": 12,
+      "characters": 5091,
+      "text_sha256": "dda4c52f7b9a90b0032193c6266a41a7e2d47db5406ad090e9fdc87684a69a01",
+      "code": "business.health",
+      "confidence": 0.95,
+      "justification": "FHIR4DS ofrece herramientas y librerías para trabajar con datos FHIR (estándar sanitario), CQL, FHIRPath y medidas de calidad digital (DQM), orientadas a análisis clínico y cumplimiento; por tanto su dominio principal es Salud."
+    },
+    {
+      "slug": "gcol33--vectra",
+      "documents": 11,
+      "characters": 5530,
+      "text_sha256": "aa7d7dc5c490bc21265d76f1ae95e8834500963aeb6f0c29a8a144be8338333f",
+      "code": "data.pipelines",
+      "confidence": 0.92,
+      "justification": "Vectra es ante todo un motor de consultas y procesamiento de datos diseñado para ejecutar pipelines dplyr-style sobre datos mayores que la memoria; sus características centrales (streaming por row groups, predicate pushdown, column pruning, joins, offloading, collectors por chunk y herramientas para ejecutar funciones por grupo) encajan con ETL y procesamiento de datos en flujo más que con puro almacenamiento o infra de red/orquestación."
+    },
+    {
+      "slug": "getsentry--relay",
+      "documents": 15,
+      "characters": 7744,
+      "text_sha256": "9d367b1dd06240482e030a73d3d9b2ac19d306a4853129cebe39c7910e443ade",
+      "code": "infra.observability",
+      "confidence": 0.95,
+      "justification": "Relay es el servicio de Sentry para el reenvío e ingesta de eventos, normalización, filtrado y enrutamiento (p. ej. a Kafka o al upstream). Sus funcionalidades (procesamiento de eventos, rate limiting, crash-handler, integración con SDKs y Sentry) encajan claramente en el dominio de observabilidad e instrumentación operativa."
+    },
+    {
+      "slug": "graygnuorg--pound",
+      "documents": 24,
+      "characters": 16970,
+      "text_sha256": "82a5220b7983d0595cc5c5744088b1f430e4aa9fc4d392998cd12e69cd12964c",
+      "code": "infra.networking",
+      "confidence": 0.96,
+      "justification": "Pound es un reverse proxy y balanceador de carga/HTTPS front-end que enruta peticiones a servidores backend, gestiona sockets, sesiones y backends dinámicos via DNS. Sus funcionalidades (proxy HTTP/HTTPS, balanceo, redirección, gestión de backends y cabeceras de reenvío) son propias de infraestructura de redes y enrutamiento, por lo que encaja en infra.networking."
+    },
+    {
+      "slug": "htinaunglinlat-dev--hospital-management-system",
+      "documents": 7,
+      "characters": 1420,
+      "text_sha256": "d3aac661c4899fe24c2743fa1155755872994aefd199142552565d81beef5197",
+      "code": "business.health",
+      "confidence": 0.93,
+      "justification": "El proyecto describe un sistema de gestión de colas para departamentos ambulatorios (OPD) en hospitales de Myanmar: pacientes, médicos, enfermeras, tokens, notificaciones y sesiones clínicas. Su propósito principal es mejorar procesos y experiencia en el ámbito sanitario, por lo que encaja claramente en el dominio de Salud (business.health), no en infraestructuras, datos, IA o herramientas de desarrollo."
+    },
+    {
+      "slug": "iimez--inference-server",
+      "documents": 14,
+      "characters": 6838,
+      "text_sha256": "d82265c01d334c0e523add379ae0be4fbfec0abcddab5bae8565cb1ee582f561",
+      "code": "ai.serving",
+      "confidence": 0.95,
+      "justification": "El proyecto es una librería/servidor para ejecutar inferencia local de modelos (model pool, cola de inferencia, adaptadores a node-llama-cpp, gpt4all, transformers.js, stable-diffusion, API HTTP compatible con OpenAI). No es entrenamiento ni infraestructura de datos, sino una solución para servir modelos e inferencias (microservicio/embebido)."
+    },
+    {
+      "slug": "ishiland--nyc-open-routing",
+      "documents": 13,
+      "characters": 6348,
+      "text_sha256": "c121d486ff6ab3583c8b30aba088244439337a5c67ee1b22d590e9605256dd1c",
+      "code": "business.geo",
+      "confidence": 0.95,
+      "justification": "El proyecto es claramente una herramienta geoespacial: enrutamiento multimodal, análisis de isócronas, red vial LION, geocodificación (Geosupport), visualización en mapa y datos de tráfico. Estas funcionalidades encajan directamente en el dominio de Geoespacial en la taxonomía."
+    },
+    {
+      "slug": "jasonrichardsmith--sentry",
+      "documents": 8,
+      "characters": 2469,
+      "text_sha256": "efcfe2b3dd0b220868a242bc6df3a1b9978ad6ff29b2852d36d80aabacbae0ee",
+      "code": "infra.orchestration",
+      "confidence": 0.92,
+      "justification": "Sentry es un Validating Admission Controller para Kubernetes que aplica políticas y restricciones a objetos del clúster (pods, namespaces, imágenes, límites) y se despliega/gestiona mediante manifests y minikube, por lo que pertenece al dominio de orquestación y despliegue."
+    },
+    {
+      "slug": "karam-ajaj--atlas",
+      "documents": 16,
+      "characters": 7168,
+      "text_sha256": "65a38c4238667140e911ba626e1af9a76fb4cea9fe48b22311800fdd665f5d2e",
+      "code": "infra.networking",
+      "confidence": 0.92,
+      "justification": "Atlas es una herramienta para descubrimiento, análisis y visualización de infraestructura de red: escanea subredes y hosts vecinos, inspecciona contenedores Docker (IPs, MACs, puertos, interfaces), realiza escaneos profundos y presenta mapas/visualizaciones de la red en tiempo real. Aunque incluye paneles/monitorización, su función principal es gestión y visualización de redes, por lo que encaja en infra.networking."
+    },
+    {
+      "slug": "karbowiak--notdawa",
+      "documents": 5,
+      "characters": 1746,
+      "text_sha256": "b3e494430e17b61f1ce9352b4e7ef5f972917e2d8eca5d7d9dd8ac2a97906c2f",
+      "code": "business.geo",
+      "confidence": 0.92,
+      "justification": "notdawa es un mirror local de registros geoespaciales daneses (DAR, DAGI, MAT, DS) que sirve una API de direcciones compatible con DAWA y utiliza PostgreSQL + PostGIS para datos espaciales. Su funcionalidad principal es gestión y servicio de datos geográficos/addresses, por tanto encaja en Geoespacial."
+    },
+    {
+      "slug": "kyleloving--graphways",
+      "documents": 8,
+      "characters": 4546,
+      "text_sha256": "005ee56774f5f443e835afb51e233ffa832ee0164ae955945b7f8ccb0c6a8a05",
+      "code": "business.geo",
+      "confidence": 0.95,
+      "justification": "Graphways es una librería para análisis geoespacial y de redes viales (construcción de grafos a partir de OpenStreetMap, enrutamiento punto a punto, reachability, isocronas y exportación GeoJSON). Su funcionalidad principal corresponde al dominio geoespacial."
+    },
+    {
+      "slug": "lance0--rustbgpd",
+      "documents": 24,
+      "characters": 21259,
+      "text_sha256": "8fba5281eae9dacce8686e0f4ce025f372f54dcd79e065139ecf8aa1183fb3ed",
+      "code": "infra.networking",
+      "confidence": 0.98,
+      "justification": "rustbgpd es un demonio BGP escrito en Rust orientado a control plane y servidores de rutas (IXP route servers, route reflectors, controladores BGP programables, colectores/BMP/MRT, EVPN, FIB, etc.). Su funcionalidad principal (gestión dinámica de peers, políticas BGP, explainability del RIB, gRPC para control) y sus casos de uso son claramente de redes e infraestructura de enrutamiento, por lo que encaja en el dominio infra.networking."
+    },
+    {
+      "slug": "lenaxia--k8s-mechanic",
+      "documents": 29,
+      "characters": 19559,
+      "text_sha256": "3b72578c8ed643e7d2978060c046f4b027c0a699f95ddd4356f93e06a76bf09a",
+      "code": "infra.orchestration",
+      "confidence": 0.95,
+      "justification": "k8s-mechanic es un controlador/operador de Kubernetes que detecta fallos, ejecuta agentes in-cluster, localiza manifiestos en un repositorio GitOps y abre PRs con correcciones: su propósito principal es automatizar la remediación y el flujo de despliegue (GitOps), por lo que corresponde al dominio de orquestación y despliegue."
+    },
+    {
+      "slug": "openmcp-project--metrics-operator",
+      "documents": 9,
+      "characters": 3227,
+      "text_sha256": "81f6d6d591880f2844cd9f01daf77753953e45f86def8f3ee4f5a300a076acf7",
+      "code": "infra.observability",
+      "confidence": 0.97,
+      "justification": "Metrics Operator es un operador de Kubernetes diseñado para recopilar y exportar métricas (cuentas, atributos y dimensiones de recursos) vía OpenTelemetry/OTLP y Prometheus ServiceMonitor hacia sinks como Dynatrace. Sus funciones principales son generación, enriquecimiento y exportación de métricas para monitorización y análisis, lo que lo encuadra claramente en el dominio de observabilidad."
+    },
+    {
+      "slug": "orion-rs--orion",
+      "documents": 12,
+      "characters": 5027,
+      "text_sha256": "af31af1fed1f6ac460449191538d66841b456f4c0a867bf030327d76ea93c019",
+      "code": "devtools.libraries",
+      "confidence": 0.92,
+      "justification": "Orion es una biblioteca de criptografía escrita en Rust que ofrece APIs, primitivas y utilidades para desarrolladores (firmas, KEM, AEAD, KDF, ECDH, etc.). Encaja claramente como una librería/SDK para uso en desarrollo, por lo que devtools.libraries es el dominio principal adecuado."
+    },
+    {
+      "slug": "osodevops--k2i",
+      "documents": 18,
+      "characters": 10896,
+      "text_sha256": "cf6fbe075ce878b2c587b8f75cf4814aa7e2a17f69d1e4ac39c134383cae6400",
+      "code": "data.pipelines",
+      "confidence": 0.92,
+      "justification": "K2I es una herramienta de ingestión Kafka→Iceberg: consume topics de Kafka, decodifica Protobuf, mantiene estado caliente y escribe Parquet/commits en tablas Iceberg. Su objetivo principal es mover eventos finales a tablas analíticas (ETL/pipeline de ingestión), no es una librería de inferencia/entrenamiento ni una herramienta de red/orquestación."
+    },
+    {
+      "slug": "outcaste-io--badger",
+      "documents": 15,
+      "characters": 9697,
+      "text_sha256": "5803fb53b82475c362c871567d0d369db5bd803d69352a372c2bb5e251a697fc",
+      "code": "data.storage",
+      "confidence": 0.95,
+      "justification": "Badger es un motor embebible de base de datos key-value persistente y de alto rendimiento escrito en Go, diseñado para almacenar y servir datos a gran escala (ACID, transacciones, optimizado para SSDs). Su función principal es el almacenamiento de datos local, por lo que encaja claramente en data.storage."
+    },
+    {
+      "slug": "pdb-operator--pdb-operator",
+      "documents": 25,
+      "characters": 10815,
+      "text_sha256": "3b7aa575d5182a459d602a3df0d1c2f8dd555e7c373e6ce56b6c43a8ea528d7d",
+      "code": "infra.orchestration",
+      "confidence": 0.95,
+      "justification": "PDB Operator es un Kubernetes Operator que automatiza la creación, actualización y reconciliación de PodDisruptionBudgets para Deployments, StatefulSets y otros workloads, incluye controladores, CRD/selector-based policy, modos de aplicación y un chart Helm — claramente enfocado en la orquestación y disponibilidad de despliegue. Las capacidades de métricas/tracing son complementarias y no convierten al proyecto en observabilidad."
+    },
+    {
+      "slug": "pinterest--orion",
+      "documents": 8,
+      "characters": 4659,
+      "text_sha256": "5d7072862d6dbdb9a0d6ee7dc57cf0a0844b2764bd7350d403218aa66942da07",
+      "code": "infra.orchestration",
+      "confidence": 0.95,
+      "justification": "Orion es una plataforma de gestión y automatización para sistemas distribuidos stateful: unifica control de múltiples clusters, automatiza remediaciones (reemplazo de nodos, rolling restarts/upgrades), ejecuta flujos de trabajo y evita conflictos entre operaciones humanas y automáticas. Estas funciones encajan claramente en orquestación y despliegue más que en observabilidad o almacenamiento."
+    },
+    {
+      "slug": "puppetlabs--relay",
+      "documents": 6,
+      "characters": 3613,
+      "text_sha256": "b8b321ee35e649f45b8eabfb1635c4df9d0c98987963492834b39b12ce0712b1",
+      "code": "infra.orchestration",
+      "confidence": 0.95,
+      "justification": "Relay proporciona flujos de trabajo event-driven para automatizar tareas de DevOps (despliegues, triggers basados en eventos como issues/JIRA, gestión de workflows, integración con clústeres/instaladores y CRDs). Su enfoque principal es orquestación y despliegue de infraestructura, por lo que encaja en infra.orchestration."
+    },
+    {
+      "slug": "rackerlabs--otter",
+      "documents": 6,
+      "characters": 4216,
+      "text_sha256": "c1a181b794f43a29efd79d4f981d430b50684cb826a2f9463e622b582ea20e0d",
+      "code": "infra.orchestration",
+      "confidence": 0.91,
+      "justification": "Otter es un sistema de Auto Scale (gestión y automatización del escalado de infraestructura/servicios). El repositorio describe despliegue local con docker-compose, bundling para Jenkins/Chef y herramientas de puesta en marcha y pruebas — características propias de orquestación y despliegue."
+    },
+    {
+      "slug": "recurso-dev--recurso",
+      "documents": 16,
+      "characters": 12120,
+      "text_sha256": "26a16077e777f28b36df211c58954c9d25f98e69b51be0ab57562bdf91909fa0",
+      "code": "business.payments",
+      "confidence": 0.95,
+      "justification": "Recurso es un motor de facturación para SaaS (suscripciones, facturación, pasarelas, dunning, conciliación, impuestos y rutas de pago multi-moneda). Su dominio principal es claramente pagos/finanzas para negocios, por lo que encaja en business.payments."
+    },
+    {
+      "slug": "rknightion--tailscale2otel",
+      "documents": 14,
+      "characters": 12244,
+      "text_sha256": "d2a5fe31cd7913f979a55f53e2feb81839251820c130b79d6b69f236997be06a",
+      "code": "infra.observability",
+      "confidence": 0.97,
+      "justification": "tailscale2otel es un exportador de métricas, logs y trazas (OTLP y Prometheus) con coleccionadores, dashboards y reglas de alerta, orientado a convertir la telemetría de Tailscale en señales observables y enviarlas a backends como Grafana Cloud. Su funcionalidad principal es claramente Observabilidad (recolección, transformación y exportación de telemetría)."
+    },
+    {
+      "slug": "rust-codegen-group--openapi-nexus",
+      "documents": 7,
+      "characters": 2484,
+      "text_sha256": "0397e6e3f463619cd37b7547aaf7fc08aa37f8099ae58672c4ceb9621c4a7784",
+      "code": "devtools.libraries",
+      "confidence": 0.95,
+      "justification": "OpenAPI Nexus es un generador multi-idioma de clientes/SDK a partir de especificaciones OpenAPI (producción de bibliotecas type-safe, pruebas y CI). Su función principal es crear librerías/SDK para desarrolladores, por lo que encaja en devtools.libraries y no en infra, data, AI ni dominios de negocio."
+    },
+    {
+      "slug": "samueleaton--sentry",
+      "documents": 13,
+      "characters": 2734,
+      "text_sha256": "f762f64cd022f797e6414c167ef5ec669776e75bef1ff9b55db095d54d3ac88e",
+      "code": "devtools.build",
+      "confidence": 0.92,
+      "justification": "Sentry es una herramienta para desarrollo que compila y ejecuta aplicaciones Crystal y vigila archivos para reconstruir/reiniciar automáticamente al detectar cambios. Su función principal es facilitar el ciclo de build/run durante el desarrollo, por lo que encaja en 'Build y empaquetado' (devtools.build) en lugar de observabilidad, orquestación o almacenamiento."
+    },
+    {
+      "slug": "sealambda--quints",
+      "documents": 8,
+      "characters": 4942,
+      "text_sha256": "bcfb8f290eb5efe67a6942b99bdc93c81ce88362a0581ec7477c74adb7c8ea33",
+      "code": "business.payments",
+      "confidence": 0.92,
+      "justification": "quints is primarily an accounting and invoicing tool for Swiss micro‑companies: VAT reporting, QR‑bill invoicing, bank/Stripe/Wise importers and reconciliation — all payment and bookkeeping related functionality. It is not primarily an infra, data, or AI training/serving project (the AI agent integration is a tooling aid, not the main domain)."
+    },
+    {
+      "slug": "sile--efmt",
+      "documents": 10,
+      "characters": 3744,
+      "text_sha256": "a84ac9630e1342b314a1393f9c929b57301ebd3acaf455e45f14625bce581a72",
+      "code": "devtools.testing",
+      "confidence": 0.82,
+      "justification": "efmt es una herramienta de formateo de código Erlang destinada a mantener consistencia y calidad del código (editor integrations, CI/CLI usage). Esto la encuadra claramente como una herramienta de calidad y testing de desarrollo más que en redes, datos, IA o despliegue."
+    },
+    {
+      "slug": "stackabletech--listener-operator",
+      "documents": 10,
+      "characters": 4256,
+      "text_sha256": "6afdf623d2567abd68f3815c233afd58beae52294a186d38688a9c35453f7529",
+      "code": "infra.networking",
+      "confidence": 0.9,
+      "justification": "Es un operador de Kubernetes cuya funcionalidad principal es exponer Pods al exterior mediante listeners, load balancers y NodePorts, es decir, resolver aspectos de conectividad y acceso en el clúster. Aunque está integrado en la plataforma de orquestación, su dominio primario es redes (exposición y enrutamiento de tráfico)."
+    },
+    {
+      "slug": "starkross--augur",
+      "documents": 9,
+      "characters": 4058,
+      "text_sha256": "65e08b7c9805aec858a1e6b3e8eee6b45fb78ab76ff6297c629d9e8bdc1de64b",
+      "code": "infra.observability",
+      "confidence": 0.98,
+      "justification": "Augur es un linter/analizador estático para configuraciones del OpenTelemetry Collector (pipelines, receivers, processors, exporters) y está diseñado para detectar problemas de observabilidad (pérdida de datos, seguridad, rendimiento). Por tanto su dominio principal es Observabilidad (infra.observability)."
+    },
+    {
+      "slug": "telekom--wurzel",
+      "documents": 6,
+      "characters": 2206,
+      "text_sha256": "05021b41fab8de0f2da81cfd3fe36f7b6cd817a5cae9d108adb9d806d5c9c8ed",
+      "code": "data.pipelines",
+      "confidence": 0.93,
+      "justification": "El proyecto se define explícitamente como una librería Python para cubrir necesidades avanzadas de Extract, Transform, Load (ETL) en sistemas de Retrieval-Augmented Generation (RAG). Las descripciones mencionan pipelines ETL, programación de trabajos, integraciones con motores de RAG (Qdrant, Milvus, Hugging Face) y características para orquestar procesos de ingestión y transformación — todo alineado con el dominio de Pipelines y ETL."
+    },
+    {
+      "slug": "tenstorrent--tt-inference-server",
+      "documents": 6,
+      "characters": 2629,
+      "text_sha256": "794de45d1577539201889627e0cfad955f2bd4ffec6a376bdae537d470733c92",
+      "code": "ai.serving",
+      "confidence": 0.95,
+      "justification": "tt-inference-server está diseñado explícitamente para desplegar y probar modelos para serving/inferencia en hardware Tenstorrent (incluye guías de despliegue, automatización de workflows para servidores de inferencia, benchmark y evaluación de modelos), por lo que su dominio principal es Inferencia."
+    },
+    {
+      "slug": "tether-ai-research--qvac-fabric-llm-finetune",
+      "documents": 27,
+      "characters": 8081,
+      "text_sha256": "3afa0d3736164ee8a9cb23fb978d2b0ec6a509632d6d224ed166326d1399952e",
+      "code": "ai.training",
+      "confidence": 0.95,
+      "justification": "Es un framework para fine‑tuning de LLMs (LoRA y entrenamiento completo) con binarios de entrenamiento, datasets, checkpointing, programación de tasa de aprendizaje y benchmarks; el foco principal es la etapa de entrenamiento en GPUs heterogéneas y dispositivos móviles."
+    },
+    {
+      "slug": "xavient--Data-Ingestion-Platform",
+      "documents": 9,
+      "characters": 3250,
+      "text_sha256": "754662dc89f6488da5473840cc61fba2f22cd2bf42d704a233eaf1b16fdf2d28",
+      "code": "data.pipelines",
+      "confidence": 0.95,
+      "justification": "La plataforma está diseñada para ingesta y procesamiento de datos en tiempo real (streaming) y batch, integrando motores como Apache Apex, Flink, Spark y Storm, usando Kafka como fuente y HDFS/HBase/Hive como destinos, lo que corresponde claramente a pipelines/ETL y orquestación de flujo de datos."
+    },
+    {
+      "slug": "zappzerapp--laravel-ingest",
+      "documents": 11,
+      "characters": 4812,
+      "text_sha256": "b07574b3828d53edb6564ef8c8c7175990bf3bf30aa202513ff3c21d23ceeb8e",
+      "code": "data.pipelines",
+      "confidence": 0.92,
+      "justification": "Laravel Ingest es explícitamente un framework ETL para Laravel: configuración declarativa de importaciones, streaming/chunking/queueing para procesar archivos grandes, validación, transformaciones, relaciones, manejo de errores y capacidades de orquestación de runs (CLI/API). Todas estas características encajan con pipelines y ETL, por lo que el dominio principal es data.pipelines."
+    }
+  ]
+}

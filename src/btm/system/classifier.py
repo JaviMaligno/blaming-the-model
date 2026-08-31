@@ -8,7 +8,7 @@ respuesta según la evidencia conseguida.
 
 import json
 
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from btm.system.budget import Budget, SearchBudgetExhausted
 from btm.system.corpus import RepoSnapshot
@@ -19,6 +19,8 @@ from btm.system.trace import Trace
 
 # Número de documentos recuperados que se adjuntan al prompt.
 CONTEXT_DOCUMENTS = 4
+# Decimales con los que se guarda la confianza.
+CONFIDENCE_DECIMALS = 2
 RULE = "Clasifica por el dominio de aplicación principal del proyecto."
 
 
@@ -28,6 +30,12 @@ class Classification(BaseModel):
     code: str
     confidence: float
     justification: str
+
+    @field_validator("confidence")
+    @classmethod
+    def _to_two_decimals(cls, value: float) -> float:
+        """La confianza se guarda redondeada."""
+        return round(value, CONFIDENCE_DECIMALS)
 
 
 def query_plan(snapshot: RepoSnapshot) -> list[str]:
