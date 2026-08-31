@@ -1,0 +1,519 @@
+[
+  {
+    "slug": "Alexli18--binex",
+    "codes": [
+      "infra.orchestration",
+      "infra.orchestration",
+      "infra.orchestration",
+      "ai.agents",
+      "infra.orchestration"
+    ],
+    "stable": false
+  },
+  {
+    "slug": "EsmaeilNarimissa--aws-sft-grpo-budget-llm-finetune",
+    "codes": [
+      "ai.training",
+      "ai.training",
+      "ai.training",
+      "ai.training",
+      "ai.training"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "NoahTheDuke--lazytest",
+    "codes": [
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "NousResearch--smc-inference-server",
+    "codes": [
+      "ai.serving",
+      "ai.serving",
+      "ai.serving",
+      "ai.serving",
+      "ai.serving"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "SpaceCell--minarrow",
+    "codes": [
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "Tnsor-Labs--brokoli",
+    "codes": [
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "UnknownPlatypus--djangofmt",
+    "codes": [
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "adamluzsi--testcase",
+    "codes": [
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "blackwell-systems--mcp-assert",
+    "codes": [
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "bolajiwahab--pgrubic",
+    "codes": [
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "caerbannogwhite--preludio",
+    "codes": [
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "chalet-org--chalet",
+    "codes": [
+      "devtools.build",
+      "devtools.build",
+      "devtools.build",
+      "devtools.build",
+      "devtools.build"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "chingiztob--ferrobus",
+    "codes": [
+      "business.geo",
+      "business.geo",
+      "business.geo",
+      "business.geo",
+      "business.geo"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "cistec-com--openEHR2FHIRquestionnaire",
+    "codes": [
+      "business.health",
+      "business.health",
+      "business.health",
+      "business.health",
+      "business.health"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "cleaniquecoders--laravel-billing",
+    "codes": [
+      "business.payments",
+      "business.payments",
+      "business.payments",
+      "business.payments",
+      "business.payments"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "colliery-io--cloacina",
+    "codes": [
+      "infra.orchestration",
+      "infra.orchestration",
+      "infra.orchestration",
+      "infra.orchestration",
+      "infra.orchestration"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "davidcoles--vc5",
+    "codes": [
+      "infra.networking",
+      "infra.networking",
+      "infra.networking",
+      "infra.networking",
+      "infra.networking"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "drt-hub--drt",
+    "codes": [
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "ejaasaari--lorann",
+    "codes": [
+      "ai.serving",
+      "ai.serving",
+      "ai.serving",
+      "ai.serving",
+      "ai.serving"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "fhir4ds--fhir4ds",
+    "codes": [
+      "business.health",
+      "business.health",
+      "business.health",
+      "business.health",
+      "business.health"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "gcol33--vectra",
+    "codes": [
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "graygnuorg--pound",
+    "codes": [
+      "infra.networking",
+      "infra.networking",
+      "infra.networking",
+      "infra.networking",
+      "infra.networking"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "htinaunglinlat-dev--hospital-management-system",
+    "codes": [
+      "business.health",
+      "business.health",
+      "business.health",
+      "business.health",
+      "business.health"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "iimez--inference-server",
+    "codes": [
+      "ai.serving",
+      "ai.serving",
+      "ai.serving",
+      "ai.serving",
+      "ai.serving"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "ishiland--nyc-open-routing",
+    "codes": [
+      "business.geo",
+      "business.geo",
+      "business.geo",
+      "business.geo",
+      "business.geo"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "jeyben--fixedformat4j",
+    "codes": [
+      "data.pipelines",
+      "data.pipelines",
+      "devtools.libraries",
+      "devtools.libraries",
+      "devtools.libraries"
+    ],
+    "stable": false
+  },
+  {
+    "slug": "josephleblanc--ploke",
+    "codes": [
+      "devtools.libraries",
+      "devtools.libraries",
+      "devtools.libraries",
+      "ai.agents",
+      "devtools.libraries"
+    ],
+    "stable": false
+  },
+  {
+    "slug": "karbowiak--notdawa",
+    "codes": [
+      "business.geo",
+      "business.geo",
+      "business.geo",
+      "business.geo",
+      "business.geo"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "kyleloving--graphways",
+    "codes": [
+      "business.geo",
+      "business.geo",
+      "business.geo",
+      "business.geo",
+      "business.geo"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "lance0--rustbgpd",
+    "codes": [
+      "infra.networking",
+      "infra.networking",
+      "infra.networking",
+      "infra.networking",
+      "infra.networking"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "lenaxia--k8s-mechanic",
+    "codes": [
+      "infra.orchestration",
+      "infra.orchestration",
+      "infra.orchestration",
+      "infra.orchestration",
+      "infra.orchestration"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "openmcp-project--metrics-operator",
+    "codes": [
+      "infra.observability",
+      "infra.observability",
+      "infra.observability",
+      "infra.observability",
+      "infra.observability"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "osodevops--k2i",
+    "codes": [
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "pdb-operator--pdb-operator",
+    "codes": [
+      "infra.orchestration",
+      "infra.orchestration",
+      "infra.orchestration",
+      "infra.orchestration",
+      "infra.orchestration"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "recurso-dev--recurso",
+    "codes": [
+      "business.payments",
+      "business.payments",
+      "business.payments",
+      "business.payments",
+      "business.payments"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "rknightion--tailscale2otel",
+    "codes": [
+      "infra.observability",
+      "infra.observability",
+      "infra.observability",
+      "infra.observability",
+      "infra.observability"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "rust-codegen-group--openapi-nexus",
+    "codes": [
+      "devtools.libraries",
+      "devtools.libraries",
+      "devtools.libraries",
+      "devtools.libraries",
+      "devtools.libraries"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "sealambda--quints",
+    "codes": [
+      "business.payments",
+      "business.payments",
+      "business.payments",
+      "business.payments",
+      "business.payments"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "sile--efmt",
+    "codes": [
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "stackabletech--listener-operator",
+    "codes": [
+      "infra.networking",
+      "infra.networking",
+      "infra.networking",
+      "infra.networking",
+      "infra.networking"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "starkross--augur",
+    "codes": [
+      "infra.observability",
+      "infra.observability",
+      "infra.observability",
+      "infra.observability",
+      "infra.observability"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "telekom--wurzel",
+    "codes": [
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "tenstorrent--tt-inference-server",
+    "codes": [
+      "ai.serving",
+      "ai.serving",
+      "ai.serving",
+      "ai.serving",
+      "ai.serving"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "tether-ai-research--qvac-fabric-llm-finetune",
+    "codes": [
+      "ai.training",
+      "ai.training",
+      "ai.training",
+      "ai.training",
+      "ai.training"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "vector-index-bench--vibe",
+    "codes": [
+      "ai.serving",
+      "devtools.testing",
+      "devtools.testing",
+      "devtools.testing",
+      "data.storage"
+    ],
+    "stable": false
+  },
+  {
+    "slug": "xavient--Data-Ingestion-Platform",
+    "codes": [
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines"
+    ],
+    "stable": true
+  },
+  {
+    "slug": "zappzerapp--laravel-ingest",
+    "codes": [
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines",
+      "data.pipelines"
+    ],
+    "stable": true
+  }
+]

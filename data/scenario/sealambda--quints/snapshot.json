@@ -1,0 +1,58 @@
+{
+  "slug": "sealambda--quints",
+  "name": "quints",
+  "description": "Swiss VAT (MWST), QR-bill invoicing, and KMU statements for plain-text accounting on beancount — a deterministic CLI you can drive with an AI coding agent.",
+  "documents": [
+    {
+      "url": "https://github.com/quints#0",
+      "title": "Introducción",
+      "text": "quints Plain-text accounting for Swiss micro-companies, on top of beancount and Fava. Swiss VAT (MWST) returns, Bezugsteuer, QR-bill invoicing, statutory KMU statements, and official BAZG FX rates — the things a Swiss micro-company (GmbH, AG, or Einzelfirma) actually has to do, on a ledger you own as text. There's no incumbent for this niche, and quints is built to be driven by an AI coding agent (Claude Code, Codex, …): it's a deterministic CLI with machine-readable output, so the agent proposes bookings and quints checks and reports on them — it never calls a model itself. Docs: sealambda.github.io/quints — every command shown there is executed by the test suite.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/quints#1",
+      "title": "Install",
+      "text": "Needs Python 3.10+ (uv installs it for you if missing). Typst — for the PDFs — and everything else come bundled; nothing more to install.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/quints#2",
+      "title": "Quick start",
+      "text": "Scaffold a project with a sample quarter already booked, and run against it: quints init writes a runnable project: a Swiss KMU chart of accounts in accounts.bean (every account mapped to its Kontenrahmen code), transactions in books/ .bean (one file per fiscal year), a quints.toml , a pyproject.toml (after uv sync , the plain beancount toolchain — bean-check main.bean , fava main.bean — works too), and an AGENTS.md (plus a CLAUDE.md that auto-loads it in Claude Code) that tells a coding agent how to extend the books and validate them with quints check . The project starts as a git repository with the pristine scaffold committed, so every change is a reviewable diff. Drop --samples for empty books. It asks for your legal form — gmbh , ag , or einzelfirma (sole proprietorship / freelancer) — and scaffolds the matching equity block from the official KMU Kontenrahmen: share capital for a GmbH/AG; owner's equity, capital contributions, and the Privat account for an Einzelunternehmen. The account namespace follows ( :CH:GmbH: , :CH:AG: , :CH:Einzelfirma: ). Everything entity-specific (name, VAT registration, account names, importer rules) is configuration; VAT rates are law and ship dat",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/quints#3",
+      "title": "Draft bank / PSP statements into a review area",
+      "text": "Wise and Stripe importers exist too ( import wise / import stripe , with --fetch to pull from their APIs). Drafts land in staging/ flagged for the VAT decision + a linked document; nothing reaches your books until you review it.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/quints#4",
+      "title": "Send a Swiss QR-bill invoice",
+      "text": "Renders a QR-bill PDF (domestic or export / reverse-charge) and reconciles the total against the matching booking in your ledger, so an invoice can't silently diverge from your books. The PDF is filed under documents/ in the income account's folder, date-prefixed — where beancount and Fava expect documents. Ready-to-run samples: the repo's packages/quints/examples/ ships a working invoicing/ and statements/ set. Clone the repo, cd in, and try quints invoice invoicing/acme-2026-07.yaml and quints import ubs statements/ubs-2026.mt940 .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/quints#5",
+      "title": "The building blocks",
+      "text": "quints is assembled from standalone distributions, each useful on its own in any beancount setup. They all live in this repo and are all published to PyPI — installing quints pulls them in. Package What it does --- --- quints Swiss VAT (MWST) reports & settlement, Bezugsteuer helpers, QR-bill invoicing, KMU statutory statements (OR Art. 959a/959b), statement importing into a review staging area, Fava extension beangulp-mt940 beangulp importer for SWIFT MT940 bank statements (UBS et al.) beangulp-wise beangulp importer for Wise balance statements, with an SCA-capable API client beangulp-stripe beangulp importer for Stripe balance transactions, with a thin API client beanprice-bazg beanprice source for official Swiss BAZG/EZV daily FX rates",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/quints#6",
+      "title": "Development",
+      "text": "make check is the whole quality gate; CI runs exactly it. Pushing a vX.Y.Z tag builds and publishes all five distributions to PyPI (trusted publishing). See CONTRIBUTING.md for the architecture and conventions.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/quints/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to quints Thanks for helping out. This is a uv workspace: the five distributions live under packages/ , and quints itself is composed from the standalone beangulp- / beanprice- building blocks. Setup The quality gate One command runs everything — CI and the local pre-finish hook both run exactly it, so keep it green: Useful subsets: What each tool guards: - ruff — formatting and lint. - basedpyright (strict) — types. A committed baseline ( .basedpyright/baseline.json ) pins pre-existing errors; new and edited code must type-check clean . Annotate every new function signature. Don't run make typebaseline to bury new errors — only to re-pin after fixing baselined ones. - import-linter — the architecture (see below). - deptry — each package declares its own dependencies in its own pyproject.toml ; undeclared or unused ones fail. - vulture — dead code. - pytest — the suite runs in ~2s. Keep it that way: no network, no sleeps. Fixtures and the example project stand in for live services. Architecture quints is layered, declared in the root pyproject.toml and enforced by import-linter. A module may only import from layers below its own: 1. cli , fava , plugins — entrypoints 2",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/sealambda/quints",
+  "stars": 17
+}

@@ -1,0 +1,70 @@
+{
+  "slug": "sile--efmt",
+  "name": "efmt",
+  "description": "Erlang code formatter",
+  "documents": [
+    {
+      "url": "https://github.com/efmt#0",
+      "title": "Introducción",
+      "text": "efmt ==== An Erlang code formatter. Online demo. Features -------- - An opinionated formatter - No configuration options - If items (e.g., case blocks, lists, records) contain newlines in the original code, those are processed in multi-line mode - Emacs Erlang Mode friendly indentation with some exceptions - Preserves non-whitespace tokens of the original text as-is - Ensures the code after formatting keeps the same semantic meaning - Thorough macro support (MACRO AND DIRECTIVE.md) An Formatting Example ---------------------",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/efmt#1",
+      "title": "Pre-built binaries",
+      "text": "Pre-built binaries for Linux and macOS are available from the releases page: - x86 64-unknown-linux-musl (Linux x86 64, fully static) - aarch64-unknown-linux-musl (Linux arm64, fully static) - aarch64-apple-darwin (macOS Apple Silicon) For example, download the Linux x86 64 binary from the latest release with the GitHub CLI: The asset name is efmt- . , where is one of the triples above and is the release version without the leading v . To download a specific version, pass its tag name (for example v0.21.0 ) instead of the latest release:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/efmt#2",
+      "title": "With Cargo",
+      "text": "If you have installed cargo (the package manager for Rust), you can install efmt with the following command: Usage ----- Formats an Erlang file (assuming example.erl in the above example is located in the current directory): Checks diff between the original text and the formatted one: Overwrites the original file with the formatted one: For the other command-line options, please see the help document:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/efmt#3",
+      "title": "How to keep some areas from being formatted",
+      "text": "If you want to keep the style of some areas in your input text, please use @efmt:off and @efmt:on comments as follows: Editor Integrations ------------------- - Emacs: emacs-format-all-the-code - Sublime Text: Formatter Differences with other Erlang formatters ----------------------------------------- Since I'm not familiar with other Erlang formatters, and the README.md of erlfmt already provides a good comparison table among various formatters, I only describe the differences between efmt and erlfmt here. Note that in the following examples, I used efmt-v0.11.0 and erlfmt-v1.0.0 .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/efmt#4",
+      "title": "Formatting style",
+      "text": "I think the formatting style of efmt is much different from erlfmt . IMO, this is a major point when you decide which one you should choose. If you like the erlfmt style. It's okay. I recommend using erlfmt . But, if you like the efmt style. It's welcomed. Please use efmt . It's hard work to pick up all difference points here. So I just give you some formatted code examples and hope they give you a sense.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/efmt#5",
+      "title": "No line width limit",
+      "text": "Unlike erlfmt , efmt doesn't provide a feature to ensure each line of the formatted code is within a specified line width (columns).",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/efmt#6",
+      "title": "Error handling",
+      "text": "erlfmt seems to try formatting the remaining part of code even if it detected a syntax error. In contrast, efmt aborts once it detects an error. For instance, let's format the following code. Using erlfmt : Using efmt :",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/efmt#7",
+      "title": "Macro handling",
+      "text": "efmt , as much as possible, processes macros as the Erlang preprocessor does. Thus, it can cover a wide range of tricky cases. Let's format the following code which is based on a macro usage in sile/jsone/src/jsone.erl: Using efmt : Using erlfmt :",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/efmt#8",
+      "title": "Formatting speed",
+      "text": "The following benchmark compares the time to format all \" .erl\" files contained in the OTP-24 source distribution.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/efmt#9",
+      "title": "Development phase",
+      "text": "erlfmt has released the stable version (v1), but efmt hasn't. Perhaps some parts of the efmt style will change in future releases until it releases v1. Limitations ----------- There are some limitations that are not planned to be addressed in the future: - Only supports UTF-8 files - Doesn't process parse transforms - That is, if a parse transform has introduced custom syntaxes in your Erlang code, efmt could fail - Doesn't process -include(). and -include lib(). directives - Macros defined in those include files are expanded to (dummy) atoms.",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/sile/efmt",
+  "stars": 78
+}

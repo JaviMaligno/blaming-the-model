@@ -1,0 +1,106 @@
+{
+  "slug": "recurso-dev--recurso",
+  "name": "recurso",
+  "description": "Open-source billing engine for SaaS — subscriptions, invoicing, multi-currency payments (Stripe + Razorpay), India GST / EU VAT / US sales tax, smart dunning, and a double-entry ledger. Go + PostgreSQL, MIT.",
+  "documents": [
+    {
+      "url": "https://github.com/recurso#0",
+      "title": "Introducción",
+      "text": "Recurso Open-source billing engine for SaaS. Built with Go, PostgreSQL, and TigerBeetle. Website &middot; Docs &middot; Quickstart &middot; Community ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/recurso#1",
+      "title": "Why Recurso?",
+      "text": "Most billing platforms charge a percentage of your revenue and lock you into their ecosystem. Recurso is different. - A self-verifying financial ledger — Double-entry accounting in PostgreSQL (with an optional TigerBeetle mirror), and — unlike anyone else — we prove it on every commit : CI drives randomized sequences of real billing operations (subscriptions, upgrades, downgrades, coupons, refunds, recognition, cancels) and requires the reconciler to find zero discrepancies after every single step. Every cent explained, every balance reconstructable — property-tested, not promised. - A real usage-based billing engine — 8 aggregations (including a time-weighted average and a sandboxed custom expression), 7 charge models, and billing in arrears, in advance, or progressively past a threshold — all priced with exact rational math (no float drift), reconciled onto the ledger. Built for AI and API companies that bill by the call. - Multi-region tax compliance — India GST (Place of Supply, HSN, TDS, e-invoicing via GSP) built in, not bolted on, plus EU VAT (reverse charge + VIES) and US sales tax with economic-nexus tracking. - AI-Powered Dunning — Smart retry engine analyzes failure patt",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/recurso#2",
+      "title": "The self-verifying ledger",
+      "text": "Billing bugs hide in the seams — a downgrade during a discount, a refund after partial recognition, a webhook redelivered mid-retry. Recurso's answer is not code review; it is a standing proof: - A randomized invariant harness ( ledger invariant pg test.go ) runs real billing sequences against real Postgres in CI and asserts an audit-grade ledger after every operation — no missing legs, no unbalanced books, no wrong-sign balances, deferred revenue always covering its schedule. - A built-in reconciler ships in the product itself (Finance → Reconciliation): the same checks your auditor would run, on demand, against your live books. - The E2E suite ends with a zero-discrepancy gate — a release cannot ship with unexplained money. This harness has caught real high-severity bugs before customers ever saw them — including ones its own authors introduced. That is the point.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/recurso#3",
+      "title": "Features",
+      "text": "- Subscription lifecycle — trials (with expiry reminders and auto-conversion), plan changes with proration preview, pause/resume, add-ons, cancellation - Usage-based billing — idempotent event ingestion; 8 aggregations (count, sum, max, unique, latest, percentile, time-weighted average, and a sandboxed custom expression); 7 charge models (per-unit, graduated, volume, package, percentage, graduated-percentage, dynamic); billed in arrears, in advance per event, or progressively past a threshold; dimensional (per-property) pricing; a pricing simulator ; exact big.Rat math rounded once per line - Automatic and one-off invoicing with jurisdiction-aware tax and printable/e-invoice-ready PDFs - Hosted checkout — real card + ACH collection via the Stripe Payment Element, and UPI/cards/netbanking via Razorpay, with server-verified settlement - Customer self-service portal — magic-link login (httpOnly-cookie session), card update (Stripe SetupIntent), UPI mandate re-authorization, invoice history - Payments — multi-currency routing (INR → Razorpay, EUR/GBP mandates → GoCardless bank debit, US ACH → Stripe, others → Stripe or Adyen), prepaid wallets with auto-recharge, and bring-your-own-gate",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/recurso#4",
+      "title": "Project status",
+      "text": "Recurso is feature-complete and self-hostable today , and the core money paths — checkout, settlement, dunning, the ledger, trials, and proration — are covered by end-to-end tests and have been verified against live Stripe and Razorpay test keys. It is pre-1.0 and pre-incorporation : APIs may still change, and a few things are deliberately gated on outside sign-off before you rely on them in production: - India GST / e-invoicing and the US economic-nexus thresholds are implemented but await review by a tax professional before being relied on for filing (the nexus dataset self-reports dataset certified: false until then). - Payment webhooks are wired but want verification on a deployed environment before real-money use. - SAML SSO needs certification against a live identity provider. Self-host it, fork it, build on it. If you're evaluating for production, start with Going to Production.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/recurso#5",
+      "title": "Recurso vs. Alternatives",
+      "text": "These are all capable, mature products — Chargebee in particular ships usage-based billing, ML-powered dunning, connected gateways, and its own MCP server. The table below sticks to the differences that are actually structural , not feature checkboxes both sides can tick. Recurso Chargebee Stripe Billing --- --- --- --- Pricing Free (self-hosted); usage-based on managed cloud From ~$599/mo 0.5%–0.8% of revenue Source code Open (MIT) — self-host, fork, extend Closed Closed Data ownership Full (runs on your infrastructure) Vendor-hosted Vendor-hosted Financial ledger Built-in double-entry (Postgres; optional TigerBeetle mirror), reconciled + ASC 606 rev-rec Not a ledger Not a ledger Usage-based billing 8 aggregations · 7 charge models · exact rational math · posted to the ledger Yes (usage + hybrid) Metered (basic) Dunning Bandit-retry engine + Collections operator layer ML-powered retries Basic retries India GST depth Place of Supply, HSN, TDS, IRN e-invoicing via GSP — built in Partial Limited Migrate in Self-serve importers from Stripe + Chargebee (preview → commit, no re-billing) — —",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/recurso#6",
+      "title": "Architecture",
+      "text": "Postgres is the source of truth for the ledger. TigerBeetle is an optional, best-effort mirror that's written non-fatally when connected and only read as a fallback — enable it (via TIGERBEETLE ADDRESS ) when ledger throughput warrants it; the engine runs fully without it. Stack: Go 1.25+ &middot; PostgreSQL &middot; TigerBeetle (optional) &middot; Hexagonal Architecture (Ports & Adapters)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/recurso#7",
+      "title": "Quick Start",
+      "text": "One command from clone to a populated dashboard — builds and starts the full stack (API, dashboard, PostgreSQL, TigerBeetle, Mailhog) and loads demo data: Then open the dashboard at http://localhost:5173 and log in with API key sk test 12345 . Emails sent by the system land in Mailhog at http://localhost:8025 .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/recurso#8",
+      "title": "Step by step",
+      "text": "Prefer to run pieces individually? The API is now running at http://localhost:8080 . To start the React dashboard: Want something to look at right away? Load demo data (a sample tenant with plans, customers, subscriptions, and invoices), then log in to the dashboard with API key sk test 12345 : See the Quickstart Guide for a full walkthrough.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/recurso#9",
+      "title": "Deploy",
+      "text": "Spin up a hosted instance (API + managed PostgreSQL) with one click: - Render reads render.yaml . - DigitalOcean reads .do/app.yaml (API service + a managed PostgreSQL database). After the first deploy, set CORS ORIGIN to your dashboard's origin — without it the API rejects browser calls from the dashboard. For more than one instance, also attach a managed Redis/Valkey and set REDIS URL (+ REQUIRE REDIS=true ) so the scheduler lock is shared; a single instance runs safely without it. Or, on a Droplet, run docker-compose.prod.yml (bundles Redis). - Railway reads railway.json to build the API; add a PostgreSQL plugin and set DATABASE URL=${{Postgres.DATABASE URL}} in the service variables. These blueprints are provided as-is and have not been verified against live accounts — review sizes, regions, and image visibility before production use. For a self-hosted Docker Compose setup, see the Self-Hosting Runbook. Building on Recurso? See examples/nextjs-starter for a minimal Next.js SaaS starter.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/recurso#10",
+      "title": "SDKs",
+      "text": "Typed clients for the Recurso API live in their own repositories: - Node.js (recurso-node) — npm install recurso - Python (recurso-python) — packaged and tested, not yet on PyPI; pip install ./recurso-python from a checkout - Go (recurso-go) — go get github.com/recurso-dev/recurso-go A Postman collection generated from the OpenAPI spec is also included.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/recurso#11",
+      "title": "Documentation",
+      "text": "- Getting Started - API Reference - Core Concepts - Going to Production - Self-Hosting Runbook",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/recurso#12",
+      "title": "Telemetry",
+      "text": "Recurso can report anonymous, opt-in usage signals so we can measure how many self-hosted instances reach their first real invoice. It is off by default — with the default config there are zero network calls and nothing is written. To opt in, set TELEMETRY OPTIN=true . Only a random instance ID, version, OS/arch, milestone events, and coarse bucketed counts (e.g. 1-9 , 10-99 , 100+ ) are ever sent — never amounts, names, emails, keys, or exact numbers. See docs/telemetry.md for the full payloads, the never-sent list, and how to point it at your own server to verify.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/recurso/blob/main/docs/README.md",
+      "title": "docs/README.md",
+      "text": "Recurso — Source-of-Truth Docs Durable product, design, and engineering philosophy. These outlast any single feature and keep new work consistent as the product grows. Read the relevant one before building, not after. The documents These are code-derived : every factual claim cites the file/package that proves it, and the raw code-cited findings live in evidence/ . Where a doc and the code disagree, the code wins (see DOCUMENTATION RULES.md). Doc Answers Read before… --- --- --- PRODUCT.md What Recurso is + a code-cited feature inventory any product decision ARCHITECTURE.md Package map, flows, jobs, security (code-derived) changing structure DESIGN.md The token/system constraints — which values are legal building UI ART DIRECTION.md What Recurso looks like — the creative direction, hero philosophy, what to show, what's banned designing a page/section, the website BRAND.md How it sounds — voice, words to use/avoid writing any copy UX RULES.md The behavioral contract + UI audit building a page ANTI PATTERNS.md What never to build anything money/UX ACCOUNTING PRINCIPLES.md The ledger contract (posting codes 1–25) any money path API GUIDELINES.md The API contract + deviation audit addi",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/recurso/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to Recurso Thanks for your interest in contributing! This guide covers how to get a development environment running and what we expect from changes. Development setup Prerequisites: Go 1.23+, Docker with Compose, jq (used by the e2e scripts), and Node 18+ if you're working on the frontend or docs site. The API listens on http://localhost:8080 . The dashboard lives in frontend/ ( npm install && npm run dev ); the Vite dev server proxies API requests, so no extra configuration is needed. Testing CI runs lint ( golangci-lint ), unit tests, and the e2e suite on every pull request — please make sure make lint , make test , and make test-e2e pass locally before opening one. Making changes - Keep changes focused; separate unrelated fixes into separate PRs. - New backend behavior needs a migration when it touches the schema ( internal/adapter/db/migrations/ , sequential numbering, with a matching .down.sql ). - Every query on tenant-owned data must filter by tenant id . If you add a cross-tenant lookup (e.g. for webhook routing), document why on the method. - Add tests for anything that computes money, tax, or proration. Reporting issues Open a GitHub issue with reproduction s",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/recurso/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog All notable changes to this project will be documented in this file. The format is based on Keep a Changelog, and this project adheres to Semantic Versioning. [Unreleased] [0.13.0] - 2026-08-14 — The depth release Where 0.12.0 made every core object a place , 0.13.0 made those places deep . The dashboard is now an operating console: every object is addressable, every list is a table (no card grids remain), and every detail slide-over is either an object-page edit sheet or a list that now has a full object page behind it. The work ran under docs/DASHBOARD OPERATIONAL DEPTH.md as nineteen green-CI increments — and held one rule throughout: never fake data. Where the backend couldn't answer a question, we either added the minimal read for it or said so on the page, never invented a number. Added - Seven new object pages. Wallet ( /wallets/:id ), Credit Note ( /credit-notes/:id ), Dispute ( /disputes/:id ), Quote ( /quotes/:id ), Coupon ( /coupons/:id ), Dunning Campaign ( /dunning/campaigns/:id ), and Cancel Flow ( /cancel-flows/:id ) are now real, shareable, refresh-safe routes — joining the full-page Plan, Account ( /ledger/accounts/:id ), and Meter ( /billable-metrics/:id",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/recurso-dev/recurso",
+  "stars": 5
+}

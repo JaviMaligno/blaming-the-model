@@ -22,6 +22,7 @@ VARIANTS: dict[str, tuple[str, ...]] = {
     "A2": ("classifier.py",),
     "A3": ("classifier.py", "tools.py"),
     "A4": ("budget.py",),
+    "A5": ("pages.py", "tools.py", "classifier.py", "batch.py", "cli.py"),
 }
 
 # A3 toma su classifier propio y el tools de A1: la ambigüedad sola no varía.
@@ -30,6 +31,13 @@ SOURCES: dict[str, dict[str, str]] = {
     "A2": {"classifier.py": "A2"},
     "A3": {"classifier.py": "A3", "tools.py": "A1"},
     "A4": {"budget.py": "A4"},
+    "A5": {
+        "pages.py": "A5",
+        "tools.py": "A5",
+        "classifier.py": "A5",
+        "batch.py": "A5",
+        "cli.py": "A5",
+    },
 }
 
 

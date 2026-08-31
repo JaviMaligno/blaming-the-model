@@ -1,0 +1,76 @@
+{
+  "slug": "gcol33--vectra",
+  "name": "vectra",
+  "description": "Columnar query engine for larger-than-RAM data in R",
+  "documents": [
+    {
+      "url": "https://github.com/vectra#0",
+      "title": "Introducción",
+      "text": "vectra querying data that won't fit in memory dplyr-style queries on larger-than-RAM data, backed by a pull-based columnar engine written in C11. Point vectra at a file too big to load and query it with the verbs you already use. Data flows through the engine one row group at a time, so peak memory stays bounded no matter how large the file gets. Arrow needs compiled binaries that match your platform, DuckDB links a bundled library, Spark wants a JVM. vectra is a standard R extension with no external dependencies: it compiles where R compiles.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vectra#1",
+      "title": "One engine, several file formats",
+      "text": ".vtr (vectra's own columnar format), CSV, SQLite, and GeoTIFF all open into the same lazy query nodes, so the same pipeline runs against any of them: Convert to .vtr once for repeated queries, then read it back fast:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vectra#2",
+      "title": "How the engine stays bounded",
+      "text": "The optimizer rewrites the plan before any data moves, and execution streams the result rather than materializing it: - Streaming execution : one row group flows through at a time, never the whole file - Column pruning : columns you never reference are skipped at the scan - Predicate pushdown : per-rowgroup min/max statistics skip row groups that cannot match a filter - Hash joins : build the right side, stream the left; join a fact table against a lookup without holding both in memory - External sort : a memory budget with automatic spill to disk explain() shows the optimized plan, including which columns and row groups were pruned:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vectra#3",
+      "title": "Fuzzy matching in the engine",
+      "text": "String distance runs inside the C engine, with no round-trip to R per row: levenshtein() , dl dist() (Damerau-Levenshtein), and jaro winkler() are available in filter() and mutate() , alongside nchar() , substr() , grepl() , gsub() and the rest of the string toolkit.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vectra#4",
+      "title": "Spatial data, out of core",
+      "text": "Same idea, applied to geometry: read and write layers larger than memory, running the GIS operations you would otherwise do in sf. Geometry rides through as WKB in an ordinary column, so the spatial verbs stream one batch at a time like the rest. Tag a billion-point stream with the polygon each point falls in, holding the polygons plus one batch in memory: st geometry functions evaluate inside filter() and mutate() , computed in C on the GEOS library straight off the geometry column: Raster operations stream strip by strip over the tiled .vec format, so a grid larger than memory passes through zonal() , focal() , terrain() , warp() , and map algebra one tile-row at a time: The toolbox reaches further: vector-raster bridges ( rasterize() , polygonize() , contours() ), planar overlay and coverage cleaning ( spatial overlay() , spatial dissolve() , spatial eliminate() ), and routing on a line network ( spatial network() , spatial route() , spatial service area() ). Geometry stays with GEOS through libgeos; sf is needed only for vector format I/O and reprojection.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vectra#5",
+      "title": "Star schemas instead of flat-table column creep",
+      "text": "Register dimension tables once, then pull columns from any of them; joins are built for you, and unmatched keys are reported:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vectra#6",
+      "title": "Incremental updates",
+      "text": "Append new rows as a new row group without rewriting the file, or take a key-based diff between two snapshots:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vectra#7",
+      "title": "Streaming results into a model fit",
+      "text": "collect() brings the whole result into memory. collect chunked() folds a function over a query one batch at a time, holding a single batch plus the accumulator, so a result larger than memory reduces to a small summary in one pass: a running count, per-group sufficient statistics, or the cross-products behind a linear fit. For models that re-read the data on every iteration, chunk feeder() exposes a query as a resettable generator that biglm::bigglm() drives directly, fitting a GLM on data too large to hold in memory: offload() spills a prepared query to disk once and streams it back, so each reweighted pass reads the prepared columns from a file rather than rebuilding the pipeline. With a by key it splits the query into per-key shards on disk, each small enough to pull into memory on its own. group map() then runs your function on each shard, passing the shard as an ordinary data.frame along with its group key, and returns the results keyed by shard. That function is arbitrary R: a model fit, a clustering call, a custom summary, or any computation that needs the whole group in memory at once. group modify() recombines per-shard data.frames into one table.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vectra#8",
+      "title": "Verbs",
+      "text": "vectra covers the dplyr surface most analysis pipelines use: filter() , select() , mutate() , group by() / summarise() with the common aggregations, all the joins ( left join() through cross join() , plus fuzzy join() ), arrange() and the slice () family, and window functions ( row number() , rank() , lag() , lead() , cumsum() , ntile() , and more). Date/time and string functions evaluate in the engine. select() , rename() , relocate() , and across() accept the full tidyselect helper set ( starts with() , where() , all of() , and the rest). The Function Reference lists every verb and expression with examples.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vectra#9",
+      "title": "Documentation",
+      "text": "Engine: - Getting Started - Engine Reference - Format Backends - Joins - Star Schemas - String Operations - Indexing and Optimization - Working with Large Data - Offloading and Out-of-core Fits Spatial: - Out-of-core GIS - Streaming Spatial Operations - Geometry Functions in Expressions - Coverage and Topology - Network Analysis - Species Distribution Models",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vectra#10",
+      "title": "Support",
+      "text": "\"Software is like sex: it's better when it's free.\" — Linus Torvalds I'm a PhD student who builds R packages in my free time because I believe good tools should be free and open. I started these projects for my own work and figured others might find them useful too. If this package saved you some time, buying me a coffee is a nice way to say thanks. It helps with my coffee addiction.",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/gcol33/vectra",
+  "stars": 8
+}

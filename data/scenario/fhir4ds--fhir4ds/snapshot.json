@@ -1,0 +1,82 @@
+{
+  "slug": "fhir4ds--fhir4ds",
+  "name": "fhir4ds",
+  "description": null,
+  "documents": [
+    {
+      "url": "https://github.com/fhir4ds#0",
+      "title": "Introducción",
+      "text": "FHIR4DS FHIR for Data Science - A unified suite of high-performance tools for working with FHIR healthcare data in analytical environments.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fhir4ds#1",
+      "title": "Overview",
+      "text": "FHIR4DS provides high-performance tools for querying and transforming FHIR data. Built on DuckDB for efficient analytical processing, it offers native support for FHIRPath expressions, CQL clinical quality measures, and SQL-on-FHIR v2 ViewDefinitions.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fhir4ds#2",
+      "title": "Packages (Unified Namespace)",
+      "text": "The project is now organized under the fhir4ds namespace for a clean, professional API. Feature Import Path Description ----------- ------------- ------------- FHIRPath fhir4ds.fhirpath Core FHIRPath expression evaluator FHIRPath (DuckDB) fhir4ds.fhirpath.duckdb DuckDB UDFs and C++ extension for FHIRPath CQL fhir4ds.cql CQL parser and SQL translator CQL (DuckDB) fhir4ds.cql.duckdb DuckDB UDFs and translations for CQL ViewDefinition fhir4ds.viewdef SQL-on-FHIR v2 ViewDefinition to SQL generator SQLQuery / SQLView fhir4ds.sqlquery SQL-on-FHIR v2 Analytics Layer (Library profiles wrapping raw SQL over materialized ViewDefinitions) DQM fhir4ds.dqm Digital Quality Measure orchestrator & audit engine",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fhir4ds#3",
+      "title": "Non-Python Components",
+      "text": "- C++ Extensions : Located in extensions/fhirpath and extensions/cql . These provide native high-performance DuckDB extensions. - Web Demos : Located in web/wasm-demo and web/website .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fhir4ds#4",
+      "title": "Unified Connection",
+      "text": "The easiest way to get started is the create connection helper, which returns a DuckDB connection with all FHIRPath and CQL UDFs pre-registered.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fhir4ds#5",
+      "title": "Test Coverage & Compliance",
+      "text": "The unified engine is rigorously tested against official specifications. Component Unit Tests Official Compliance ----------- ------------ --------------------- fhir4ds.fhirpath ✅ Passing 935/935 FHIRPath R4 (100%) fhir4ds.cql ✅ Passing 1706/1706 CQL (100%) fhir4ds.viewdef ✅ Passing 144/144 ViewDefinition v2 (100%) fhir4ds.sqlquery ✅ Passing 28/28 SQLQuery / SQLView (Analytics Layer) fhir4ds.dqm ✅ Passing 47/47 DQM QI-Core 2025 (100%)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fhir4ds#6",
+      "title": "Architecture",
+      "text": "The project follows a Feature-First hierarchy: - fhir4ds/ : Unified Python package root. - fhirpath/ : Core FHIRPath engine. - duckdb/ : DuckDB-specific FHIRPath integration. - cql/ : Core CQL-to-SQL translator. - duckdb/ : DuckDB-specific CQL integration. - viewdef/ : SQL-on-FHIR v2 ViewDefinition implementation. - sqlquery/ : SQL-on-FHIR v2 Analytics Layer (SQLQuery / SQLView Library profiles). - dqm/ : Digital Quality Measure orchestration. - extensions/ : High-performance C++ source for DuckDB extensions. - web/ : Documentation website and interactive WASM demos.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fhir4ds#7",
+      "title": "Running Tests",
+      "text": "Pytest is configured in pyproject.toml . The config disables the auto-loaded pytest-benchmark plugin because it can hang pytest startup/collection in this workspace; normal benchmark runs use the scripts in benchmarks/ instead.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fhir4ds#8",
+      "title": "WASM Demo Release Process",
+      "text": "The interactive CQL playground at web/wasm-demo/ embeds a Python wheel served to Pyodide. After any Python source change or version bump, update the WASM demo: Why step 4 matters: The website's static/wasm-app/ is a pre-built snapshot served by Docusaurus. It is NOT auto-updated when web/wasm-demo/ is rebuilt. Skipping step 4 causes the standalone demo to work while the website CQL playground fails with a Pyodide error. Why duckdb is excluded from Pyodide: duckdb has no pure Python wheel on PyPI. The Pyodide worker uses deps=False and manually installs only the required pure-Python dependencies. Do not add native C extension packages as hard imports in fhir4ds.cql or any module imported by the WASM worker. See AGENTS.md and web/wasm-demo/AGENTS.md for full details.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fhir4ds#9",
+      "title": "Benchmarks",
+      "text": "Performance benchmarking tools and results are located in the benchmarks/ directory. See benchmarks/AGENTS.md for details.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fhir4ds#10",
+      "title": "License",
+      "text": "This project is dual-licensed: 1. Open Source: GNU Affero General Public License v3 (AGPL-3.0). See LICENSE for details. 2. Commercial: A proprietary license for enterprise use, embedding in closed-source products, and high-performance C++ extensions. For commercial licensing inquiries, please contact contact@fhir4ds.com .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fhir4ds/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to FHIR4DS Thank you for your interest in contributing to FHIR4DS! Contributor License Agreement (CLA) To maintain our ability to offer FHIR4DS under both open-source (AGPL v3) and commercial licenses, we require all contributors to agree to our Contributor License Agreement (CLA). If you have questions about the CLA or wish to discuss specific contribution terms, please contact contact@fhir4ds.com . Development Setup The project uses a unified namespace fhir4ds . To set up your local environment: Running Tests Tests are located within each subpackage in the fhir4ds/ directory. C++ Extension Development If you are modifying the C++ extensions, they are located in extensions/ : Code Standards - Follow PEP 8 for Python code. - Use ruff for linting. - Ensure type safety with mypy . - Include unit tests for all new features. Local Continuous Integration (CI) Checks The CI pipeline runs a series of blocking checks. Before submitting a PR, ensure you can pass these locally: DQM Conformance & Benchmarks CI checks out the DQM conformance fixture as a submodule. If you are working on DQM evaluations, initialize the submodule: You can generate a local DQM performance report to c",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/fhir4ds/fhir4ds",
+  "stars": 10
+}

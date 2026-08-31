@@ -1,0 +1,172 @@
+{
+  "slug": "tether-ai-research--qvac-fabric-llm-finetune",
+  "name": "qvac-fabric-llm-finetune",
+  "description": null,
+  "documents": [
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#0",
+      "title": "Introducción",
+      "text": "An Edge-First Generalized LLM LoRA Fine-Tuning Framework for Heterogeneous GPUs The first truly cross-platform LoRA fine-tuning solution for Large Language Models From smartphones to datacenters • No vendor lock-in • Privacy-preserving on-device training Quick Start • Downloads • Datasets • Research • Benchmarks ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#1",
+      "title": "🎯 What Makes This Different?",
+      "text": "The Problem: LLM fine-tuning has been locked to NVIDIA GPUs and CUDA. Mobile devices, AMD/Intel GPUs, and Apple Silicon were left behind. Our Solution: A unified LoRA fine-tuning framework that works on any modern GPU: Platform Hardware ---------- ---------- 📱 Android Qualcomm Adreno, ARM Mali 🍎 iOS/macOS Apple Silicon (A-series, M-series) 🖥️ Windows/Linux AMD, Intel, NVIDIA GPUs Key Innovation: Novel dynamic tiling algorithm enables stable training on mobile GPUs with hardware memory constraints. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#2",
+      "title": "🔬 Research Highlights",
+      "text": "This repository contains the implementation and artifacts for our article: \"An Edge-First Generalized LLM LoRA Fine-Tuning Framework for Heterogeneous GPUs\"",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#3",
+      "title": "Key Contributions",
+      "text": "1. 🌍 Cross-Platform LoRA Framework - First unified solution for parameter-efficient fine-tuning across heterogeneous consumer hardware 2. 📱 Mobile GPU Support - First successful fine-tuning on Adreno, Mali, and Apple mobile GPUs 3. 🎓 Instruction-Tuning - Masked-loss training for instruction-following alignment 4. ⚡ Modern Architecture Support - Extended llama.cpp to support Qwen3 and Gemma3 fine-tuning 5. 🔧 Hardware Innovation - Dynamic tiling algorithm solves critical Adreno GPU memory constraints",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#4",
+      "title": "🚀 Empowering the Community with Open Resources",
+      "text": "To accelerate development and innovation, Tether Data is publicly releasing: - Fine‑tuned Model Adapters 👉 fabric‑llm‑finetune on Hugging Face - Source Code (Work‑in‑Progress) 👉 qvac‑fabric‑llm.cpp (fabric‑llm‑finetune branch) Currently experimental and intended for developers to extend the solution for other LLM models.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#5",
+      "title": "Validated Performance",
+      "text": "- ✅ Quality Parity : 45-48% win rate vs PyTorch/HuggingFace (LLM-as-judge) - ✅ Domain Adaptation : 79-94% accuracy on biomedical Q&A tasks - ✅ Production Scale : Tested on 6 GPU architectures, 5 model families, 4 quantization levels 📊 View detailed benchmarks 📄 Research paper: Coming soon ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#6",
+      "title": "🚀 Getting Started",
+      "text": "- First time? Start with Quick Start section below - Platform-specific setup? Go to releases/[your-platform]/README.md - Download binaries? Browse releases/ directory",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#7",
+      "title": "📊 Datasets & Examples",
+      "text": "- Training datasets: evaluation/email style transfer/ - Dataset format guide: evaluation/email style transfer/README.md - How to perform custom finetuning: evaluation/README.md",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#8",
+      "title": "🧪 Evaluation & Testing",
+      "text": "- Run model comparisons: Use scripts in evaluation/scripts/ - View benchmark results: docs/BENCHMARKS.md (comprehensive) - Detailed experiment reports: evaluation/reports/ directory - Compare base vs fine-tuned: evaluation/scripts/compare base vs adapters.py",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#9",
+      "title": "📖 Documentation & Research",
+      "text": "- Complete benchmarks: docs/BENCHMARKS.md (all platforms, metrics) - Methodology & results: evaluation/reports/COMPLETE PROJECT REPORT.md - Biomedical case study: evaluation/reports/BIOMED FINETUNING REPORT.md",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#10",
+      "title": "💡 Common Tasks",
+      "text": "Task Location ------ ---------- Download binaries releases/[platform]/ Get training data evaluation/email style transfer/email dataset.jsonl See platform benchmarks docs/BENCHMARKS.md Run evaluation scripts evaluation/scripts/ View experiment results evaluation/reports/ Platform setup guide releases/[platform]/README.md",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#11",
+      "title": "Choose Your Platform",
+      "text": "📱 Android (Termux) 📖 Full Android Guide 🍎 macOS (Apple Silicon) 📖 Full macOS Guide 🖥️ Linux/Windows (AMD/Intel/NVIDIA) 📖 Full Linux Guide ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#12",
+      "title": "📦 Downloads",
+      "text": "Pre-built binaries optimized for each platform: Platform Hardware Backend Size Download ---------- ---------- --------- ------ ---------- Android Qualcomm Adreno, ARM Mali Vulkan 180MB 📥 Download macOS Apple M1/M2/M3/M4 Metal 35MB 📥 Download macOS Intel x64 CPU 36MB 📥 Download iOS Apple A-series Metal 1.3MB 📥 Download Linux/Win AMD/Intel/NVIDIA Vulkan 55MB 📥 Download Linux ARM64 CPU 37MB 📥 Download Linux Intel GPU SYCL 56MB 📥 Download",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#13",
+      "title": "What's Included",
+      "text": "Each download contains pre-built binaries: - ✅ llama-finetune-lora - LoRA fine-tuning binary - ✅ llama-finetune - Full fine-tuning binary - ✅ llama-cli - Inference and interactive chat - ✅ llama-quantize - Model quantization tool - ✅ llama-perplexity - Model evaluation tool - ✅ llama-export-lora - Export/merge LoRA adapters - ✅ All required libraries (GGML, Vulkan/Metal backends) Note: Datasets and examples are available in the evaluation directory of this repository. 📖 All Releases & Documentation ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#14",
+      "title": "📊 Datasets",
+      "text": "We provide curated, privacy-safe datasets for reproducible fine-tuning research. See the evaluation/ directory for available datasets and documentation. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#15",
+      "title": "Training Capabilities",
+      "text": "- 🎯 Full Fine-tuning & LoRA - Support for both full model updates and parameter-efficient LoRA - 🔄 Instruction Fine-Tuning - Masked-loss training on assistant tokens only - 📝 Chat Templates - Built-in ChatML + custom Jinja template support - 💾 Checkpointing - Resume training with complete optimizer state - 📊 Learning Rate Scheduling - Cosine annealing with warmup - 📦 Quantization - Train and infer with F32, F16, Q8 0, Q4 0",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#16",
+      "title": "Hardware Backends",
+      "text": "- 🔷 Vulkan - AMD, Intel, NVIDIA, Qualcomm Adreno, ARM Mali - 🍎 Metal - Apple Silicon (M-series, A-series) - 💚 CUDA - NVIDIA GPUs (optional, Vulkan works too) - 🖥️ CPU - Fallback for any platform ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#17",
+      "title": "Inference Speed (tokens/second)",
+      "text": "Model Mali Adreno Intel A770 AMD 7900XTX RTX 4090 Apple M3 iPhone 16 ------- ------ -------- ------------ ------------- ---------- ---------- ----------- Qwen3-0.6B Q8 15.4 35.0 133.0 178.2 199+ 120+ 32.5 Qwen3-1.7B Q8 7.8 17.3 90.0 158.0 176+ 62-90 15.2 Gemma-1B Q8 11.7 36.6 89.0 148.8 150+ 70-90 33.2",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#18",
+      "title": "Fine-tuning Speed (Time per Epoch, Qwen3-1.7B Q8)",
+      "text": "Hardware Time/Epoch Full Training (8 epochs) ---------- ------------ -------------------------- RTX 4090 5.5 min 45 min ⚡ AMD 7900 XTX 13 min 1.7 hrs Intel Arc A770 20 min 2.7 hrs Apple M3 Pro 40 min 5.3 hrs iPhone 16 1h 55min 15 hrs Adreno 830 1h 40min 13 hrs Mali G715 7h 40min 61 hrs 📊 View complete benchmarks with detailed metrics across all platforms",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#19",
+      "title": "Quality Comparison vs PyTorch",
+      "text": "Metric qvac-fabric PyTorch/HuggingFace -------- --------------- --------------------- LLM-as-Judge Win Rate 45-48% 52-55% Biomedical Accuracy 79-94% 78-86% Cosine Similarity 0.82 0.77 Conclusion: Near-parity quality with established frameworks, but works on 8x more hardware platforms . ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#20",
+      "title": "LoRA Integration",
+      "text": "Our implementation augments pretrained weights with low-rank updates: Where: - W : Frozen base model weights - A ∈ ℝ^(d×r), B ∈ ℝ^(r×d): Trainable low-rank matrices - r : LoRA rank (typically 8-32) - α : Scaling factor Only matrices A and B are updated during training, reducing parameters by orders of magnitude.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#21",
+      "title": "Dynamic Tiling Algorithm",
+      "text": "Problem: Adreno GPUs have undocumented 128MiB SSBO limit causing DeviceLoss errors. Solution: Dynamically tile large matrix operations based on input shapes: 1. Calculate tile dimensions that respect 128MiB limit 2. Execute operations on tiles independently 3. Assemble results into final output tensor This enables stable training on mobile GPUs where static approaches fail.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#22",
+      "title": "🤝 Contributing",
+      "text": "We welcome contributions! Areas of interest: - 🔧 Optimizations for specific GPU architectures - 📱 Testing on additional mobile devices - 🏗️ Support for new model architectures - 📊 Benchmark contributions - 📝 Documentation improvements Please open an issue or pull request on GitHub to contribute. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#23",
+      "title": "Mobile Platforms",
+      "text": "- ⚠️ Qwen3-4B causes OOM on most mobile devices → Use 1.7B or smaller - ⚠️ iOS may suspend background training → Keep app in foreground - ⚠️ Mali G715 training slower than Adreno → Functional but requires patience",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#24",
+      "title": "Desktop Platforms",
+      "text": "- ⚠️ Flash attention not yet supported on Vulkan → Use -fa off - ⚠️ Multi-GPU training experimental → Use single GPU ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#25",
+      "title": "🙏 Acknowledgments",
+      "text": "This work builds on: - llama.cpp - Foundation inference engine - LoRA (Hu et al., 2021) - Parameter-efficient fine-tuning method - PubMedQA - Jin, Qiao, et al. \"Pubmedqa: A dataset for biomedical research question answering.\" Proceedings of the 2019 conference on empirical methods in natural language processing and the 9th international joint conference on natural language processing (EMNLP-IJCNLP) . 2019. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/qvac-fabric-llm-finetune#26",
+      "title": "🔗 Links",
+      "text": "- 🌐 Project Website - 📦 Release Downloads - 💬 Discussion Forum - 🐛 Issue Tracker - 📖 Full Documentation --- Making LLM fine-tuning accessible to everyone, everywhere From smartphones to datacenters • No vendor lock-in • Privacy-preserving ⭐ Star this repo if you find it useful!",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/tether-ai-research/qvac-fabric-llm-finetune",
+  "stars": 46
+}

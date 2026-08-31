@@ -1,0 +1,46 @@
+{
+  "slug": "tenstorrent--tt-inference-server",
+  "name": "tt-inference-server",
+  "description": null,
+  "documents": [
+    {
+      "url": "https://github.com/tt-inference-server#0",
+      "title": "Introducción",
+      "text": "tt-inference-server tt-inference-server is the fastest way to deploy and test models for serving inference on Tenstorrent hardware.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/tt-inference-server#1",
+      "title": "Quickstart guide",
+      "text": "On first-run please see the prerequisites guide for general Tenstorrent hardware and software setup. For the specific quickstart guide and details for your model, select your model and hardware configuration in Model Support pages and tables below. Alternatively you can see all models supported for your given Tenstorrent hardware.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/tt-inference-server#2",
+      "title": "Models by Model Type",
+      "text": "Browse models by type: - LLM Models - Large Language Models - VLM Models - Vision-Language Models - Video Models - Video generation models - Image Models - Image generation models - Audio Models - Speech-to-text models - TTS Models - Text-to-speech models - Embedding Models - Text embedding models - CNN Models - Convolutional Neural Networks",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/tt-inference-server#3",
+      "title": "Models by Hardware Configuration",
+      "text": "Browse models by hardware: - Dual WH Galaxy - Quad WH Galaxy - WH Galaxy - BH LoudBox - BH 4xP150 - BH P300 - BH QuietBox 2 - p100 - p150 - WH LoudBox/QuietBox - n150 - n300 Workflow automation in tt-inference-server For details on the workflow automation for: - deploying inference servers - running E2E performance benchmarks - running accuracy evals See: - Model Readiness Workflows User Guide. - workflows/README.md",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/tt-inference-server#4",
+      "title": "Development",
+      "text": "Developer documentation: docs/README.md Release documentation: scripts/release/README.md If you encounter setup or stability problems with any model please file an issue and our team will address it.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/tt-inference-server/blob/main/docs/README.md",
+      "title": "docs/README.md",
+      "text": "Developer Documentation Directory of development docs for working on tt-inference-server. Getting Started - Workflows User Guide - Main entry point for using the run.py CLI, including requirements, CLI options, serving LLMs, benchmarks, evals, and reports - Workflow Runner - Detailed reference for the workflow runner CLI, execution modes, client-side scripts, and model configuration Development - Development - Git workflows, branching strategy, pre-commit setup, and release process - Add Support for New Model - Step-by-step guide for adding new model support, including evals and benchmark targets Testing & Debugging - Running vLLM Parameter Tests - How to run vLLM parameter-specific tests for development and debugging - Running TT-Triage - Using the TT-Triage debugging tool to diagnose system hangs on Tenstorrent hardware Benchmarking & Performance - Benchmarking Tools - Comprehensive guide to performance benchmarking tools (vLLM, GenAI-Perf, AIPerf) Model Configuration - Run Model on Specific Commit - How to run a model on a specific tt-metal or other dependency commit - Experimental Models - List of models with experimental status under active development Deployment - Multi-Host ",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/tenstorrent/tt-inference-server",
+  "stars": 71
+}

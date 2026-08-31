@@ -1,0 +1,238 @@
+{
+  "slug": "NoahTheDuke--lazytest",
+  "name": "lazytest",
+  "description": null,
+  "documents": [
+    {
+      "url": "https://github.com/lazytest#0",
+      "title": "Introducción",
+      "text": "Lazytest: A standalone test framework for Clojure An alternative to clojure.test , aiming to be feature-rich and easily extensible.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#1",
+      "title": "Table of Contents",
+      "text": "- Getting Started - Why a new test framework? - Supported dialects - Usage - Writing tests with Lazytest - Partitioning Individual Tests and Suites - Setup and Teardown - Output - Hooks (Plugins) - Doc Tests - Editor Integration - Run Lifecycle Overview - Lazytest Internals - License",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#2",
+      "title": "Getting Started",
+      "text": "Add it to your deps.edn or project.clj: In a test file, import with: And then write a simple test: From the command line:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#3",
+      "title": "Why a new test framework?",
+      "text": "clojure.test has existed since 1.1 and while it's both ubiquitous and useful, it has a number of [problems][problems]: is tightly couples running test code and reporting on it. are is strictly worse than doseq or mapv . clojure.test/report is ^:dynamic , but that leads to being unable to combine multiple reporters at once, or libraries such as Leiningen monkey-patching it. Tests can't be grouped or bundled in any meaningful way (no, defining test-ns-hook does not count). testing calls aren't real contexts, they're just strings. Fixtures serve a real purpose but because they're set on the namespace, their definition is side-effecting and using them is complicated and hard to reuse. [problems]: https://stuartsierra.com/2010/07/05/lazytest-status-report There exists very good libraries like [Expectations v2][expectations v2], [kaocha][kaocha], [eftest][eftest], Nubank's [matcher-combinators][nmc], Cognitect's [test-runner][ctr] that improve on clojure.test , but they're all still built on a fairly shaky foundation. I think it's worthwhile to explore other ways of being, other ways of doing stuff. Is a library like lazytest good? is a testing framework like this good when used in cloju",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#4",
+      "title": "Supported dialects",
+      "text": "Lazytest supports Clojure (1.10+) and Babashka (v1.12.208+). It does not support Clojurescript or other flavors at this time.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#5",
+      "title": "Usage",
+      "text": "With the above :test alias, call clojure -M:test [options] [path...] to run your test suite once, or clojure -M:test --watch [options] [path...] to use \"Watch mode\" (see below) to run repeatedly as files change. [path...] here means any file or directory. By default, Lazytest only runs tests found in the test/ directory, but these can be passed in as additional arguments or with the --dir flag (see below): Any of the below [options] can also be provided: -d , --dir DIR : Directory containing tests. Can be given multiple times. -n , --namespace SYMBOL : Run only the specified test namespaces. Can be given multiple times. -v , --var SYMBOL : Run only the specified fully-qualified symbol. Can be given multiple times. -i , --include KEYWORD : Run only test sequences or vars with this metadata keyword. Can be given multiple times. -e , --exclude KEYWORD : Exclude test sequences or vars with this metadata keyword. Can be given multiple times. --output SYMBOL : Output format. Can be given multiple times. (Defaults to nested .) --hook SYMBOL : Load and include a hook in the run. (See below to learn more about hooks). Can be given multiple times. --md FILE : Run doc tests in markdown file. ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#6",
+      "title": "Watch mode",
+      "text": "Watch mode uses clj-reload to reload all local changes on the classpath, plus any files containing namespaces that depend on the changed files. Watch mode defaults to lazytest.reporters/dots to make the output easier to read. By default, it checks for changes once every 500 milliseconds (1/2 a second), but this can be changed with --delay . Watch mode supports all of the other options as well, so you can select a different output style, specific directories, test namespaces, or test varsto check, etc. Type CTRL-C to stop.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#7",
+      "title": "Writing tests with Lazytest",
+      "text": "The primary api is found in lazytest.core namespace. It mimics the behavior-driven testing style popularized by libraries such as RSpec and Mocha. Define tests with defdescribe , group test suites and test cases together into a suite with describe , and define test cases with it . describe can be nested. defdescribe 's docstring is optional, describe and it 's docstrings are not. The expect macro is like assert but carries more information about the failure, such as the given form, the returned value, and the location of the call. It throws an exception if the expression does not evaluate to logical true. If an it runs to completion without throwing, the test case is considered to have passed. The describe macro creates a test suite, a map containing :children (among other things) which are nested suites or test cases (created with it ). It can be passed to other functions or tests, it can be updated with other code, it can be removed from parent suites. Unlike clojure.test/testing , it is not merely setting a context string that is used to generate helpful error messages. [!IMPORTANT] This is maybe the greatest divergence from clojure.test , so it's important to emphasize this. Te",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#8",
+      "title": "Aliases",
+      "text": "To help write meaningful tests, a couple aliases have been defined for those who prefer different vocabulary: context for describe (this is discouraged because it clashes with the :context block, but it's retained for consistency). specify for it should for expect These can be used interchangeably: There are a number of experimental namespaces that define other aliases, with distinct behavior, if the base set of vars don't fit your needs: [lazytest.experimental.interfaces.clojure-test][lazytest.clojure-test] to mimic clojure.test . [lazytest.experimental.interfaces.midje][lazytest.midje] to mimic Midje. [lazytest.experimental.interfaces.qunit][lazytest.qunit] to mimic QUnit. [lazytest.experimental.interfaces.xunit][lazytest.xunit] to mimic a standard xUnit framework. [lazytest.clojure-test]: https://cljdoc.org/d/io.github.noahtheduke/lazytest/CURRENT/api/lazytest.experimental.interfaces.clojure-test [lazytest.midje]: https://cljdoc.org/d/io.github.noahtheduke/lazytest/CURRENT/api/lazytest.experimental.interfaces.midje [lazytest.qunit]: https://cljdoc.org/d/io.github.noahtheduke/lazytest/CURRENT/api/lazytest.experimental.interfaces.qunit [lazytest.xunit]: https://cljdoc.org/d/io.git",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#9",
+      "title": "Var Metadata",
+      "text": "In addition to finding the tests defined with defdescribe , Lazytest also checks all vars for :lazytest/test metadata. If the :lazytest/test metadata is a function, a test case, or a test suite, it's treated as a top-level defdescribe for the associated var and executed just like other tests. :lazytest/test functions are given the doc string \" :lazytest/test metadata\" . How to write them: How they're printed: These can get unweildy if multiple test cases are included before a given implementation, so I recommend either moving them to a dedicated test file or moving the attr-map to the end of the function definition: [!NOTE] Lazytest previously used :test metadata, but because clojure.test relies on that, it impeded having both clojure.test and Lazytest tests in a given codebase.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#10",
+      "title": "Partitioning Individual Tests and Suites",
+      "text": "All of the test suite and test case macros ( defdescribe , describe , it , expect-it ) take a metadata map after the docstring. Adding :focus true to this map will cause only that test/suite to be run. Removing it will return to the normal behavior (run all tests). And adding :skip true to the metadata map will cause that test/suite to be not run: [!NOTE] :skip overrides :focus , so {:focus true :skip true} will be skipped. Additionally, you can use the cli option -n / --namespace to specify one or more namespaces to focus wholly, or you can use the cli option -v / --var to specify one or more fully-qualified vars to focus. This allows for testing from the command line without modifying source files. To partition your test suite based on metadata, you can use -i / --include to only run tests with the given metadata, or -e / --exclude to skip tests with the given metadata.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#11",
+      "title": "Setup and Teardown",
+      "text": "To handle set up and tear down of stateful architecture, Lazytest provides the context macros before , before-each , after-each , after , around , and around-each , along with the helper function set-ns-context! . You can call them directly in a describe block or add them to a :context vector in suite metadata, or you can write the function directly as a map with the macro names as keywords. (To read a more specific description of how this works, please read the section titled Run Lifecycle Overview .)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#12",
+      "title": "Context functions run in two directions",
+      "text": "Every around , before , around-each , and before-each function is called in the order its defined, and every after and after-each is called in the opposite order it's defined. This is because before/-each and after/-each are intended to act like one half of an around or around-each call, which are designed like clojure.core/with-open and other similar functions. So before is called forward, and then after is called backward. This can be confusing, but I promise it's worthwhile.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#13",
+      "title": "Context functions that run once",
+      "text": "The around / before / after context functions are run only by the suite or test case they're defined for. So a before at the top of a test var will be run once before any child is evaluated, and a nested around will only wrap the evaluation of any children suites or test-cases, not parent or sibling suites. The same is true for test-cases: Any around / before / after context functions will be evaluated only once for that specific test-case.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#14",
+      "title": "Context functions that run multiple times",
+      "text": "The around-each / before-each / after-each context functions are not run for the suite they're defined for, they're run by every nested test case, no matter how nested. A given test case gathers all parent -each context functions, and then executes them with around-each wrapping any before-each or after-each functions. As with after , after-each is evaluated in reverse declaration order.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#15",
+      "title": "Namespace-level context functions",
+      "text": "To set context functions for an entire namespace, use set-ns-context! . There is currently no way to define run-wide context functions. In clojure.test , (use-fixtures :each ...) will set the provided fixtures to wrap each test var. To achieve the same in Lazytest, define a var of the target context function and add it to the defdescribe 's :context block of each var in the namespace. This is necessarily more tedious than use-fixtures , but it is also more explicit and gracefully handles special cases (define multiple functions to handle subtle differences, use whichever is situationally helpful). [!IMPORTANT] To repeat myself, test cases (the objects created by it ) are not run when a test function ( defdescribe ) is called or a test suite ( describe ) is evaluated. Each of these returns an object (a map, to be specific), and the lazytest.runner machinery traverses them and calls the test case function body only when appropriate. This means that you cannot write normal clojure code outside of it blocks, as it will work slightly differently than anticipated. If you want to create data that will be used by multiple test cases or test suites, I would recommend against merely let -bin",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#16",
+      "title": "Common Patterns",
+      "text": "To make this very clear, here are some patterns I've seen in clojure.test test suites, and how they might look in Lazytest.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#17",
+      "title": "Output",
+      "text": "Lazytest comes with a number of reporters built-in. These print various information about the test run, both as it happens and surrounding execution. They are specified at the cli with --output and can be simple symbols or fully-qualified symbols. If a custom reporter is provided, it must be fully-qualified. (Otherwise, Lazytest will try to resolve it to the lazytest.reporters namespace and throw an exception.)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#18",
+      "title": "lazytest.reporters/nested",
+      "text": "The default Lazytest reporter. Inspired heavily by [Mocha's Spec][mocha spec] reporter, it prints each suite and test case indented as they are written in the test files. [mocha spec]: https://mochajs.org/ spec",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#19",
+      "title": "lazytest.reporters/dots",
+      "text": "A minimalist reporter. Prints passing test cases as green . and failures as red F during the test run. Test suites are grouped with parentheses ( ( / ) ). It also prints the failure results and summary as in lazytest.reporters/nested , which has been elided below for brevity.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#20",
+      "title": "lazytest.reporters/clojure-test",
+      "text": "Mimics clojure.test 's default reporter, treating suite and test-case docstrings as testing strings.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#21",
+      "title": "lazytest.reporters/debug",
+      "text": "Prints loudly about every step of the run. Incredibly noise, not recommended for anything other than debugging Lazytest internals.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#22",
+      "title": "Writing Custom Reporters",
+      "text": "The requirements for writing a custom reporter is fairly simple: It needs to be an ifn that accepts 2 arguments, as it will be called by the runner on the run's config and the suite or test-case or result at that moment. All of the built-in reporters are multimethods, as that provides the easiest means of handling each type object to be reported on. The objects are maps that have appropriate :type entries, and the public var lazytest.reporters/reporter-dispatch exists to make this easy: (defmulti nested {:arglists '([config m])} 'reporter-dispatch) . Each step in the run generally has a pair of types, one before the current suite/case is run and one after, with an additional :results holding the nested results from the children or the test case's result. Here is a list of the types, along with info about when they are called and what the object might contain: :begin-test-run , :end-test-run : The top-level suite, parent to all test suites and cases that will be executed this run. :begin-test-ns , :end-test-ns : A suite for a given namespace, typically parent to all of the test vars in that namespace. :begin-test-var , :end-test-var : A suite for a single test var (typically from a ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#23",
+      "title": "Hooks (Plugins)",
+      "text": "Lazytest supports writing plugins, called hooks, which can modify the state of a run while it is being executed. The authors of Lazytest can't predict every need, so we've added hooks as a means of \"hooking\" into the runtime system. Hooks are functions (generally multimethods) that dispatch on a keyword to do different things (set custom data, print info, change something about the data).",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#24",
+      "title": "Using Existing Hooks",
+      "text": "Hooks can be used with the --hook option, which can be given multiple times. For example, clojure -M:dev:test:lazytest --hook custom.ns/foo --hook custom.ns/bar will load and include both custom.ns/foo and custom.ns/bar as hooks during the run. Like reporters, if the specified symbol is not fully-qualified, it will be assumed to exist in lazytest.hooks , which is where the built-in hooks live. Each hook can provide its own cli options, so it can be helpful to call clojure ... --hook custom.ns/foo --help to see what options are made available by the included hooks.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#25",
+      "title": "Built-in Hooks",
+      "text": "The two built-in hooks run by default but they can be included and disabled by passing in the right flag. This is a deliberate design choice and not every hook will work like this.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#26",
+      "title": "lazytest.hooks/profiling",
+      "text": "Print the slowest namespaces and test vars by duration. By default, it will print 5 namespaces and 5 vars, but this can be changed with --profiling-count . Can be disabled with --no-profiling .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#27",
+      "title": "lazytest.hooks/randomize",
+      "text": "Randomize the order of namespaces and suites in namespaces during a test run. By default, it will randomize all namespaces, all test vars with namespaces, and then all nested suites and test-cases. This does not shuffle test vars between namespaces nor does it move nested suites or test cases around; this is merely a re-ordering of each child object. The granularity can be changed with --randomize : all for everything (default), ns for only shuffling namespapces, var for only shuffling test vars, suites for only shuffling the suites within test vars, and none to disable. Likewise, the shuffle is done with a random seed which is printed at the end of the run. The same ordering can be achieved by passing --randomize-seed with a previous run's seed.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#28",
+      "title": "defhook",
+      "text": "The primary means of writing a custom hooks is the helper macro lazytest.hooks/defhook . It creates a multimethod with the built-in hook dispatch function, defines a no-op :default , and has syntax similar to extend-protocol . The available hook methods are defined by the hook keywords, listed below. Each takes a config map and a source object. (Unlike manually created hook functions, the hook-type argument is inserted for you.) The current set of hook keywords, along with relevant details: :cli-opts : Called before config is built or cli opts have been fully parsed. Input is a vector of cli options. :config : Called after reporters and hooks have been resolved. Input is the config map. :pre-test-run : Called before the runner has started a full run. Won't be called if lazytest.runner/run-test-var or lazytest.repl/run-test-var is used. Input is the entire run's suite . :post-test-run : Called after the runner has finished a full run. Won't be called if lazytest.runner/run-test-var or lazytest.repl/run-test-var is used. Input is a suite-result , with the original suite stored under :source . :pre-test-suite : Called for every suite (namespace, var, nested suites). Input is the suite",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#29",
+      "title": "Manually writing a hook function",
+      "text": "Hooks are merely functions that are called with the same 3 arguments: the config map, a source object, and the hook-type keyword . The hook-type keyword is used as the dispatch value, and will be limited to the existing set of hook keywords (as listed above). It is expected that a given hook function will do different things based on hook-type , but that is not always the case. The hook function should return nil (indicating a no-op) or the source object, modified as desired.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#30",
+      "title": "Doc Tests",
+      "text": "Lazytest can run tests in code blocks of your markdown files with --md FILE . It looks for any triple backtic-delimited code block that has clojure or clj as the language specifier, and that doesn't have lazytest/skip=true in the info-string, bundles it into a standalone describe block, and then runs all of the suites as a single suite under the name of the markdown file. It determines what should be considered a test ( (expect (= x y)) ) by the presence of = . Code immediately before a line containing = (leading ; optional) is treated as the actual, and the value after treated as the expected result. This will run: clojure (defn adder [a b] (+ a b)) (adder 5 6) ;; = 11 Whereas these will not (first is skipped, second isn't \"clojure\" or \"clj\"): clojure lazytest/skip=true (System/exit 1) ;; = exit!!! clojurescript print(\"Hello world!\") Additionally, a custom string can be used instead of the default (headers from the markdown file) by using the info-string lazytest/describe : clojure lazytest/describe=easy-adder (+ 5 6) ;; = 11 will be printed as:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#31",
+      "title": "Editor Integration",
+      "text": "The entry-points are at lazytest.repl : run-all-tests , run-tests , and run-test-var . The first runs all loaded test namespaces, the second runs the provided namespaces (either a single namespace or a collection of namespaces), and the third runs a single test var. If your editor can define custom repl functions, then it's fairly easy to set these as your test runner.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#32",
+      "title": "From the CLI",
+      "text": "1. A user runs Lazytest, either through leiningen or Clojure CLI. 2. Lazytest parses the command line arguments to determine the relevant configuration. 3. Lazytest finds test files. If the user provides --dir , then every file in the file trees of all given directories are checked. Otherwise, all files within the test directory are checked. 4. Lazytest loads all test files. Using tools.namespace , the namespace of each .clj is extracted and require d, which creates the necessary vars. 5. Lazytest gathers all test vars from the required namespaces. It checks each var in each namespace against the following list of questions. 1. Is the var defined with defdescribe ? Call the defdescribe -constructed function and use the result. 2. Does the var point to a suite ? Resolve the var and use the result. 3. Does the var have :lazytest/test metadata that is either a suite ( describe ) or a test case ( it )? Create a new suite with describe and set the :lazytest/test metadata as a child. 4. Does the var have :lazytest/test metadata that is a function? Create a new suite with describe , create a new test case with it , and then set the docstring for the test case to :lazytest/test metadata , ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#33",
+      "title": "Programmatically",
+      "text": "The process is roughly the same as from the CLI, but with CLI-specific steps skipped. 1. Build a suite. If using lazytest.repl/run-tests , the specified namespace used as the required namespace. If using lazytest.repl/run-all-tests , all currently loaded are used (found with clojure.core/all-ns ). If using lazytest.repl/run-test-var , the single var is used as the suite. 2. If not given a var, step 5 is executed as described above to produce a suite. 3. Steps 7-9 are executed as described above on the suite, with the note that only :focus is considered when filtering. 4. The results from the run are summarized and returned to the caller.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#34",
+      "title": "Lazytest Internals",
+      "text": "The smallest unit of testing is a test case (see lazytest.test-case/test-case ). When the :body function is called, it may throw an exception to indicate failure. If it does not throw an exception, it is assumed to have passed. The return value of a test case is always ignored. Running a test case may have side effects. [!NOTE] The macros lazytest.core/it and lazytest.core/expect-it create test cases. Tests cases are organized into suites (see lazytest.suite/suite ). A suite has :children , which is a sequence, possibly lazy, of test cases and/or test suites. Suites, therefore, may be nested inside other suites, but nothing may be nested inside a test case. [!NOTE] The macro lazytest.core/describe creates a test suite. The macro lazytest.core/defdescribe creates a no-argument function that returns a test suite. A test suite body SHOULD NOT have side effects; it is only used to generate test cases and/or other test suites. The test runner is responsible for gathering suites (see lazytest.find/find-suite and lazytest.filter/filter-tree ) and running test cases (see lazytest.test-case/try-test-case ). It may also provide feedback on the success of tests as they run. The test runner al",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest#35",
+      "title": "License",
+      "text": "Originally by Alessandra Sierra. Currently developed by Noah Bogart. Licensed under Eclipse Public License 1.0",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lazytest/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing I'm putting this at the top because it's real important to me: Do not use any generative AI when contributing to this project in any form. This is on the honor system but I'm trusting you here. Don't fuckin do it. If you want to contribute to lazytest , I am eternally grateful. This is a labor of love and it's invigorating to have others help out. Issues are always welcome, a good way to help discover edge cases and incorrect impls. Bug fixes and small touch ups can be put in a PR, no problem. (Documentation updates are also fair game.) For anything bigger, I prefer to have an issue first so we can discuss the scope and nature of the bug, feature, or idea you have. Bugs and Feature Requests Check that the issue doesn't already exist. Check that the issue hasn't already been fixed (but not released yet). Keep your issue focused on a problem statement and associated solutions. General discussions are better suited for Clojurian slack. If writing about a bug, include the version you're using. And lastly, remember that I am human and I build things for myself . I love to help but I am not being paid to work on this or any other library, so any work I do will come after all",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/lazytest/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Change Log Unreleased 2.1.0 Released 2026-08-18 . Changed/Fixed - BREAKING: If -n or -v are passed in, only require the associated namespaces. (See 35.) This shouldn't break anyone's code, but if you're being naughty in some way (interning a var in another namespace without requiring it first, etc), this might break your code. Don't be naughty, and you'll be fine. - BREAKING: If --include is used and the resulting inclusions/exclusions result in no tests running, no tests will be run. Previously, the entire test suite would be run. (See this thread for details.) - Prioritize the location and doc data from the assertion context over a caught exception. This means that the \"in example.clj:5\" line will always point to the location of the test case, not the source of a caught exception. - Increase number of stack trace lines to 5, add an \"Originating error:\" note to the front for clarity. 2.0.0 Released 2026-03-31 . Big feature: Hooks! Or plugins, as they're sometimes called. These are entrypoints into the running state of lazytest, called on a given object (the config, the current suite, etc), that allow an author to inspect and/or update that object before it's evaluated or before it",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/NoahTheDuke/lazytest",
+  "stars": 72
+}

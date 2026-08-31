@@ -1,0 +1,64 @@
+{
+  "slug": "NousResearch--smc-inference-server",
+  "name": "smc-inference-server",
+  "description": null,
+  "documents": [
+    {
+      "url": "https://github.com/smc-inference-server#0",
+      "title": "Introducción",
+      "text": "🌟 SMC Inference Server Run Sequential Monte Carlo Steering as a robust local inference server. This project is designed for exploration, demos, and efficient evaluation with lm-evaluation-harness. For more info, check out our blog publication covering experiment setups and our takeaways. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/smc-inference-server#1",
+      "title": "🛠️ Overview",
+      "text": "This repository provides a streamlined and extensible foundation for hosting language models that leverage the llamppl framework for steerable generation. While llamppl integrates with vLLM, this project wraps it with a simple, production-ready API endpoint, making it easier to integrate into your workflows and run benchmarks. It also includes a distributed framework designed to launch multiple SMC backends across your GPUs, maximizing request processing throughput. This capability aims to enable running SMC benchmarks on extensive datasets like MMLU in a matter of hours. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/smc-inference-server#2",
+      "title": "Prerequisites",
+      "text": "Docker : Ensure Docker is installed and running on your system. CUDA : Your system should have NVIDIA GPUs and CUDA drivers installed for vLLM to function correctly. Python Dependencies (for development/local setup without Docker) : You can use the following to install everything needed:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/smc-inference-server#3",
+      "title": "Step-by-Step Deployment",
+      "text": "We recommend using Docker for a consistent and isolated environment and to avoid dependency issues if running the inference server. For demo examples and exploration use pip install with a virtualenv. 1. Build the Docker Image : First, build the Docker image for your SMC Inference Server. This command compiles the necessary dependencies and sets up your environment. 2. Start Backend Inference Servers : Each backend server will run in its own Docker container, utilizing a dedicated GPU. The ./start servers.sh script handles this orchestration. Make sure your CUDA VISIBLE DEVICES environment variable is correctly configured if you want to assign specific GPUs. Note : This script expects your system to have available GPUs and will launch a server for each WORKER ID as defined in the script. Modify the script if you need to control the number of workers or GPU assignments. To kill containers, run docker stop llamppl-worker-X && docker rm llamppl-worker-X 3. Start the Load Balancer : If you want to use multiple GPUs, in a separate terminal , start the FastAPI load balancer. This component will distribute incoming requests among your backend inference servers. The workers take some time ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/smc-inference-server#4",
+      "title": "🛠️ Usage",
+      "text": "Once the servers are running, you can start sending generation requests. Sample request:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/smc-inference-server#5",
+      "title": "Testing the SMC Framework for Exploration and Development",
+      "text": "To verify that the llamppl framework is working as expected (will require pip install) with a simple example:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/smc-inference-server#6",
+      "title": "🛠️ Evaluation",
+      "text": "This evaluation framework relies on generate until calls from our custom LLaMPPLInferenceAdapter ( evaluation/llamppl inference adapter.py ), and uses regex to extract the answer from the response. The sample task definition in evaluation/tasks/mmlu smc regex.yaml covers how this is set up, though your tasks should be copied to lm eval tasks directory, noted below.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/smc-inference-server#7",
+      "title": "LM Eval Harness",
+      "text": "Clone the lm-evaluation-harness repository following the steps there. To run MMLU with SMC, copy the sample task definition evaluation/tasks/mmlu smc regex.yaml to the tasks/llama3/instruct/mmlu/ directory of lm-evaluation-harness (/path/to/lm-evaluation-harness/lm eval/tasks/llama3/instruct/mmlu/ is the format). All future task definitions for generative MMLU tasks should go in here as well. Other task definitions can be placed in their respective directories. Lastly, add the path to the above tasks directory to simple eval.py , so lm-evaluation-harness can find your new task definition. Run the server + load balancer, and in another terminal, run python simple eval.py to run the evaluation. Results will be saved to run data.json . Note: this may take a while, recent upgrades to llamppl have required some workarounds to get everything running, this will be updated as issues are resolved.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/smc-inference-server#8",
+      "title": "🛠️ Future Work",
+      "text": "Development on this project will continue as we explore new constraint designs and optimizations to the framework here. It is both useful for experimenting and for benchmarking at a larger scale, especially on compute clusters with 4 GPUs. 8xH100 was able to finish the entire 15,000 question MMLU set in under 4 hours using this. More updates to come soon!",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/NousResearch/smc-inference-server",
+  "stars": 34
+}

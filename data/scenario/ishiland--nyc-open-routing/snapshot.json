@@ -1,0 +1,88 @@
+{
+  "slug": "ishiland--nyc-open-routing",
+  "name": "nyc-open-routing",
+  "description": "Multi-modal routing for NYC using pgRouting and the LION street network — drive, bike, walk with turn-by-turn directions, isochrones, waypoints, and live traffic",
+  "documents": [
+    {
+      "url": "https://github.com/nyc-open-routing#0",
+      "title": "Introducción",
+      "text": "NYC Open Routing Multi-modal routing for New York City using pgRouting and NYC's LION street network dataset. Supports driving, walking, and biking routes with turn-by-turn directions, isochrone analysis, and traffic-aware routing.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/nyc-open-routing#1",
+      "title": "Features",
+      "text": "- Multi-modal routing -- Drive, bike, and walk routes with turn-by-turn directions using the Turn-Restricted Shortest Path (pgr trsp) algorithm - Isochrone reachability analysis -- Visualize how far you can travel in a given time with polygon fill and per-street edge views - Multi-stop waypoint routing -- Plan routes with up to 3 stops, with per-leg summaries and an overall route summary - Traffic-aware routing -- Adjust driving routes using NYC DOT traffic volume data and TRANSCOM real-time speed data - NYC address autocomplete -- Search NYC addresses with type-ahead suggestions powered by Geosupport - Responsive design -- Desktop sidebar layout, tablet view, and mobile bottom sheet - Shareable routes -- Deep link URLs encode origin, destination, mode, and waypoints for sharing Multi-modal routing Isochrone reachability Multi-stop waypoints Live traffic layer NYC address autocomplete Edge-based isochrones",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/nyc-open-routing#2",
+      "title": "Quick Start",
+      "text": "Import the LION street network (takes 10-30 minutes on first run): Navigate to http://localhost:3002 when the import completes. Traffic data is fetched automatically at runtime by the background traffic refresh service.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/nyc-open-routing#3",
+      "title": "Architecture",
+      "text": "NYC Open Routing runs three Docker services. The API uses pgRouting's pgr trsp algorithm against a graph built from NYC DCP's LION street network. The graph encodes per-mode edge costs (drive/bike/walk), one-way restrictions, grade-separated intersections (overpasses and underpasses), and optional traffic factors. See docs/ARCHITECTURE.md for details on data flow, the import pipeline, routing algorithm, and key SQL functions. Service Stack Ports --------- ------- ------- client React 18 + TypeScript + Vite + MUI + MapLibre GL 3002 (host) - 3000 api Python 3.11 + FastAPI 5001 (host) - 5000 db PostgreSQL 17 + PostGIS + pgRouting 5433 (host) - 5432",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/nyc-open-routing#4",
+      "title": "API",
+      "text": "Interactive Swagger docs are available at http://localhost:5001/api/docs when the API is running.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/nyc-open-routing#5",
+      "title": "GET /api/route",
+      "text": "Point-to-point routing between two coordinates. Parameter Type Required Description ----------- ------ ---------- ------------- orig string yes Origin coordinates ( longitude,latitude ) dest string yes Destination coordinates ( longitude,latitude ) mode string yes Travel mode: drive , bike , or walk use traffic bool no Traffic-aware routing for drive mode (default: true ) avoid ferries bool no Avoid ferry crossings for bike/walk (default: false ) Example request: Example response:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/nyc-open-routing#6",
+      "title": "GET /api/route/waypoints",
+      "text": "Multi-stop routing through 2-3 waypoints. Parameter Type Required Description ----------- ------ ---------- ------------- waypoints string yes Pipe-delimited coordinates ( lon,lat\\ lon,lat\\ lon,lat ) mode string yes Travel mode: drive , bike , or walk use traffic bool no Traffic-aware routing for drive mode (default: true ) avoid ferries bool no Avoid ferry crossings for bike/walk (default: false )",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/nyc-open-routing#7",
+      "title": "GET /api/isochrone",
+      "text": "Reachability analysis from an origin point. Parameter Type Required Description ----------- ------ ---------- ------------- orig string yes Origin coordinates ( longitude,latitude ) mode string no Travel mode: drive , bike , or walk (default: drive ) intervals string no Comma-separated minutes (default: 5,10,15,20 ) view string no Visualization: polygon or edges (default: polygon ) use traffic bool no Traffic-aware costs for drive mode (default: true )",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/nyc-open-routing#8",
+      "title": "GET /api/search",
+      "text": "NYC address autocomplete. Parameter Type Required Description ----------- ------ ---------- ------------- address string yes Partial or full NYC address",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/nyc-open-routing#9",
+      "title": "Data Sources",
+      "text": "- LION -- NYC Department of City Planning street network dataset - Geosupport -- NYC geocoding system, via python-geosupport and geosupport-suggest - TRANSCOM Speed Data -- Real-time traffic speed data (auto-refreshed by background service)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/nyc-open-routing#10",
+      "title": "License",
+      "text": "This project is licensed under the MIT License -- see the LICENSE file for details.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/nyc-open-routing/blob/master/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to NYC Open Routing Contributions are welcome. NYC Open Routing is a proof-of-concept project, so the scope is intentionally focused on NYC routing with pgRouting and LION data. Bug fixes, performance improvements, and well-scoped feature additions are all appreciated. Development Setup Prerequisites - Docker and Docker Compose - Node.js 23+ (for client development outside Docker) - Python 3.11+ (for API development outside Docker) Getting Started Follow the Quick Start in the README to get the project running. Once the services are up: Client development (hot reload outside Docker): The Vite dev server runs on port 3000 and proxies API requests to the api container. API container access: Database access: Code Style Python - Formatter: black (line length 100) - Import sorting: isort (black profile) - Linter: flake8 TypeScript / React - Formatter: prettier (no semicolons, no parens on single arrow params) - Linter: eslint Testing Python Frontend Pull Request Process 1. Fork the repo and create a feature branch from master 2. Follow the code style guidelines above 3. Add tests for new functionality where applicable 4. Ensure all existing tests pass 5. Open a PR with a cl",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/nyc-open-routing/blob/master/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog All notable changes to this project are documented in this file. The format is based on Keep a Changelog. [4.1] - 2026-02-15 Added - CI status badge in README - README screenshots for all major features - Social preview image for GitHub link sharing - CHANGELOG.md Changed - GitHub repo description and topic tags updated for discoverability [4.0] - 2026-02-15 Added - Live traffic data refresh from TRANSCOM speed sensors (auto-updates every 5 minutes) - Traffic visualization map layer with green/yellow/orange/red color scale - Traffic status API endpoint reporting data freshness - Manual traffic refresh endpoint for development - Traffic layer toggle independent of route traffic setting - Viewport-bounded traffic data loading for performance - Traffic freshness indicator (\"Updated X min ago\") Changed - SQL routing functions use combined fallback chain: live speed factor, static volume factor, default 1.0 [3.0] - 2026-02-14 Added - Professional README with feature highlights and tech stack badges - MIT license - CONTRIBUTING.md with development setup and code style guidelines - GitHub Actions CI workflow (lint, test, build, Docker smoke test) Changed - Codebase reviewed for ",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/ishiland/nyc-open-routing",
+  "stars": 6
+}

@@ -1,0 +1,148 @@
+{
+  "slug": "drt-hub--drt",
+  "name": "drt",
+  "description": "Reverse ETL for the code-first data stack",
+  "documents": [
+    {
+      "url": "https://github.com/drt#0",
+      "title": "The reverse leg of your data stack.",
+      "text": "dlt loads data in, dbt transforms it, and drt activates it back out — reverse ETL from your warehouse to the tools your team works in, as YAML in your own repo. No dashboard to babysit, no audience builder duplicating what dbt already does, no hosted runtime billing you per row. Your data goes straight from your warehouse to the destination — never through a drt-hosted intermediary. dlt load &nbsp;→&nbsp; dbt transform &nbsp;→&nbsp; drt activate — or try it in your browser, zero local setup. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#1",
+      "title": "Why drt?",
+      "text": "Same DX as dbt. If you know dbt run , you already know drt run — declarative YAML, versioned in Git, reviewed in PRs. CI-native. Exit codes and --output json drop straight into GitHub Actions, cron, or Dagster / Airflow / Prefect — no GUI, no clickops. LLM-native. A built-in MCP server and Claude Code skills let AI tools author and run your syncs. Free and open source. Every connector, the CLI, the MCP server, and the sync engine — Apache 2.0, self-hosted, no lock-in. What's always free? All connectors, CLI, MCP server, and sync engine. See OPEN CORE.md for the open core boundary. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#2",
+      "title": "Quickstart",
+      "text": "No cloud accounts needed — DuckDB + httpbin.org, three commands. That scaffolds a runnable syncs/duckdb to rest.yml . Seed a tiny DuckDB table and run:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#3",
+      "title": "Other starter templates",
+      "text": "Each template prints next-steps for the env vars / source data it needs. See examples/ for the full collection (Discord, Google Sheets, GitHub Actions, MySQL, ClickHouse, BigQuery, …) and docs/connectors/ for per-connector reference.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#4",
+      "title": "Customizing your sync",
+      "text": "For a guided wizard that walks you through profile + project setup: Both flows produce the same project shape ( drt project.yml , syncs/ , .drt/ ). drt sources --detailed and drt destinations --detailed print every connector's required env vars and a sample YAML stanza — useful when hand-authoring beyond the templates. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#5",
+      "title": "Shell completion",
+      "text": "Shell completion is supported for bash, zsh, and fish: Note: --show-completion outputs the script for your current shell. Run it from the shell you want to configure. The manual append is not idempotent — run it once only. After installation, restart your shell and tab-complete commands and options. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#6",
+      "title": "MCP Server",
+      "text": "Connect drt to Claude, Cursor, or any MCP-compatible client so you can run syncs, check status, and validate configs without leaving your AI environment. Claude Desktop ( ~/Library/Application Support/Claude/claude desktop config.json ): Available MCP tools: Tool What it does --------------------- ------------------------------------------------------------------------------------- drt list syncs List all sync definitions drt run sync Run a sync (supports dry run + compute diff for --diff parity) drt run test Run post-sync validation tests (mirrors drt test ) drt get status Get last run result(s) drt get history Get recent sync run history drt validate Validate sync YAML configs drt get schema Return JSON Schema for config files drt list connectors List available sources and destinations drt dlq Inspect a sync's Dead Letter Queue (depth + failed records) drt retry Replay a sync's Dead Letter Queue (mirrors drt retry ) drt get manifest Machine-readable sync catalog + lineage ( drt docs JSON) drt list profiles List credential profiles (name + type, no secrets) drt test profile Connectivity check for a credential profile drt doctor Environment diagnostics (mirrors drt doctor ) drt sta",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#7",
+      "title": "AI Skills for Claude Code",
+      "text": "Install the official Claude Code skills to generate YAML, debug failures, and migrate from other tools — all from the chat interface.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#8",
+      "title": "Install via Plugin Marketplace (recommended)",
+      "text": "Tip: Enable auto-update so you always get the latest skills when drt is updated: /plugin → Marketplaces → drt-hub → Enable auto-update",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#9",
+      "title": "Manual install (slash commands)",
+      "text": "Copy the files from .claude/commands/ into your drt project's .claude/commands/ directory. Skill Trigger What it does ------------------ --------------------- ------------------------------------------ /drt-create-sync \"create a sync\" Generates valid sync YAML from your intent /drt-debug \"sync failed\" Diagnoses a specific error and suggests fixes /drt-troubleshoot \"drt isn't working\" Walks a full top-to-bottom diagnostic checklist /drt-init \"set up drt\" Guides through project initialization /drt-migrate \"migrate from Census\" Converts existing configs to drt YAML ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#10",
+      "title": "Connectors",
+      "text": "Per-connector reference: docs/connectors/ · Discoverable from the CLI: drt sources --detailed / drt destinations --detailed",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#11",
+      "title": "Sources",
+      "text": "Connector Status Install Auth ---------- --------- ---------------------------------- --------------------------------------------- BigQuery ✅ v0.1 pip install drt-core[bigquery] Application Default / Service Account Keyfile DuckDB ✅ v0.1 (core) File path PostgreSQL ✅ v0.1 pip install drt-core[postgres] Password (env var) Snowflake ✅ v0.5 pip install drt-core[snowflake] Password (env var) SQLite ✅ v0.4.2 (core) File path Redshift ✅ v0.3.4 pip install drt-core[redshift] Password (env var) ClickHouse ✅ v0.4.3 pip install drt-core[clickhouse] Password (env var) MySQL ✅ v0.5 pip install drt-core[mysql] Password (env var) Databricks ✅ v0.6 pip install drt-core[databricks] Access Token (env var) Delta Lake ✅ v0.8 pip install drt-core[deltalake] Storage options (env var) Iceberg ✅ v0.8 pip install drt-core[iceberg] Catalog properties (env var) SQL Server ✅ v0.6 pip install drt-core[sqlserver] Password (env var) REST API ✅ v0.7 (core) Bearer / API Key / Basic / OAuth2",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#12",
+      "title": "Destinations",
+      "text": "34 destinations — warehouses, SaaS APIs, cloud storage, files &amp; webhooks (click to expand) Connector Status Install Auth ----------------------- --------- ---------------------------------- --------------------------------- REST API ✅ v0.1 (core) Bearer / API Key / Basic / OAuth2 Slack Incoming Webhook ✅ v0.1 (core) Webhook URL Discord Webhook ✅ v0.4.2 (core) Webhook URL GitHub Actions ✅ v0.1 (core) Token (env var) HubSpot ✅ v0.1 (core) Token (env var) Zendesk ✅ v0.7 (core) Basic (email + API token) Amplitude ✅ v0.7 (core) Project API key (env var) Klaviyo ✅ v0.8 (core) Private API key (env var) Mixpanel ✅ v0.8 (core) Project token / service account Google Ads ✅ v0.6 (core) OAuth2 Client Credentials Google Sheets ✅ v0.4 pip install drt-core[sheets] Service Account Keyfile PostgreSQL (upsert) ✅ v0.4 pip install drt-core[postgres] Password (env var) MySQL (upsert) ✅ v0.4 pip install drt-core[mysql] Password (env var) ClickHouse ✅ v0.5 pip install drt-core[clickhouse] Password (env var) Parquet file ✅ v0.5 pip install drt-core[parquet] File path Amazon S3 ✅ v0.7.9 pip install drt-core[s3] AWS credential chain / env vars Google Cloud Storage ✅ v0.7.9 pip install drt-core[gcs] Appli",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#13",
+      "title": "Integrations",
+      "text": "Connector Status Install ------------------- ------- ------------------------- Dagster ✅ v0.4 pip install dagster-drt Prefect ✅ v0.6 (core) Airflow ✅ v0.6 (core) dbt manifest reader ✅ v0.4 (core) ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#14",
+      "title": "Roadmap",
+      "text": "Upcoming releases → ROADMAP.md (scope, themes, targets) Issue-level tracking → GitHub Milestones Looking to contribute? → Good First Issues Shipped: now on v0.10.0 — Protocol stability and v1.0 freeze preparation (ADR 0007) · the ADR 0011 OSS product boundary · age-encrypted .drt/secrets.toml · QueryableDestination · entry-point plugins whose connector types work in sync YAML · dbt exposures export · reproducible benchmarks, real-I/O/PyO3 evidence, and ADR 0010's no-broad-rewrite recommendation · no-op-by-default Enterprise RBAC/audit extension seams (ADR 0008) · pluggable cross-process rate-limit coordination (ADR 0012) · separately versioned dagster-drt v0.4.0 event-driven sensors, on top of v0.9.0's remote state and delivery-contract foundation. Grouped milestones below; the full per-release changelog lives in CHANGELOG.md and GitHub Releases. Milestone Highlights -------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------- v0.1–0.3 Core CLI · BigQuery / DuckDB / Postgres sources · REST / Slack / HubSpot destinations · incremental sync · MCP server + AI Sk",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#15",
+      "title": "Orchestration: dagster-drt",
+      "text": "Community-maintained Dagster integration. Expose drt syncs as Dagster assets with full observability. For event-driven activation, build drt change sensor() watches metadata-only change signals from Delta Lake, Iceberg, Snowflake, or SQL Server. The same resource also runs explicitly selected syncs from a plain Dagster @op , returns a chainable DrtEventIterator for source row-count checks, and powers the declarative DrtSyncComponent for defs.yaml projects. See dagster-drt README for full API docs (sensors, Components, @op , Translator, Pipes support, and dry-run config). ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#16",
+      "title": "CI/CD: GitHub Action",
+      "text": "Run drt syncs straight from CI/CD with the official drt-hub/drt-action — no infrastructure, just a few lines of YAML. Trigger on a schedule, on every push, or right after dbt finishes. Inputs cover sync selection ( select ), connector extras , profile , dry-run and threads ; outputs expose status , succeeded , failed and duration-seconds (plus a step-summary table). Secrets are passed via env: and resolved by drt's env keys. See the action README for the secrets pattern and more examples (run-after-dbt, PR preview). ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#17",
+      "title": "Telemetry",
+      "text": "drt collects no telemetry by default . Opting in helps us understand which sources / destinations / sync modes are actually used, so we can prioritise. When opted in, drt sends one sync completed event per sync. The only properties we collect are these 9 fields: drt version , python version , os , source type , destination type , sync mode , rows synced , duration seconds , status . The wire envelope additionally carries event , distinct id (a per-machine random UUID at ~/.drt/.anonymous id ), timestamp , and api key . Sync names, model SQL, destination URLs, credentials, and project paths are never transmitted — the allow-list is enforced at the function-signature level in drt/telemetry.py . By default events go to PostHog Cloud (EU region) ; override with DRT TELEMETRY ENDPOINT and DRT TELEMETRY API KEY for self-hosted PostHog or a custom collector. Note: drt itself never transmits your IP, but the receiving PostHog backend records the TCP source IP as $ip . See docs/telemetry.md for details and how to disable / substitute the backend. For full details see docs/telemetry.md.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#18",
+      "title": "Contributing",
+      "text": "We welcome contributions of all sizes — from typo fixes to new connectors. drt has a transparent contributor ladder so your work builds toward greater trust and responsibility over time. - Get started: CONTRIBUTING.md — setup, workflow, and your first connector tutorial - Pick something to work on: Good First Issues - Understand how decisions are made: GOVERNANCE.md - What's free vs. enterprise: OPEN CORE.md - Versioning & breaking changes: VERSIONING.md",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#19",
+      "title": "Contributors ✨",
+      "text": "Every contribution — code, docs, bug reports, ideas — makes drt better. Thank you 💜 Full credits by contribution type ( emoji key ) K.Masuda 💻 📖 🚧 🤔 🔧 📆 👀 🧑‍🏫 yodakanohoshi 💻 📖 🚧 🤔 👀 📆 Moavia Amir 💻 📖 🚇 🚧 🤔 Khush Domadiya 💻 Pawan Singh Kapkoti 💻 PFCAaron12 💻 Semy Ingle 💻 🚧 きわみざむらい 💻 🐛 armorbreak001 💻 pureqin 💻 Wahaj Ahmed 💻 cian-ps 💻 🐛 🚇 Erik Estrella ⚠️ Ai (藍) 📖 GokulKashyap 💻 ⚠️ Add your contributions",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt#20",
+      "title": "Disclaimer",
+      "text": "drt is an independent open-source project and is not affiliated with, endorsed by, or sponsored by dbt Labs, dlt-hub, or any other company. \"dbt\" is a registered trademark of dbt Labs, Inc. \"dlt\" is a project maintained by dlt-hub. drt is designed to complement these tools as part of the modern data stack, but is a separate project with its own codebase and maintainers.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/drt/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to drt Thank you for your interest in contributing! Want to grow with the project? drt has a contributor ladder: every merged PR builds toward becoming a Triage Collaborator, and from there to Owner. Roles are earned by sustained, quality contribution — and the criteria are public. Development Setup Prerequisites - Python 3.10+ - uv (recommended) or pip Clone and Install With uv (recommended): Note for Windows contributors: AGENTS.md is a symlink to CLAUDE.md (kept in sync for Codex CLI). If git clone checks it out as a plain text file containing just CLAUDE.md instead of the real file contents, your Git isn't creating real symlinks. git config core.symlinks true only affects the clone you set it in, so re-cloning without setting it first reproduces the same problem — either run git config --global core.symlinks true (may also require enabling Windows Developer Mode) before cloning, or set it locally in this clone and re-check out the file: git config core.symlinks true && git rm --cached AGENTS.md && git checkout AGENTS.md . Pre-commit hooks You can optionally use pre-commit to run ruff and mypy before each commit. This is optional — you can also use make lint and mak",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/drt/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog All notable changes to this project will be documented in this file. The format is based on Keep a Changelog, and this project adheres to Semantic Versioning. dagster-drt dagster-drt is published as a separate PyPI package with its own version. [0.4.0] - 2026-08-28 (dagster-drt) - Chainable DrtEventIterator post-processing ( 182): DagsterDrtResource.run() now returns an iterator wrapper, matching dagster-dlt's established execution shape, so asset bodies can write yield from drt.run(context=context).fetch row count() . fetch row count() independently re-runs each resolved model against the configured source and attaches Dagster's standard dagster/row count metadata; it deliberately does not copy rows extracted or rows synced , which remain the engine result from the original run and therefore are not an independent post-load check. The verification query follows the project's query tagging configuration with its own fresh run id, including both the universal SQL comment and native source tags, and incremental models are rendered with the exact cursor value used by the original sync so they verify the same window. Fixing this surfaced a separate, pre-existing gap in the sa",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/drt-hub/drt",
+  "stars": 29
+}

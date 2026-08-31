@@ -1,0 +1,160 @@
+{
+  "slug": "pdb-operator--pdb-operator",
+  "name": "pdb-operator",
+  "description": "Intelligent Pod Disruption Budget Management for Kubernetes",
+  "documents": [
+    {
+      "url": "https://github.com/pdb-operator#0",
+      "title": "Introducción",
+      "text": "PDB Operator Getting Started &nbsp;&nbsp;&bull;&nbsp;&nbsp; Contributing &nbsp;&nbsp;&bull;&nbsp;&nbsp; Get In Touch --- A Kubernetes operator that automates PodDisruptionBudget (PDB) management through policy-driven availability classes. Define your availability requirements declaratively and let the operator create, update, and reconcile PDBs across your cluster.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#1",
+      "title": "Why PDB Operator?",
+      "text": "Managing PodDisruptionBudgets at scale is painful. Teams forget to create them, set incorrect values, or leave stale PDBs behind. PDB Operator solves this by: - Policy-driven : Define availability classes ( non-critical , standard , high-availability , mission-critical , custom ) and the operator calculates the right PDB settings - Selector-based : Target workloads by labels, names, functions, or namespaces - Enforcement modes : Choose strict , flexible , or advisory enforcement per policy - Maintenance windows : Automatically relax PDBs during scheduled maintenance - Workload-aware : Security workloads get automatically boosted availability - Self-cleaning : PDBs are removed when a workload scales below 2 replicas and recreated when it scales back, so no stale PDBs are left behind - Observable : Built-in Prometheus metrics, OpenTelemetry tracing, structured logging, and Kubernetes events",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#2",
+      "title": "Architecture",
+      "text": "The operator runs three controllers: - PDBPolicyController - Watches PDBPolicy resources, finds matching workloads, and updates policy status - DeploymentController - Watches Deployment resources, resolves the effective policy (considering annotations, enforcement modes, and priority), and creates/updates/deletes PDBs - StatefulSetController - Watches StatefulSet resources with the same policy-driven logic, enabling PDB protection for stateful workloads such as databases and message queues",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#3",
+      "title": "Helm (recommended)",
+      "text": "The chart is published as an OCI artifact: On a cluster without cert-manager, disable the webhook and its certificate: See helm-pdb-operator for all values.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#4",
+      "title": "Create a Policy",
+      "text": "This policy ensures all env: production deployments in the default and production namespaces get PDBs with 75% minimum availability, enforced strictly (annotations cannot override).",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#5",
+      "title": "Annotate Workloads (Optional)",
+      "text": "For advisory and flexible enforcement modes, workloads can override the policy using annotations: StatefulSets are supported with the same annotations:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#6",
+      "title": "Availability Classes",
+      "text": "Class MinAvailable Use Case ------- ------------- ---------- non-critical 20% Batch jobs, dev workloads standard 50% General applications high-availability 75% Production APIs, databases mission-critical 90% Payment systems, auth services custom User-defined Full control via customPDBConfig Security workloads ( pdboperator.io/workload-function: security ) are automatically boosted: non-critical becomes 50%, standard becomes 75%.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#7",
+      "title": "Group-Aware PDBs for Multi-Host Inference (LeaderWorkerSet)",
+      "text": "When the LeaderWorkerSet CRD ( leaderworkerset.x-k8s.io/v1 ) is installed, the operator also manages PDBs for LWS workloads such as multi-host vLLM or SGLang deployments. Support is detected at startup; without the CRD the operator runs unchanged. LWS groups restart as a unit (default RecreateGroupOnPodRestart ): evicting one pod takes down all size pods of its group. A pod-counting percentage both under-protects capacity and can deadlock node drains, so the operator quantizes the budget to whole groups: For replicas: 4, size: 8 under mission-critical (90%) this yields minAvailable: 24 : exactly one group may be disrupted at a time, and a drain always makes progress. Granularity is whole groups, so a 4-group set has only 4 protection steps. Special cases: Shape Behavior ------- ---------- replicas: 1 No PDB is created (any budget would permanently block drains); a Warning event explains why size: 1 Plain pod-level semantics, same as a Deployment custom with absolute minAvailable Rounded up to the next whole group The PDB selects on the leaderworkerset.sigs.k8s.io/name label, covering leader and worker pods. LWS implements each set as a leader StatefulSet plus per-group worker State",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#8",
+      "title": "Gang-Aware PDBs from the Workload API (Kubernetes 1.35+)",
+      "text": "When the cluster serves the upstream Workload API ( scheduling.k8s.io/v1beta1 , KEP-4671, beta in Kubernetes 1.37 behind the GenericWorkload feature gate), the operator also manages PDBs for gang-scheduled workloads declared through it. Support is detected at startup; without the API the operator runs unchanged. Upstream gang scheduling is placement-only, and disruptionMode is consumed only by scheduler preemption, so voluntary evictions (node drains) are otherwise unprotected. Declared shape PDB behavior ---------------- -------------- gang policy with disruptionMode: {all: {}} The group restarts as a unit, so the budget is quantized to whole pod groups (same math as LeaderWorkerSet) gang policy with disruptionMode: {single: {}} (or unset) Pod-level semantics with minAvailable floored at the gang minCount Single all-mode group, or a minCount that leaves no pod evictable No PDB; a Warning event explains why (any budget would permanently block drains) Multiple gang templates or composite templates Skipped for now, with a Warning event Pods reference their group via spec.schedulingGroup.podGroupName , which is not a label, so the PDB selector is derived from the labels common to the ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#9",
+      "title": "Enforcement Modes",
+      "text": "Mode Behavior ------ ---------- strict Policy cannot be overridden by annotations flexible Annotations can increase but never decrease availability below minimumClass advisory Annotations can freely override the policy (default)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#10",
+      "title": "Workload Annotations",
+      "text": "Annotation Description ----------- ------------- pdboperator.io/availability-class Override availability class pdboperator.io/workload-function Workload function: core , management , security pdboperator.io/workload-name Explicit workload name for selector matching pdboperator.io/maintenance-window Override maintenance window (format: HH:MM-HH:MM TZ ) pdboperator.io/override-reason Required when overrideRequiresReason is enabled",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#11",
+      "title": "Managed PDB Labels",
+      "text": "Label Description ------- ------------- pdboperator.io/managed-by Marks PDB as managed by pdb-operator pdboperator.io/workload References the protected workload pdboperator.io/availability-class Applied availability class",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#12",
+      "title": "Prometheus Metrics",
+      "text": "Metric Type Description -------- ------ ------------- pdb operator reconciliation duration seconds Histogram Reconciliation duration pdb operator reconciliation errors total Counter Reconciliation errors pdb operator pdbs created total Counter PDBs created pdb operator pdbs updated total Counter PDBs updated pdb operator pdbs deleted total Counter PDBs deleted pdb operator deployments managed Gauge Managed deployments per namespace/class pdb operator leaderworkersets managed Gauge Managed LeaderWorkerSets per namespace/class pdb operator workloads managed Gauge Managed scheduling.k8s.io Workloads per namespace/class pdb operator policies active Gauge Active policies per namespace pdb operator compliance status Gauge Deployment compliance status pdb operator maintenance window active Gauge Maintenance window active pdb operator enforcement decisions total Counter Enforcement decisions pdb operator override attempts total Counter Override attempts",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#13",
+      "title": "OpenTelemetry Tracing",
+      "text": "Set OTLP ENDPOINT environment variable to enable distributed tracing via OTLP/gRPC protocol.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#14",
+      "title": "Structured Logging",
+      "text": "JSON-formatted structured logging with audit trails, correlation IDs, and trace context propagation.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#15",
+      "title": "PDBs not being created",
+      "text": "1. Check the operator logs (deployment is pdb-operator for a Helm install, pdb-operator-controller-manager for the raw manifest): 2. Verify the policy matches your deployment: 3. Check policy status for matching workloads:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#16",
+      "title": "Webhook errors",
+      "text": "1. Verify cert-manager is running and the certificate is ready: 2. Check webhook configuration:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#17",
+      "title": "Policy conflicts",
+      "text": "When multiple policies match a workload, the operator uses priority-based resolution. Check which policy was applied:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#18",
+      "title": "\"cannot set blockOwnerDeletion\" on OpenShift",
+      "text": "On clusters with the OwnerReferencesPermissionEnforcement admission plugin enabled (e.g. OpenShift), the operator needs update on the deployments/finalizers and statefulsets/finalizers subresources to set blockOwnerDeletion on managed PDBs. The Helm chart grants this. For a raw-manifest install, confirm the ClusterRole includes:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#19",
+      "title": "Metrics not showing",
+      "text": "1. Verify the metrics service is running: 2. Check ServiceMonitor is picked up by Prometheus: For more help, open an issue.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#20",
+      "title": "Contributing",
+      "text": "We welcome contributions! Please see CONTRIBUTING.md for guidelines. This project uses the Developer Certificate of Origin (DCO). All commits must be signed off:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#21",
+      "title": "Community",
+      "text": "- CNCF Slack: pdb-operator - Code of Conduct - Governance - Security Policy - Maintainers - Roadmap - Changelog",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator#22",
+      "title": "License",
+      "text": "Copyright 2025-2026 The PDB Operator Authors. Licensed under the Apache License, Version 2.0. See LICENSE for details.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/pdb-operator/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to PDB Operator Thank you for your interest in contributing to PDB Operator! This document provides guidelines and information for contributors. Developer Certificate of Origin (DCO) This project uses the Developer Certificate of Origin (DCO). All commit messages must contain the Signed-off-by line with an email address that matches the commit author. If you forget to sign off, you can amend your last commit: Getting Started Prerequisites - Go 1.26+ - Docker or Podman - kubectl - operator-sdk v1.42+ - A Kubernetes cluster (kind, minikube, or remote) - cert-manager (for webhook TLS) Development Setup 1. Fork and clone the repository: 2. Install dependencies: 3. Run tests: 4. Run linter: 5. Build the operator: Local Development with Kind Making Changes Branching - Create a feature branch from main - Use descriptive branch names: feat/add-policy-validation , fix/pdb-reconciliation-race Coding Standards - Follow standard Go conventions and idioms - Run make lint before submitting - Add tests for new functionality - Update documentation for user-facing changes Commit Messages Follow Conventional Commits: - feat: new feature - fix: bug fix - docs: documentation changes - tes",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/pdb-operator/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog All notable changes to PDB Operator will be documented in this file. The format is based on Keep a Changelog, and this project adheres to Semantic Versioning. [Unreleased] [0.5.0] - 2026-08-29 Fixed - Workload skip warnings after the first are no longer swallowed. The events.k8s.io correlation key ignores the event message, so every skip cause sharing the WorkloadSkipped reason collapsed into the first warning's series and later messages (e.g. the single-group no-PDB explanation) were discarded. Each cause now has its own reason: WorkloadPDBDeferred (no pods yet), WorkloadSelectorUnresolvable , WorkloadUnsupported (multi/composite templates), WorkloadSkipped (no valid PDB possible), and every skip also writes a log line ( 99, 98) Added - Gang-aware PDBs from the upstream Workload API ( scheduling.k8s.io/v1beta1 , KEP-4671, beta in Kubernetes 1.37 behind the GenericWorkload gate). disruptionMode: all templates get budgets quantized to whole pod groups (reusing the LWS math); single gangs keep pod semantics floored at the gang minCount ; shapes whose budget would permanently block drains (single all-mode group, minCount covering every pod) get no PDB plus a Warning event. T",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/pdb-operator/pdb-operator",
+  "stars": 31
+}

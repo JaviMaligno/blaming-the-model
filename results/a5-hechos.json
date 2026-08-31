@@ -1,0 +1,1125 @@
+{
+  "prompt_bytes": {
+    "ok": true,
+    "cases": [
+      {
+        "slug": "badger-cash--badger",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-3",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/badger#0",
+          "https://github.com/badger#1",
+          "https://github.com/badger#3",
+          "https://github.com/badger#2"
+        ],
+        "prompt_sha256_a": "8a6b5777e4bd47912ac6712a65198ca3d9f76a75b726d81f56e46bff6eb3c6eb",
+        "prompt_sha256_b": "c335bee3f9cb56b93a6f531fba63c807c9301bdd416cdbd66b43c91d92309e5f",
+        "prompt_bytes_a": 2872,
+        "prompt_bytes_b": 2282,
+        "delta": -590
+      },
+      {
+        "slug": "badger-cash--badger",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/badger#0",
+          "https://github.com/badger#1",
+          "https://github.com/badger#3",
+          "https://github.com/badger#2"
+        ],
+        "prompt_sha256_a": "8a6b5777e4bd47912ac6712a65198ca3d9f76a75b726d81f56e46bff6eb3c6eb",
+        "prompt_sha256_b": "c335bee3f9cb56b93a6f531fba63c807c9301bdd416cdbd66b43c91d92309e5f",
+        "prompt_bytes_a": 2872,
+        "prompt_bytes_b": 2282,
+        "delta": -590
+      },
+      {
+        "slug": "badger-cash--badger",
+        "pass_a": "pasada-2",
+        "pass_b": "pasada-3",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/badger#0",
+          "https://github.com/badger#1",
+          "https://github.com/badger#3",
+          "https://github.com/badger#2"
+        ],
+        "prompt_sha256_a": "8a6b5777e4bd47912ac6712a65198ca3d9f76a75b726d81f56e46bff6eb3c6eb",
+        "prompt_sha256_b": "c335bee3f9cb56b93a6f531fba63c807c9301bdd416cdbd66b43c91d92309e5f",
+        "prompt_bytes_a": 2872,
+        "prompt_bytes_b": 2282,
+        "delta": -590
+      },
+      {
+        "slug": "badger-cash--badger",
+        "pass_a": "pasada-2",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/badger#0",
+          "https://github.com/badger#1",
+          "https://github.com/badger#3",
+          "https://github.com/badger#2"
+        ],
+        "prompt_sha256_a": "8a6b5777e4bd47912ac6712a65198ca3d9f76a75b726d81f56e46bff6eb3c6eb",
+        "prompt_sha256_b": "c335bee3f9cb56b93a6f531fba63c807c9301bdd416cdbd66b43c91d92309e5f",
+        "prompt_bytes_a": 2872,
+        "prompt_bytes_b": 2282,
+        "delta": -590
+      },
+      {
+        "slug": "badger-cash--badger",
+        "pass_a": "pasada-3",
+        "pass_b": "pasada-4",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/badger#0",
+          "https://github.com/badger#1",
+          "https://github.com/badger#3",
+          "https://github.com/badger#2"
+        ],
+        "prompt_sha256_a": "c335bee3f9cb56b93a6f531fba63c807c9301bdd416cdbd66b43c91d92309e5f",
+        "prompt_sha256_b": "8a6b5777e4bd47912ac6712a65198ca3d9f76a75b726d81f56e46bff6eb3c6eb",
+        "prompt_bytes_a": 2282,
+        "prompt_bytes_b": 2872,
+        "delta": 590
+      },
+      {
+        "slug": "badger-cash--badger",
+        "pass_a": "pasada-4",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/badger#0",
+          "https://github.com/badger#1",
+          "https://github.com/badger#3",
+          "https://github.com/badger#2"
+        ],
+        "prompt_sha256_a": "8a6b5777e4bd47912ac6712a65198ca3d9f76a75b726d81f56e46bff6eb3c6eb",
+        "prompt_sha256_b": "c335bee3f9cb56b93a6f531fba63c807c9301bdd416cdbd66b43c91d92309e5f",
+        "prompt_bytes_a": 2872,
+        "prompt_bytes_b": 2282,
+        "delta": -590
+      },
+      {
+        "slug": "jasonrichardsmith--sentry",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-2",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/sentry#0",
+          "https://github.com/sentry#1",
+          "https://github.com/sentry#6"
+        ],
+        "prompt_sha256_a": "e5080fba567a8d8a4ec74e87abfb0b2112d3aa6292dfe4a0f256fe477692e6e7",
+        "prompt_sha256_b": "bc20eea9eb4d3c6226a5ad864f13aaf557338ae09dd38fc549a6a4d43fe85cdf",
+        "prompt_bytes_a": 1754,
+        "prompt_bytes_b": 1573,
+        "delta": -181
+      },
+      {
+        "slug": "jasonrichardsmith--sentry",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-3",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/sentry#0",
+          "https://github.com/sentry#1",
+          "https://github.com/sentry#6"
+        ],
+        "prompt_sha256_a": "e5080fba567a8d8a4ec74e87abfb0b2112d3aa6292dfe4a0f256fe477692e6e7",
+        "prompt_sha256_b": "bc20eea9eb4d3c6226a5ad864f13aaf557338ae09dd38fc549a6a4d43fe85cdf",
+        "prompt_bytes_a": 1754,
+        "prompt_bytes_b": 1573,
+        "delta": -181
+      },
+      {
+        "slug": "jasonrichardsmith--sentry",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/sentry#0",
+          "https://github.com/sentry#1",
+          "https://github.com/sentry#6"
+        ],
+        "prompt_sha256_a": "e5080fba567a8d8a4ec74e87abfb0b2112d3aa6292dfe4a0f256fe477692e6e7",
+        "prompt_sha256_b": "bc20eea9eb4d3c6226a5ad864f13aaf557338ae09dd38fc549a6a4d43fe85cdf",
+        "prompt_bytes_a": 1754,
+        "prompt_bytes_b": 1573,
+        "delta": -181
+      },
+      {
+        "slug": "jasonrichardsmith--sentry",
+        "pass_a": "pasada-2",
+        "pass_b": "pasada-4",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/sentry#0",
+          "https://github.com/sentry#1",
+          "https://github.com/sentry#6"
+        ],
+        "prompt_sha256_a": "bc20eea9eb4d3c6226a5ad864f13aaf557338ae09dd38fc549a6a4d43fe85cdf",
+        "prompt_sha256_b": "e5080fba567a8d8a4ec74e87abfb0b2112d3aa6292dfe4a0f256fe477692e6e7",
+        "prompt_bytes_a": 1573,
+        "prompt_bytes_b": 1754,
+        "delta": 181
+      },
+      {
+        "slug": "jasonrichardsmith--sentry",
+        "pass_a": "pasada-3",
+        "pass_b": "pasada-4",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/sentry#0",
+          "https://github.com/sentry#1",
+          "https://github.com/sentry#6"
+        ],
+        "prompt_sha256_a": "bc20eea9eb4d3c6226a5ad864f13aaf557338ae09dd38fc549a6a4d43fe85cdf",
+        "prompt_sha256_b": "e5080fba567a8d8a4ec74e87abfb0b2112d3aa6292dfe4a0f256fe477692e6e7",
+        "prompt_bytes_a": 1573,
+        "prompt_bytes_b": 1754,
+        "delta": 181
+      },
+      {
+        "slug": "jasonrichardsmith--sentry",
+        "pass_a": "pasada-4",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/sentry#0",
+          "https://github.com/sentry#1",
+          "https://github.com/sentry#6"
+        ],
+        "prompt_sha256_a": "e5080fba567a8d8a4ec74e87abfb0b2112d3aa6292dfe4a0f256fe477692e6e7",
+        "prompt_sha256_b": "bc20eea9eb4d3c6226a5ad864f13aaf557338ae09dd38fc549a6a4d43fe85cdf",
+        "prompt_bytes_a": 1754,
+        "prompt_bytes_b": 1573,
+        "delta": -181
+      },
+      {
+        "slug": "karam-ajaj--atlas",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-3",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/atlas#0",
+          "https://github.com/atlas#1",
+          "https://github.com/atlas#4"
+        ],
+        "prompt_sha256_a": "debe069a12f7481386e51e2f0deb22a529142be0f53446a185603b0bdb010421",
+        "prompt_sha256_b": "2362f322f74957ae0ee6b4f8f86d10d5b0aaaa8bd1a43ecf450465a88a246729",
+        "prompt_bytes_a": 3016,
+        "prompt_bytes_b": 2610,
+        "delta": -406
+      },
+      {
+        "slug": "karam-ajaj--atlas",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-4",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/atlas#0",
+          "https://github.com/atlas#1",
+          "https://github.com/atlas#4"
+        ],
+        "prompt_sha256_a": "debe069a12f7481386e51e2f0deb22a529142be0f53446a185603b0bdb010421",
+        "prompt_sha256_b": "2362f322f74957ae0ee6b4f8f86d10d5b0aaaa8bd1a43ecf450465a88a246729",
+        "prompt_bytes_a": 3016,
+        "prompt_bytes_b": 2610,
+        "delta": -406
+      },
+      {
+        "slug": "karam-ajaj--atlas",
+        "pass_a": "pasada-2",
+        "pass_b": "pasada-3",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/atlas#0",
+          "https://github.com/atlas#1",
+          "https://github.com/atlas#4"
+        ],
+        "prompt_sha256_a": "debe069a12f7481386e51e2f0deb22a529142be0f53446a185603b0bdb010421",
+        "prompt_sha256_b": "2362f322f74957ae0ee6b4f8f86d10d5b0aaaa8bd1a43ecf450465a88a246729",
+        "prompt_bytes_a": 3016,
+        "prompt_bytes_b": 2610,
+        "delta": -406
+      },
+      {
+        "slug": "karam-ajaj--atlas",
+        "pass_a": "pasada-2",
+        "pass_b": "pasada-4",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/atlas#0",
+          "https://github.com/atlas#1",
+          "https://github.com/atlas#4"
+        ],
+        "prompt_sha256_a": "debe069a12f7481386e51e2f0deb22a529142be0f53446a185603b0bdb010421",
+        "prompt_sha256_b": "2362f322f74957ae0ee6b4f8f86d10d5b0aaaa8bd1a43ecf450465a88a246729",
+        "prompt_bytes_a": 3016,
+        "prompt_bytes_b": 2610,
+        "delta": -406
+      },
+      {
+        "slug": "karam-ajaj--atlas",
+        "pass_a": "pasada-3",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/atlas#0",
+          "https://github.com/atlas#1",
+          "https://github.com/atlas#4"
+        ],
+        "prompt_sha256_a": "2362f322f74957ae0ee6b4f8f86d10d5b0aaaa8bd1a43ecf450465a88a246729",
+        "prompt_sha256_b": "debe069a12f7481386e51e2f0deb22a529142be0f53446a185603b0bdb010421",
+        "prompt_bytes_a": 2610,
+        "prompt_bytes_b": 3016,
+        "delta": 406
+      },
+      {
+        "slug": "karam-ajaj--atlas",
+        "pass_a": "pasada-4",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/atlas#0",
+          "https://github.com/atlas#1",
+          "https://github.com/atlas#4"
+        ],
+        "prompt_sha256_a": "2362f322f74957ae0ee6b4f8f86d10d5b0aaaa8bd1a43ecf450465a88a246729",
+        "prompt_sha256_b": "debe069a12f7481386e51e2f0deb22a529142be0f53446a185603b0bdb010421",
+        "prompt_bytes_a": 2610,
+        "prompt_bytes_b": 3016,
+        "delta": 406
+      },
+      {
+        "slug": "orion-rs--orion",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-2",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/orion#0",
+          "https://github.com/orion#3",
+          "https://github.com/orion#5"
+        ],
+        "prompt_sha256_a": "a5a2d31481a379ee68207dadd0e707852fed66a0b339e7a2c4f38e442d2ea0d8",
+        "prompt_sha256_b": "c68dec327106e052adbabf2d6f9a079f0f4d9415f926b758ea4202fe653840ed",
+        "prompt_bytes_a": 1928,
+        "prompt_bytes_b": 2216,
+        "delta": 288
+      },
+      {
+        "slug": "orion-rs--orion",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/orion#0",
+          "https://github.com/orion#3",
+          "https://github.com/orion#5"
+        ],
+        "prompt_sha256_a": "a5a2d31481a379ee68207dadd0e707852fed66a0b339e7a2c4f38e442d2ea0d8",
+        "prompt_sha256_b": "c68dec327106e052adbabf2d6f9a079f0f4d9415f926b758ea4202fe653840ed",
+        "prompt_bytes_a": 1928,
+        "prompt_bytes_b": 2216,
+        "delta": 288
+      },
+      {
+        "slug": "orion-rs--orion",
+        "pass_a": "pasada-2",
+        "pass_b": "pasada-3",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/orion#0",
+          "https://github.com/orion#3",
+          "https://github.com/orion#5"
+        ],
+        "prompt_sha256_a": "c68dec327106e052adbabf2d6f9a079f0f4d9415f926b758ea4202fe653840ed",
+        "prompt_sha256_b": "a5a2d31481a379ee68207dadd0e707852fed66a0b339e7a2c4f38e442d2ea0d8",
+        "prompt_bytes_a": 2216,
+        "prompt_bytes_b": 1928,
+        "delta": -288
+      },
+      {
+        "slug": "orion-rs--orion",
+        "pass_a": "pasada-2",
+        "pass_b": "pasada-4",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/orion#0",
+          "https://github.com/orion#3",
+          "https://github.com/orion#5"
+        ],
+        "prompt_sha256_a": "c68dec327106e052adbabf2d6f9a079f0f4d9415f926b758ea4202fe653840ed",
+        "prompt_sha256_b": "a5a2d31481a379ee68207dadd0e707852fed66a0b339e7a2c4f38e442d2ea0d8",
+        "prompt_bytes_a": 2216,
+        "prompt_bytes_b": 1928,
+        "delta": -288
+      },
+      {
+        "slug": "orion-rs--orion",
+        "pass_a": "pasada-3",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/orion#0",
+          "https://github.com/orion#3",
+          "https://github.com/orion#5"
+        ],
+        "prompt_sha256_a": "a5a2d31481a379ee68207dadd0e707852fed66a0b339e7a2c4f38e442d2ea0d8",
+        "prompt_sha256_b": "c68dec327106e052adbabf2d6f9a079f0f4d9415f926b758ea4202fe653840ed",
+        "prompt_bytes_a": 1928,
+        "prompt_bytes_b": 2216,
+        "delta": 288
+      },
+      {
+        "slug": "orion-rs--orion",
+        "pass_a": "pasada-4",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/orion#0",
+          "https://github.com/orion#3",
+          "https://github.com/orion#5"
+        ],
+        "prompt_sha256_a": "a5a2d31481a379ee68207dadd0e707852fed66a0b339e7a2c4f38e442d2ea0d8",
+        "prompt_sha256_b": "c68dec327106e052adbabf2d6f9a079f0f4d9415f926b758ea4202fe653840ed",
+        "prompt_bytes_a": 1928,
+        "prompt_bytes_b": 2216,
+        "delta": 288
+      },
+      {
+        "slug": "outcaste-io--badger",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-3",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/badger#0",
+          "https://github.com/badger/blob/main/CHANGELOG.md",
+          "https://github.com/badger#1",
+          "https://github.com/badger#2"
+        ],
+        "prompt_sha256_a": "3e015c0ee5deec7a7ef29214b64e0711c535b9c1b52f290ad74150e738de8127",
+        "prompt_sha256_b": "f45a7087f43cc2559273b1708c2895b4589f20e829cb44935d1d110ad0b21d04",
+        "prompt_bytes_a": 3681,
+        "prompt_bytes_b": 3091,
+        "delta": -590
+      },
+      {
+        "slug": "outcaste-io--badger",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/badger#0",
+          "https://github.com/badger/blob/main/CHANGELOG.md",
+          "https://github.com/badger#1",
+          "https://github.com/badger#2"
+        ],
+        "prompt_sha256_a": "3e015c0ee5deec7a7ef29214b64e0711c535b9c1b52f290ad74150e738de8127",
+        "prompt_sha256_b": "f45a7087f43cc2559273b1708c2895b4589f20e829cb44935d1d110ad0b21d04",
+        "prompt_bytes_a": 3681,
+        "prompt_bytes_b": 3091,
+        "delta": -590
+      },
+      {
+        "slug": "outcaste-io--badger",
+        "pass_a": "pasada-2",
+        "pass_b": "pasada-3",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/badger#0",
+          "https://github.com/badger/blob/main/CHANGELOG.md",
+          "https://github.com/badger#1",
+          "https://github.com/badger#2"
+        ],
+        "prompt_sha256_a": "3e015c0ee5deec7a7ef29214b64e0711c535b9c1b52f290ad74150e738de8127",
+        "prompt_sha256_b": "f45a7087f43cc2559273b1708c2895b4589f20e829cb44935d1d110ad0b21d04",
+        "prompt_bytes_a": 3681,
+        "prompt_bytes_b": 3091,
+        "delta": -590
+      },
+      {
+        "slug": "outcaste-io--badger",
+        "pass_a": "pasada-2",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/badger#0",
+          "https://github.com/badger/blob/main/CHANGELOG.md",
+          "https://github.com/badger#1",
+          "https://github.com/badger#2"
+        ],
+        "prompt_sha256_a": "3e015c0ee5deec7a7ef29214b64e0711c535b9c1b52f290ad74150e738de8127",
+        "prompt_sha256_b": "f45a7087f43cc2559273b1708c2895b4589f20e829cb44935d1d110ad0b21d04",
+        "prompt_bytes_a": 3681,
+        "prompt_bytes_b": 3091,
+        "delta": -590
+      },
+      {
+        "slug": "outcaste-io--badger",
+        "pass_a": "pasada-3",
+        "pass_b": "pasada-4",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/badger#0",
+          "https://github.com/badger/blob/main/CHANGELOG.md",
+          "https://github.com/badger#1",
+          "https://github.com/badger#2"
+        ],
+        "prompt_sha256_a": "f45a7087f43cc2559273b1708c2895b4589f20e829cb44935d1d110ad0b21d04",
+        "prompt_sha256_b": "3e015c0ee5deec7a7ef29214b64e0711c535b9c1b52f290ad74150e738de8127",
+        "prompt_bytes_a": 3091,
+        "prompt_bytes_b": 3681,
+        "delta": 590
+      },
+      {
+        "slug": "outcaste-io--badger",
+        "pass_a": "pasada-4",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/badger#0",
+          "https://github.com/badger/blob/main/CHANGELOG.md",
+          "https://github.com/badger#1",
+          "https://github.com/badger#2"
+        ],
+        "prompt_sha256_a": "3e015c0ee5deec7a7ef29214b64e0711c535b9c1b52f290ad74150e738de8127",
+        "prompt_sha256_b": "f45a7087f43cc2559273b1708c2895b4589f20e829cb44935d1d110ad0b21d04",
+        "prompt_bytes_a": 3681,
+        "prompt_bytes_b": 3091,
+        "delta": -590
+      },
+      {
+        "slug": "pinterest--orion",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-2",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/orion#0",
+          "https://github.com/orion#4",
+          "https://github.com/orion#2",
+          "https://github.com/orion#1"
+        ],
+        "prompt_sha256_a": "8bdbb940db5c7d49e8f4aab70fde5c64c36cc1bc8c2afc947067a0ffa16550e7",
+        "prompt_sha256_b": "ae892e27f7fd1ff3d1e488694936ade6a034b2de6f30ca34d06bf56e2b72f689",
+        "prompt_bytes_a": 3176,
+        "prompt_bytes_b": 3464,
+        "delta": 288
+      },
+      {
+        "slug": "pinterest--orion",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/orion#0",
+          "https://github.com/orion#4",
+          "https://github.com/orion#2",
+          "https://github.com/orion#1"
+        ],
+        "prompt_sha256_a": "8bdbb940db5c7d49e8f4aab70fde5c64c36cc1bc8c2afc947067a0ffa16550e7",
+        "prompt_sha256_b": "ae892e27f7fd1ff3d1e488694936ade6a034b2de6f30ca34d06bf56e2b72f689",
+        "prompt_bytes_a": 3176,
+        "prompt_bytes_b": 3464,
+        "delta": 288
+      },
+      {
+        "slug": "pinterest--orion",
+        "pass_a": "pasada-2",
+        "pass_b": "pasada-3",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/orion#0",
+          "https://github.com/orion#4",
+          "https://github.com/orion#2",
+          "https://github.com/orion#1"
+        ],
+        "prompt_sha256_a": "ae892e27f7fd1ff3d1e488694936ade6a034b2de6f30ca34d06bf56e2b72f689",
+        "prompt_sha256_b": "8bdbb940db5c7d49e8f4aab70fde5c64c36cc1bc8c2afc947067a0ffa16550e7",
+        "prompt_bytes_a": 3464,
+        "prompt_bytes_b": 3176,
+        "delta": -288
+      },
+      {
+        "slug": "pinterest--orion",
+        "pass_a": "pasada-2",
+        "pass_b": "pasada-4",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/orion#0",
+          "https://github.com/orion#4",
+          "https://github.com/orion#2",
+          "https://github.com/orion#1"
+        ],
+        "prompt_sha256_a": "ae892e27f7fd1ff3d1e488694936ade6a034b2de6f30ca34d06bf56e2b72f689",
+        "prompt_sha256_b": "8bdbb940db5c7d49e8f4aab70fde5c64c36cc1bc8c2afc947067a0ffa16550e7",
+        "prompt_bytes_a": 3464,
+        "prompt_bytes_b": 3176,
+        "delta": -288
+      },
+      {
+        "slug": "pinterest--orion",
+        "pass_a": "pasada-3",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/orion#0",
+          "https://github.com/orion#4",
+          "https://github.com/orion#2",
+          "https://github.com/orion#1"
+        ],
+        "prompt_sha256_a": "8bdbb940db5c7d49e8f4aab70fde5c64c36cc1bc8c2afc947067a0ffa16550e7",
+        "prompt_sha256_b": "ae892e27f7fd1ff3d1e488694936ade6a034b2de6f30ca34d06bf56e2b72f689",
+        "prompt_bytes_a": 3176,
+        "prompt_bytes_b": 3464,
+        "delta": 288
+      },
+      {
+        "slug": "pinterest--orion",
+        "pass_a": "pasada-4",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/orion#0",
+          "https://github.com/orion#4",
+          "https://github.com/orion#2",
+          "https://github.com/orion#1"
+        ],
+        "prompt_sha256_a": "8bdbb940db5c7d49e8f4aab70fde5c64c36cc1bc8c2afc947067a0ffa16550e7",
+        "prompt_sha256_b": "ae892e27f7fd1ff3d1e488694936ade6a034b2de6f30ca34d06bf56e2b72f689",
+        "prompt_bytes_a": 3176,
+        "prompt_bytes_b": 3464,
+        "delta": 288
+      },
+      {
+        "slug": "samueleaton--sentry",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-2",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/sentry#0",
+          "https://github.com/sentry#1",
+          "https://github.com/sentry#2"
+        ],
+        "prompt_sha256_a": "7c4d368de1600523f3b9e3240737de0248e28fa370c4156ee43e5e942ae8afe9",
+        "prompt_sha256_b": "ff1bfdc14dcf2e6b87827db3f3ccd937872b90a4b1e7ba60ac4f535e28ab220d",
+        "prompt_bytes_a": 1518,
+        "prompt_bytes_b": 1337,
+        "delta": -181
+      },
+      {
+        "slug": "samueleaton--sentry",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-3",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/sentry#0",
+          "https://github.com/sentry#1",
+          "https://github.com/sentry#2"
+        ],
+        "prompt_sha256_a": "7c4d368de1600523f3b9e3240737de0248e28fa370c4156ee43e5e942ae8afe9",
+        "prompt_sha256_b": "ff1bfdc14dcf2e6b87827db3f3ccd937872b90a4b1e7ba60ac4f535e28ab220d",
+        "prompt_bytes_a": 1518,
+        "prompt_bytes_b": 1337,
+        "delta": -181
+      },
+      {
+        "slug": "samueleaton--sentry",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/sentry#0",
+          "https://github.com/sentry#1",
+          "https://github.com/sentry#2"
+        ],
+        "prompt_sha256_a": "7c4d368de1600523f3b9e3240737de0248e28fa370c4156ee43e5e942ae8afe9",
+        "prompt_sha256_b": "ff1bfdc14dcf2e6b87827db3f3ccd937872b90a4b1e7ba60ac4f535e28ab220d",
+        "prompt_bytes_a": 1518,
+        "prompt_bytes_b": 1337,
+        "delta": -181
+      },
+      {
+        "slug": "samueleaton--sentry",
+        "pass_a": "pasada-2",
+        "pass_b": "pasada-4",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/sentry#0",
+          "https://github.com/sentry#1",
+          "https://github.com/sentry#2"
+        ],
+        "prompt_sha256_a": "ff1bfdc14dcf2e6b87827db3f3ccd937872b90a4b1e7ba60ac4f535e28ab220d",
+        "prompt_sha256_b": "7c4d368de1600523f3b9e3240737de0248e28fa370c4156ee43e5e942ae8afe9",
+        "prompt_bytes_a": 1337,
+        "prompt_bytes_b": 1518,
+        "delta": 181
+      },
+      {
+        "slug": "samueleaton--sentry",
+        "pass_a": "pasada-3",
+        "pass_b": "pasada-4",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/sentry#0",
+          "https://github.com/sentry#1",
+          "https://github.com/sentry#2"
+        ],
+        "prompt_sha256_a": "ff1bfdc14dcf2e6b87827db3f3ccd937872b90a4b1e7ba60ac4f535e28ab220d",
+        "prompt_sha256_b": "7c4d368de1600523f3b9e3240737de0248e28fa370c4156ee43e5e942ae8afe9",
+        "prompt_bytes_a": 1337,
+        "prompt_bytes_b": 1518,
+        "delta": 181
+      },
+      {
+        "slug": "samueleaton--sentry",
+        "pass_a": "pasada-4",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/sentry#0",
+          "https://github.com/sentry#1",
+          "https://github.com/sentry#2"
+        ],
+        "prompt_sha256_a": "7c4d368de1600523f3b9e3240737de0248e28fa370c4156ee43e5e942ae8afe9",
+        "prompt_sha256_b": "ff1bfdc14dcf2e6b87827db3f3ccd937872b90a4b1e7ba60ac4f535e28ab220d",
+        "prompt_bytes_a": 1518,
+        "prompt_bytes_b": 1337,
+        "delta": -181
+      },
+      {
+        "slug": "yoonic--atlas",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-3",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/atlas#0",
+          "https://github.com/atlas#3",
+          "https://github.com/atlas#1"
+        ],
+        "prompt_sha256_a": "d7f5c9d39e0a44be44e85733273816b6fbdf287b574ef0226736f3cfea96922d",
+        "prompt_sha256_b": "1bf2ba6a798a22bef1e65105071d6ec5570b5413b983aafdbeb13d94e313015f",
+        "prompt_bytes_a": 2468,
+        "prompt_bytes_b": 2062,
+        "delta": -406
+      },
+      {
+        "slug": "yoonic--atlas",
+        "pass_a": "pasada-1",
+        "pass_b": "pasada-4",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/atlas#0",
+          "https://github.com/atlas#3",
+          "https://github.com/atlas#1"
+        ],
+        "prompt_sha256_a": "d7f5c9d39e0a44be44e85733273816b6fbdf287b574ef0226736f3cfea96922d",
+        "prompt_sha256_b": "1bf2ba6a798a22bef1e65105071d6ec5570b5413b983aafdbeb13d94e313015f",
+        "prompt_bytes_a": 2468,
+        "prompt_bytes_b": 2062,
+        "delta": -406
+      },
+      {
+        "slug": "yoonic--atlas",
+        "pass_a": "pasada-2",
+        "pass_b": "pasada-3",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/atlas#0",
+          "https://github.com/atlas#3",
+          "https://github.com/atlas#1"
+        ],
+        "prompt_sha256_a": "d7f5c9d39e0a44be44e85733273816b6fbdf287b574ef0226736f3cfea96922d",
+        "prompt_sha256_b": "1bf2ba6a798a22bef1e65105071d6ec5570b5413b983aafdbeb13d94e313015f",
+        "prompt_bytes_a": 2468,
+        "prompt_bytes_b": 2062,
+        "delta": -406
+      },
+      {
+        "slug": "yoonic--atlas",
+        "pass_a": "pasada-2",
+        "pass_b": "pasada-4",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/atlas#0",
+          "https://github.com/atlas#3",
+          "https://github.com/atlas#1"
+        ],
+        "prompt_sha256_a": "d7f5c9d39e0a44be44e85733273816b6fbdf287b574ef0226736f3cfea96922d",
+        "prompt_sha256_b": "1bf2ba6a798a22bef1e65105071d6ec5570b5413b983aafdbeb13d94e313015f",
+        "prompt_bytes_a": 2468,
+        "prompt_bytes_b": 2062,
+        "delta": -406
+      },
+      {
+        "slug": "yoonic--atlas",
+        "pass_a": "pasada-3",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/atlas#0",
+          "https://github.com/atlas#3",
+          "https://github.com/atlas#1"
+        ],
+        "prompt_sha256_a": "1bf2ba6a798a22bef1e65105071d6ec5570b5413b983aafdbeb13d94e313015f",
+        "prompt_sha256_b": "d7f5c9d39e0a44be44e85733273816b6fbdf287b574ef0226736f3cfea96922d",
+        "prompt_bytes_a": 2062,
+        "prompt_bytes_b": 2468,
+        "delta": 406
+      },
+      {
+        "slug": "yoonic--atlas",
+        "pass_a": "pasada-4",
+        "pass_b": "pasada-5",
+        "context_urls_equal": true,
+        "context_urls": [
+          "https://github.com/atlas#0",
+          "https://github.com/atlas#3",
+          "https://github.com/atlas#1"
+        ],
+        "prompt_sha256_a": "1bf2ba6a798a22bef1e65105071d6ec5570b5413b983aafdbeb13d94e313015f",
+        "prompt_sha256_b": "d7f5c9d39e0a44be44e85733273816b6fbdf287b574ef0226736f3cfea96922d",
+        "prompt_bytes_a": 2062,
+        "prompt_bytes_b": 2468,
+        "delta": 406
+      }
+    ]
+  },
+  "determinism": {
+    "seeds": [
+      14,
+      95,
+      204,
+      265,
+      350
+    ],
+    "projects_compared": 255,
+    "orders_equal": true,
+    "mismatches": [],
+    "model_calls": 0,
+    "ok": true
+  },
+  "stability_by_context": {
+    "ok": false,
+    "threshold": 19,
+    "model_calls": 320,
+    "projects": [
+      {
+        "slug": "badger-cash--badger",
+        "samples": 20,
+        "own_majority": "business.payments",
+        "own_agreement": 20,
+        "own_codes": {
+          "business.payments": 20
+        },
+        "foreign_majority": "business.payments",
+        "foreign_agreement": 20,
+        "foreign_codes": {
+          "business.payments": 20
+        },
+        "donor": "outcaste-io--badger",
+        "pass_id": "p1",
+        "contaminated_passes": 3,
+        "flipped_passes": 0,
+        "labels_differ": false,
+        "stable": true,
+        "ok": true
+      },
+      {
+        "slug": "jasonrichardsmith--sentry",
+        "samples": 20,
+        "own_majority": "infra.orchestration",
+        "own_agreement": 20,
+        "own_codes": {
+          "infra.orchestration": 20
+        },
+        "foreign_majority": "infra.orchestration",
+        "foreign_agreement": 20,
+        "foreign_codes": {
+          "infra.orchestration": 20
+        },
+        "donor": "samueleaton--sentry",
+        "pass_id": "p1",
+        "contaminated_passes": 2,
+        "flipped_passes": 0,
+        "labels_differ": false,
+        "stable": true,
+        "ok": true
+      },
+      {
+        "slug": "karam-ajaj--atlas",
+        "samples": 20,
+        "own_majority": "infra.networking",
+        "own_agreement": 20,
+        "own_codes": {
+          "infra.networking": 20
+        },
+        "foreign_majority": "infra.networking",
+        "foreign_agreement": 20,
+        "foreign_codes": {
+          "infra.networking": 20
+        },
+        "donor": "yoonic--atlas",
+        "pass_id": "p3",
+        "contaminated_passes": 2,
+        "flipped_passes": 0,
+        "labels_differ": false,
+        "stable": true,
+        "ok": true
+      },
+      {
+        "slug": "orion-rs--orion",
+        "samples": 20,
+        "own_majority": "devtools.libraries",
+        "own_agreement": 20,
+        "own_codes": {
+          "devtools.libraries": 20
+        },
+        "foreign_majority": "devtools.libraries",
+        "foreign_agreement": 20,
+        "foreign_codes": {
+          "devtools.libraries": 20
+        },
+        "donor": "pinterest--orion",
+        "pass_id": "p2",
+        "contaminated_passes": 2,
+        "flipped_passes": 0,
+        "labels_differ": false,
+        "stable": true,
+        "ok": true
+      },
+      {
+        "slug": "outcaste-io--badger",
+        "samples": 20,
+        "own_majority": "data.storage",
+        "own_agreement": 20,
+        "own_codes": {
+          "data.storage": 20
+        },
+        "foreign_majority": "data.storage",
+        "foreign_agreement": 20,
+        "foreign_codes": {
+          "data.storage": 20
+        },
+        "donor": "badger-cash--badger",
+        "pass_id": "p3",
+        "contaminated_passes": 2,
+        "flipped_passes": 0,
+        "labels_differ": false,
+        "stable": true,
+        "ok": true
+      },
+      {
+        "slug": "pinterest--orion",
+        "samples": 20,
+        "own_majority": "infra.orchestration",
+        "own_agreement": 20,
+        "own_codes": {
+          "infra.orchestration": 20
+        },
+        "foreign_majority": "infra.orchestration",
+        "foreign_agreement": 20,
+        "foreign_codes": {
+          "infra.orchestration": 20
+        },
+        "donor": "orion-rs--orion",
+        "pass_id": "p1",
+        "contaminated_passes": 3,
+        "flipped_passes": 0,
+        "labels_differ": false,
+        "stable": true,
+        "ok": true
+      },
+      {
+        "slug": "samueleaton--sentry",
+        "samples": 20,
+        "own_majority": "devtools.build",
+        "own_agreement": 20,
+        "own_codes": {
+          "devtools.build": 20
+        },
+        "foreign_majority": "infra.orchestration",
+        "foreign_agreement": 18,
+        "foreign_codes": {
+          "devtools.build": 2,
+          "infra.orchestration": 18
+        },
+        "donor": "jasonrichardsmith--sentry",
+        "pass_id": "p2",
+        "contaminated_passes": 3,
+        "flipped_passes": 2,
+        "labels_differ": true,
+        "stable": false,
+        "ok": false
+      },
+      {
+        "slug": "yoonic--atlas",
+        "samples": 20,
+        "own_majority": "business.payments",
+        "own_agreement": 20,
+        "own_codes": {
+          "business.payments": 20
+        },
+        "foreign_majority": "infra.networking",
+        "foreign_agreement": 18,
+        "foreign_codes": {
+          "business.payments": 2,
+          "infra.networking": 18
+        },
+        "donor": "karam-ajaj--atlas",
+        "pass_id": "p1",
+        "contaminated_passes": 3,
+        "flipped_passes": 3,
+        "labels_differ": true,
+        "stable": false,
+        "ok": false
+      }
+    ]
+  },
+  "repair": {
+    "passes": 5,
+    "projects_compared": 255,
+    "changes": [],
+    "foreign_documents_served": 0,
+    "ok": true
+  },
+  "directions": {
+    "ok": true,
+    "rows": [
+      {
+        "slug": "badger-cash--badger",
+        "donor": "outcaste-io--badger",
+        "foreign_documents": 3,
+        "context_documents": 4,
+        "baseline_code": "business.payments",
+        "code": "business.payments",
+        "baseline_prompt_bytes": 2282,
+        "prompt_bytes": 2872,
+        "passes": 3,
+        "flips": 0
+      },
+      {
+        "slug": "jasonrichardsmith--sentry",
+        "donor": "samueleaton--sentry",
+        "foreign_documents": 2,
+        "context_documents": 3,
+        "baseline_code": "infra.orchestration",
+        "code": "infra.orchestration",
+        "baseline_prompt_bytes": 1573,
+        "prompt_bytes": 1754,
+        "passes": 2,
+        "flips": 0
+      },
+      {
+        "slug": "karam-ajaj--atlas",
+        "donor": "yoonic--atlas",
+        "foreign_documents": 2,
+        "context_documents": 3,
+        "baseline_code": "infra.networking",
+        "code": "infra.networking",
+        "baseline_prompt_bytes": 3016,
+        "prompt_bytes": 2610,
+        "passes": 2,
+        "flips": 0
+      },
+      {
+        "slug": "orion-rs--orion",
+        "donor": "pinterest--orion",
+        "foreign_documents": 1,
+        "context_documents": 3,
+        "baseline_code": "devtools.libraries",
+        "code": "devtools.libraries",
+        "baseline_prompt_bytes": 1928,
+        "prompt_bytes": 2216,
+        "passes": 2,
+        "flips": 0
+      },
+      {
+        "slug": "outcaste-io--badger",
+        "donor": "badger-cash--badger",
+        "foreign_documents": 3,
+        "context_documents": 4,
+        "baseline_code": "data.storage",
+        "code": "data.storage",
+        "baseline_prompt_bytes": 3681,
+        "prompt_bytes": 3091,
+        "passes": 2,
+        "flips": 0
+      },
+      {
+        "slug": "pinterest--orion",
+        "donor": "orion-rs--orion",
+        "foreign_documents": 1,
+        "context_documents": 4,
+        "baseline_code": "infra.orchestration",
+        "code": "infra.orchestration",
+        "baseline_prompt_bytes": 3464,
+        "prompt_bytes": 3176,
+        "passes": 3,
+        "flips": 0
+      },
+      {
+        "slug": "samueleaton--sentry",
+        "donor": "jasonrichardsmith--sentry",
+        "foreign_documents": 2,
+        "context_documents": 3,
+        "baseline_code": "devtools.build",
+        "code": "infra.orchestration",
+        "baseline_prompt_bytes": 1518,
+        "prompt_bytes": 1337,
+        "passes": 3,
+        "flips": 2
+      },
+      {
+        "slug": "yoonic--atlas",
+        "donor": "karam-ajaj--atlas",
+        "foreign_documents": 2,
+        "context_documents": 3,
+        "baseline_code": "business.payments",
+        "code": "infra.networking",
+        "baseline_prompt_bytes": 2062,
+        "prompt_bytes": 2468,
+        "passes": 3,
+        "flips": 3
+      }
+    ]
+  },
+  "changes_per_pass": {
+    "ok": false,
+    "per_pass": {
+      "pasada-1": [
+        "gcol33--vectra",
+        "yoonic--atlas"
+      ],
+      "pasada-2": [
+        "yoonic--atlas"
+      ],
+      "pasada-3": [
+        "samueleaton--sentry"
+      ],
+      "pasada-4": [
+        "sile--efmt"
+      ],
+      "pasada-5": [
+        "yoonic--atlas",
+        "samueleaton--sentry"
+      ]
+    },
+    "unexplained": {
+      "pasada-1": [
+        "gcol33--vectra"
+      ],
+      "pasada-2": [],
+      "pasada-3": [],
+      "pasada-4": [
+        "sile--efmt"
+      ],
+      "pasada-5": []
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "slug": "cistec-com--openEHR2FHIRquestionnaire",
+  "name": "openEHR2FHIRquestionnaire",
+  "description": "This script converts an openEHR web template (JSON) to one or more FHIR Questionnaire resources (JSON). You can generate multiple language variants, in case the respective translation is included in the web template. The FHIR version can be selected (currently supports R4 and R5).",
+  "documents": [
+    {
+      "url": "https://github.com/openEHR2FHIRquestionnaire#0",
+      "title": "Introducción",
+      "text": "--- title: openEHR to FHIR Questionnaire Converter emoji: 📋 colorFrom: blue colorTo: green sdk: gradio sdk version: 6.5.1 app file: app hf.py pinned: false license: mit --- openEHR2FHIRquestionnaire This project provides two tools for working with openEHR and FHIR resources: 1. openEHR Web Template → FHIR Questionnaire converter 2. FHIR QuestionnaireResponse → openEHR FLAT Composition converter You can use both tools via the CLI or an interactive web interface. Try the converter in the Web Interface",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/openEHR2FHIRquestionnaire#1",
+      "title": "Table of Contents",
+      "text": "Overview Requirements Usage + Command Line Interface + Web Interface (Gradio) + Examples + Parameters Data Type Mapping License Contribution Citation",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/openEHR2FHIRquestionnaire#2",
+      "title": "1. openEHR → FHIR Questionnaire",
+      "text": "Converts an openEHR web template (JSON) to one or more FHIR Questionnaire resources. Features: - Multi-language output (based on available template translations) - Support for FHIR R4 and R5 - Customizable name, publisher, and description fields ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/openEHR2FHIRquestionnaire#3",
+      "title": "2. FHIR QuestionnaireResponse → openEHR Composition",
+      "text": "Converts a FHIR QuestionnaireResponse (or a Bundle of them) into one or more openEHR FLAT Compositions . Features: - Creates valid openEHR FLAT compositions from QuestionnaireResponse - QuestionnaireResponse needs to be derived from a FHIR Questionnaire generated through openEHR → FHIR Questionnaire script ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/openEHR2FHIRquestionnaire#4",
+      "title": "Web Interface (Gradio)",
+      "text": "Python 3.10+ (required by Gradio) Dependencies are managed through pyproject.toml We've added a web interface using Gradio. To run it locally: 1. Install uv if you don't have it: UV Installation Guide 2. Create a virtual environment and run the app: 3. Open your browser at http://localhost:7860 You can also try the hosted version of this tool on Hugging Face Spaces: openEHR2FHIR Questionnaire Converter",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/openEHR2FHIRquestionnaire#5",
+      "title": "Command Line Interface",
+      "text": "Note: Since the CLI script has no external dependencies, it can be run directly with Python without requiring uv.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/openEHR2FHIRquestionnaire#6",
+      "title": "Parameters",
+      "text": "Parameter Description Required? Default Comments --------------- ----------------------------------------------------------------------------- --------- ---------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------- input Path to the Web Template JSON file to be converted into a FHIR Questionnaire. Yes None output Base output file name for the generated FHIR Questionnaire. No Input file base name. A timestamp (%Y%m%d\\ %H%M) is prepended and the language code appended to the base name. output folder Path to the Web Template JSON file to be converted into a FHIR Questionnaire. No . (current folder) languages Comma-separated list of language codes (e.g., en,de ).. No en A separate questionnaire is generated for each language. fhir version FHIR version to use (either R4 or R5 ). No R4 name The name attribute for the FHIR Questionnaire. No Web Template name (without spaces) publisher The publisher attribute for the FHIR Questionnaire. No converter description Natural language description of the questionnaire (markdown) No Root Archetype description create help bu",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/openEHR2FHIRquestionnaire#7",
+      "title": "FHIR questionnaireResponse to FLAT Composition",
+      "text": "The input can be either a single questionnaireResponse or a collection of responses in a bundle. They have to originate from a questionnaire created through the converter, as the linkIds assigned to the elements in the questionnaire correspond to the path structure used in FLAT compositions. The generated FLAT Composition can be posted to both EHRbase and Better.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/openEHR2FHIRquestionnaire#8",
+      "title": "Parameters",
+      "text": "Parameter Description Required? Default Comments --------------- ----------------------------------------------------------------------------- --------- ---------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------- input Path to the Web Template JSON file to be converted into a FHIR Questionnaire. Yes None output Base output file name for the generated FHIR Questionnaire. No Input file base name. A timestamp (%Y%m%d\\ %H%M) is prepended and the language code appended to the base name. output folder Path to the Web Template JSON file to be converted into a FHIR Questionnaire. No . (current folder) care setting Care setting for the openEHR composition, 3-digit code or description No 228 / other care openEHR Support Terminology - Setting territory 2-character code according to ISO 3166-1 No Inferred using locale.getdefaultlocale()",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/openEHR2FHIRquestionnaire#9",
+      "title": "Data Type Mapping",
+      "text": "openEHR RM Type FHIR Questionnaire Type Notes -------------------------------------------- --------------------------- ------- COMPOSITION , CLUSTER , SECTION , EVENT CONTEXT group Used for hierarchical structuring. DV CODED TEXT choice / open-choice (R4) or coding / question (R5) Depends on fhir version and whether the list is open. DV TEXT text / string DV QUANTITY quantity DV DATE TIME dateTime DV DATE date DV TIME , DV DURATION time DV COUNT integer DV BOOLEAN boolean DV MULTIMEDIA attachment DV URI , DV EHR URI reference Other types text Default fallback for unmapped types.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/openEHR2FHIRquestionnaire#10",
+      "title": "License",
+      "text": "This project is licensed under the MIT License - see the LICENSE file for details.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/openEHR2FHIRquestionnaire#11",
+      "title": "Contribution",
+      "text": "Contributions are welcome! Please feel free to submit a Pull Request. See the CONTRIBUTING.md file for details.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/openEHR2FHIRquestionnaire/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to openEHR2FHIRquestionnaire Thank you for considering contributing to openEHR2FHIRquestionnaire ! Your contributions help improve this project for everyone. Quicklinks Code of Conduct Getting Started Issues Pull Requests Getting Help How to Contribute 1. Fork the Repository Click the Fork button on GitHub to create a copy of this repository in your account. 2. Clone Your Fork Clone the repository to your local machine: 3. Create a New Branch Always work on a new branch instead of main: 4. Make Changes & Commit Edit the files and commit your changes: 5. Push Your Branch to GitHub 6. Submit a Pull Request Go to the original repository on GitHub and open a Pull Request (PR). Ensure your PR includes: A clear description of the changes Reference to related issues (if any) Necessary documentation updates Code Style Guidelines TBD Reporting Issues If you find a bug or have a feature request, please open an issue with details. Alternatively, you can contact me on openEHR discourse (jbuch). License By contributing, you agree that your contributions will be licensed under the project's MIT License.",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/cistec-com/openEHR2FHIRquestionnaire",
+  "stars": 10
+}
