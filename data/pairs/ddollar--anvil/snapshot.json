@@ -1,0 +1,52 @@
+{
+  "slug": "ddollar--anvil",
+  "name": "anvil",
+  "description": "Generic build server",
+  "documents": [
+    {
+      "url": "https://github.com/ddollar/anvil#0",
+      "title": "API",
+      "text": "Applications are described by a manifest, in JSON format: { \"README.md\": { \"mtime\": 1339185087, \"mode\": 100644, \"hash\": \"0000000000000000000000000000000000000000000000000000000000000000\" }, \"lib/web.rb\": { \"mtime\": 1339185087, \"mode\": 100644, \"hash\": \"0000000000000000000000000000000000000000000000000000000000000000\" } }",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ddollar/anvil#1",
+      "title": "Example",
+      "text": "$ curl -X POST https://anvil.herokuapp.com/manifest \\ -d \"manifest=$(cat manifest.json)\" {\"id\":\"00000000-0000-0000-0000-000000000000\"}",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ddollar/anvil#2",
+      "title": "Options",
+      "text": "manifest : an application manifest as json buildpack : a buildpack url (optional) env : a hash of environment variables to use during build",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ddollar/anvil#3",
+      "title": "Example",
+      "text": "$ curl -v -X POST https://anvil.herokuapp.com/manifest \\ -d \"manifest=$(cat manifest.json)\" \\ -d \"buildpack=https%3A%2F%2Fbuildkit.herokuapp.com%2Fbuildkit%2Fdefault.tgz\" \\ -d \"env={'FOO':'bar'}\" Connected to anvil.herokuapp.com (107.20.215.233) port 443 ( 0) POST /manifest/build HTTP/1.1 < HTTP/1.1 100 Continue < HTTP/1.1 200 OK < Content-Type: text/plain < Transfer-Encoding: chunked < X-Slug-Url: http://localhost:5000/slugs/00000000-0000-0000-0000-000000000000.tgz < Connection: keep-alive < Launching build process... done Recreating app from manifest... done Fetching buildpack... done Detecting buildpack... done, Buildkit+Ruby Compiling app... ...",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ddollar/anvil#4",
+      "title": "Example",
+      "text": "$ curl -X POST https://anvil.herokuapp.com/manifest -d \"manifest=$(cat manifest.json)\" [\"0000000000000000000000000000000000000000000000000000000000000000\"]",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ddollar/anvil#5",
+      "title": "Example",
+      "text": "$ curl -X GET https://anvil.herokuapp.com/file/0000000000000000000000000000000000000000000000000000000000000000 file data here …",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ddollar/anvil#6",
+      "title": "Example",
+      "text": "$ curl -X POST https://anvil.herokuapp.com/file/0000000000000000000000000000000000000000000000000000000000000000 -F data=@myfile \"ok\"",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/ddollar/anvil",
+  "stars": 65
+}

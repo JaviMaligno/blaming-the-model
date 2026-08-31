@@ -1,0 +1,58 @@
+{
+  "slug": "anchore--quill",
+  "name": "quill",
+  "description": "Simple mac binary signing from any platform",
+  "documents": [
+    {
+      "url": "https://github.com/anchore/quill#0",
+      "title": "Introducción",
+      "text": "Quill Simple mac binary signing and notarization from any platform (replacing the codesign utility for simple use cases).",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/anchore/quill#1",
+      "title": "Installation",
+      "text": "... or, you can specify a release version and destination directory for the installation:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/anchore/quill#2",
+      "title": "Usage",
+      "text": "First you need to download the signing private key and certificate from Apple (this is in the form of a \".p12\" file). Note : The signing certificate must be issued by Apple and the full certificate chain must be available at signing time. See the section below on \"Attaching the full certificate chain\" if you do not wish to rely on the Apple intermediate and root certificates embedded into the Quill binary. After signing you can notarize the binary against Apple's notary service: ...or you can sign and notarize in one step: Here's an example of using quill with goreleaser:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/anchore/quill#3",
+      "title": "Attaching the full certificate chain",
+      "text": "In order to pass notarization with Apple you must use: 1. A signing certificate that is issued by Apple 2. Have the full certificate chain available at signing time Without the full chain, Apple will reject the notarization request with the following error: Quill can attach the full certificate chain at signing time with the Apple root and intermediate certificates embedded into the Quill binary (obtained from Apple directly). However, an alternative to this approach is to attach the full certificate chain to your P12 file: At this point you can use quill p12 describe to confirm the full certificate chain is attached.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/anchore/quill#4",
+      "title": "Commands",
+      "text": "- sign [binary-file] : sign a mac executable binary - notarize [binary-file] : notarize a signed a mac binary with Apple's Notary service - sign-and-notarize [binary-file] sign and notarize a mac binary - submission list : list previous submissions to Apple's Notary service - submission logs [id] : fetch logs for an existing submission from Apple's Notary service - submission status [id] : check against Apple's Notary service to see the status of a notarization submission request - describe [binary-file] : show the details of a mac binary - extract certificates [binary-file] : extract certificates from a signed mac binary - p12 attach-chain [p12-file] : attach the full Apple certificate chain into a p12 file (MUST run on a mac with keychain access) - p12 describe [p12-file] : describe the contents of a p12 file",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/anchore/quill#5",
+      "title": "Configuration",
+      "text": "Search locations: .quill.yaml , quill.yaml , .quill/config.yaml , ~/.quill.yaml , ~/quill.yaml , $XDG CONFIG HOME/quill/config.yaml",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/anchore/quill#6",
+      "title": "Why make this?",
+      "text": "The mac codesign utility is great, but it's not available on all platforms. For cross-platform toolchains like golang this can get painful in subtle ways. Goreleaser is a great \"one-shot\" release solution, but requiring running on a mac just for the signing step now forces the reset of your build steps to work on a mac as well -- and since this is part of the release process, it needs to work in CI. This is a problem since, due to licensing reasons, the default mac runner for github actions cannot have docker installed by default. This means that you need to resort to installing docker on a mac in CI first before getting started, which can take upwards of 20 minutes. Unlike docker, which inherently needs to run on a linux host (docker on a mac is a VM), there is nothing inherently mac-specific about signing a binary. This tool enables already cross-platform toolchains to run the signing step on any platform.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/anchore/quill/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to Quill If you are looking to contribute to this project and want to open a GitHub pull request (\"PR\"), there are a few guidelines of what we are looking for in patches. Make sure you go through this document and ensure that your code proposal is aligned. Fork the repo You should fork the Quill repo using the \"Fork\" button at the top right of the Quill GitHub site. You will be doing your development in your fork, then submit a pull request to Quill. There are many resources how to use GitHub effectively, we will not cover those here. Adding a feature or fix If you look at the Quill Issue there are plenty of bugs and feature requests. Maybe look at the good first issue list if you're not sure where to start. Commit guidelines In the Quill project we like commits and pull requests (PR) to be easy to understand and review. Open source thrives best when everything happening is over documented and small enough to be understood. Granular commits Please try to make every commit as simple as possible, but no simpler. The idea is that each commit should be a logical unit of code. Try not to commit too many tiny changes, for example every line changed in a file as a separate co",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/anchore/quill",
+  "stars": 516
+}

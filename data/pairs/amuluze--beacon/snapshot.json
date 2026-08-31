@@ -1,0 +1,64 @@
+{
+  "slug": "amuluze--beacon",
+  "name": "beacon",
+  "description": "轻量级主机及容器监控服务",
+  "documents": [
+    {
+      "url": "https://github.com/amuluze/beacon#0",
+      "title": "Introducción",
+      "text": "[!IMPORTANT] 仓库更名说明： 本仓库已由 amuluze/amprobe 更名为 amuluze/beacon 。GitHub 会暂时重定向旧链接，但请在已有本地仓库中执行 git remote set-url origin git@github.com:amuluze/beacon.git ，并将收藏、徽章与自动化配置更新为新地址。 Beacon 开源、轻量、现代化的主机与 Docker 容器监控平台 An open-source, lightweight and modern host & Docker monitoring platform 中文 · English --- 项目简介 · 功能特性 · 系统架构 · 快速开始 · 技术栈 · 项目结构 · 项目文档 ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/amuluze/beacon#1",
+      "title": "📖 项目简介",
+      "text": "Beacon 是一个采用 Server-Agent 架构的主机监控与 Docker 容器管理平台，面向需要统一观察、管理多台服务器的个人开发者与小型团队。 - Beacon Server 提供 Web UI、HTTP API、认证授权、审计、监控数据存储与任务编排。 - Collia Agent 采集主机和 Docker 指标，通过 HTTP 上报监控批次，并主动建立反向 gRPC tunnel 接收 Server 控制调用。 - 查询与控制请求必须显式指定 Agent，避免默认节点回退或跨节点读取。 官网：beacon.amuluze.com · 仓库：github.com/amuluze/beacon",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/amuluze/beacon#2",
+      "title": "🐳 Docker 管理",
+      "text": "- 查看 Docker 版本与运行状态。 - 管理容器的创建、启动、停止、重启、删除与日志。 - 管理镜像导入、导出、删除和虚悬镜像清理。 - 创建、删除并查看 Docker 网络状态。",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/amuluze/beacon#3",
+      "title": "🖥️ 主机监控",
+      "text": "- 查看主机名、启动时间、发行版、内核与系统类型。 - 观察 CPU、内存、磁盘 IO 与网络 IO 趋势。 - 配置 CPU、内存和磁盘使用率告警阈值，通过邮件或支持可选加签的钉钉群机器人 Webhook 接收通知。 - 通过明确选择的 Agent 执行主机与容器控制操作。",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/amuluze/beacon#4",
+      "title": "🔄 Agent 生命周期",
+      "text": "- Agent 版本上报与在线状态跟踪。 - Collia amd64/arm64 安装包由 Beacon 镜像统一提供。 - 支持远程更新、自更新、卸载和反向 tunnel 控制。",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/amuluze/beacon#5",
+      "title": "🏗️ 系统架构",
+      "text": "Beacon 将三条路径明确分离： 1. 监控查询 ：Web 请求从 Server 本地监控表读取指定 Agent 的数据。 2. 监控上报 ：Collia 通过 HTTP report 接口按批次原子写入 Server。 3. 控制调用 ：Beacon 通过 Collia 主动建立的反向 gRPC tunnel 调用目标 Agent。 更完整的边界、依赖方向和数据流见各模块内的 README.md 与代码注释。",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/amuluze/beacon#6",
+      "title": "从源码启动",
+      "text": "环境要求： - Docker = 20.10.9，并安装 Docker Compose。 - Go 1.25（本地开发后端时需要）。 - Node.js 与 pnpm（构建 beacon/web 管理端时需要）。 本地开发可仅运行 cd beacon && go run ./cmd/beacon 启动 Server；生产部署前请生成独立的高强度密钥，并使用 BEACON AUTH SIGNING KEY 、 BEACON AGENT INSTALL TOKEN 、 BEACON CONTROL JOIN TOKEN 注入。 Beacon 启动后，可从目标主机安装 Collia Agent（将地址、节点编号和 Token 替换为实际值）：",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/amuluze/beacon#7",
+      "title": "🛠️ 技术栈",
+      "text": "层级 技术 --- --- Web 前端 Vue 3、TypeScript、Vite、Element Plus、Pinia、ECharts Server Go 1.25、Fiber、GORM、WebSocket Agent Go、gopsutil、Docker Engine API 控制通道 Agent 主动连接的反向 gRPC tunnel 监控通道 HTTP 批次上报与 Server 本地持久化 数据存储 SQLite，支持通过 GORM 扩展其他数据库 部署 Docker、Docker Compose、Kubernetes",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/amuluze/beacon#8",
+      "title": "🧑‍💻 开发与贡献",
+      "text": "常用命令： 欢迎提交 Issue 和 Pull Request： 1. Fork 本仓库。 2. 创建功能分支并完成最小验证。 3. 提交清晰、可审查的变更。 4. 推送分支并创建 Pull Request。",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/amuluze/beacon",
+  "stars": 508
+}

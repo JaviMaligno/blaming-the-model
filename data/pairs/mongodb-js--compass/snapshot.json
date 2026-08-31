@@ -1,0 +1,46 @@
+{
+  "slug": "mongodb-js--compass",
+  "name": "compass",
+  "description": "The GUI for MongoDB.",
+  "documents": [
+    {
+      "url": "https://github.com/mongodb-js/compass#0",
+      "title": "Introducción",
+      "text": "MongoDB Compass Monorepo This repository contains the source code and build tooling used in MongoDB Compass.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mongodb-js/compass#1",
+      "title": "Contributing",
+      "text": "For contributing, please refer to CONTRIBUTING.md For issues, please create a ticket in our JIRA Project. Is there anything else you’d like to see in Compass? Let us know by submitting suggestions in out feedback forum.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mongodb-js/compass#2",
+      "title": "Compass Plugins",
+      "text": "- @mongodb-js/compass-aggregations : Compass Aggregation Pipeline Builder - @mongodb-js/compass-app-stores : The external stores repo for compass - @mongodb-js/compass-collection : Compass Collection - @mongodb-js/compass-crud : Compass Plugin for CRUD Operations - @mongodb-js/compass-databases-collections : Plugin for viewing the list of, creating, and dropping databases and collections - @mongodb-js/compass-explain-plan : Evaluate the performance of your query - @mongodb-js/compass-export-to-language : Export MongoDB queries and aggregations to various languages - @mongodb-js/compass-field-store : FieldStore keeps track of available fields in a collection - @mongodb-js/compass-find-in-page : cmd-f UI for Compass - @mongodb-js/compass-import-export : Import/Export feature for Compass - @mongodb-js/compass-indexes : Collection index management for Compass - @mongodb-js/compass-query-bar : Renders a component for executing MongoDB queries through a GUI - @mongodb-js/compass-saved-aggregations-queries : Instance tab plugin that shows saved queries and aggregations - @mongodb-js/compass-schema : Compass Schema Tab Plugin - @mongodb-js/compass-schema-validation : Compass plugin for doc",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mongodb-js/compass#3",
+      "title": "Shared Libraries and Build Tools",
+      "text": "- @mongodb-js/atlas-service : Service to handle Atlas sign in and API requests - @mongodb-js/compass-app-registry : Compass App Registry - @mongodb-js/compass-components : React Components used in Compass - @mongodb-js/compass-connection-import-export : UI for Compass connection import/export - @mongodb-js/compass-connections : Manage your MongoDB connections and connect in Compass - @mongodb-js/compass-connections-navigation : Databases and collections sidebar navigation tree - @mongodb-js/compass-context-menu : Context menu hooks and provider for Compass - @mongodb-js/compass-data-modeling : Data modeling diagram workspace and all related services - @mongodb-js/compass-editor : Reusable Compass editor component based on codemirror editor, themes, and autocompleters - @mongodb-js/compass-generative-ai : Generative AI aspects for Compass - @mongodb-js/compass-global-writes : Compass Global Sharding management - @mongodb-js/compass-intercom : Intercom scripts and utils for Compass - @mongodb-js/compass-logging : Shared helpers for logging in Compass packages - @mongodb-js/compass-maybe-protect-connection-string : Utility for protecting connection strings if requested - @mongodb-js/c",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mongodb-js/compass#4",
+      "title": "Shared Configuration Files",
+      "text": "- @mongodb-js/eslint-config-compass : Shared Compass eslint configuration - @mongodb-js/eslint-plugin-compass : Custom eslint rules for Compass monorepo - @mongodb-js/mocha-config-compass : Shared mocha mocha configuration for Compass packages - @mongodb-js/prettier-config-compass : Shared Compass prettier configuration - @mongodb-js/testing-library-compass : Compass unit testing utils - @mongodb-js/tsconfig-compass : Shared Compass Typescript configuration - @mongodb-js/webpack-config-compass : Shared webpack configuration for Compass application and plugins",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mongodb-js/compass/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing Getting Started You'll need node ^22 and npm ^10 installed on your machine to work with the repository locally. After your environment is ready, navigate to the repository and run npm run bootstrap , this will install dependencies and will compile all packages. After bootstrap is finished, you should be able to run npm run start and see Compass application running locally. Alternatively you can start a web version of the app by running npm run start-web . Compass uses a monorepo is powered by npm workspaces and lerna , although not necessary, it might be helpful to have a high level understanding of those tools. Submitting a Change MongoDB welcomes community contributions! If you’re interested in making a contribution to MongoDB Compass, please follow the steps below before you start writing any code: 1. Sign the contributor's agreement. This will allow us to review and accept contributions. 1. Fork the repository on GitHub 1. Create a branch with a name that briefly describes your feature 1. Implement your feature or bug fix 1. Add new cases to the relevant ./ /tests folder that verify your bug fix or make sure no one unintentionally breaks your feature in the future ",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/mongodb-js/compass",
+  "stars": 1494
+}

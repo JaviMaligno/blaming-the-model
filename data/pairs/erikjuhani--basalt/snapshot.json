@@ -1,0 +1,58 @@
+{
+  "slug": "erikjuhani--basalt",
+  "name": "basalt",
+  "description": "TUI Application to manage Obsidian notes directly from the terminal",
+  "documents": [
+    {
+      "url": "https://github.com/erikjuhani/basalt#0",
+      "title": "Introducción",
+      "text": "Basalt&nbsp;&nbsp; TUI Application to manage Obsidian notes&nbsp;&nbsp;&nbsp;&nbsp; TUI Application to manage Obsidian vaults and notes directly from the terminal ✨. Basalt is a cross-platform TUI (Terminal User Interface) for managing Obsidian vaults and notes. It runs on Windows, macOS, and Linux. Basalt is not a replacement for Obsidian. Instead, it provides a minimalist terminal interface with a WYSIWYG experience.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/erikjuhani/basalt#1",
+      "title": "Installation",
+      "text": "- Using Homebrew: - Using Cargo: - Using aqua: Or download a pre-compiled binary from the latest release, extract it, and move the basalt binary to a location in your PATH .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/erikjuhani/basalt#2",
+      "title": "Nightly builds",
+      "text": "Nightly builds track the latest main commit. They are unstable and meant for testing. The nightly release always holds the newest build. A downloaded nightly binary reports a -nightly suffix in basalt --version . A build from source reports the commit hash instead. - Using Homebrew (builds from source): - Using Cargo (builds from source): Or download a pre-compiled binary from the nightly release.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/erikjuhani/basalt#3",
+      "title": "Configuration",
+      "text": "Basalt can be customized using a TOML configuration file. The file does not exist by default — create it manually when you want to override the defaults. macOS and Linux: - $HOME/.basalt.toml - $XDG CONFIG HOME/basalt/config.toml Windows: - %USERPROFILE%\\.basalt.toml - %APPDATA%\\basalt\\config.toml If configuration files exist in multiple locations, only the first one found is used. The home directory configuration takes precedence. [!WARNING] This behavior may change in future versions to merge all found configurations instead. See the full configuration reference for key mappings, custom commands, and defaults.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/erikjuhani/basalt#4",
+      "title": "Documentation",
+      "text": "- Getting started - User interface - Configuration - Editing and Formatting - Files and Folders - Known Limitations",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/erikjuhani/basalt#5",
+      "title": "Contributing",
+      "text": "Contributions are welcome, primarily for bug fixes. Feature work is considered on a case-by-case basis — please open an issue first to discuss. See CONTRIBUTING.md for development setup, code style, and contribution guidelines.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/erikjuhani/basalt#6",
+      "title": "License",
+      "text": "Copyright (c) Erik Kinnunen. Basalt spans three crates under two licenses: - basalt-tui (the application) is GPL-3.0-or-later. Distributed modifications must stay open under the same terms. - basalt-core and basalt-widgets (the libraries) are Apache-2.0, so they stay reusable in other projects. Contributions are accepted under a Contributor License Agreement. See CONTRIBUTING.md.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/erikjuhani/basalt/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Basalt is open for code contributions , primarily for bug fixes. Feature work can bring long-term maintenance overhead, and I'd like to keep that to a minimum. One reason for limiting feature work is that I want to build features myself, as this is a fun side project—and I would like to keep it that way. That said, open source projects flourish with multiple contributors. I won't say no to feature work, but please open an issue first so we can discuss it. This avoids unnecessary effort or bikeshedding over architectural or stylistic choices. [!NOTE] I want this project to feel low-barrier, so don't be discouraged from opening an issue, whether it's about existing features, ideas, or anything else! AI and LLM-assisted contributions Basalt is a side project I work on for fun, and one big part of that fun is also writing the code by hand. Please keep that in mind when contributing. - Good first issues are for humans. They are intentionally small and simple so newcomers can learn the codebase by solving them. Do not complete them with an LLM or coding agent. If you want one, program it by hand. - You own what you submit. Understand every line you open a PR with and be able to explain i",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/erikjuhani/basalt",
+  "stars": 1327
+}

@@ -1,0 +1,106 @@
+{
+  "slug": "input-output-hk--mantis",
+  "name": "mantis",
+  "description": "A Scala based client for Ethereum-like Blockchains. ",
+  "documents": [
+    {
+      "url": "https://github.com/input-output-hk/mantis#0",
+      "title": "Introducción",
+      "text": "Mantis Ethereum-like Blockchain Scala client built by IOHK's for Ethereum Classic (ETC) network",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/input-output-hk/mantis#1",
+      "title": "Status - Not maintained",
+      "text": "The lastest ETC hard-fork supported by the client is Magneto hard-fork You can check the latest build results of the current branch by clicking the status icon in the header of the Github file browser.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/input-output-hk/mantis#2",
+      "title": "Command line version",
+      "text": "In the bin directory, you can find the generic launcher. To connect to a pre-configured network just pass the network name as a parameter. Example: - ./bin/mantis-launcher etc - for joining Ethereum Classic network Possible networks: etc , eth , mordor , testnet-internal",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/input-output-hk/mantis#3",
+      "title": "Command Line Interface",
+      "text": "cli is a tool that can be used to: - generate a new private key - derive an address from private key - generate genesis allocs (using private keys and/or addresses) - generate multiple key-pairs (following example generate 5 key-pairs) - encrypt private key (default passphrase is empty string) The command output uses the same format as the keystore so it could be used ex. to setup private faucet ex.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/input-output-hk/mantis#4",
+      "title": "Prerequisites to build",
+      "text": "- JDK 1.8 (download from java.com) - sbt (download sbt) - python 2.7.15 (download from python.org)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/input-output-hk/mantis#5",
+      "title": "Build the client",
+      "text": "In the root of the project: This updates all submodules and creates a distribution zip in ~/target/universal/ . Note: building in dev mode allows faster and incremental compilation, for this: - set environment variable MANTIS DEV to true , or - use the system property -DmantisDev=true",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/input-output-hk/mantis#6",
+      "title": "On a Mac",
+      "text": "This project uses Nix for CI, deployment and, optionally, local development. Some of the dependencies are not available for Darwin (macOS) however. To work with Nix on a Mac you can instead use Docker via the nix-in-docker/run script, which will start a nix-shell with the same environment as CI.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/input-output-hk/mantis#7",
+      "title": "Update sbt+nix dependencies",
+      "text": "When updating project dependencies, the nix fixed-output-derivation will need to be updated so that it includes the new dependency state. To do so, please run: For this command to work you'll need the Flakes feature enabled in your nix environment. NOTE: This should only be necessary when updating dependencies (For example, edits to build.sbt or project/plugins.sbt will likely need to be regenerated)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/input-output-hk/mantis#8",
+      "title": "Locally build & run monitoring client",
+      "text": "A docker-compose setup using Prometheus and Grafana, and a preconfigured dashboard, is available. As a precondition you need to have docker and sbt installed. Before running the script, you need to enable metrics by editing the file metrics.conf and setting mantis.metrics.enabled=true To build the monitoring, run the following script at ./docker/mantis/build.sh . This script builds a docker image of mantis using the local sources and starts the docker-compose. Grafana will be available at http://localhost:3000 (using user and password: admin and admin) with a dashboard called Mantis .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/input-output-hk/mantis#9",
+      "title": "TLS setup",
+      "text": "Both the JSON RPC (on the node and faucet) can be additionally protected using TLS. The development environment it already properly configured with a development certificate.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/input-output-hk/mantis#10",
+      "title": "Generating a new certificate",
+      "text": "If a new certificate is required, create a new keystore with a certificate by running ./tls/gen-cert.sh",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/input-output-hk/mantis#11",
+      "title": "Configuring the node",
+      "text": "1. Configure the certificate and password file to be used at mantis.network.rpc.http.certificate key on the application.conf file: keystore-path: path to the keystore storing the certificates (if generated through our script they are by default located in \"./tls/mantisCA.p12\") keystore-type: type of certificate keystore being used (if generated through our script use \"pkcs12\") password-file: path to the file with the password used for accessing the certificate keystore (if generated through our script they are by default located in \"./tls/password\") 2. Enable TLS in specific config: - For JSON RPC: mantis.network.rpc.http.mode=https",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/input-output-hk/mantis#12",
+      "title": "Configuring the faucet",
+      "text": "1. Configure the certificate and password file to be used at mantis.network.rpc.http.certificate key on the faucet.conf file: keystore-path: path to the keystore storing the certificates (if generated through our script they are by default located in \"./tls/mantisCA.p12\") keystore-type: type of certificate keystore being used (if generated through our script use \"pkcs12\") password-file: path to the file with the password used for accessing the certificate keystore (if generated through our script they are by default located in \"./tls/password\") 2. Enable TLS in specific config: - For JSON RPC: mantis.network.rpc.http.mode=https 3. Configure the certificate used from RpcClient to connect with the node. Necessary if the node uses http secure. This certificate and password file to be used at faucet.rpc-client.certificate key on the faucet.conf file: keystore-path: path to the keystore storing the certificates keystore-type: type of certificate keystore being used (if generated through our script use \"pkcs12\") password-file: path to the file with the password used for accessing the certificate keystore",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/input-output-hk/mantis#13",
+      "title": "Faucet setup and testing",
+      "text": "1. First start a client node using the docker-compose, by running the script found at ./docker/mantis/build.sh Modify the script before running it by adding the volumes and command sections to mantis configuration: 2. Create a wallet address. Run the following curl command, replacing by a password of your choice: You will receive a response like this: 3. Modify src/universal/conf/faucet.conf file, config your account address created in the previous step. with the password choosen by you: 4. Now check the keystore folder in ~/.mantis/testnet-internal-nomad/keystore . Inside you will find a key generate with the curl request sent in step 2. . Copy that file to ~/.mantis-faucet/keystore/ : 5. Start the faucet in command line: 6. Run the following curl command to send tokens from your faucet to a wallet address: Happy transfer! Note: In order for the transfer transaction be persisted, a faucet needs sufficient founds in its account and in this test case a new faucet, without ETC tokens, is being created.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/input-output-hk/mantis#14",
+      "title": "Feedback",
+      "text": "Feedback gratefully received through the Ethereum Classic Forum (http://forum.ethereumclassic.org/)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/input-output-hk/mantis#15",
+      "title": "Known Issues",
+      "text": "There is a list of known issues in the 'RELEASE' file located in the root of the installation.",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/input-output-hk/mantis",
+  "stars": 234
+}

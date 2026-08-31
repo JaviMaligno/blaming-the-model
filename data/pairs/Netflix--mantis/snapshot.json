@@ -1,0 +1,46 @@
+{
+  "slug": "Netflix--mantis",
+  "name": "mantis",
+  "description": "A platform that makes it easy for developers to build realtime, cost-effective, operations-focused applications",
+  "documents": [
+    {
+      "url": "https://github.com/Netflix/mantis#0",
+      "title": "Setting up Intellij",
+      "text": "Run ./gradlew idea to (re-) generate IntelliJ project and module files from the templates in .baseline . The generated project is pre-configured with Baseline code style settings and support for the CheckStyle-IDEA plugin.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Netflix/mantis#1",
+      "title": "Releasing",
+      "text": "We release by tagging which kicks off a CI build. The CI build will run tests, integration tests, static analysis, checkstyle, build, and then publish to the public Bintray repo to be synced into Maven Central. Tag format: You can tag via git or through Github's Release UI.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Netflix/mantis#2",
+      "title": "Contributing",
+      "text": "Mantis is interested in building the community. We welcome any forms of contributions through discussions on any of our mailing lists or through patches. For more information on contribution, check out the contributions file here.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Netflix/mantis#3",
+      "title": "Module Structure",
+      "text": "This excludes all connectors and examples as they are mostly leaf nodes in the dependency graph. Module Purpose Example Classes Package Prefixes ---------------------------- ------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------- mantis-common-serde Support for serializing and deserializing POJOs using Json JsonSerializer io.mantisrx.common. mantis-discovery-proto todo: need to fill this in JobDiscoveryProto AppJobClustersMap StageWorkers com.netflix.mantis.discovery.proto. mantis-common Mantis common code shared across modules MantisJobDefinition MachineDefinition MantisJobState io.mantisrx.common.\\ io.mantisrx.runtime.\\ io.mantisrx.server.code.\\ io.reactivx.mantis.operators.\\ com.mantisrx.common.utils.\\ mantis-remote-observable connection to other job,stage related code ConnectToObservable ConnectToGroupedObservable RemoteObservable io.reactive",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Netflix/mantis/blob/master/docs/README.md",
+      "title": "docs/README.md",
+      "text": "mantis-docs Development Prerequisites 1. python 1. mkdocs material theme ( pip install mkdocs-material ) 1. pymdownx.arithmatex ( pip install pymdown-extensions ) 1. mkdocs ( pip install mkdocs ) Previewing Releasing This will build the mkdocs markdown into a static site and deploy it to Github pages via the gh-pages branch of this repo. The site will be available at https://netflix.github.io/mantis.",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/Netflix/mantis/blob/master/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to Mantis If you would like to contribute code you can do so through GitHub by forking the repository and sending a pull request. When submitting code, please make every effort to follow existing conventions and style in order to keep the code as readable as possible. License By contributing your code, you agree to license your contribution under the terms of the Apache License v2.0.",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/Netflix/mantis",
+  "stars": 1469
+}

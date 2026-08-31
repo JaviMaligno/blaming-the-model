@@ -1,0 +1,46 @@
+{
+  "slug": "VladyslavUsenko--basalt",
+  "name": "basalt",
+  "description": "Mirror of the Basalt repository. All pull requests and issues should be sent to https://gitlab.com/VladyslavUsenko/basalt",
+  "documents": [
+    {
+      "url": "https://github.com/VladyslavUsenko/basalt#0",
+      "title": "Basalt",
+      "text": "For more information see https://vision.in.tum.de/research/vslam/basalt This project contains tools for: Camera, IMU and motion capture calibration. Visual-inertial odometry and mapping. Simulated environment to test different components of the system. Some reusable components of the system are available as a separate header-only library (Documentation). There is also a Github mirror of this project to enable easy forking.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/VladyslavUsenko/basalt#1",
+      "title": "Related Publications",
+      "text": "Visual-Inertial Odometry and Mapping: Visual-Inertial Mapping with Non-Linear Factor Recovery , V. Usenko, N. Demmel, D. Schubert, J. Stückler, D. Cremers, In IEEE Robotics and Automation Letters (RA-L) [[DOI:10.1109/LRA.2019.2961227]](https://doi.org/10.1109/LRA.2019.2961227) [[arXiv:1904.06504]](https://arxiv.org/abs/1904.06504). Calibration (explains implemented camera models): The Double Sphere Camera Model , V. Usenko and N. Demmel and D. Cremers, In 2018 International Conference on 3D Vision (3DV), [[DOI:10.1109/3DV.2018.00069]](https://doi.org/10.1109/3DV.2018.00069), [[arXiv:1807.08957]](https://arxiv.org/abs/1807.08957). Calibration (demonstrates how these tools can be used for dataset calibration): The TUM VI Benchmark for Evaluating Visual-Inertial Odometry , D. Schubert, T. Goll, N. Demmel, V. Usenko, J. Stückler, D. Cremers, In 2018 International Conference on Intelligent Robots and Systems (IROS), [[DOI:10.1109/IROS.2018.8593419]](https://doi.org/10.1109/IROS.2018.8593419), [[arXiv:1804.06120]](https://arxiv.org/abs/1804.06120). Calibration (describes B-spline trajectory representation used in camera-IMU calibration): Efficient Derivative Computation for Cumulative B-",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/VladyslavUsenko/basalt#2",
+      "title": "Binary installation from GitLab releases (Ubuntu 22.04+ amd64, MacOS 26+ arm64)",
+      "text": "Install the latest published release into ~/.local : The installer places binaries in ~/.local/bin , libraries in ~/.local/lib , and data files in ~/.local/etc/basalt .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/VladyslavUsenko/basalt#3",
+      "title": "Source installation (CMake presets + vcpkg)",
+      "text": "Clone the source code with the thirdparty/vcpkg submodule, then build with CMake presets. Install CMake ( = 3.24), Ninja, and a C++ compiler first. By default presets use: thirdparty/vcpkg/scripts/buildsystems/vcpkg.cmake On macOS, build the release preset and then package the release artifact:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/VladyslavUsenko/basalt#4",
+      "title": "Usage",
+      "text": "Camera, IMU and Mocap calibration. (TUM-VI, Euroc, UZH-FPV and Kalibr datasets) Visual-inertial odometry and mapping. (TUM-VI and Euroc datasets) Visual odometry (no IMU). (KITTI dataset) Simulation tools to test different components of the system. Batch evaluation tutorial (ICCV'21 experiments)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/VladyslavUsenko/basalt#5",
+      "title": "Licence",
+      "text": "The code is provided under a BSD 3-clause license. See the LICENSE file for details. Note also the different licenses of thirdparty code. Some improvements are ported back from the fork granite (MIT license).",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/VladyslavUsenko/basalt",
+  "stars": 975
+}

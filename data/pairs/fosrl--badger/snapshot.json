@@ -1,0 +1,64 @@
+{
+  "slug": "fosrl--badger",
+  "name": "badger",
+  "description": "Traefik middleware authentication bouncer for Pangolin",
+  "documents": [
+    {
+      "url": "https://github.com/fosrl/badger#0",
+      "title": "Introducción",
+      "text": "Pangolin Middleware: Badger Badger is a middleware plugin designed to work with Traefik in conjunction with Pangolin, an identity-aware reverse proxy and zero-trust VPN. Badger acts as an authentication bouncer, ensuring only authenticated and authorized requests are allowed through the proxy. [!NOTE] Badger can also be used standalone for IP handling (Cloudflare and custom proxy support) without Pangolin. Simply set disableForwardAuth: true in your configuration. See the Disabling Forward Auth section below for details. This plugin is required to be installed alongside Pangolin to enforce secure authentication and session management.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fosrl/badger#1",
+      "title": "Installation",
+      "text": "Badger is automatically installed with Pangolin. Learn how to install Pangolin in the Pangolin Documentation.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fosrl/badger#2",
+      "title": "Configuration",
+      "text": "Pangolin will provide the necessary configuration to Badger automatically via the HTTP provider. However, you can override the configuration settings by manually providing them in the Traefik config.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fosrl/badger#3",
+      "title": "Disabling Forward Auth",
+      "text": "To disable forward auth and only use IP handling, set disableForwardAuth: true . When enabled, all requests pass through without authentication, and the required configuration options above are not needed: Only do this if you do not need Pangolin's authentication features and only want IP handling.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fosrl/badger#4",
+      "title": "IP Handling Configuration",
+      "text": "Badger automatically extracts the real client IP from requests. By default, it trusts Cloudflare IP ranges and uses the CF-Connecting-IP header.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fosrl/badger#5",
+      "title": "Using with Cloudflare (Default)",
+      "text": "No additional configuration needed. Badger automatically: - Trusts Cloudflare IP ranges - Extracts IP from CF-Connecting-IP header - Sets X-Real-IP and X-Forwarded-For headers for downstream services",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fosrl/badger#6",
+      "title": "Using without Cloudflare",
+      "text": "If you're using a different proxy or load balancer, configure custom trusted IPs and/or a custom IP header: Ensure you always disable the default Cloudflare IP ranges by setting disableDefaultCFIPs: true and provide your own trusted IP ranges in CIDR format under trustip if using a different proxy.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fosrl/badger#7",
+      "title": "Updating Cloudflare IPs",
+      "text": "To update the Cloudflare IP ranges, run: This fetches the latest IP ranges from Cloudflare and updates ips/ips.go .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/fosrl/badger#8",
+      "title": "License",
+      "text": "This project is licensed under the MIT License - see the LICENSE file for details.",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/fosrl/badger",
+  "stars": 152
+}

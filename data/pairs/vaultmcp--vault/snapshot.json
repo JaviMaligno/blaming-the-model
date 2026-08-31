@@ -1,0 +1,154 @@
+{
+  "slug": "vaultmcp--vault",
+  "name": "vault",
+  "description": "MCP prompt-injection scanning proxy — runtime security for MCP tool responses",
+  "documents": [
+    {
+      "url": "https://github.com/vaultmcp/vault#0",
+      "title": "Introducción",
+      "text": "Vault — MCP Prompt Injection Firewall Site: vaultmcp.io · X: @vaultmcp · Repo: github.com/vaultmcp/vault Vault is a production prompt-injection firewall for MCP. It intercepts every tool response before your agent reads it and scans through four layers of detection (L0 deterministic decoder, L1 heuristics, L2 embedding similarity, L3 LLM judge).",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#1",
+      "title": "Quickstart",
+      "text": "Wrap any MCP server — no config change to your agent: That's it — every tool response is now scanned before your agent sees it. Point your agent at the proxy instead of the server. Proof: 100% TPR (80/80) on a frozen public holdout, 0.0% FPR on 100 benign docs — see Measured performance. How the four layers work: How it works. No key? Vault runs L1+L2 only — see Offline mode. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#2",
+      "title": "Measured performance",
+      "text": "All numbers below are reproducible from the harness committed in this repo. Each is footnoted with the commit and dataset it was measured on. metric value source --- --- --- TPR — v2 holdout (L3 enabled, 80 attacks) 100% (80 / 80) · 95.5%+ lower bound at 95% CI [^holdout-l3] TPR — L1+L2 only, no API key materially lower (L3 is required for production) [^holdout-degraded] False positive rate (benign flagged) 0.0% (0 / 100) [^holdout-l3] L1 latency (p50 / p99) 0.02 ms / 0.04 ms [^latency] L2 latency (p50 / p99) 8.86 ms / 15.11 ms [^latency] L3 latency (per call) ~1.5–2 s (provider round-trip) [^latency] Sustained throughput (single proxy) 100 req/s, 0 errors over 30,000 requests [^load] Steady-state memory (RSS) 135–180 MB after warmup, no leak observed [^load] 500 KB response scan time ~25 s (embedder-bound, see LIMITATIONS §14) [^edge] [^holdout-l3]: packages/eval/results/eval-clean-baseline-v2-L3-enabled-2026-05-21.md — one-shot eval against v2 holdout constructed after detection code was frozen at commit 8d230e4 . Dataset: packages/eval/datasets/holdout-v2-novel/ (50 attacks) + packages/eval/datasets/holdout-v2-paraphrase/ (30 attacks) + packages/eval/datasets/benign-v2/ (100 ent",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#3",
+      "title": "How it works",
+      "text": "Vault sits between your agent host and the upstream MCP server, intercepting every tools/call response and running it through a layered detection pipeline: Layer 1 — Heuristics (see Measured performance): Regex patterns for English instruction overrides, unicode tag smuggling (U+E0000–U+E007F), bidi-control characters (U+202A–U+202E, U+2066–U+2069), zero-width character density, HTML comment injection, long HTML-entity runs, and markdown link anchors. High-confidence matches short-circuit — no L2/L3 cost. L1 is English-only; see LIMITATIONS §1. Layer 2 — Embeddings (see Measured performance): Cosine similarity against a curated corpus of 31 attack categories using bge-small-en-v1.5 (runs entirely on-device, no network call, ~30 MB WASM). Matches within distance 0.35 block; borderline cases escalate to L3. The corpus is intentionally public; adversaries who paraphrase past distance 0.35 evade L2 — that class is for L3. Layer 3 — LLM Judge (~1.5–2 s per call, provider round-trip): Claude Haiku 4.5 (or GPT-4o-mini with OpenAI key) resolves ambiguous cases. Only runs when L2 is uncertain; the escalation rate depends on your traffic (see Cost transparency). Requires ANTHROPIC API KEY or",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#4",
+      "title": "Capability Firewall",
+      "text": "Beyond injection detection, Vault tracks taint: tool responses that entered the agent's context are marked, and if those tokens later appear in calls to sensitive tools (network requests, file writes, shell execution), the call is gated.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#5",
+      "title": "Manifest Verification",
+      "text": "Vault fingerprints the tool manifest of every MCP server on first connect and alerts on any subsequent drift — new tools, changed schemas, version bumps. Supply-chain protection against a compromised server silently adding a delete all tool.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#6",
+      "title": "Optional: on-chain attestation (opt-in)",
+      "text": "When an operator opts in ( VAULT ATTEST=1 + a funded hot wallet), scan verdicts can be attested on-chain via EAS on Base — currently Base Sepolia (testnet); Base mainnet is pending. Each MCP server then accumulates a public, append-only reputation score any agent can query before connecting. Off by default — no chain dependency for using the proxy. A continuous attestation feed and public reputation registry are planned for v0.3 . The proxy supports opt-in attestation today for operators who want it; the always-on hosted attester ships alongside v0.3 once we have real install traffic to back the numbers. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#7",
+      "title": "What Vault catches",
+      "text": "With L3 enabled (Anthropic API key set), Vault catches 100% of attacks in our 80-entry public structural-generalization eval, at 0% false positive rate on 100 benign documents. Detection methodology and datasets are public — see /packages/eval/ . Breakdown by category (80 attacks, holdout-v2 structural-generalization eval, 2026-05-21): Attack category Caught / Total TPR --- --- --- exfiltration 60 / 60 100.0% instruction override 13 / 13 100.0% multi turn setup 6 / 6 100.0% encoded payload 1 / 1 100.0% Numbers are from packages/eval/results/eval-clean-baseline-v2-L3-enabled-2026-05-21.md with L3 enabled (Anthropic Haiku 4.5). Dataset: packages/eval/datasets/holdout-v2-novel/ (50 attacks) and packages/eval/datasets/holdout-v2-paraphrase/ (30 attacks), verified non-overlapping with the detection corpus. See Measured performance for latency and throughput context. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#8",
+      "title": "What Vault does NOT catch",
+      "text": "- User-initiated jailbreaks — out of scope by design. Vault sits between the agent and the upstream MCP server, not between the user and the agent. Jailbreaks typed directly by the user are the model provider's responsibility, not a proxy's. - Genuinely novel injection patterns — attacks that paraphrase far from all known examples (L2 cosine distance 0.50 and no L3 key set) evade detection. The corpus covers published 2022–2024 attack literature; novel post-cutoff techniques may not be represented. See packages/LIMITATIONS.md §3. - Protocol-encoded data without L3 — MCP tools that return Pub/Sub messages, SQS payloads, binary blobs, or encrypted content will produce false positives when L3 is disabled (~40% FP rate on that traffic class). See LIMITATIONS §11. - Multi-turn attacks split across sessions — Vault scans each MCP response independently. A sleeper directive established in session A and activated in session B is outside Vault's detection window. See LIMITATIONS §10. - Image/audio embedded instructions — Vault is text-only. Binary content in tool responses (images, audio files, PDFs) is forwarded to the agent unscanned. If your MCP server returns image data or vision-model ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#9",
+      "title": "Offline mode (no API key)",
+      "text": "When ANTHROPIC API KEY and OPENAI API KEY are both unset, Vault runs in offline mode: - Layer 0 (decoder) and Layer 1 (heuristics) operate normally - Layer 2 (embedding similarity) operates normally - Layer 3 (LLM judge) is disabled Suitable for: - Development environments and local testing - CI/CD pipelines where the agent isn't running production traffic - Air-gapped or offline deployments NOT suitable for: - Production MCP servers returning Pub/Sub, SQS, or webhook payloads - Tools that return binary content (images, encrypted blobs) - Any deployment where false positive rate above 5% is unacceptable See LIMITATIONS §11 for specific FP measurements and rationale. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#10",
+      "title": "Cost transparency",
+      "text": "Layer 3 (LLM judge) calls Anthropic Haiku 4.5 only on responses that fall in L2's uncertain zone, so cost scales with the L3 escalation rate — there is no single fixed per-request cost. The formula: cost / request ≈ L3 rate × ~$0.0005 (Haiku 4.5 input + small output at current pricing). L3 escalation rate cost / request cost / 1,000 requests --- --- --- 5% ~$0.000025 ~$0.025 20% ~$0.0001 ~$0.10 40% ~$0.0002 ~$0.20 On the adversarial eval holdout, escalation was ~91% — by construction: every entry is built to sit in L2's uncertain zone. Real-traffic escalation rate is unmeasured until we have install telemetry; plug your observed rate into the formula above rather than trusting a guessed number. - $0 without an API key — L1+L2 only. TPR drops to near 0% on novel out-of-distribution attacks and the FP rate on protocol-encoded traffic rises to ~40%. See Offline mode above. The eval harness refuses to run in this mode unless --allow-degraded is passed explicitly. The high L3 rate in our eval (91%) reflects an adversarial dataset — nearly every entry is an attack that lands in L2's uncertain zone by design. Real MCP traffic (mostly clean tool output) has a much lower L3 call rate. Set A",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#11",
+      "title": "Why",
+      "text": "Every MCP tool response is a direct write into your agent's context window. A malicious file, a compromised API, or a poisoned search result can redirect your agent mid-task — exfiltrating secrets, overwriting files, or pivoting to other tools. MCP has no transport-level protection against this class. Vault adds a layered detection pass; whether that pass is sufficient for your threat model depends on the gaps documented in packages/LIMITATIONS.md .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#12",
+      "title": "Requirements",
+      "text": "Vault requires an LLM for Layer 3 in production. Three options: - Anthropic ( claude-haiku-4-5-20251001 , recommended) — set ANTHROPIC API KEY - OpenAI-compatible ( gpt-4o-mini , or self-hosted via vLLM/llama.cpp) — set OPENAI API KEY - Ollama (local, air-gapped) — set OLLAMA HOST=http://localhost:11434 Without any of the above, Vault runs in offline mode (L1+L2 only). Offline mode has documented limitations — see LIMITATIONS §11.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#13",
+      "title": "Offline operation with Ollama",
+      "text": "Ollama lets you run L3 locally with no cloud dependency — useful for air-gapped environments, development without an API key, and cost-sensitive pipelines. To use a different model or a remote Ollama instance: Caveats: - Measured TPR numbers in this README are for Anthropic Haiku. Local 3B models vary; run the eval harness before relying on them in production. Anecdotally, llama3.2:3b has missed subtle role-hijack and multi-turn-setup attacks in smoke tests where Haiku catches them. - Reachability is verified on the first scan, not at startup. If Ollama isn't running, Vault logs vault: layer-3 failed (...) per request and falls back to L1+L2. - Latency: the default L3 timeout is 15s, sized to absorb the cold-start latency of local 3B models on CPU. If you're running on slower hardware or larger models, increase it further via VAULT LAYER3 TIMEOUT MS=30000 . The first scan after Ollama loads the model can take much longer than steady-state — subsequent calls typically complete in 1–2s. - Security: the default URL is http://localhost:11434 . If you set VAULT LAYER3 BASE URL=http://0.0.0.0:11434 or point to a remote host, tool response content (which may include sensitive data) is sen",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#14",
+      "title": "On-chain reputation inspector",
+      "text": "vault inspect reads your Claude Desktop MCP config and reports the on-chain reputation Vault has accumulated for each server you have configured. Trust thresholds (transparent, no magic numbers): - TRUSTED score ≥ 0.95 AND totalScans ≥ 100 - UNTRUSTED maliciousRate ≥ 0.10 - CAUTION totalScans ≥ 10 AND maliciousRate ≥ 0.01 - NEW totalScans override the Claude Desktop config path - --rpc and --contract point at a different network/deployment - --json one JSON record per server (suitable for CI / scripts) - --strict exit code 1 if any server is UNTRUSTED — useful in CI checks The reputation contract today is on Base Sepolia (testnet) . Mainnet deployment is pending; the inspector will continue to default to Sepolia until mainnet is live, with a yellow warning printed on each run. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#15",
+      "title": "Local scan history (opt-in)",
+      "text": "Vault can persist every scan to a local SQLite database ( ~/.vault/scans.db ) so you can review what was blocked, search by tool/server/verdict, and view a local dashboard. Off by default. Enable with VAULT PERSIST=1 : Query from the CLI: Browse the dashboard: Dark-themed single-page dashboard with verdict cards, per-day stacked bars (30 days), top tools, and a recent-scans table. Auto-refreshes every 5s (configurable via --refresh ). Privacy guarantees: - Off by default — no data is written unless VAULT PERSIST=1 is set. - All data stays local. The dashboard and history reader both serve ~/.vault/scans.db directly; nothing is uploaded. - Content previews are passed through a regex redactor before storage (API keys, GitHub/AWS tokens, JWTs, emails, SSN-shaped strings, credit-card-shaped numbers, generic password: / token: headers). This is a best-effort filter; if you need stronger guarantees, leave persistence off. - 30-day rolling retention. Override with VAULT RETENTION DAYS= (set to 0 to disable purging). - Override the DB path with VAULT PERSIST PATH=/path/to/scans.db . --- ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#16",
+      "title": "Claude Code / Claude Desktop integration",
+      "text": "The fastest way is vault init — it auto-detects your existing MCP configs and wraps each server with the proxy: vault init shows a diff preview before writing, backs up the original config to .vault-backup , and is idempotent (re-running skips already-wrapped servers). To revert: vault-init unwrap . Or wrap by hand:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#17",
+      "title": "Check a server's reputation",
+      "text": "The vault-check binary ships inside the proxy package — no separate install needed: A standalone vault-check binary (Homebrew tap, curl-piped install script) is planned for v0.3 once we ship signed releases on GitHub. Reputation comes from EAS attestations on Base (currently Base Sepolia testnet; mainnet pending), aggregated across every Vault deployment that scans the same server. Score range 0–1000 (higher = safer). The opt-in attestation path is documented above under \"Optional: on-chain attestation\"; a continuous public feed lands with v0.3.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#18",
+      "title": "Add a reputation badge to your MCP server's README",
+      "text": "If you maintain an MCP server, embed its live Vault reputation score as a badge — same shape as shields.io. The badge updates automatically as new attestations land on-chain. Replace your-server-name with the identifier Vault uses for your server — typically the package name (e.g. @modelcontextprotocol/server-filesystem ) for npm-launched servers, or the full URL for HTTP/SSE servers. Servers with no attestations yet render as a neutral \"unranked\" badge.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#19",
+      "title": "Public reputation API",
+      "text": "CORS-open, no-auth read endpoints backed by the same on-chain data: Endpoint Returns --- --- GET https://vaultmcp.io/api/score/:server Single server's score, scans, blocks, basescan link GET https://vaultmcp.io/api/leaderboard?n=10 Top N servers by scan count GET https://vaultmcp.io/api/threats/recent?n=20 Recent ThreatRecord attestations GET https://vaultmcp.io/badge/:server.svg SVG reputation badge All endpoints accept an optional ?network=base base-sepolia query parameter. Cache headers are set; expect 60s edge cache.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#20",
+      "title": "Detection modes",
+      "text": "Mode Behavior --------- ------------------------------------------------------------- block Malicious content is replaced with an error response (default) warn Original content is returned with a warning prepended log Content passes through; detection recorded in audit log only ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#21",
+      "title": "Privacy",
+      "text": "Vault never sends raw content anywhere. The telemetry pipeline transmits only SHA-256 hashes of content and arguments, verdict labels, latency measurements, and pattern names. Raw text never leaves the proxy process. See PRIVACY.md for the full data inventory. To disable telemetry entirely: VAULT TELEMETRY=0 . ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#22",
+      "title": "Eval methodology — how to reproduce",
+      "text": "The Measured performance numbers above come from the harness and datasets committed in this repo. To reproduce: Outputs land in packages/eval/results/eval- .{md,json} . Each run prints TPR, FPR, per-category breakdown, per-layer attribution, latency percentiles, and the worst false negatives and false positives by severity. The headline numbers come from the v2 holdout, constructed after detection code was frozen: packages/eval/datasets/holdout-v2-novel/ (50 novel attacks) + packages/eval/datasets/holdout-v2-paraphrase/ (30 paraphrased attacks) = 80 attacks, plus packages/eval/datasets/benign-v2/ (100 benign entries). Each has a MANIFEST.md describing provenance. (The earlier v1 set, packages/eval/datasets/holdout-attacks-burned-v1/ , is retired — it was used to motivate contaminated work; see the postmortem.) Operators are encouraged to author their own attacks and submit pull requests. Add a new file under packages/eval/datasets/holdout-v2-novel/ following the existing JSON schema, update the MANIFEST.md , and open a PR. The harness picks new files up automatically. The self red-team ( packages/eval/red-team/ ) is the other half of the honest-eval story: 38 hand-crafted bypass at",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/vaultmcp/vault#23",
+      "title": "Security",
+      "text": "Vault is a defense-in-depth layer, not a complete solution. No regex or embedding model catches every attack — adversaries can craft payloads that evade any single detection strategy. Measured detection on our public v2 holdout is 100% TPR / 0.0% FPR (80 attacks, L3 enabled, 95.5%+ lower bound at 95% CI). Without L3, TPR is near 0% on novel out-of-distribution attacks — L3 is the detection backbone. The layered approach raises the bar; operators should treat Vault as one layer in a broader security posture. For details: - packages/LIMITATIONS.md — measured gaps, red-team evidence, and which mitigations are planned vs. accepted. - packages/SECURITY MODEL.md — threats Vault defends against, threats it does not, assumptions, and what an attacker still has to do. - SECURITY.md — vulnerability reporting policy. To report a vulnerability: open a GitHub Security Advisory (preferred) or email the maintainer directly. We aim to triage within 48 hours and ship a patch within 7 days of a confirmed critical. ---",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/vaultmcp/vault",
+  "stars": 101
+}

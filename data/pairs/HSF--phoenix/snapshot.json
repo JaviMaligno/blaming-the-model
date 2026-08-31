@@ -1,0 +1,76 @@
+{
+  "slug": "HSF--phoenix",
+  "name": "phoenix",
+  "description": "\"Phoenix\", an experiment independent web-based event display for High Energy Physics.",
+  "documents": [
+    {
+      "url": "https://github.com/HSF/phoenix#0",
+      "title": "Introducción",
+      "text": "[![License][license-img]][license-url] [![Build Status][build-img]][build-link] [build-img]: https://github.com/HSF/phoenix/actions/workflows/main.yml/badge.svg?branch=master [build-link]: https://github.com/HSF/phoenix/actions/workflows/main.yml?query=branch%3Amaster [license-img]: https://img.shields.io/github/license/hsf/phoenix.svg [license-url]: https://github.com/hsf/phoenix/blob/main/LICENSE Phoenix Phoenix is a TypeScript-based event display framework, using the popular three.js library for 3D. It focuses on being experiment agnostic by design, with common tools (such as custom menus, controls, propagators) and the possibility to add experiment specific extensions. It consists of two packages: a plain TypeScript core library (phoenix-event-display) and Angular example application (phoenix-ng). A React example is also provided. The core library can be adapted for any experiment with some simple steps. Phoenix is supported by the HEP Software Foundation and is the official web event display of the ATLAS experiment. It was selected for Google Summer of Code support in 2019, 2020 and 2021. You can see the stable version at https://hepsoftwarefoundation.org/phoenix and the devel",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/HSF/phoenix#1",
+      "title": "Packages",
+      "text": "phoenix-event-display Phoenix event display framework phoenix-ng Phoenix Angular application",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/HSF/phoenix#2",
+      "title": "Development",
+      "text": "For running both the event display and the Angular app, you will need Node.js and Yarn. N.B. There seems to be a problem with node v21 and ARM devices. See here for more details. Once you have Node.js and npm (npm comes with the Node.js), install corepack (see Yarn installation instructions) Then run the following commands. Now both the phoenix-event-display and phoenix-app will start in development/watch mode. You can access the app by navigating to http://localhost:4200 on the browser.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/HSF/phoenix#3",
+      "title": "Picking up changes to phoenix-event-display",
+      "text": "The two libraries reach the app by different routes, and only one of them hot reloads: Package Resolved via Hot reloads ----------------------- ------------------------------------------------------------------------------- ----------- phoenix-ui-components a TypeScript path mapping straight to its source ( public api.ts ) yes phoenix-event-display the node modules symlink, whose main is dist/index — the built output no So a change to phoenix-event-display needs its dist rebuilt, and the dev server restarted, because Angular's watcher does not watch inside node modules : yarn start builds the library once before handing over to the watch build and the dev server, so a fresh start always serves current code. That one-shot build matters: the watch build and ng serve run concurrently, and ng serve reliably wins the race, which used to leave it bundling a dist from the previous session. If a change is in dist but not in the running app, compare the timestamps — if dist is newer than the server, restart it:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/HSF/phoenix#4",
+      "title": "Dependency pre-bundling",
+      "text": "Because phoenix-event-display resolves through node modules , the dev server would treat it as a third-party dependency and pre-bundle it into .angular/cache/ /vite/deps/ . That cache is keyed on package metadata rather than file contents, so rebuilding dist does not invalidate it and even restarting the server keeps serving the stale copy — a change can sit in dist for days while the browser shows the old code, with nothing to explain it. packages/phoenix-ng/angular.json therefore excludes it from pre-bundling: If you ever see a change that is in dist , survives a restart, and still does not appear in the browser debugger, check whether that exclusion is still in place, and clear the cache:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/HSF/phoenix#5",
+      "title": "Docker",
+      "text": "Run the following Docker command to start Phoenix locally using Docker. Access the app by navigating to http://localhost on the browser.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/HSF/phoenix#6",
+      "title": "Phoenix presentations and publications",
+      "text": "Phoenix was presented at the 2020 HSF/WLCG virtual workshop and the presentation can be watched on YouTube Phoenix was shown at CHEP 2021 (abstract).",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/HSF/phoenix#7",
+      "title": "ATLAS",
+      "text": "PhoenixATLAS is the official web event display of the ATLAS experiment. It can be used to visualise different versions of ATLAS Geometry, and uploaded events. ATLAS has also used it for embedded events in Physics briefings, e.g. Heavyweight champions: a search for new heavy W' bosons with the ATLAS detector",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/HSF/phoenix#8",
+      "title": "Contact",
+      "text": "The best way to contact us is to either open an issue in GitHub, start a discussion or talk to us on our gitter channel (though this is not used as much these days).",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/HSF/phoenix/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing 1. Issue tracking The best way to start contributing is to explore the GitHub issue tracker for the repository. If you have already tried the application feel free to open an issue if you notice any bug or feature that could be improved. Include a brief description and context of the issue, and optionally choose labels to mark the issue as bug , enhancement , question ... to give extra information to other developers. 2. Coding Once you are decided to start contributing on the repository, take a look at the Developer guide to get a more detailed understanding. Code formatting We use ESLint for linting of TypeScript code and Prettier for linting of all other files. You can set up ESLint with your editor following these instructions. We also have scripts to check and update code. To check: To update: If you're using Visual Studio Code, you can also add the prettier plugin and then choose 'Format Document' with this linting tool. Running linters against staged git files We use lint-staged to make sure we are not committing the usually unwanted linting error on the CI and it helps us to focus on the actual problem if we see a failed CI output. It runs our linters everytime",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/HSF/phoenix/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Change Log All notable changes to this project will be documented in this file. See Conventional Commits for commit guidelines. 4.0.1 (2026-06-06) Note: Version bump only for package root 4.0.0 (2026-06-06) Bug Fixes accessibility: add descriptive alt text (8e16302) add Angular 20 compatibility by upgrading dependencies and migrating to application builder (a1bccdc), closes 728 add missing ngOnDestroy cleanup in 4 UI components (bb2278b), closes 865 add unsubscribe mechanism to prevent callback memory leaks (9c10385) align screenshot mode button styling (40bf07b) app: fixing tests (9402d2f) app: isolate Jest and Cypress TypeScript types to restore IntelliSense (4eee288) apply lint formatting fixes (183294c) clean up event listeners in OverlayComponent and SSModeComponent (54ba286), closes 762 clear selections before track extension to prevent stale outlines (594e3e8) convert makeRequest() to async/await with proper error propagation (8b770da), closes 847 correct stretch rendering logic, remove crop offsets, proper viewOffset and aspect handling (1b836b3) correct Stretch screenshot aspect ratio & restore camera aspect (5a1662c) correct viewOffset typing to resolve TS2349 error (07e9",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/HSF/phoenix",
+  "stars": 85
+}

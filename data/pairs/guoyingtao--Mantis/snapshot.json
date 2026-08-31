@@ -1,0 +1,130 @@
+{
+  "slug": "guoyingtao--Mantis",
+  "name": "Mantis",
+  "description": "An iOS image cropping library for UIKit and SwiftUI, mimicking the Photos app — crop shapes, rotation, flip, perspective correction, undo/redo. iOS & Mac Catalyst.",
+  "documents": [
+    {
+      "url": "https://github.com/guoyingtao/Mantis#0",
+      "title": "Introducción",
+      "text": "Mantis — Image Cropping Library for iOS (Swift · UIKit · SwiftUI) Mantis is an open-source iOS image cropping library written in Swift, with both UIKit and SwiftUI APIs. It gives your app an Apple Photos–style photo crop and edit experience: crop with rotation , flip , free or fixed aspect ratios , rich crop shapes (circle, ellipse, rounded rectangle, polygon, heart, arbitrary paths), perspective correction (skew) , and full undo/redo — on iOS and Mac Catalyst.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#1",
+      "title": "Features",
+      "text": "- ✂️ Photos-app-style cropping UI — pan, zoom, resize the crop box, rotate 90°, flip, and straighten with a rotation dial or slide dial - 🖼 Free or fixed aspect ratios — built-in presets (original, square, 16:9, …) plus your own custom ratios - 🟣 Rich crop shapes — rectangle, square, circle, ellipse, rounded rectangle, diamond, polygon, heart, or any custom path (with optional mask-only mode) - 📐 Perspective correction (skew) — Apple Photos–style vertical/horizontal perspective adjustment with real-time 3D preview - ↩️ Undo / Redo / Revert to original — independent history per cropper, with localized Mac Catalyst menus - 🧩 Two SwiftUI APIs — a modern declarative ImageCropper view with modifiers and an observable CropSession , plus a binding-based ImageCropperView - 💾 Persist and restore crops — CropInfo is Codable (3.1+); re-crop the original image offline in a later session, or reopen the editor at the saved state - 🌗 Light / dark / system appearance modes - 🌍 Localized into 14 languages (Arabic, Chinese, English, French, German, Italian, Japanese, Korean, Dutch, Portuguese, Russian, Spanish, Turkish, …) with custom localization support - 🧱 Highly customizable — embed the cropper ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#2",
+      "title": "Demos",
+      "text": "Mantis provides rich crop shapes, from basic circle/square to polygons to arbitrary paths (we even provide a heart shape ❤️ 😏).",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#3",
+      "title": "Table of Contents",
+      "text": "- Quick Start - Requirements - Installation - What's New in Mantis 3.x - Usage - Migrating from 2.x - Demo Projects - FAQ - Apps Using Mantis - Credits - License",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#4",
+      "title": "UIKit",
+      "text": "See Usage below for aspect ratios, crop shapes, undo/redo, persistence, and full customization.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#5",
+      "title": "Requirements",
+      "text": "- iOS 15.0+ - macOS 12.0+ (Mac Catalyst) - Xcode 13.0+ (Xcode 15+ recommended — enables the iOS 17 Observation-based fine-grained tracking in CropSession )",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#6",
+      "title": "Swift Package Manager (recommended)",
+      "text": "In Xcode: File → Add Package Dependencies… and enter: Rule: Version — Up to Next Major — 3.1.0 Or in Package.swift :",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#7",
+      "title": "Declarative SwiftUI API (3.0)",
+      "text": "Mantis 3.0 introduced a modern, declarative SwiftUI API: - ImageCropper — a SwiftUI view configured with modifiers: - CropSession — an observable handle to a live crop session. It exposes canUndo , canRedo , isResettable and the live transformation as observable state, and drives the cropper with plain methods ( rotate() , flip() , crop() , undo() , redo() , reset() , setAspectRatio() ) instead of the old enum-binding action pattern. On iOS 17+ it participates in the Observation framework for fine-grained, per-property updates; on iOS 15/16 it behaves as a plain ObservableObject . - Independent undo history per cropper — the internal transform stack is no longer a global singleton, so two croppers shown at the same time (e.g. iPad multi-window) keep separate undo/redo histories. The binding-based ImageCropperView API remains fully supported. See the SwiftUI usage section for the full API and the MantisSwiftUIExample project for working demos.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#8",
+      "title": "Codable crop persistence (3.1)",
+      "text": "CropInfo now conforms to Codable , so you can save a user's exact crop and reproduce it offline in a later app session — including rotated, fixed-ratio, perspective-skewed, and large-image crops. See Persisting and restoring crops.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#9",
+      "title": "Perspective correction (skew)",
+      "text": "Mantis supports Apple Photos–style perspective correction , letting users adjust horizontal and vertical skew in addition to straightening. When enabled, the slide dial displays three circular icon buttons — Straighten , Vertical , and Horizontal — so users can switch adjustment modes with a single tap. - Real-time 3D perspective preview powered by CATransform3D - Accurate image export using CIPerspectiveCorrection - Full integration with existing features: undo/redo, flip, 90° rotation, and preset transformations",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#10",
+      "title": "Appearance mode",
+      "text": "Mantis supports light, dark, and system appearance modes . By default Mantis uses a dark appearance (backward compatible).",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#11",
+      "title": "Usage",
+      "text": "Basic Important: set modalPresentationStyle = .fullScreen on the crop view controller (or its navigation controller) when presenting it.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#12",
+      "title": "Declarative API (Mantis 3.0+)",
+      "text": "ImageCropper is a declarative SwiftUI view configured with modifiers: To build your own controls, attach a CropSession . It exposes canUndo , canRedo , isResettable and the live transformation as observable state (fine-grained Observation tracking on iOS 17+, ObservableObject on iOS 15/16), and drives the cropper with plain methods instead of enum bindings: Available modifiers: .cropShape( :) , .aspectRatio( :) , .builtInToolbarVisible( :) , .appearance( :) , .configure { $0... } (escape hatch to the full Mantis.Config ), .onCrop( :) , .onCancel( :) , .onCropFailed( :) .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#13",
+      "title": "Binding-based API",
+      "text": "Kept for backward compatibility and fully supported; new code should prefer the declarative ImageCropper above. Note: - To start a crop operation programmatically, use the action binding (for ImageCropperView ): - To receive the result of the crop (success or failure), use the onCropCompleted callback. This is especially useful because cropping may not complete instantly in all cases, so relying on this callback ensures you update your UI only after the operation finishes. CropToolbar mode CropToolbar has two modes: normal mode In normal mode, you can use a set of standard CropViewController photo editing features with \"Cancel\" and \"Done\" buttons. embedded mode This mode does not include \"Cancel\" and \"Done\" buttons, so you can embed CropViewController into another view controller and build your own surrounding UI. Custom aspect ratios If you always want to use only one fixed ratio, set presetFixedRatioType to alwaysUsingOnePresetFixedRatio : When choosing alwaysUsingOnePresetFixedRatio , the fixed-ratio setting button does not show. (In the declarative SwiftUI API this is .aspectRatio(.fixed(16/9)) .) If you want to hide the rotation control view, set config.cropViewConfig.showAtta",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#14",
+      "title": "Migrating from 2.x",
+      "text": "Mantis 3.0 contains a small set of breaking changes; most apps only need the renames below. Everything else — including the binding-based SwiftUI ImageCropperView — is source compatible. Removed deprecated CropViewConfig properties These four properties had been deprecated forwarding shims; use the replacements: Removed in 3.0 Use instead --- --- cropViewConfig.cropBoxHotAreaUnit cropViewConfig.cropAuxiliaryIndicatorConfig.cropBoxHotAreaUnit cropViewConfig.disableCropBoxDeformation cropViewConfig.cropAuxiliaryIndicatorConfig.disableCropBoxDeformation cropViewConfig.cropAuxiliaryIndicatorStyle cropViewConfig.cropAuxiliaryIndicatorConfig.style cropViewConfig.showRotationDial cropViewConfig.showAttachedRotationControlView Slimmed public CropInfo Five view-reconstruction fields ( skewSublayerTransform , scrollContentOffset , scrollBoundsSize , imageContainerFrame , scrollViewTransform ) moved out of the public struct and its init ; they were pure view-hierarchy plumbing for the perspective and large-image crop paths. - Passing a Mantis-provided CropInfo back into Mantis.crop(image:by:) (from the delegate or getCropInfo() ): no change, including across value copies. - Rebuilding a CropI",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#15",
+      "title": "Demo Projects",
+      "text": "Mantis provides two demo projects: - MantisExample (UIKit, using Storyboard) - MantisSwiftUIExample (SwiftUI) - Demonstrates the declarative ImageCropper + CropSession API (Mantis 3.0+): normal crop with restore, crop shapes, fixed ratio, slide dial, perspective correction, and a custom toolbar driven by session state. - Also includes a \"Legacy Binding API\" entry showing the binding-based ImageCropperView , kept as a 2.x migration reference.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#16",
+      "title": "FAQ",
+      "text": "The crop UI looks broken or is partially covered when presented. Why? Set modalPresentationStyle = .fullScreen on the crop view controller (or its navigation controller) before presenting it. On iOS 13+ the default sheet presentation style does not work with the crop UI. How do I crop a circular avatar with a transparent background? Use config.cropViewConfig.cropShapeType = .circle() (UIKit) or .cropShape(.circle) (SwiftUI). The exported UIImage is cut to the circle with a transparent background. If you want the exported image to stay rectangular and only show a circular mask in the UI, use .circle(maskOnly: true) . How do I save a crop and restore it later? Two options: - Re-crop offline (no UI) : persist the Codable CropInfo (Mantis 3.1+) and pass it to Mantis.crop(image:by:) later. - Reopen the editor at the saved state : persist the Transformation and restore it via config.cropViewConfig.presetTransformationType = .presetInfo(info:) . Does Mantis work on macOS or iPad? Yes — Mantis supports iOS and Mac Catalyst, including localized Catalyst menus for undo/redo and independent undo histories for multiple croppers (e.g. iPad multi-window). How do I handle very large images? Set c",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#17",
+      "title": "Apps Using Mantis",
+      "text": "Below are apps that use the Mantis framework. If your app also uses Mantis and you'd like it showcased here, please submit a PR following the existing format. Pictopoem Where Images Whisper Poems Text Behind Me Add Depth to Your Photos --- ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis#18",
+      "title": "Credits",
+      "text": "The crop feature is strongly inspired by TOCropViewController The rotation feature is inspired by IGRPhotoTweaks The rotation dial is inspired by 10clock Thanks Leo Dabus for helping me to solve the problem of cropping an ellipse image with transparent background https://stackoverflow.com/a/59805317/288724 Icons made by Freepik from www.flaticon.com is licensed by CC 3.0 BY",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/guoyingtao/Mantis/blob/master/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Change Log ----- 3.1.0 (2026-07-09) Features make CropInfo conform to Codable for cross-session crop persistence ( 538) (8b3737c), closes 536 [Unreleased] Features make CropInfo conform to Codable so a crop can be persisted and restored across app sessions — including rotated, fixed-ratio, perspective-skewed, and large-image crops. The opaque view-reconstruction state is encoded alongside the public fields, so a decoded CropInfo re-crops identically to the same-session value ( 536). This is additive and source compatible; if you previously added your own extension CropInfo: Codable as a workaround, remove it after upgrading to avoid a duplicate-conformance error. 3.0.0 (2026-07-06) ⚠ BREAKING CHANGES targeted at the next major version. build!: raise minimum deployment target to iOS 15 / Mac Catalyst 15 Features add PrivacyInfo.xcprivacy privacy manifest ( 525) (b999649) observable CropSession + declarative ImageCropper; per-session TransformStack ( 535) (1d51c1f) Support large images ( 498) (82dea03) Bug Fixes avoid double safe area inset offset in embedded mode ( 487) ( 521) (f60bb84) avoid initial-display zoom flicker in fixed-ratio crop ( 487) ( 523) (d613bdc) fix the UI jumping",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/guoyingtao/Mantis",
+  "stars": 1198
+}

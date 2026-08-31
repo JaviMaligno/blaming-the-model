@@ -1,0 +1,76 @@
+{
+  "slug": "mrmartineau--Otter",
+  "name": "Otter",
+  "description": "Otter is where your links, articles, videos and half-watched TV shows live. Save it, tag it, find it again — on your own infrastructure, with nobody reading over your shoulder.",
+  "documents": [
+    {
+      "url": "https://github.com/mrmartineau/Otter#0",
+      "title": "Introducción",
+      "text": "Otter Otter is a self-hosted bookmark manager and media tracker built with React, Hono, Postgres, and Cloudflare Workers Features • Packages • Getting started • Tech stack",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mrmartineau/Otter#1",
+      "title": "Features",
+      "text": "- Private bookmarking app with search, tagging, collections, and filtering - Starred items and public/private visibility per bookmark - Dark/light colour modes - Media tracking — kanban-style board for tracking movies, TV shows, games, and more - AI-powered title and description rewriting via Cloudflare Workers AI - RSS feed parsing and URL scraping - Mastodon integration — backup your own toots and favourite toots, plus auto-posting public bookmarks - Bluesky and Twitter/X import - MCP server — let MCP clients (Claude, Cursor, etc.) search and manage your bookmarks - REST API with API-key auth, plus an OAuth provider for first-party clients - Cross-browser web extension (Chrome & Firefox) - Raycast extension to search, view, and create bookmarks - Terminal UI ( otter-tui ) - Native macOS/iOS app - Bookmarklet",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mrmartineau/Otter#2",
+      "title": "Screenshots",
+      "text": "Feed (dark mode) Feed (light mode) ------------------------------------------------------------------------------------------------------------------------------------------------------ ------------------------------------------------------------------------------------------------------------------------------------------ New bookmark Search Feed (showing tags sidebar) Toots feed",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mrmartineau/Otter#3",
+      "title": "Packages",
+      "text": "This is a pnpm monorepo containing the following packages: Package Description --- --- packages/web Web app, Hono API, OAuth + MCP provider on Cloudflare Workers packages/app Native macOS/iOS app (Safari web extension + share sheet) packages/web-extension Cross-browser extension (Chrome & Firefox) packages/raycast-extension Raycast extension packages/tui Terminal UI — browse, search, star and save bookmarks from the shell packages/chrome-extension Legacy Chrome extension (superseded by web-extension )",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mrmartineau/Otter#4",
+      "title": "Prerequisites",
+      "text": "- pnpm v11 (pinned via packageManager ) — install with corepack enable && corepack prepare pnpm@latest --activate - A Postgres database, e.g. Neon - Cloudflare account — used for hosting, Workers AI, Hyperdrive, and the API For a full walkthrough — including database setup, Cloudflare configuration, and deployment — see the Setup Instructions .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mrmartineau/Otter#5",
+      "title": "Releasing",
+      "text": "Otter uses semantic-release with the semantic-release-monorepo plugin to version each package independently based on Conventional Commits. Packages are not published to npm — releases are GitHub releases only.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mrmartineau/Otter#6",
+      "title": "Commit message format",
+      "text": "Prefix Release type :----- :----------- fix: Patch ( 1.0.x ) feat: Minor ( 1.x.0 ) feat!: or BREAKING CHANGE: Major ( x.0.0 )",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mrmartineau/Otter#7",
+      "title": "Per-package versioning",
+      "text": "Each releasable package has its own release.config.mjs that extends semantic-release-monorepo . The plugin filters commits to those that touch files inside the package's directory, so a commit changing only packages/web will only bump and release @mrmartineau/otter-web . Releasable packages: - @mrmartineau/otter-web — tags as @mrmartineau/otter-web@vX.Y.Z - @mrmartineau/otter-chrome-extension — tags as @mrmartineau/otter-chrome-extension@vX.Y.Z - @mrmartineau/otter-web-extension — tags as @mrmartineau/otter-web-extension@vX.Y.Z - @mrmartineau/otter-tui — tags as @mrmartineau/otter-tui@vX.Y.Z The app and raycast-extension packages are released through their own platforms (App Store / Raycast Store) and are not part of this workflow.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mrmartineau/Otter#8",
+      "title": "CI / automated releases",
+      "text": "Releases are triggered manually via the \"Release\" workflow in GitHub Actions ( .github/workflows/release.yml ). The workflow: 1. Installs dependencies 2. Runs semantic-release inside each releasable package via pnpm --filter ... exec semantic-release 3. For each package with relevant new commits: bumps package.json , updates that package's CHANGELOG.md , commits the bump back to main , and creates a GitHub release with package-scoped tag and notes GITHUB TOKEN is provided automatically by GitHub Actions — no additional secrets required.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mrmartineau/Otter#9",
+      "title": "Scoping commits",
+      "text": "To target a specific package, use a Conventional Commits scope, e.g. feat(web): ... or fix(chrome-extension): ... . The plugin uses changed file paths (not the scope) to decide which package releases, but scopes make the changelog clearer.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mrmartineau/Otter#10",
+      "title": "Tech stack",
+      "text": "- Frontend: React 19, TanStack Router, TanStack Query, Tailwind CSS v4, Radix UI - API: Hono on Cloudflare Workers with AI bindings - Database: Postgres (e.g. Neon) via Drizzle ORM and Cloudflare Hyperdrive - Auth: Better Auth with OAuth provider + JWT plugins - Hosting: Cloudflare - Tooling: pnpm workspaces, Biome (formatting & linting), Vite, Vitest",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/mrmartineau/Otter",
+  "stars": 193
+}

@@ -1,0 +1,40 @@
+{
+  "slug": "HarborWallet--harbor",
+  "name": "harbor",
+  "description": "Ecash management tool",
+  "documents": [
+    {
+      "url": "https://github.com/HarborWallet/harbor#0",
+      "title": "Introducción",
+      "text": "-- Harbor Harbor is an ecash desktop wallet for better bitcoin privacy. Use this tool to interact with ecash mints, moving money in and out using existing Bitcoin wallets. As you use mints, you may be able to increase the privacy of your money. Harbor also aims to demystify ecash mints for users and make them easier to use. Highlights: - Ecash - digital payments privacy technology - Bitcoin - on-chain and lightning - Privacy - everything runs over tor - Multi-mint - spread funds over multiple mints - Automation - can run in the background and move your funds automatically NOTE: This is alpha software that could rapidly change in feature set. There is risk of losing funds. Compile and run at your own risk.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/HarborWallet/harbor#1",
+      "title": "Compatibility",
+      "text": "Harbor is a desktop app built in Rust, using the iced framework, that runs on Mac, Windows, and Linux. It currently supports Fedimint, Cashu, Bitcoin, and Lightning. Binaries will be available in the future. For now you need to compile it yourself following the instructions below.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/HarborWallet/harbor#2",
+      "title": "Building",
+      "text": "1. Clone the HarborWallet/harbor repo and cd into it. 2. Install NixOS on your machine if you do not have it already. ⚠️ NOTE: Nix OS support on linux environments is still in progress, this may or may not work for you yet: https://github.com/HarborWallet/harbor/issues/7 3. Everything is done in a nix develop shell for now: 4. Run the unit tests 5. Build and Run If you're on linux you may need to exit the nix shell to be able to run the program. NOTE : The first password you type in the box is saved as your password. There will be a proper onboarding workflow in the future.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/HarborWallet/harbor#3",
+      "title": "Building for macOS",
+      "text": "To create a macOS app bundle: 1. Make sure you're in the nix develop shell: 2. Run the macOS build script: This will create a Harbor.app bundle in target/release/macos/ . You can then move this app to your Applications folder or run it directly. Note: The build script will compile Harbor for Apple Silicon (M1/M2/M3) Macs. Intel Mac support can be added if needed.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/HarborWallet/harbor#4",
+      "title": "Feedback & Support",
+      "text": "A product like this is unique. We need all the feedback, help, and support we can get. We believe in building a tool like this out in the open as fully open-sourced MIT code that is freely available and does not depend on a centralized coordinator or single developer. However, we're unable to gain insights into how people use this tool, whether users like it or how many users even exist. Therefore, we need your help. For one, we need feedback. Do you want to use a tool like this? What features are most important to you, and what do you want? Please use the discussion boards here on GitHub or the Harbor channel on our Discord. This will primarily drive the Harbor feature set. Building free and open-source software is not free to us developers. While we believe in this tool's mission, we must rely on donations. We cannot profit from transactions for this service, and it must be fully open-sourced for this community to use it. Visit our Geyser funding page. Any donations are greatly appreciated for funding development and signaling that it's a valuable tool to you.",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/HarborWallet/harbor",
+  "stars": 178
+}

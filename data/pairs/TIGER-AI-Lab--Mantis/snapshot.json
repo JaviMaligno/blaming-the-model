@@ -1,0 +1,76 @@
+{
+  "slug": "TIGER-AI-Lab--Mantis",
+  "name": "Mantis",
+  "description": "Official code for Paper \"Mantis: Multi-Image Instruction Tuning\" [TMLR 2024 Best Paper]",
+  "documents": [
+    {
+      "url": "https://github.com/TIGER-AI-Lab/Mantis#0",
+      "title": "Introducción",
+      "text": "Mantis: Interleaved Multi-Image Instruction Tuning (TMLR 2024) This repository contain the code for our TMLR24 paper Mantis (https://arxiv.org/abs/2405.01483). We got best paper award from TMLR 2025! Checkout Medium! --- 🤔 The recent years have witnessed a great array of large multimodal models (LMMs) to effectively solve single-image vision language tasks. However, their abilities to solve multi-image visual language tasks is yet to be improved. 😦 The existing multi-image LMMs (e.g. OpenFlamingo, Emu, Idefics, etc) mostly gain their multi-image ability through pre-training on hundreds of millions of noisy interleaved image-text data from web, which is neither efficient nor effective. 🔥 Therefore, we present Mantis, an LLaMA-3 based LMM with interleaved text and image as inputs, train on Mantis-Instruct under academic-level resources (i.e. 36 hours on 16xA100-40G). 🚀 Mantis achieves state-of-the-art performance on 5 multi-image benchmarks (NLVR2, Q-Bench, BLINK, MVBench, Mantis-Eval), and maintaining a strong single-image performance on par with CogVLM and Emu2.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TIGER-AI-Lab/Mantis#1",
+      "title": "🔥News",
+      "text": "- [2024-11-18] We add support for training 🤗 Qwen2-VL; script here: train qwen2 vl.sh; Supports liger-kernel. - [2024-11-15] 🎉 Mantis is accepted to TMLR 2024 - [2024-08-22] We add support for training 🤗 Idefics-3; script here: train idefics3.sh - [2024-08-05] VLMEvalKit now supports the evaluation of Mantis model. Thanks to the efforts of BrenchCC - [2024-08-05] We release the Wandb training curves of Mantis-8B-CLIP-LLaMA-3, Mantis-8B-SigLIP-LLaMA-3, and Mantis-8B-Idefics2 for training reproduction. - [2024-07-23] lmms-eval now supports the evaluation of Mantis model. Thanks to the efforts of EvolvingLMMs-Lab Team. - [2024-05-23] 🔥Excited to announce our current SoTA Mantis-8B-Idefics2 model! Check the model and demo now! - [2024-05-03] We have release our training codes, dataset, evaluation codes codes to the community! Check the following sections for more details. - [2024-05-02] We release the first multi-image abled LMM model Mantis-8B based on LLaMA3! Interact with Mantis-8B-SigLIP on Hugging Face Spaces or Colab Demo - [2024-05-02] Mantis's technical report is now available on arXiv. Kudos to the team!",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TIGER-AI-Lab/Mantis#2",
+      "title": "Training",
+      "text": "Install the requirements with the following command: Our training scripts follows the coding format and model structure of Hugging face. Different from LLaVA Github repo, you can directly load our models from Hugging Face model hub.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TIGER-AI-Lab/Mantis#3",
+      "title": "Training examples with different data formats",
+      "text": "(These example data are all pre-prepared in the data/examples/ folder, so you can check the format of the data and the debug the training script directly. set CUDA VISIBLE DEVICES to the GPU you want to use.) - training with text-image interleaved data (see example data) - training with video-text interleaved data (see example data) - training with classification data (see example data)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TIGER-AI-Lab/Mantis#4",
+      "title": "Training examples with different models",
+      "text": "We support training of Mantis based on the Fuyu architecture and the LLaVA architecture. You can train the model with the following command: Training Mantis based on LLaMA3 with CLIP/SigLIP encoder: - Pretrain Mantis-LLaMA3 Multimodal projector on pretrain data (Stage 1): - Fine-tune the pretrained Mantis-LLaMA3 on Mantis-Instruct (Stage 2): Training Mantis based on Fuyu-8B: - Fine-tune Fuyu-8B on Mantis-Instruct to get Mantis-Fuyu: Note : - Our training scripts contain auto inference bash commands to infer the number of GPUs and the number of GPU nodes use for the training. So you only need to modify the data config path and the base models. - The training data will be automatically downloaded from hugging face when you run the training scripts. See mantis/train/README.md for more details. Check all the training scripts in mantist/train/scripts",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TIGER-AI-Lab/Mantis#5",
+      "title": "Data",
+      "text": "- 🤗 Mantis-Instruct 721K text-image interleaved datasets for multi-image instruction tuning - 🤗 Mantis-Eval 217 high-quality examples for evaluating LMM's multi-image skills",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TIGER-AI-Lab/Mantis#6",
+      "title": "Downloading",
+      "text": "you can easily preparing Mantis-Insturct's downloading with the following command (The downloading and extracting might take about an hour):",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TIGER-AI-Lab/Mantis#7",
+      "title": "Mantis Models",
+      "text": "We provide the following models in the 🤗 Hugging Face model hub: - TIGER-Lab/Mantis-8B-Idefics2 - TIGER-Lab/Mantis-8B-clip-llama3 - TIGER-Lab/Mantis-8B-siglip-llama3 - TIGER-Lab/Mantis-8B-Fuyu",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TIGER-AI-Lab/Mantis#8",
+      "title": "Chat CLI",
+      "text": "We provide a simple chat CLI for Mantis models. You can run the following command to chat with Mantis-8B-siglip-llama3:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TIGER-AI-Lab/Mantis#9",
+      "title": "Intermediate Checkpoints",
+      "text": "The following intermediate checkpoints after pre-training the multi-modal projectors are also available for experiments reproducibility ( Please note the follwing checkpoints still needs further fine-tuning on Mantis-Instruct to be intelligent. They are not working models. ): - TIGER-Lab/Mantis-8B-clip-llama3-pretraind - TIGER-Lab/Mantis-8B-siglip-llama3-pretraind",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TIGER-AI-Lab/Mantis#10",
+      "title": "Acknowledgement",
+      "text": "- Thanks LLaVA and LLaVA-hf team for providing the LLaVA codebase, and hugging face compatibility! - Thanks Haoning Wu for providing codes of MVBench evaluation!",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/TIGER-AI-Lab/Mantis",
+  "stars": 240
+}

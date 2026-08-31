@@ -1,0 +1,46 @@
+{
+  "slug": "CentecNetworks--Lantern",
+  "name": "Lantern",
+  "description": "Centec open source OpenFlow hardware implementation project (Lantern )",
+  "documents": [
+    {
+      "url": "https://github.com/CentecNetworks/Lantern#0",
+      "title": "Overview",
+      "text": "Lantern is an open source implementation targeted at hardware based SDN switch, integrating Linux Debian 7.2 OS, Open vSwitch(OVS) with silicon SDK and adaption layer as an open source turnkey solution. SDN is a new approach to networking of which OpenFlow is one of the key technologies. Implementing SDN via an open standard enables extraordinary agility while reducing service development and operational costs. The complete open source release including silicon SDK and adaption layer facilitates research activity in the field. It also enables equipment vendors to further innovate on top of the turnkey solution. Furthermore, Lantern release is intended to contribute to the open eco-system which is crucial to SDN development in the industry. Lantern release include source code of Debian Linux as platform OS, modified Open vSwitch(OVS) as openflow agent, as well as silicon SDK and adaption layer. In conjunction with the release, it includes development guide and compilation scripts. Lantern features: OpenFlow 1.0 interoperating with mainstream OpenFlow controllers 2.5K embedded flow entries with complete match field and stats Complete L2 to L4 match fields Flexible editing L2-L4 field",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/CentecNetworks/Lantern#1",
+      "title": "Main features",
+      "text": "Support Centec Openflow hardware switching system: V330 52TX-RD. Support Openflow protocol 1.0/1.3 Support ovs tools: ovs-ofctl, ovs-vsctl, ovsdb-server, ovsdb-tool, ovs-appctl, ovs-pki etc. Support flow matching fields: in\\ port, dl\\ vlan, dl\\ vlan\\ pcp, dl\\ src, dl\\ dst, dl\\ type, nw\\ src, nw\\ dst, nw\\ proto, nw\\ tos, tp\\ src, tp\\ dst, icmp\\ code, icmp\\ type Support flow priority, cookie, idle\\ timeout and hard\\ timeout Support multiple actions: drop, output (physical port, all, in\\ port, controller, gre tunnel port), mod\\ vlan id, push\\ vlan, strip\\ vlan, mod\\ dl\\ src, mod\\ dl\\ dst, set\\ tunnel\\ id, mod\\ nw\\ dst, mod\\ tp\\ dst Support GRE tunnel port Support boot from Debian Linux system (Debian Linux 7.2 is embedded)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/CentecNetworks/Lantern#2",
+      "title": "System image and Open vSwitch package",
+      "text": "The Virtual Centec Operating System (VCOS) image and Open vSwitch package can be built with GNU toolchain. Please refer to 'BUILD-GUIDE' for details.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/CentecNetworks/Lantern#3",
+      "title": "License",
+      "text": "Package Version License :------------------------------------ :----------------------------- :--------- Centec openflow adapter layer & SDK 1.0 Apache 2 Open vSwitch 1.10.0 Apache 2 Linux Kernel 2.6.32.23 GPL Busybox 1.6.1 GPL Please refer to 'LICENSE' for details.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/CentecNetworks/Lantern#4",
+      "title": "About Centec Networks",
+      "text": "Centec Networks is pioneering to provide switching silicon and whitebox solution for SDN. We commit to enable SDN into networks of carrier, enterprise and data center. Leveraging the high performance open SDN architecture, Centec enables customer networks seamlessly migrate from traditional L2, L3 and MPLS/MPLS-TP architecture to the new SDN track. Together with the customer, Centec is redefining the switching network with optimized investment and more opening capability to create value for future and today. Since the inception of the company, Centec has gradually formed a complete family of TransWarpTM Ethernet switching silicon. In 2013, Centec launched the SDN optimized switching Silicon GreatBelt Series which redefines cost, power and price for Ethernet Switching. To bring the top convenience and value to OEMs, Centec has been cooperated with leading PHY and CPU vendors, to provide a competitive total solution for switching device. Built on TransWarpTM Family core silicon, Centec's V Series Switches, the leading industry SDN switches with OVS and Open SDK integrated, provide a complete SDN whitebox solution for Datacenter, Enterprise and Carriers applications. As a high perform",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/CentecNetworks/Lantern#5",
+      "title": "Contact us",
+      "text": "Website: [http://www.centecnetworks.com] [1] Wiki: [https://github.com/centecnetworks/lantern/wiki] [2] Issue tracker: [https://github.com/centecnetworks/lantern/issues] [3] Support email: Sales email: Weibo: [http://weibo.com/centec] [4] Mailing list: [https://lists.sourceforge.net/lists/listinfo/lantern-project-discuss] [5] [1]: http://www.centecnetworks.com \"Centec Networks Co., Ltd.\" [2]: https://github.com/centecnetworks/lantern/wiki \"Lantern Project Wiki\" [3]: https://github.com/centecnetworks/lantern/issues \"Lantern Project Issues\" [4]: http://weibo.com/centec \"Centec Weibo\" [5]: https://lists.sourceforge.net/lists/listinfo/lantern-project-discuss \"Mailing list for Lantern project\"",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/CentecNetworks/Lantern",
+  "stars": 89
+}

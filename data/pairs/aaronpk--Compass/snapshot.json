@@ -1,0 +1,88 @@
+{
+  "slug": "aaronpk--Compass",
+  "name": "Compass",
+  "description": "Compass is a GPS tracking server that stores data in flat files.",
+  "documents": [
+    {
+      "url": "https://github.com/aaronpk/Compass#0",
+      "title": "Requirements",
+      "text": "PHP 5.5 or above MySQL (for storing user accounts and lists of databases, not for storing the actual location data)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/aaronpk/Compass#1",
+      "title": "PHP extensions",
+      "text": "You'll need to make sure the following PHP extensions are installed. Typically these are installed using the package manager of your operating system. curl mbstring zip unzip",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/aaronpk/Compass#2",
+      "title": "Setup",
+      "text": "Compass is built using the Lumen framework. If you have any trouble getting started, you can refer to the Lumen documentation for tips that may have been skipped or assumed in these instructions. In the compass directory, copy .env.example to .env and fill in the details. Install the dependencies with composer. Once you've created the database and configured the settings in .env , run the migrations to set up all the tables.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/aaronpk/Compass#3",
+      "title": "Web Server",
+      "text": "Your web server will need to support URL re-routing to the index.php file of compass. This will vary based on your web server. - If you're using Apache, this will involve URL re-writing likely using .htaccess - If you're using Nginx, this will involve incorporating the following code into your server block, you should also add any applicable fastcgi settings inside the location block below:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/aaronpk/Compass#4",
+      "title": "Job Queue",
+      "text": "For the job queue you will either need to have one of the supported options by Lumen. The two most likely options are an SQL database or Redis. You can find other supported options here If you're using the database queue driver ( QUEUE DRIVER=database defined in .env ), you'll need to create the migration for that table: If you're using Redis, make sure you've installed the Redis server and set QUEUE DRIVER=redis . Make sure the storage folder you've defined in STORAGE DIR is writable by the web server (or by the PHP process if you're using php-fpm). To process jobs on the queue, run For more details on how to configure this to run in the background, see https://lumen.laravel.com/docs/5.1/queues running-the-queue-listener",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/aaronpk/Compass#5",
+      "title": "API",
+      "text": "After you create a tracking database, you can visit the database's settings page to get a read or write token. These tokens are used with the API to update or retrieve data.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/aaronpk/Compass#6",
+      "title": "Writing",
+      "text": "To write to a database, make a POST request in JSON format with the following keys: POST /api/input locations - a list of GeoJSON objects token - the write token for the database (as a query string parameter or in the post body) The GeoJSON objects must have at least one property, \"timestamp\", which is can be any value that can be interpreted as a date. The object can have any additional properties you wish. The open source iOS Overland will send data in this format by default.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/aaronpk/Compass#7",
+      "title": "Get all data for a calendar day",
+      "text": "GET /api/query token - (required) the read token for the database tz - (optional, default UTC) timezone string (e.g. America/Los Angeles) which will be used to determine the absolute start/end times for the day format - (optional, default \"full\") either \"full\" or \"linestring\" full - return one JSON record for each result in the database linestring - combine all the returned results into a GeoJSON linestring date - specify a date to return all data on that day (YYYY-mm-dd format)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/aaronpk/Compass#8",
+      "title": "Get the last location before a given timestamp",
+      "text": "GET /api/last token - (required) the read token for the database tz - (optional, default UTC) timezone string (e.g. America/Los Angeles) which will be used to determine the absolute start/end times for the day before - (optional, default to now) specify a full timestamp to return a single record before this date (the point returned will be no more than 24 hours before the given date) geocode - (optional) if \"true\", then the location found will be reverse geocoded using Atlas to find the city and timezone at the location",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/aaronpk/Compass#9",
+      "title": "Find the last location matching a clock time",
+      "text": "GET /api/find-from-localtime This API method can help you answer the question \"Where was I when my watch read 9:30am on July 15th?\". Timestamps in Exif data do not include the timezone offset, and there is no standard mechanism for including the timezone offset in Exif. Some Canon cameras put the offset in a field, but not all of them do. You can use this method to find your location given an Exif date. token - (required) the read token for the database input - specify a clock time in the format YYYY-mm-dd HH:MM:SS This will query the database and find the closest matching location for when your clock read that time.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/aaronpk/Compass#10",
+      "title": "Credits",
+      "text": "Compass icon by Ryan Spiering from the Noun Project. Screenshot of the map view by Sebastiaan Andeweg.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/aaronpk/Compass#11",
+      "title": "License",
+      "text": "Copyright 2015 by Aaron Parecki Compass is licensed under the Apache 2.0 license Compass is built using the Lumen framework, which is licensed under the MIT license",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/aaronpk/Compass/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "By submitting code to this project, you agree to irrevocably release it under the same license as this project. See README.md for more details.",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/aaronpk/Compass",
+  "stars": 144
+}

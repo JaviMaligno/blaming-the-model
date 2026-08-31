@@ -1,0 +1,52 @@
+{
+  "slug": "dawarich-app--atlas",
+  "name": "atlas",
+  "description": "Your favorite offline self-hostable maps. City, Country, Planet, you choose.",
+  "documents": [
+    {
+      "url": "https://github.com/dawarich-app/atlas#0",
+      "title": "Introducción",
+      "text": "Dawarich Atlas A local-first, self-hostable maps stack. Built on OpenStreetMap data and FOSS components, designed to run on hardware you control with zero outbound API calls at runtime. Atlas is the maps engine that powers Dawarich, packaged so it stands on its own — install it on your own box, plug your own clients into the API.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/dawarich-app/atlas#1",
+      "title": "Quickstart",
+      "text": "That's it — no .env file required. The app auto-generates a SECRET KEY BASE on first boot (persisted to data/app/.secret key base ) and stores its data in a local SQLite file under data/app/ . Two knobs you may need: DOCKER GID — the in-app control plane talks to the host docker socket as the nobody user via this supplementary group (default 999 ). If the Settings panel shows a \"Control plane degraded\" banner, set it to the socket's group and recreate the container: PUID / PGID — the uid:gid Atlas runs as, and the owner it gives its own data directories on boot: ./data/app plus the region dirs ./data/{osm,gtfs,otp,tiles} (default 65534:65534 , i.e. nobody ). Other services under ./data keep their own ownership — whosonfirst , for instance, runs as ${UID:-1001} . On a NAS the appdata share usually belongs to someone else — Unraid uses 99:100 , Synology and QNAP differ — and Atlas will refuse to start with a message naming the directories rather than looping on \"Permission denied\". Set them to the share's owner: Visit http://localhost:8484. The map page is live as soon as Caddy and Atlas come up. Open the Settings tab in the side panel to toggle Search / Routing / POIs / Transit and ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/dawarich-app/atlas#2",
+      "title": "Documentation",
+      "text": "Every operational topic has a dedicated page on the website. The README is intentionally thin — anything that's not in the table below lives there. Topic Where to read --- --- What it is, capability list, response envelope Introduction Clone → boot → data layers, admin panel auth, offline basemap Quickstart Design principles, tech stack, topology, Go sidecar, Nominatim decision Architecture Region presets, multi-region auto-merge, scaling tables (Germany / France / USA / planet) Regions Compose profiles, graceful degradation, ports Compose profiles Full OpenAPI spec (Redoc-rendered) Public API · Admin API Docs source: dawarich-app/atlas-website .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/dawarich-app/atlas#3",
+      "title": "CI / images",
+      "text": "The app is the Phoenix application in app-phoenix/ . It serves the map UI, admin Settings, the public + admin JSON APIs, and the control plane (the former Go atlas-control sidecar is absorbed into it — Phoenix execs docker compose against the host daemon directly). CI runs on GitHub Actions ( .github/workflows/ ): Job Trigger Output --- --- --- test-phoenix push / PR touching app-phoenix/ mix test --include parity (incl. byte-diff parity gate against the Rails goldens) + credo build-app push to main touching app-phoenix/ ghcr.io/dawarich-app/atlas/app:latest + : (multi-arch amd64+arm64) test-rails push / PR touching app/ RSpec — the legacy Rails app ( app/ ) is retained only as the parity reference for the golden capture; it is no longer built or shipped Compose defaults consume the app tag directly — docker compose up -d against a fresh checkout pulls from GHCR with no auth. Override the image when iterating locally:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/dawarich-app/atlas#4",
+      "title": "Development",
+      "text": "- Phoenix app (the shipped app): app-phoenix/README.md - Legacy Rails app (parity reference only): app/README.md End-user documentation source lives in the separate atlas-website repo — open PRs against the docs there.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/dawarich-app/atlas#5",
+      "title": "License",
+      "text": "Dawarich Atlas is licensed under the GNU Affero General Public License v3.0 (LICENSE) — the same license as Dawarich. Anyone running Atlas as a service must publish their modifications under the same license. Upstream components retain their own licenses: OSM data is ODbL; Protomaps and MapLibre are BSD-3; Valhalla is MIT; Photon, Overpass and OpenTripPlanner are LGPL-3.0 or AGPL-3.0; Rails is MIT.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/dawarich-app/atlas/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog All notable changes to Dawarich Atlas are documented here. The format follows Keep a Changelog, and this project adheres to Semantic Versioning. [Unreleased] Fixed - A malformed value in any upstream tuning knob ( PHOTON TIMEOUT , VALHALLA TIMEOUT , OPEN TIMEOUT , …) no longer takes down every request that reads it. env int/2 used String.to integer/1 , so VALHALLA TIMEOUT=10s raised on each call; it now falls back to the default and logs a warning naming the variable. - The Protomaps daily-planet basemap targets the previous day’s build, which is already published, instead of a build that may not exist yet ( 2) - Transit planning now uses OpenTripPlanner's GraphQL API instead of the removed legacy REST endpoint ( 25). - Region apply no longer stalls or silently serves stale POI data: the PBF→bz2 convert is no longer bounded by a 30-minute wall-clock timeout (a genuinely hung osmium is now caught by a stall watchdog instead), orphaned .partial files are swept from osm/ , osm/sources/ and gtfs/ , and a failed conversion fails the apply loudly instead of leaving overpass on a weeks-old snapshot ( 34, 28). The convert now runs after OTP staging, so a broken overpass source no",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/dawarich-app/atlas",
+  "stars": 156
+}

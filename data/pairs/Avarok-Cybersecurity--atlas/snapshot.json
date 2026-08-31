@@ -1,0 +1,214 @@
+{
+  "slug": "Avarok-Cybersecurity--atlas",
+  "name": "atlas",
+  "description": "Pure Rust Inference Engine",
+  "documents": [
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#0",
+      "title": "Introducción",
+      "text": "Atlas Inference Engine Pure Rust LLM Inference Universal Inference At Unimaginable Speeds ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#1",
+      "title": "📑 Table of Contents",
+      "text": "- 🧭 Philosophy - 🏛️ Architecture - 📦 What We Ship Today - ⚡ Performance - 🗜️ KV Cache Quantization - 🚀 Quick Start - 🔬 Kernel Debugging - 🔌 Adding a New Hardware Target - 🧬 Adding a New Model - 📚 Citations - ⚖️ License and Enterprise Edition ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#2",
+      "title": "🧭 Philosophy",
+      "text": "The foundation of any given field of science is philosophy. It is that which inspires direction, structure, and mission. Atlas began as a solution to widely known problem in using other (python) inference engines built by data scientists: the code was steeped in a poly codebase with an ever shifting ecosystem of dependencies, patches, and cross-dependencies. One day your workaround for running a model works, the next day you have to update to a nightly branch of several dependencies and inject a new workaround. This is not how you build a software ecosystem; that's how you build a proof of concept. We thank the great and hard work data scientists made in proving LLMs can revolutionize our world, its economy, and how it challenges us to higher epochs. Now, the software engineers take the torch to turn a proof of concept into something that is designed to withstand the test of time.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#3",
+      "title": "Main Objective",
+      "text": "Similar to how llama.cpp was built with the intent to prove you don't need $10000-$100000 GPUs to run LLMs, Atlas is built with the intent to consistently force the narrative that as hardware continues to advance, we should not have to pay premium Cloud API prices for inference. Atlas, by virtue of its philosophy, maximizes speed for each hardware/model combination, thus paving the way for meaningfully powerful and intelligent LLMs to be run locally in such a way the model is truly useful.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#4",
+      "title": "Free and Open Source, Always",
+      "text": "We promised this since the beginning. We believe great software comes from opening the source, not from just keeping it closed. The more eyes, the better. And therein brings us to the next point.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#5",
+      "title": "Community-First",
+      "text": "For those who've followed us this far since the inception of our Discord, you know the extent to which our commitment to the community is, according to one user humourously put, \"cracked\". We want to build something incredible, and that means we not only build for you, but you, now having access to the source code, can now build for others in ways that triumph over existing solutions. This is the only way we all win. We are the Pirates of the inference space.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#6",
+      "title": "Monorepo",
+      "text": "We chose a monorepo design to ensure that, as we head further into the agentic age of coding, the average data scientist or engineer can contribute meaningful PRs to any part of the system. Eventually, since this is a monorepo, there will be a day where the repo is autonomously self-improving and self-patching. This is most efficient and most effective when all the code is in one place, not many.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#7",
+      "title": "Hardware+Model Specific Kernels",
+      "text": "We make no compromises or generalizations. Each hardware and model combination has its own unique properties that require fine-tuning custom kernels that leverage the model for that specific hardware configuration. The end result? 2-3x faster kernels all around.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#8",
+      "title": "AI-Friendly Codebase",
+      "text": "It took a significant amount of time to build this codebase. We also know people will want to submit AI-generated PRs. We can't stop you, and in fact, given SOTA, you might just have to! The good news is that this codebase was built with enough railguards, structure, and abstraction to guide your AI to absorb the entire monorepo and contribute meaningfully. There's enough context to keep this going off the rails like a crazy train.This means ultimately that instead of waiting for days to weeks before getting model support, you can just fork this repo, and ask your AI to integrate it, then within hours you'll more likely than not have a working model running. We will not be condescending, unlike some other inference engines out there when good-faith PRs that simply work are posted. We are not stymied by bureacracy, and want to enable the community to rapidly expand this monorepo ecosystem safely and effectively. AI-authored PRs are the default, and the target. If you write code by hand, we ask you to say which parts and why the human beat the AI — not to discourage you, but because every such case marks a gap in the tooling that we would rather close than live with. The intent is th",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#9",
+      "title": "Theory-Friendly Codebase",
+      "text": "Arxiv is getting countless papers published every day on AI. Nobody can keep up. Yet, some papers may be relevant to this project, others may not. Research endeavors to improve quality, alignment, and speed ought to be considered by our community as something we can integrate cleanly. Feel free to open a PoC PR here and just explain what you did and why, and how it works.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#10",
+      "title": "Plug and Play Design",
+      "text": "Our system is modular, with tight abstraction boundaries and trait requirements that force the architecture to take on a certain form. This form is designed to prevent pigeon-holing the project into the wrong direction. The business logic is the same across all hardware/model combinations, just the concrete implementations differ.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#11",
+      "title": "🏛️ Architecture",
+      "text": "The diagram below shows how a single HTTP request flows from the API surface down to hardware-specific CUDA kernel execution. Dashed borders mark the plug-and-play abstraction boundaries — the traits and registries where a new hardware target, model family, communication backend, or storage backend plugs in without touching the layers above or below it.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#12",
+      "title": "Reading the Diagram",
+      "text": "Solid boxes are concrete implementations. Dashed borders with 🔌 are the trait-based abstraction boundaries — each is a Rust trait (or a filesystem convention for kernels) where a new integration plugs in: Plug Point What It Abstracts To Add New Support --- --- --- trait Model Full model forward pass Rarely needed — the existing TransformerModel handles all architectures via composable layers trait ModelWeightLoader HuggingFace → layer translation Implement one struct with weight-name patterns for your model family ( factory.rs adds one match arm) trait TransformerLayer Per-layer compute (attn, SSM, MoE, FFN) Compose existing layer types or implement a new one for novel architectures trait GpuBackend All GPU memory and kernel ops Swap the CUDA driver for another accelerator backend kernels/ / / / Hardware-tuned CUDA kernels Drop a new directory with MODEL.toml + .cu files; build.rs auto-discovers it trait CommBackend Multi-GPU collective communication Implement for MPI, GDR, or custom interconnects trait StorageBackend NVMe KV-cache offload I/O Implement for CXL, RDMA, or other storage tiers",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#13",
+      "title": "Data Flow Summary",
+      "text": "1. HTTP → spark-server receives OpenAI/Anthropic requests, tokenizes, and enqueues 2. Scheduler → batches sequences, orchestrates prefill/decode/speculative-verify steps 3. Model → generic loop: embed → [layer₀ … layerₙ] → norm → lm head 4. Layers → each layer dispatches through GpuBackend to launch kernels from AtlasRegistry 5. Kernels → pre-compiled PTX selected by (hardware × model × quant) target at build time 6. EP → CommBackend handles cross-GPU all-reduce after MoE expert computation 7. Storage → StorageBackend spills/restores KV blocks to NVMe for long-context sequences",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#14",
+      "title": "📦 What We Ship Today",
+      "text": "We have to walk before we can run. Today's Atlas is targeted at a single hardware platform — NVIDIA's GB10 (DGX Spark, SM121) — and fifteen hand-tuned (Hardware × Model × Quantization) targets. Every supported model below runs off one multi-model binary; the right kernel set is selected at startup from the model's config.json . No swapping images, no rebuilding, no per-model magic — just point Atlas at a HuggingFace ID. Family Model HuggingFace ID Params / active Architecture --- --- --- ---: --- Qwen3.5 Qwen3.5-27B Kbenkhaled/Qwen3.5-27B-NVFP4 27B dense Hybrid SSM + attention, dense FFN, MRoPE Qwen3.5 Qwen3.5-35B-A3B Sehyo/Qwen3.5-35B-A3B-NVFP4 35B / 3B GDN + attention + MoE, MTP Qwen3.5 Qwen3.5-122B-A10B Sehyo/Qwen3.5-122B-A10B-NVFP4 122B / 10B GDN + attention + MoE, MTP Qwen3.6 Qwen3.6-35B-A3B Qwen/Qwen3.6-35B-A3B-FP8 35B / 3B GDN + attention + MoE, MRoPE, vision tower Holo-3.1 Holo-3.1-35B-A3B Hcompany/Holo-3.1-35B-A3B-NVFP4 35B / 3B GDN + attention + 256-expert MoE, Qwen3-VL vision Holo-3.1 Holo-3.1-0.8B Hcompany/Holo-3.1-0.8B 0.8B dense GDN + attention + dense FFN, Qwen3-VL vision Ornith Ornith-1.0-9B deepreinforce-ai/Ornith-1.0-9B 9B dense GDN + attention + dense FFN, Qwen3-",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#15",
+      "title": "⚡ Performance",
+      "text": "We're not going to spend much real estate on benchmark theatre. The numbers below are what the binary in this repository does on a single NVIDIA GB10, on a short prompt ( \"What is the capital of France?\" , max tokens ≤ 30 , temperature = 0.1 ), measured end-to-end through the HTTP API. They are reproducible: scripts/sweep all models.sh is the harness, and the source for every kernel that produced them is in this repository. Model Mode tok/s --- --- ---: Qwen3.5-35B-A3B MTP speculative (K=2) 131 Qwen3.5-35B-A3B turbo4 KV 77 Qwen3.5-35B-A3B No speculative 70 Qwen3-Next-80B-A3B FP8 KV 74 Qwen3.5-122B-A10B EP=2, MTP K=2 (600-tok sustained) 46 Qwen3.5-122B-A10B FP8 KV, single-GPU tuned 32 Qwen3-VL-30B-A3B NVFP4 KV 97 Nemotron-3-Nano-30B-A3B FP8 KV 88 Nemotron-3-Super-120B FP8 KV 24 Gemma-4-26B-A4B default 67 Gemma-4-31B --max-batch-size 2 9 Mistral-Small-4-119B NVFP4 33 Qwen3.5-27B (dense hybrid) FP8 KV 13 We compete with vLLM and TensorRT-LLM on the same GB10. On Qwen3.5-35B-A3B with MTP speculative decoding, Atlas decodes faster than the same model under NVIDIA's own vLLM build on the same hardware — meaningfully faster, on numbers we can hand you the script for. We will not put a big",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#16",
+      "title": "🗜️ KV Cache Quantization",
+      "text": "Atlas stores attention key/value state in a quantized format selected via --kv-cache-dtype . Lower bit-widths fit more tokens in GPU memory at the cost of precision; the Turbo family adds Walsh-Hadamard rotation and Lloyd-Max optimal codebooks to recover accuracy at the same bit rate. Mix dtypes per layer with --kv-high-precision-layers to keep boundary layers at BF16 while compressing the middle. The table below is the symmetric set — the same format for K and V. KvCacheDtype ( crates/spark-runtime/src/kv cache.rs ) accepts 16 values in total : the six below plus turbo2 (2-bit) and nine TurboQuant+ asymmetric K/V pairings ( turbo4k turbo3v , turbo4k turbo8v , turbo3k turbo8v , bf16k turbo4v , bf16k turbo3v , bf16k turbo2v , fp8k turbo4v , fp8k turbo3v , fp8k turbo2v ) that store K at higher precision than V, since K dominates attention-score fidelity. Those are documented in docs/turboquant-plus.md ; the parser is the authority on the accepted spelling. CLI flag Bits/element Scale overhead Technique When to use --- ---: --- --- --- bf16 16 — Raw BF16 storage Maximum precision; short-context or quality-critical workloads fp8 8 Per-tensor FP32 scale (from checkpoint or online calibr",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#17",
+      "title": "🚀 Quick Start",
+      "text": "The whole supported model matrix lives in one Docker image. Pull it, mount your HuggingFace cache, point Atlas at any model ID from the model table. Defaults below are tuned for maximum accuracy under agentic-coding workloads — 64K context window, BF16 MTP draft head (highest acceptance rate ⇒ highest end-to-end throughput), prefix caching for multi-turn tool loops, and FP8 KV cache with auto -promoted boundary layers. These are the recipes we use to drive opencode / Claude Code / Cline through Atlas on a single Spark.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#18",
+      "title": "Recipe 0 — no flags, pick a model in the TUI",
+      "text": "Omit the model ID and serve boots into the Library — pick a model and recipe interactively (TTY only): - -it — the TUI needs a real terminal to render (and Esc to quit). - --rm — throwaway container; nothing to clean up after the session. - --network host — the served port is reachable on localhost directly, no -p mapping. - --gpus all — hands the GB10 to the container. - --ipc=host — host-sized shared memory; the Docker default 64 MB /dev/shm is too small for CUDA. - -v ~/.cache/huggingface — reuse the host's model cache instead of re-downloading weights. - -v ~/.atlas — persist Atlas state (recipes, benchmark records, artifacts) across runs.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#19",
+      "title": "Recipe A — Qwen3.6-35B-A3B (FP8 hybrid MoE, ~130 tok/s)",
+      "text": "The default daily driver — 35 B params, 3 B active, GDN + attention + 256-expert MoE, MRoPE-positioned vision tower (text-only here). Why these flags: - --max-seq-len 65536 — 64K window for long agent traces, file reads, multi-step tool use. - --kv-cache-dtype fp8 --kv-high-precision-layers auto — half the memory of BF16, no measurable quality loss; the boundary attention blocks stay BF16, where the routing distribution is most sensitive. auto is not a heuristic — it is a fixed alias for 2 ( serve phases/kv cache.rs ), alongside max / all meaning \"every attention layer\". Because it is non-zero it also suppresses the per-dtype automatic promotion that 0 would trigger under a turbo KV dtype. - --scheduling-policy slai — SLAi scheduler. Not the default — serve defaults to fifo , so this flag has to be passed to get SLO-aware ordering. It reorders concurrent sequences to keep MTP verify batches dense and prefills shortest-prompt-first. - --enable-prefix-caching — radix-tree prefix cache; tool-use sessions reuse the system prompt + tool-defs + earlier turns. - --speculative --num-drafts 2 — MTP draft head proposes 2 tokens per step. No --mtp-quantization flag ⇒ defaults to BF16 , which ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#20",
+      "title": "Recipe B — Qwen3.5-35B-A3B (NVFP4, ~131 tok/s with MTP K=2)",
+      "text": "The fastest model in the matrix on a single Spark. --num-drafts is omitted so it defaults to 1 , i.e. MTP K=2 (the CLI defines --num-drafts 1 as K=2, 2 as K=3). K=2 is the measured-fastest verify width for this model; K=3 is slower.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#21",
+      "title": "Recipe C — Qwen3.5-122B-A10B (NVFP4, single Spark)",
+      "text": "The 122B NVFP4 weights + Atlas runtime overhead leave only ~2 GB for KV cache on a 119.7 GB GB10, so this recipe sacrifices --speculative (the MTP draft head + draft KV costs ~1.5 GB) to keep a real 16 K context window. Verified end-to-end: model loads, /v1/chat/completions answers correctly, 4-way concurrent serves cleanly. For 122B with both --speculative and a 64 K window, move to EP=2 across two Sparks ( QUICKSTART.md §5). For long contexts on a single Spark, add --high-speed-swap --high-speed-swap-dir /path/on/nvme --high-speed-swap-cache-blocks-per-seq 64 — HSS keeps a rolling 1024-token KV window in HBM and streams older blocks to NVMe through an io uring orchestrator. The container needs --security-opt seccomp=unconfined --ulimit memlock=-1 for io uring access.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#22",
+      "title": "Hitting the Endpoint",
+      "text": "Atlas speaks OpenAI, Anthropic, and Responses APIs on the same port. curl , the OpenAI SDK, Open WebUI, opencode, Cline, Claude Code — point them at port 8888: Per-model recipes (vision input, video input, multi-node EP=2, single-GPU 122B with the tighter budget) live in QUICKSTART.md . Video input requires ffmpeg on the host. Images need nothing extra, and animated GIF decodes in-process — but MP4/MOV, WebM and AVI (H.264, H.265, VP9, AV1) are decoded by running ffmpeg , which must be installed and enabled with --video-allow-ffmpeg . Atlas deliberately does not link a video decoder; see QUICKSTART.md for the recipe and the reasoning. Build-from-source instructions are in CONTRIBUTING.md , and the kernel build pipeline is documented in docs/ARCHITECTURE.md .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#23",
+      "title": "🔬 Kernel Debugging",
+      "text": "Atlas exposes a focused set of environment-gated diagnostic dumps for tracking down quality regressions — magnitude drift, expert-routing skew, MoE under-counting, and the rest of the bug class where the kernels run cleanly but the output slowly degrades. The dumps are zero-overhead when their env var is unset (single var() lookup per call, no GPU sync, no copy) so leaving the production binary instrumented is safe. For the full diagnostic playbook — including the cheapest-signal-first elimination ladder, how to build a byte-exact HF CPU oracle, the per-layer divergence comparator, and the methodological reversals that cost us hours — see DEBUGGING METHODOLOGY.md . What follows is the env-var reference.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#24",
+      "title": "MoE-path dumps — ATLAS DUMP EXPERT IDS=1",
+      "text": "Set -e ATLAS DUMP EXPERT IDS=1 on the container. The markers themselves live in one place — crates/spark-model/src/layers/moe/dump.rs — and every MoE path calls into it ( forward prefill.rs , forward prefill fp8.rs , forward prefill bf16.rs , forward prefill routed.rs , forward batched.rs ). They emit the following per-fire log lines, scoped to the last token of the chunk so the values are directly comparable to a single-pass reference forward at the same position: Log marker Fires What it captures Use it to localize --- --- --- --- ATLAS EXPERT LOAD once / server Per-expert histogram + truncated=true/false flag Spot max m tiles truncation against actual routing skew ATLAS GATE INPUT per layer × chunk post-norm router input ( \\ x\\ + first5 ) Verify the MoE block input matches the reference ATLAS GATE LOGITS per layer × chunk top-10 (idx, val) + mean + std of raw gate logits Catch gate-matmul drift before softmax/topK ATLAS EXPERT IDS per layer × chunk top-K indices + renormalized weights + sum Confirm routing decisions match HF ATLAS ROUTED ONLY per layer × chunk routed sum before shared blend Isolate the routed-expert contribution ATLAS SHARED OUT per layer × chunk shared-expert o",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#25",
+      "title": "SSM-path dumps",
+      "text": "The SSM (GDN / Mamba-2) prefill in qwen3 ssm/trait prefill.rs adds three pre-norm hooks under the same env var: Log marker What it captures --- --- ATLAS PRENORM HIDDEN Residual stream entering this layer (= previous layer's output) ATLAS PRENORM OUTPROJ SSM out proj output before residual add ATLAS PRENORM SUM hidden + out proj (the input to post attention layernorm ) Together, those plus the MoE dumps above give a complete trace of the residual stream at every layer boundary for any token in any chunk.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#26",
+      "title": "Path-toggle env vars",
+      "text": "For bisecting which code path is at fault, one override toggle lets you swap the routed-expert dispatch at runtime without rebuilding: Env var Effect --- --- ATLAS FORCE NVFP4 MOE=1 Routes an FP8 model's MoE through the NVFP4 path — useful for cross-validating that the bug is in one specific quant path. Read at weight loader/qwen35/load layers.rs , so it applies to the Qwen3.5/3.6 loader family, not to every FP8 checkpoint There is no longer an FP8 grouped-GEMM v1/v2 selector: moe fp8 grouped gemm is a single grid-compaction kernel ( kernels/gb10/common/moe fp8 grouped gemm.cu ), and the ATLAS FP8 MOE COALESCED gate that once chose between them has no read site in the tree.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#27",
+      "title": "How we use these in practice — 3-step workflow",
+      "text": "The order matters; this is the same workflow that found and fixed three compounding MoE bugs (commits 6a5fd3d , 34626d3 , adf39ce , ffdb41d ) on the Qwen3.6-A3B long-context investigation: 1. Build an HF reference oracle. A single-precision forward pass through HF Transformers on the same token IDs (read them back from Atlas's /tokenize — do not re-render the chat template), with output hidden states=True and per-layer hooks on mlp.gate , mlp.shared expert , and mlp.shared expert gate . Record \\ x\\ + first5 per layer for the last token. 2. Spin up Atlas with -e ATLAS DUMP EXPERT IDS=1 . Fire the same prompt. The MoE markers above give you per-layer Atlas values comparable to the oracle. 3. Per-layer comparator. A short script (the comparator pattern is captured in DEBUGGING METHODOLOGY.md §4) prints ratio = Atlas / HF and overlap = top-K Atlas ∩ top-K HF per layer. The first layer where the ratio falls outside [0.95, 1.05] or overlap drops below 6/8 is your first-divergent layer — start drilling there. For the 2026-05-20 MoE bug hunt this localized the issue from \"16K context produces gibberish\" to \"L0 MoE output magnitude 3.4× too large because of three compounding bugs: v1 groupe",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#28",
+      "title": "🔌 Adding a New Hardware Target",
+      "text": "The full recipe is in docs/HARDWARE.md . The short version: implement two traits ( ComputeTarget for the build-time compiler, GpuBackend for the runtime), drop kernel sources into kernels/ / , add one match arm in the registry. There is a MockGpuBackend in spark-runtime that lets you write and test the entire scaffold without owning the hardware — every layer above the GPU trait is hardware-agnostic, so unit tests can run on a laptop. We bolted the project from \"single CUDA target\" to \"trait-pluggable across vendors\" specifically so that the AMD, Apple, and Intel ports stop being our problem and start being yours.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#29",
+      "title": "🧬 Adding a New Model",
+      "text": "Same story, smaller surface. Implement ModelWeightLoader (one struct, the existing Qwen3AttentionLayer / MoeLayer / Qwen3SsmLayer / NemotronMamba2Layer primitives cover most architectures), add one line to the factory dispatch, optionally drop a MODEL.toml for sampling defaults and behavior knobs. Kernels are reused; the scheduler is untouched; the server is oblivious. The step-by-step cookbook is in docs/HARDWARE.md . Once your loader produces coherent output on the integration coherence prompt, you are done — file the PR.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#30",
+      "title": "📚 Citations",
+      "text": "We did not invent the kernels we ship. We picked the right ideas from the right papers, fused them together, and tuned them for one chip until they pinned the bandwidth ceiling. Atlas owes a direct intellectual debt to: - FlashAttention-2 — Tri Dao. FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning. ICLR 2024. arXiv:2307.08691 — tiled online softmax, Q/K/V SMEM staging, causal masking. Foundation of our prefill kernel. - FlashAttention-4 — Shah, Bikshandi, Zhang, Thakkar, Ramani, Dao. FlashAttention-4: Taming the Hardware. 2025. arXiv:2603.05451 — conditional softmax rescaling and software polynomial sw exp (3 FMA + ldexpf instead of going through the SFU). Both shipped in our GQA-fused paged Flash Attention. - FlashInfer — Ye, Chen, Lai, Zhao, Zheng, Shao, Hou, Jin, Zuo, Yin, Chen, Ceze. FlashInfer: Efficient and Customizable Attention Engine for LLM Inference Serving. MLSys 2025 (Best Paper). arXiv:2501.01005 — block-sparse paged KV cache, page index prefetch to SMEM, the gather-SMEM-MMA pattern for scattered pages. Informed our paged attention design. - SageAttention 3 — Zhang, Huang, Zhang, Wei, Zhu, Chen. SageAttention3: Microscaling FP4 Attentio",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas#31",
+      "title": "⚖️ License and Enterprise Edition",
+      "text": "Atlas operates under a dual-license model. Both are real, both are intentional, and neither is a teaser for the other. 1. Community Edition — AGPLv3. Free, open, copyleft. Use it for yourself to run inference on your own hardware, research, hobby projects, side-projects, and/or hosted demos, as examples. If you want to make money from Atlas, purchase a commercial license. 2. Enterprise Edition — commercial license. If you need to ship Atlas inside a closed-source product, run it as a SaaS backend without inheriting the AGPLv3 source-disclosure obligation, or simply want a support relationship with the people who wrote the kernels, contact sales. Enterprise customers also receive prioritized model and hardware ports. This split exists for a single reason: a permissive license keeps us building Atlas full-time, and the AGPL community license keeps the project honest. What is in this repository is what we run.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to Atlas WE thank you for your interest in Atlas! This document explains how to contribute effectively. Philosophy Atlas follows the AI Kernel HyperCompiling philosophy: for every (Hardware, Model q) tuple, there exists a set of kernels producing the highest performance such that it performs at the hardware's theoretical peak. Contributions should align with this — we value specialization over generalization. AI-First Codebase Atlas is an AI-first codebase . We're reversing the conventional logic: - All PRs are expected to be AI-generated. Use the best AI tools available to write your kernels, Rust code, and benchmarks. - Human-written code must be justified. If you submit code written without AI assistance, you must explicitly denote which parts are human-authored and explain why a human wrote it better than an AI could. - Human-only contributions will be reviewed by AI. We will subject human-written code to scrutiny by higher-intelligence AI systems to verify that the human approach is genuinely superior. This is not a gimmick — it's the logical extension of our philosophy. If AI can hyperoptimize CUDA kernels for specific hardware targets, it can write the infrastru",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/Avarok-Cybersecurity/atlas/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog All notable changes to Atlas are documented here. The format is based on Keep a Changelog, and the project adheres to Semantic Versioning. For per-release deep dives — kernel-level wins, the engineering history behind specific subsystems — see the Atlas Spark Journey. [Unreleased] Added - spark benchmark — the dashboard's benchmark suite as a headless subcommand, driving the same executor. Machine-readable output on stdout, progress on stderr; exit codes separate a broken harness (1) from a failed gate (2). - --version , sourced from the packaged version so a build cannot report a version it was not packaged as. Fixed - Benchmark runs no longer overwrite each other. History files were named by whole seconds, so two runs of the same benchmark within the same second silently destroyed the first. Records are now keyed by nanosecond with an explicit collision guard. - Run history records the parameters, target, source and version alongside the result. Previously only the result was stored, so a number could not be attributed to a configuration or reproduced. Pre-existing files still load. Added - DeepSeek-V4-Flash support on GB10: native MXFP4 (E8M0) routed-expert loading (tr",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/Avarok-Cybersecurity/atlas",
+  "stars": 672
+}

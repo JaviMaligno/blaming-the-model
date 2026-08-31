@@ -1,0 +1,40 @@
+{
+  "slug": "rudrodip--titan",
+  "name": "titan",
+  "description": "Next.js 15 fullstack template with better-auth for authentication and drizzle-orm as the orm",
+  "documents": [
+    {
+      "url": "https://github.com/rudrodip/titan#0",
+      "title": "Introducción",
+      "text": "Titan Next.js 15 fullstack template with better-auth for authentication and drizzle-orm as the ORM. [!WARNING] This project uses Next.js 15-canary to support node runtime on middleware. This is not yet supported in stable version.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/rudrodip/titan#1",
+      "title": "Tech Stack",
+      "text": "- Full-stack framework: Next.js 15-canary - UI: Tailwind CSS v4 - Component library: Shadcn UI - Authentication: better-auth - Database: postgres - ORM: drizzle-orm",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/rudrodip/titan#2",
+      "title": "Features",
+      "text": "- Authentication - Social login - Google - Github - Discord - Database - Postgres (Neon) - ORM: drizzle-orm - Next.js API, server actions, and middleware",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/rudrodip/titan#3",
+      "title": "Getting Started",
+      "text": "Clone the repository Install dependencies Create environment file Provide environment variables in .env file - BETTER AUTH SECRET : Secret key for Better Auth authentication generate one here - BETTER AUTH URL : Better Auth URL (e.g., http://localhost:3000 ) - DATABASE URL : PostgreSQL connection string provided from Neon (e.g., postgresql://username:password@neon:5432/titan ) Generate database schema Migrate database Run the development server Open the browser and navigate to http://localhost:3000",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/rudrodip/titan#4",
+      "title": "Using a Local Database",
+      "text": "Have Docker installed on your system. Before running the db:generate command from Getting Started, run the following command in the project directory to start a local database: Use the following environment variables in .env file: - DATABASE URL : postgres://postgres:postgres@localhost:5432/titan Add the pg and @types/pg dependencies to your project: Then, change the /src/lib/db/index.ts file to use the drizzle-orm/node-postgres and pg package instead of @neondatabase/serverless : Continue steps from Getting Started e.g. generating the database schema, applying migrations, and running the dev server. Open the browser and navigate to http://localhost:3000",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/rudrodip/titan",
+  "stars": 309
+}

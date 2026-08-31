@@ -1,0 +1,40 @@
+{
+  "slug": "metagenome-atlas--atlas",
+  "name": "atlas",
+  "description": "ATLAS - Three commands to start analyzing your metagenome data",
+  "documents": [
+    {
+      "url": "https://github.com/metagenome-atlas/atlas#0",
+      "title": "Introducción",
+      "text": "Metagenome-Atlas Metagenome-atlas is a easy-to-use metagenomic pipeline based on snakemake. It handles all steps from QC, Assembly, Binning, to Annotation. You can start using atlas with three commands: where {latest version} should be replaced by",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/metagenome-atlas/atlas#1",
+      "title": "Citation",
+      "text": "ATLAS: a Snakemake workflow for assembly, annotation, and genomic binning of metagenome sequence data. Kieser, S., Brown, J., Zdobnov, E. M., Trajkovski, M. & McCue, L. A. BMC Bioinformatics 21, 257 (2020). doi: 10.1186/s12859-020-03585-4",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/metagenome-atlas/atlas#2",
+      "title": "Development/Extensions",
+      "text": "Here are some ideas I work or want to work on when I have time. If you want to contribute or have some ideas let me know via a feature request issue. - Optimized MAG recovery (e.g. Spacegraphcats) - Integration of viruses/plasmid that live for now as extensions - Add statistics and visualisations as in atlas analyze - Implementation of most rules as snakemake wrapper - Cloud execution - Update to new Snakemake version and use cool reports.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/metagenome-atlas/atlas/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Submit a bug report First look in the all open and closed issues for the error message you got. As atlas is based on snakemake, check if you find a similar bug already discussed for other snakemake-workflows. If you don't find any help. Submit a issue: - specify the system you are working on: linux, cluster, shared filesystem? - copy the error message - add the log file of the rule, which produced the error. - If you run the atlas on a cluster join also the log file of the cluster. I hope we can help you... Contribute to the metagenome-atlas code Prerequisites - know the basic about git and gitHub - know how snakemake works, otherwise check the tutorial Setup You can ask the maintainers to be added to the repository and work from a branch of the main atlas repository or you can work from a fork of the atlas repository. Follow the steps to set up the development version of atlas. This allows you to work with the code you have in the git repository. Test the code Locally Idelly you should have some test prpject on your local machine. When you created a new rule and you want to test the output of this rule my target.tsv you can do this by running: Continuous integration When you make ",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/metagenome-atlas/atlas/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Change log 2.19.0 (2024-07-28) - GTDB V9 R220 - Spades v4 2.18.2 (2024-06-28) Bug Fixes - (8b4d552) - (ce22404) 2.18.1 Fix error with downloading DRAM. Update to DRAM v1.5 2.18 - Qc reads, assembly are now written in the sample.tsv from the start. This should fix errors of partial writing to the sample.tsv - It also allows you to add external assemblies. - singletons reads are no longer used through the pipeline. - This changes the default paths for raw reads and assemblies. assembly are now in Assembly/fasta/{sample}.fasta reads: QC/reads/{sample} {fraction}.fastq.gz Seamless update : If you update atlas and continue on an old project. Your old files will be copied. Or the path defined in the sample.tsv will be used. 2.17 Skani The tool Skani claims to be better and faster than the combination of mash + FastANI as used by dRep I implemented the skin for species clustering. We now do the species clustering in the atlas run binning step. So you get information about the number of dereplicated species in the binning report. This allows you to run different binners before choosing the one to use for the genome annotation. Also, the file storage was improved all important files are in ",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/metagenome-atlas/atlas",
+  "stars": 407
+}

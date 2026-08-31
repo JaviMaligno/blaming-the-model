@@ -1,0 +1,64 @@
+{
+  "slug": "mindsdb--engine",
+  "name": "engine",
+  "description": "Semantic Query Engine for AI Agents to securely query data from any datasource",
+  "documents": [
+    {
+      "url": "https://github.com/mindsdb/engine#0",
+      "title": "Introducción",
+      "text": "MindsDB Query Engine Semantic search over all your data — entirely in SQL. Docs · Website · Discord · Contact --- MindsDB Query Engine connects to 200+ data sources — databases, warehouses, applications, files — and lets you query them live in one SQL dialect, with no ETL. Index unstructured content into knowledge bases, then search it by meaning, by keyword, or both at once, with plain SQL filters on top. Everything is reachable from any MySQL- or PostgreSQL-compatible client. Where this fits: MindsDB now builds MindsHub — a hub for open AI agents. The Query Engine remains a standalone open-source project, and it pairs well with MindsHub agents: connect it to give an agent live, SQL-queryable access to your data and semantic search. The full story: MindsHub vs MindsDB.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mindsdb/engine#1",
+      "title": "How it works",
+      "text": "- One server, three interfaces. The engine ships a built-in SQL editor on HTTP ( :47334 ) and speaks the MySQL ( :47335 ) and PostgreSQL ( :47336 ) wire protocols — so mysql , psql , DBeaver, SQLAlchemy, or any BI tool connects directly. - Federated queries, no pipelines. CREATE DATABASE attaches a live data source through an integration handler. The planner translates each query, pushes work down to the source, and streams results back — your data stays where it is. Source-specific syntax is still available via native queries. - Knowledge bases are the semantic layer. A knowledge base combines an embedding model, an optional reranking model, and a vector store (e.g. pgvector). INSERT INTO it to chunk, embed, and index content; SELECT from it to retrieve by meaning, filtered by metadata columns like any other table. - Hybrid retrieval. Hybrid search runs vector similarity and BM25 keyword matching in parallel and merges the results — for queries that mix natural language with exact identifiers, codes, or acronyms. - Organize and automate. Projects namespace your work, views save cross-source transformations, and jobs schedule any SQL to run on an interval — e.g. to keep knowledge b",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mindsdb/engine#2",
+      "title": "Quick start",
+      "text": "Run with Docker: Or install from PyPI: Then open the editor at http://127.0.0.1:47334 , or connect any MySQL client to port 47335 . The quickstart walks through the rest.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mindsdb/engine#3",
+      "title": "From zero to semantic search",
+      "text": "Six SQL statements, start to finish. Full syntax for every statement is in the SQL reference. 1. Attach your data sources (docs) — they are queried live, nothing is imported: 2. Query across sources in one dialect (docs) — even non-SQL stores like MongoDB, and save the result as a view: 3. Create a knowledge base (docs) — an embedding model plus a vector store, addressable as a table: 4. Index your content (docs) — rows are chunked, embedded, and upserted: 5. Search by meaning, filter by metadata (docs): ▶ How to use semantic search with metadata filters — a good explainer of this feature. 6. Keep the index fresh with a job (docs):",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mindsdb/engine#4",
+      "title": "Help and support",
+      "text": "You need Go to --- --- Ask a question Discord Report a bug GitHub Issues — please include reproduction steps Commercial support Contact the team Security note: if you find a vulnerability, please do not open a public issue — follow our security policy instead.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mindsdb/engine#5",
+      "title": "Contributing",
+      "text": "Contributions are welcome — code, integrations, docs, and bug reports alike. We follow the fork-and-pull workflow: see the contribution guide to get set up, and browse the open issues for somewhere to start. Good first areas are new integration handlers, bug fixes, and documentation improvements.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mindsdb/engine#6",
+      "title": "Resources",
+      "text": "- Documentation - MindsHub — open AI agents, from the same team - MindsHub vs MindsDB — how the product evolved - Discord - Contact",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mindsdb/engine#7",
+      "title": "License",
+      "text": "MindsDB Core is licensed under the Elastic License 2.0; some directories carry their own license — see the LICENSE file for the full structure.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mindsdb/engine/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to Mindsdb Being part of the core MindsDB team is accessible to anyone who is motivated and wants to be part of that journey! Please see below how to contribute to the project. How can you help us? Report a bug Improve documentation Discuss the code implementation Submit a bug fix Propose new features Test Mindsdb Code contributions In general, we follow the \"fork-and-pull\" Git workflow. 1. Fork the Mindsdb repository 2. Clone the repository 3. Make changes and commit them 4. Push your local branch to your fork 5. Submit a Pull request so that we can review your changes 6. Write a commit message 7. Make sure that the CI tests are GREEN NOTE: Be sure to merge the latest from \"upstream\" before making a pull request! Also, make the PR to the main branch. Feature and Bug reports We use GitHub issues to track bugs and features. Report them by opening a new issue and fill out all of the required inputs. Code review process The Pull Request reviews are done on a regular basis. Please, make sure you respond to our feedback/questions. Community If you have additional questions or you want to chat with the MindsDB core team, please join our Discord or open a GitHub issue. Join o",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/mindsdb/engine",
+  "stars": 21
+}

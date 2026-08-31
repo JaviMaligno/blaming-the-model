@@ -1,0 +1,118 @@
+{
+  "slug": "iris-sast--iris",
+  "name": "iris",
+  "description": "A neurosymbolic framework for vulnerability detection in code",
+  "documents": [
+    {
+      "url": "https://github.com/iris-sast/iris#0",
+      "title": "Introducción",
+      "text": "[&nbsp; Read the Docs &nbsp;] --- ⚠️ Code and data for the ICLR 2025 Paper can be found in the v1 branch, license and citation below.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/iris-sast/iris#1",
+      "title": "📰 News",
+      "text": "[Jun. 23, 2026] : Only the CVEs added in the previous update to CWE-Bench-Java did not include information regarding specific methods that were altered. This missing fix information has been added. Additionally, guidelines for future contributions to the benchmark have been established at . [Nov. 29, 2025] : Added a dataset with manually extracted source and sinks for the vulnerabilities in CodeQL format for 50 CVEs. [Nov. 24, 2025] : Updated queries to version 1.8.1 to work with CodeQL 2.23.2. [Nov. 24, 2025] : Updated the Docker integration in the main IRIS pipeline so that the container images include the project dependencies. The updated images can be found in IRIS Docker Hub. The instructions to use the Docker integration can be found in the Using Docker containers with IRIS section below. [Sep. 24, 2025] : Added Docker integration for the main IRIS pipeline, released images for 189 CWE-Bench-Java CVEs on the IRIS Docker Hub. [Aug. 30, 2025] : Updated CWE-Bench-Java with 93 new CVEs and 38 CWEs. [Jul. 10, 2025] : IRIS v2 released, added support for 7 new CWEs.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/iris-sast/iris#2",
+      "title": "IRIS",
+      "text": "IRIS is a neurosymbolic framework that combines LLMs with static analysis for security vulnerability detection. IRIS uses LLMs to generate source and sink specifications and to filter false positive vulnerable paths. At a high level, IRIS takes a project and a CWE (vulnerability class, such as path traversal vulnerability or CWE-22) as input, statically analyzes the project, and outputs a set of potential vulnerabilities (of type CWE) in the project.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/iris-sast/iris#3",
+      "title": "CWE-Bench-Java",
+      "text": "This repository also contains the dataset CWE-Bench-Java, presented in the paper LLM-Assisted Static Analysis for Detecting Security Vulnerabilities. At a high level, this dataset contains 213 CVEs spanning 49 CWEs. Some examples include path-traversal, OS-command injection, cross-site scripting, and code-injection. Each CVE includes the buggy and fixed source code of the project, along with the information of the fixed files and functions. We provide the seed information in this repository, and we provide scripts for fetching, patching, and building the repositories. The dataset collection process is illustrated in the figure below: The table below summarizes the number of CVEs in our dataset grouped by CWE category, with smaller categories (fewer than 5 CVEs) grouped together for compactness. CWE-ID CVE Count -------- ----------- CWE-22 60 CWE-79 38 CWE-94 23 CWE-78 13 CWE-502 7 CWE-611 6 CWE-200 5 CWE-287 5 CWE-400 5 Other CWEs (36 total) 51",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/iris-sast/iris#4",
+      "title": "Manually Curated Source/Sink Annotations",
+      "text": "For 50 CVEs we manually extracted source and sinks for the vulnerabilities and marked them in the CodeQL format. We also provide results for LLMs ability to detect those source/sink pairs. We collected the associated CodeQL-style descriptors and metadata, including file paths, signatures, and line ranges, and stored them in a CSV file.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/iris-sast/iris#5",
+      "title": "Using Docker (Recommended)",
+      "text": "If you intend to configure build tools (Java, Maven, or Gradle) or CodeQL, follow the native setup instructions below.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/iris-sast/iris#6",
+      "title": "Step 1: Setup Conda environment",
+      "text": "If you have a CUDA-capable GPU and want to enable hardware acceleration, install the appropriate CUDA toolkit, for example: Replace 12.1 with the CUDA version compatible with your GPU and drivers, if needed.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/iris-sast/iris#7",
+      "title": "Step 2: Configure Java build tools",
+      "text": "To apply IRIS to Java projects, you need to specify the paths to your Java build tools (JDK, Maven, Gradle) in the dep configs.json file in the project root. The versions of these tools required by each project are specified in data/build info.csv . For instance, perwendel spark CVE-2018-9159 2.7.1 requires JDK 8 and Maven 3.5.0. You can install and manage these tools easily using SDKMAN!.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/iris-sast/iris#8",
+      "title": "Step 3: Configure CodeQL",
+      "text": "IRIS relies on the CodeQL Action bundle, which includes CLI utilities and pre-defined queries for various CWEs and languages (\"QL packs\"). We suggest using CodeQL version 2.23.2. If you already have CodeQL installed, specify its location via the CODEQL DIR environment variable in src/config.py . Otherwise, download an appropriate version of the CodeQL Action bundle from the CodeQL Action releases page. - For the latest version: Visit the latest release and download the appropriate bundle for your OS: - codeql-bundle-osx64.tar.gz for macOS - codeql-bundle-linux64.tar.gz for Linux - For a specific version (e.g., 2.23.2): Go to the CodeQL Action releases page, find the release tagged codeql-bundle-v2.23.2 , and download the appropriate bundle for your platform. After downloading, extract the archive in the project root directory: This should create a sub-directory codeql/ with the executable codeql inside. Lastly, add the path of this executable to your PATH environment variable: Note: Also adjust the environment variable CODEQL QUERY VERSION in src/config.py according to the instructions therein. For instance, for CodeQL v2.23.2, this should be 1.8.1 .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/iris-sast/iris#9",
+      "title": "Visualizer",
+      "text": "IRIS comes with a visualizer to view the SARIF output files. More detailed instructions can be found in the docs.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/iris-sast/iris#10",
+      "title": "Usage:",
+      "text": "1. Configure paths : Edit config.json to point to your outputs and source directories 2. Start the server : Run python3 server.py 3. Open in browser : Navigate to http://localhost:8000 4. Select a project : Choose a project from the dropdown to load its analysis results 5. Filter and explore : Use the CWE and model filters to explore specific vulnerabilities",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/iris-sast/iris#11",
+      "title": "⚡ Quickstart",
+      "text": "Make sure you have followed all of the environment setup instructions before proceeding! To quickly try IRIS on the example project perwendel spark CVE-2018-9159 2.7.1 , run the following commands: This will build the project, generate the CodeQL database, and analyze it for CWE-022 vulnerabilities using the specified LLM (qwen2.5-coder-7b). The output of these three steps will be stored under data/build-info/ , data/codeql-dbs/ , and output/ respectively.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/iris-sast/iris#12",
+      "title": "Using Docker containers with IRIS",
+      "text": "IRIS supports using prebuilt Docker images published in Docker Hub that have all the dependencies installed for individual Java projects. It is designed to talk to the host Docker daemon so it can work with the CWE-Bench-Java project containers. To enable this, run the container with the host Docker socket mounted and DOCKER HOST set: Inside the running container you can then use the helper scripts to run the containerized pipeline end-to-end:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/iris-sast/iris#13",
+      "title": "💫 Contributions",
+      "text": "We welcome any contributions, pull requests, or issues! If you would like to contribute, please either file a new pull request or issue. We'll be sure to follow up shortly!",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/iris-sast/iris#14",
+      "title": "🤝 Our Team",
+      "text": "IRIS is a collaborative effort between researchers at Cornell University and the University of Pennsylvania. Please reach out to us if you have questions about IRIS.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/iris-sast/iris#15",
+      "title": "Students",
+      "text": "Claire Wang, University of Pennsylvania Amartya Das, Ward Melville High School Derin Gezgin, Connecticut College Zhengdong (Forest) Huang, Southern University of Science and Technology Nevena Stojkovic, Massachusetts Institute of Technology",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/iris-sast/iris#16",
+      "title": "Faculty",
+      "text": "Ziyang Li, Johns Hopkins University, previously PhD student at the University of Pennsylvania Saikat Dutta, Cornell University Mayur Naik, University of Pennsylvania",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/iris-sast/iris#17",
+      "title": "✍️ Citation & license",
+      "text": "MIT license. Check LICENSE.md . If you find our work helpful, please consider citing our ICLR'25 paper: Arxiv Link",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/iris-sast/iris",
+  "stars": 420
+}

@@ -1,0 +1,88 @@
+{
+  "slug": "dfinity--quill",
+  "name": "quill",
+  "description": "Governance & ledger toolkit for cold wallets",
+  "documents": [
+    {
+      "url": "https://github.com/dfinity/quill#0",
+      "title": "Introducción",
+      "text": "quill Minimalistic ledger and governance toolkit for cold wallets. quill is a toolkit for interacting with the Network Nervous System's (NNS) canisters using self-custody keys. These keys can be held in an air-gapped computer (a computer that has never connected to the internet) known as a cold wallet. To support cold wallets, quill takes a two-phase approach to sending query/update calls to the IC. In the first phase, quill is used with the various subcommands to generate and sign messages based on user input, without needing access to the internet. In the second phase, the signed message(s) are sent to the IC. Since this requires connection to boundary nodes via the internet, cold-wallet users will transport the signed message(s) from the air-gapped computer (i.e. with a USB stick, or via QR code) to a computer connected to the internet.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/dfinity/quill#1",
+      "title": "Disclaimer",
+      "text": "YOU EXPRESSLY ACKNOWLEDGE AND AGREE THAT USE OF THIS SOFTWARE IS AT YOUR SOLE RISK. AUTHORS OF THIS SOFTWARE SHALL NOT BE LIABLE FOR DAMAGES OF ANY TYPE, WHETHER DIRECT OR INDIRECT.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/dfinity/quill#2",
+      "title": "Usage",
+      "text": "This will sign a transfer transaction and print to STDOUT: To display the signed message in human-readable form: quill could be used on an online computer to send any signed transaction: To get the principal and the account id:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/dfinity/quill#3",
+      "title": "Governance",
+      "text": "This is how you’d stake/top-up a neuron: Managing the neuron: All the commands above will generate signed messages, which can be sent on the online machine using the send command from above.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/dfinity/quill#4",
+      "title": "Install quill",
+      "text": "1. Download the file named quill-macos-x86 64 2. Move the file to your /usr/local/bin directory to make it available system-wide 3. Make the file executable 4. Run quill",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/dfinity/quill#5",
+      "title": "Linux",
+      "text": "1. Download the file specific to your system architecture 1. for x86 download quill-linux-x86 64 2. for arm32 download quill-arm 32 3. for Alpine download quill-linux-x86 64-musl 2. Move the file to your /usr/local/bin directory to make it available system-wide 3. Make the file executable 4. Run quill",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/dfinity/quill#6",
+      "title": "Windows",
+      "text": "1. Download the file named quill-windows-x86 64.exe 2. Move it and a shell to a convenient location, e.g. 3. Run quill",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/dfinity/quill#7",
+      "title": "Build",
+      "text": "To compile quill run: After this, find the binary at target/release/quill . Quill has two optional features, all activated by default: - hsm , to enable PKCS 11 HSM support (requires runtime dynamic linking) - ledger , to enable Ledger Nano support (requires runtime dynamic linking, and incompatible with armv6) To build a version of Quill compatible with statically-linked-only environments, such as Alpine, run:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/dfinity/quill#8",
+      "title": "Building with Docker/Podman",
+      "text": "Quill can be reproducibly built or cross-compiled in a Docker container using cross . 1. Follow the instructions at cross-rs/cross to install cross . 2. If using a target with particular restrictions, such as x86 64-apple-darwin or x86 64-pc-windows-msvc , ensure you have built a local image via the instructions at cross-rs/cross-toolchains. 3. Run cross build --release --locked --target , e.g. --target x86 64-unknown-linux-gnu or --target armv7-unknown-linux-gnueabihf .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/dfinity/quill#9",
+      "title": "Testnets",
+      "text": "If you have access to an Internet Computer testnet (for example, a version the replica binary and NNS running locally), you can target quill at this test network by setting the IC URL environment variable to the full URL. In addition to that, it is required to use the --insecure-local-dev-mode flag. For example:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/dfinity/quill#10",
+      "title": "Contribution",
+      "text": "Contributions to Quill are welcomed! For information about contributing, see CONTRIBUTING.md. Contributors must agree to a CLA.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/dfinity/quill/blob/master/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to quill Thank you for your interest in contributing to quill ! By participating in this project, you agree to abide by our Code of Conduct CLA All code contributions are subject to our Contributor License Agreement (CLA). When you open your first PR, the CLA bot will prompt you to agree to the CLA before the PR can be reviewed and merged. Guidelines quill is a very critical link in the workflow of the management of valuable assets. quill 's code must stay clean, simple, readable and leave no room for ambiguities, so that it can be reviewed and audited by anyone. Hence, if you would like to propose a change, please adhere to the following principles: 1. Be concise and only add functional code. 2. Optimize for correctness, then for readability. 3. Avoid adding dependencies at all costs unless it's completely unreasonable to do so. 4. Every new feature (+ a test) is proposed only after it was tested on real wallets. Tests Quill has three kinds of tests to be aware of: - Rust unit tests. Add these whenever internal helpers are added or changed, using standard Rust test conventions. - Output tests. These are located in tests/output . Add these whenever the command interfac",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/dfinity/quill/blob/master/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog All notable changes to this project will be documented in this file. The format is based on Keep a Changelog, and this project adheres to Semantic Versioning. Unreleased - Disbursing maturity to non-icrc1 addresses is disabled as some CEX does not support minting transactions well. [0.5.4] - 2025-08-11 - Ledger support has been updated. Ledger devices can now be used to vote and follow, disburse neurons (but not neuron maturity), add hotkeys, and set neuron visibility; as well as stake new neurons or claim them from Genesis, and transfer to all types of NNS accounts. - Added command for disbursing maturity from neurons, quill neuron-manage --disburse-maturity , with optional parameters --disburse-maturity-percentage and --disburse-maturity-to . - Updated to rev c7993fa049275b6700df8dfcc02f90d0fca82f24, adding support for the FulfillSubnetRentalRequest proposal. - --refresh-followers has been renamed to the more accurate --refresh-following . [0.5.3] - 2025-01-06 - Added quill neuron-manage --refresh-followers . [0.5.2] - 2024-12-05 - Fixed the display format of SNS sale tickets. [0.5.1] - 2024-10-31 - Added quill neuron-manage --set-visibility . [0.5.0] - 2024-07-10 - Ove",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/dfinity/quill",
+  "stars": 84
+}

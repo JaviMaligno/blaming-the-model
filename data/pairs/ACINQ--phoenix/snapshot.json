@@ -1,0 +1,46 @@
+{
+  "slug": "ACINQ--phoenix",
+  "name": "phoenix",
+  "description": "Phoenix is a self-custodial Bitcoin wallet using Lightning to send/receive payments.",
+  "documents": [
+    {
+      "url": "https://github.com/ACINQ/phoenix#0",
+      "title": "Introducción",
+      "text": "Phoenix is a Bitcoin wallet developed by ACINQ, that allows you to send and receive bitcoin securely over the Lightning Network. It is self-custodial, which means that you hold the keys of the wallet. It provides a simple and clean UX. Thanks to native Lightning support, payments are faster and cheaper. --- :rotating light: This wallet is self-custodial. It means that, when creating a new wallet, a 12-words recovery phrase is generated. Only you have it. It is your responsibility to make a backup of that recovery phrase. It gives full access to your funds, so do not share it with anyone. If you lose the recovery phrase, your funds are lost. --- Head to our website for more information: - FAQ - Terms - Privacy",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ACINQ/phoenix#1",
+      "title": "Download",
+      "text": "Phoenix is available for Android and iOS: - for iOS: on the App Store - requires iOS 15+. - for Android: on Google Play, or get the APK from the releases - requires Android 8+.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ACINQ/phoenix#2",
+      "title": "Build and test Phoenix",
+      "text": "Phoenix is separated in 3 modules: - phoenix-shared : business logic written in Kotlin, shared between the iOS and the Android applications. Uses lightning-kmp for everything Lightning/Bitcoin related. - phoenix-android : the UI for the new Android application, written in Kotlin and Jetpack Compose. - phoenix-ios : the UI for the iOS application, written in Swift. Instructions to build the iOS and the Android apps are provided here.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ACINQ/phoenix#3",
+      "title": "Contribute",
+      "text": "We use GitHub for bug tracking. Search the existing issues for your bug and create a new one if needed. You can also contribute to the project by submitting pull requests to improve the codebase or bring new features. Pull requests will be reviewed by members of the ACINQ team. To contribute to Lightning in general, take a look at the Eclair repository for routing nodes, or the lightning-kmp repository for mobile nodes.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ACINQ/phoenix#4",
+      "title": "Translate the app",
+      "text": "If you want to contribute to the translation effort, consult the guidelines provided in TRANSLATION.md",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ACINQ/phoenix#5",
+      "title": "License",
+      "text": "Phoenix is released under the terms of the Apache 2.0 license. See LICENSE for more information.",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/ACINQ/phoenix",
+  "stars": 860
+}

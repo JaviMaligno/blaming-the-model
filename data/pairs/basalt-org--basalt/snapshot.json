@@ -1,0 +1,58 @@
+{
+  "slug": "basalt-org--basalt",
+  "name": "basalt",
+  "description": "A Machine Learning framework from scratch in Pure Mojo 🔥",
+  "documents": [
+    {
+      "url": "https://github.com/basalt-org/basalt#0",
+      "title": "About The Project",
+      "text": "Basalt is a stand-alone machine learning framework that leverages the power of Mojo. As discussed by Modular, Mojo is a language for the future of AI development. Built on top of MLIR technology, rather than existing GCC and LLVM approaches, Mojo looks and feels like Python code, yet performs much closer to languages like Rust or C++. Parametric functions and compile time parameters allow for the graph to statically compiled. Having the static graph allows for much harder performance optimizations. Basalt, while still in its infancy, is able to achieve speeds comparable to well established frameworks like Pytorch. Below a snapshot of the current benchmarks. But keep posted, there is much more room for improvement and we are upgrading the project on a daily basis.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/basalt-org/basalt#1",
+      "title": "Quick Start",
+      "text": "Try out the benchmarks yourself: Compare to the alternative PyTorch implementation: Make sure to install the requirements in python-requirements.txt in your python environment.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/basalt-org/basalt#2",
+      "title": "v0.1.0 ✅",
+      "text": "- [x] Improve matrix multiplication and convolution kernels - [x] Switch to custom Tensor and TensorShape implementations - [x] Improve benchmarks and overall model execution performance - [x] Add profiling and additional performance tests",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/basalt-org/basalt#3",
+      "title": "v0.2.0 (WIP)",
+      "text": "- [ ] Add additional operators: Slice, (Un)Squeeze, Concat, Clip, Gather, Split, FMA ... - [ ] Better layer support and more activation functions - [ ] Graph submodules & graph concatenation - [ ] Computer vision benchmark.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/basalt-org/basalt#4",
+      "title": "Long-Term",
+      "text": "- [ ] Better parallelization - [ ] GPU support - [ ] Reworked Dataloader - [ ] Autotuning and related features - [ ] Graph compilation optimizations - [ ] Operator fusion - [ ] ONNX / Max compatibility",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/basalt-org/basalt#5",
+      "title": "Contributing",
+      "text": "Basalt is built by community efforts and relies on your expertise and enthousiasm! Small fixes and improvements are much appreciated. If you are considering larger contributions, feel free to contact us for a smoother communication channel on Discord. If you find a bug or have an idea for a feature, please use our issue tracker. Before creating a new issue, please: Check if the issue already exists. If an issue is already reported, you can contribute by commenting on the existing issue. If not, create a new issue and include all the necessary details to understand/recreate the problem or feature request.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/basalt-org/basalt#6",
+      "title": "Creating A Pull Request",
+      "text": "1. Fork the Project 2. Create your Feature Branch 3. Commit your Changes 4. Push to the Branch 5. Open a Pull Request Once your changes are pushed, navigate to your fork on GitHub. And create a pull request against the original basalt-org/basalt repository. - Before creating a PR make sure it doesn't break any of the unit-tests. (e.g. mojo run -I . test/test ops.mojo ) - Introducing new big features requires a new test! - In the pull request, provide a detailed description of the changes and why they're needed. Link any relevant issues. - If there are any specific instructions for testing or validating your changes, include those as well.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/basalt-org/basalt#7",
+      "title": "License",
+      "text": "Distributed under the Apache 2.0 License with LLVM Exceptions. See LICENSE and the LLVM License for more information.",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/basalt-org/basalt",
+  "stars": 442
+}

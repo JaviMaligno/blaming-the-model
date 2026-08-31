@@ -1,0 +1,46 @@
+{
+  "slug": "puppetlabs--relay",
+  "name": "relay",
+  "description": "Event-driven workflows for DevOps automation",
+  "documents": [
+    {
+      "url": "https://github.com/puppetlabs/relay#0",
+      "title": "Introducción",
+      "text": "Relay is a service that lets you connect tools, APIs, and infrastructure to automate common tasks through simpler, smarter workflows. It links infrastructure events to workflow execution, so that for example, when a new JIRA ticket or GitHub issue comes in, your workflow can trigger deployments or send notifications. This repo contains the source for the CLI tool.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/puppetlabs/relay#1",
+      "title": "Installation",
+      "text": "For Macs, install via homebrew: For other platforms, install directly via GitHub Releases: Get the latest version The program is just a single binary, so you can simply download the one that matches your architecture and copy it to a location in your $PATH .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/puppetlabs/relay#2",
+      "title": "Getting started",
+      "text": "Once it's installed, you'll need to authenticate with the service, then you'll be able to work with the default set of workflows that are enabled on your account:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/puppetlabs/relay#3",
+      "title": "Config",
+      "text": "Relay uses viper for customizable config. The following config values may be set in a yaml file at $HOME/.config/relay/config.yaml or as environment variables with corresponding names in all caps, prefixed with RELAY : - debug : Run Relay in debug mode. Overridden by global --debug flag. - out=(text json) : Output mode. Overridden by global --out flag. - yes : Skip confirmation prompts. Overridden by global --yes flag.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/puppetlabs/relay/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to Relay Relay welcomes contributions! Read on if you're interested in getting involved with the project. Guidelines for contributions All interactions between Puppet employees, contributors, and community members on Relay-related projects are subject to Puppet Community Code of Conduct. Make sure there's not some existing code or a discussion that covers the change you want to make by searching existing Github issues. To make it easier to contribute while still staying in the good graces of our (super wonderful!) Legal department, we require a Developer Certificate of Origin sign-off on contributions. See this explanation from the Helm project to understand the rationale behind the DCO.As a practical matter, this means adding the -s --signoff flag to your commits. Making Changes Clone the repository into your own namespace Create a topic branch from where you want to base your work. To quickly create a topic branch based on main , run git checkout -b fix/my fix origin/main . Make commits of logical and atomic units. Check for unnecessary whitespace with git diff --check before committing. Make sure your commit messages are in the proper format. We (try to!) follow Tim",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/puppetlabs/relay/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "5.2.0 Changed - Refactored the tenant namespace for dev workflows - Enabled the log service by default - Switched to newer OSS image repositories - Refactored installer naming for consistency Removed - Removed the legacy PVC from the installer 5.1.0 Added - Added commands to configure global flags Changed - Updated the relay dev commands to use the latest Relay Installer - Support any cluster in the development environment Fixed - Return error when saving workflow revisions instead of warning output - Added error handling for undefined domains when switching contexts Removed - Removed k3d internal cluster commands 5.0.0 Changed - Updated to use the new Workflow and Run CRDs - Update to the latest k3d version for the development environment - Upgrade to vault v1.8.2 4.8.0 Changed - relay dev cluster initialize command moved to relay dev initialize Removed - relay dev image import command - relay dev kubectl command 4.7.0 Changed - The Relay development cluster vault instance vault-plugin-secrets-oauthapp plugin updated to v3.0.0-beta.3 4.6.0 Changed - The Relay development cluster now uses k3d v4.4.7 and k3s v1.20.9-k3s1 Fixed - relay auth login now functions when using the Relay de",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/puppetlabs/relay",
+  "stars": 54
+}

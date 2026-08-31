@@ -1,0 +1,40 @@
+{
+  "slug": "DavidHuie--quartz",
+  "name": "quartz",
+  "description": "A gem for calling Go code from within your Ruby code",
+  "documents": [
+    {
+      "url": "https://github.com/DavidHuie/quartz#0",
+      "title": "Introducción",
+      "text": "quartz Quartz enables you to call Go code from within your Ruby code. This is accomplished by running a Go program as a child process of your Ruby application and using UNIX domain sockets for communication. With this gem, you can now write performance critical code in Go, and that code can be called from anywhere in a Ruby project. To see some real world examples where Go can aid a Ruby project, please see the examples/ directory.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/DavidHuie/quartz#1",
+      "title": "Defining exportable structs",
+      "text": "Quartz shares Go code by exporting methods on a struct to Ruby. Quartz requires that all arguments to exported struct methods be JSON serializable types. Additionally, the arguments to an exported method should be of the form (A, B) , where A and B are JSON serializable types. The method should also return an error. Here's an example of an exportable struct and method: For more information regarding Go's RPC rules, which must still be followed when using quartz, please examine the official documentation for the net/rpc package here.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/DavidHuie/quartz#2",
+      "title": "Preparing a Quartz RPC server in Go",
+      "text": "Instead of integrating Quartz into an existing Go application, it is recommended to create a new program that explicitly defines the structs that should be available to Ruby. First, import the Go package: Quartz maintains most of Go's native RPC interface. Thus, export a struct by calling this in your main function: Once all structs have been declared, start the RPC server (this is a blocking call):",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/DavidHuie/quartz#3",
+      "title": "In Ruby",
+      "text": "Naturally: If you have a go run -able file, you can create a Go client that points to that file: If you compiled the Go program yourself, you can create a client that points to the binary like this: To list exported structs: To list a struct's exported methods: To call a method on a struct: By default the unix socket is created under /tmp . If you want to change that you can pass the socket dir option. If you want to manage the Go process manually, you can use the following system to set the socket path manually. Now, you can use Systemd/Kubernetes/etc. to manage the Go process.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/DavidHuie/quartz/blob/master/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "0.3.0 - [ 29] MultiJson usage. Oj gem installation is suggested for best performance 0.2.7 - [ 28] Handle lack of Go processes gracefully at exit - [ 28] Don't validate GOPATH - [ 28] Validate Go executable only when compilation is needed 0.2.6 - [ 13] Meaningful exception types - [ 20] Speed up Go Quartz process boot time - [ 22] Handle large buffers 0.2.5 - [ 12] Make seeds in Go process wrappers threadsafe - Destroy socket files upon exit inside Go processes - Upgrade development environment to Ruby 2.1.5 and Go 1.4 - Use long suffixes when naming domain sockets",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/DavidHuie/quartz",
+  "stars": 532
+}

@@ -1,0 +1,40 @@
+{
+  "slug": "OsmSharp--core",
+  "name": "core",
+  "description": "The core functionality of OsmSharp.",
+  "documents": [
+    {
+      "url": "https://github.com/OsmSharp/core#0",
+      "title": "Introducción",
+      "text": "OsmSharp - OsmSharp: - OsmSharp.Geo: OsmSharp enables you to work directly with OpenStreetMap (OSM) data in .NET. Most important features are: - Read/Write OSM-XML. - Read/Write OSM-PBF. - Streamed architecture, minimal memory footprint. - Convert a stream of native OSM objects to 'complete' OSM objects: Ways with all their actual nodes, Relations with all members instantiated. - Convert OSM objects to geometries.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/OsmSharp/core#1",
+      "title": "Documentation & Samples",
+      "text": "Check the documentation website for documentation and sample code. Don't hesitate to ask questions using an issue or request more documentation on any topic you need. There are 5 sample projects in the samples folder: - Sample.CompleteStream: Convert Ways and Relation into objects with nodes and members instantiated. - Sample.Filter: Filter data from an OSM file using LINQ. - Sample.GeoFilter: Filter data using a bounding box or polygon. - Sample.GeometryStream: Extract all power lines from an OSM file, convert them to linestring features and write to GeoJSON. - Sample.GeometryStream.Shape: Extract all power lines from an OSM file, convert them to linestring features and write to a shapefile.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/OsmSharp/core#2",
+      "title": "Install",
+      "text": "PM Install-Package OsmSharp There's also a package to use NTS together with OsmSharp to convert OSM-data to features/geometries. PM Install-Package OsmSharp.Geo",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/OsmSharp/core#3",
+      "title": "Usage",
+      "text": "A really good way to get started is to have a look at the samples but we collected a few code-snippets for you here anyway: A common usecase is to stream and filter OSM data. To read from an OSM file and enumerate all objects just open the file as a stream source and use foreach. Read data from an OSM-PBF file: Write data to an OSM-PBF file: Filter an area and extract a smaller region:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/OsmSharp/core#4",
+      "title": "Licensing",
+      "text": "The OsmSharp project is licensed under the MIT license. This project includes some code from SharpZipLib, also MIT licensed.",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/OsmSharp/core",
+  "stars": 347
+}

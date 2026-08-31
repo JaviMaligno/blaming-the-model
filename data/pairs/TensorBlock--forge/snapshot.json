@@ -1,0 +1,118 @@
+{
+  "slug": "TensorBlock--forge",
+  "name": "forge",
+  "description": "Forge is a self-hosted middleware that unifies access to multiple AI model providers (like OpenAI, Anthropic) via a single API. It supports OpenAI-compatible interfaces, encrypted API key management, and easy integration into existing tools and frontends. Built for security, scalability, and extensibility.",
+  "documents": [
+    {
+      "url": "https://github.com/TensorBlock/forge#0",
+      "title": "Introducción",
+      "text": "Forge One API for all AI models Features • Installation • Usage • Configuration • Security • Contributing • License",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TensorBlock/forge#1",
+      "title": "Introduction",
+      "text": "Forge is an open-source middleware service that simplifies AI model provider management. It allows you to use multiple AI providers (OpenAI, Anthropic, etc.) through a single, unified API. By storing your provider API keys securely, Forge generates a unified key that works across all your AI applications. News - We have deployed Forge as an online service, feel free to ✨ learn the service and 🚀 try it now - Forge now enables Claude Code to work with any LLM Why Forge? - Unified Experience : Use multiple AI models through a single, consistent API - Simplified Key Management : Store provider keys once, use everywhere - Seamless Integration : Compatible with OpenAI API standard for easy integration with existing tools - Enhanced Security : Keys are encrypted and never exposed to end applications",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TensorBlock/forge#2",
+      "title": "Key Features",
+      "text": "- Unified API Key : Store multiple provider API keys and access all with a single Forge API key - OpenAI API Compatible : Drop-in replacement for any application that uses OpenAI's API - Model Mapping : Create custom model names mapped to provider-specific models - Advanced Security : Strong encryption for API keys with JWT-based authentication - High Performance : Built for scalability and concurrent usage - CLI Management : Easy key and user management via included command-line interface - Extensible Architecture : Provider adapter pattern makes it easy to add new AI providers",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TensorBlock/forge#3",
+      "title": "Prerequisites",
+      "text": "- Python 3.12 or newer - UV package manager (installed automatically by the setup scripts) The project uses UV as the preferred package manager for faster and more reliable dependency installation.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TensorBlock/forge#4",
+      "title": "Manual Setup",
+      "text": "If you prefer to set up manually: See the detailed installation guide for step-by-step instructions.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TensorBlock/forge#5",
+      "title": "Managing Forge with CLI",
+      "text": "Forge comes with a command-line interface for easy management: See all available commands:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TensorBlock/forge#6",
+      "title": "Connecting Frontends",
+      "text": "To use Forge with frontends like CherryStudio, LobeChat, or any OpenAI-compatible application: 1. Register and add your provider API keys in Forge 2. Configure your frontend to use Forge's URL and your Forge API key 3. Use standard model names (e.g., gpt-4o , claude-sonnet-4 ) or custom mappings",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TensorBlock/forge#7",
+      "title": "Supported Providers",
+      "text": "Forge supports an extensive range of AI providers through both custom adapters and OpenAI-compatible interfaces: - OpenAI - Anthropic - Google Gemini - xAI - DeepSeek - Cohere - Mistral - Nvidia - Alibaba - Fireworks AI - Azure OpenAI - AWS Bedrock - Together AI - OpenRouter - Cerebras - Groq - SambaNova - Moonshot - Hunyuan - Baichuan - Stepfun - 01.ai - Nebius - Novita - NScale - DeepInfra - Maritaca - Featherless.ai - Enfer - Inference.net - Kluster.ai - Lambda - Mancer - Redpill.ai - Parasail - Nineteen.ai - Targon - Hyperbolic - SiliconFlow - TensorBlock - Perplexity - Zhipu The Anthropic integration includes: - Support for Claude 3 models with streaming responses - Automatic model name mapping (e.g., \"claude\" → \"claude-3-opus-20240229\") - Message API format support - Token usage reporting",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TensorBlock/forge#8",
+      "title": "Security and Privacy",
+      "text": "At Forge, we take the security and privacy of your API keys very seriously. Since our service requires storing provider API keys (like OpenAI, Anthropic, etc.), we've implemented multiple layers of protection:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TensorBlock/forge#9",
+      "title": "API Key Encryption",
+      "text": "- Strong Encryption : All provider API keys are encrypted using Fernet symmetric encryption, which utilizes AES-128 in CBC mode with PKCS7 padding - Secure Key Storage : The encryption key itself is never stored in the database and is only held in environment variables - No Plaintext Storage : API keys are never stored in plaintext at any point in the database - Encryption at Rest : Keys remain encrypted in the database, only being decrypted temporarily in memory when needed for API calls",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TensorBlock/forge#10",
+      "title": "Data Transmission",
+      "text": "- HTTPS Only : When deployed in production, all communication should be over HTTPS to prevent man-in-the-middle attacks - JWT Authentication : All API interactions are authenticated using JWT tokens with configurable expiration - Header-Based API Keys : The Forge API key is transmitted via HTTP headers, not in URLs or query parameters - No Key Logging : API keys are masked in logs to prevent accidental exposure",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TensorBlock/forge#11",
+      "title": "Key Management",
+      "text": "- Key Regeneration : Users can instantly regenerate their Forge API key if it's compromised - Isolated Storage : Each user's provider keys are isolated and can only be accessed with proper authentication - Minimal Persistence : Keys are only held in memory during the processing of a request - No Third-Party Sharing : Your API keys are never shared with third parties or used for any purpose other than routing your requests",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TensorBlock/forge#12",
+      "title": "Self-Hosted Security",
+      "text": "Since Forge is designed to be self-hosted, you maintain complete control over: - Who has access to your Forge instance - Where your data is stored and processed - How the system is deployed and secured - What security measures (firewalls, access controls, etc.) are in place",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TensorBlock/forge#13",
+      "title": "Security Implementation Details",
+      "text": "1. Key Encryption Process : - New API keys are immediately encrypted before storing - The encryption uses a randomly generated nonce to ensure that identical keys don't produce the same ciphertext - Encryption key is derived from the environment variable API KEY ENCRYPTION KEY 2. Request Processing : - When a request comes in with your Forge API key, we: 1. Authenticate the request 2. Identify the appropriate provider 3. Decrypt the provider's API key temporarily in memory 4. Use the decrypted key to make the provider API call 5. Return the response to you 6. Discard the decrypted key from memory 3. Server Security Recommendations : - Run Forge behind a secure reverse proxy like Nginx with HTTPS - Implement IP restrictions where possible - Use strong, unique values for all security-related environment variables - Regularly update the server and dependencies - Consider using key rotation policies for sensitive credentials",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TensorBlock/forge#14",
+      "title": "Getting Started",
+      "text": "1. Fork the repository 2. Create a feature branch ( git checkout -b feature/amazing-feature ) 3. Make your changes 4. Run tests to ensure everything works 5. Commit your changes ( git commit -m 'Add amazing feature' ) 6. Push to your branch ( git push origin feature/amazing-feature ) 7. Open a Pull Request",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TensorBlock/forge#15",
+      "title": "Development Guidelines",
+      "text": "- Follow the code style guide - Write tests for new features - Update documentation for any changes - See CONTRIBUTING.md for detailed guidelines",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TensorBlock/forge#16",
+      "title": "Continuous Integration",
+      "text": "We use GitHub Actions for continuous integration: - All pull requests trigger automated tests - Code must pass all tests before merging - Test coverage is tracked to maintain quality - Database migrations are validated automatically The CI pipeline checks: - Unit and integration tests - Code formatting and linting - Database migrations You can run these checks locally before submitting your PR:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/TensorBlock/forge#17",
+      "title": "Roadmap",
+      "text": "Our future plans include: - Additional AI provider integrations - Advanced request routing and load balancing - Usage analytics and monitoring - User and team management features",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/TensorBlock/forge",
+  "stars": 167
+}

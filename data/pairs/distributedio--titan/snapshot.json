@@ -1,0 +1,46 @@
+{
+  "slug": "distributedio--titan",
+  "name": "titan",
+  "description": "A Distributed Redis Protocol Compatible NoSQL Database",
+  "documents": [
+    {
+      "url": "https://github.com/distributedio/titan#0",
+      "title": "Why Titan?",
+      "text": "Completely compatible with Redis protocol Full distributed transaction with strong consistency Multi-tenancy support No painful scale out High availability Thanks TiKV for supporting the core features. The project is developed and open sourced by the Beijing Infrastructure Team at Meitu and has been donated to DistributedIO org.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/distributedio/titan#1",
+      "title": "Quick start",
+      "text": "Can't wait to experiment with Titan? Just follow 2 steps: 1. curl -s -O https://raw.githubusercontent.com/distributedio/titan/master/docker-compose.yml 2. docker-compose up Then connect to Titan using redis-cli Enjoy!",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/distributedio/titan#2",
+      "title": "SetUp TiKV cluster",
+      "text": "Titan works with 2 TiDB components: TiKV PD To setup TiKV and PD, please follow the official instructions",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/distributedio/titan#3",
+      "title": "Run Titan",
+      "text": "Build the binary Edit the configration file Run Titan For more details about Deploy Titan, click here.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/distributedio/titan#4",
+      "title": "Commands supporting status",
+      "text": "See the details of the commands supporting status command status ------------ ----------------------- Connections Almost Fully Supported Transactions Supported Server Almost Fully Supported Keys Supported Strings Almost Fully Supported List Almost Fully Supported Hashes Supported Sets Almost Fully Supported Sorted Sets Almost Fully Supported Geo Not Supported Yet Hyperloglog Not Supported Yet Pub/Sub Not Supported Yet Scripting Not Supported Yet Streams Not Supported Yet",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/distributedio/titan#5",
+      "title": "Benchmarks",
+      "text": "Refer to the benchmark docs for more details. It's shared on Baidu Disks, use the code hzt6 to gain the permission. Basic benchmarking result.",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/distributedio/titan",
+  "stars": 1402
+}

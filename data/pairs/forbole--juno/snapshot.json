@@ -1,0 +1,52 @@
+{
+  "slug": "forbole--juno",
+  "name": "juno",
+  "description": "A Cosmos Hub data aggregator and exporter.",
+  "documents": [
+    {
+      "url": "https://github.com/forbole/juno#0",
+      "title": "Introducción",
+      "text": "Juno Juno is a Cosmos Hub blockchain data aggregator and exporter that provides the ability for developers and clients to query for indexed chain data.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/forbole/juno#1",
+      "title": "Background",
+      "text": "This version of Juno is a fork of FissionLabs's Juno. The main reason behind the fork what to improve the original project by: 1. allowing different databases types as data storage spaces; 2. creating a highly modular code that allows for easy customization. We achieved the first objective by supporting both PostgreSQL and MongoDB. We also reviewed the code design by using a database interface so that you can implement whatever database backend you prefer most. On the other hand, to achieve a highly modular code, we implemented extension points through the worker.RegisterBlockHandler , worker.RegisterTxHandler and worker.RegisterMsgHandler methods. You can use those to extend the default working of the code (which simply parses and saves the data on the database) with whatever operation you want.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/forbole/juno#2",
+      "title": "Compatibility table",
+      "text": "Since the Cosmos SDK has evolved a lot, we have different versions of Juno available. Cosmos SDK Version Juno branch :-----------------------------------------------: :----------------: v0.43.x , v0.44.x , v0.45.1 cosmos/v0.44.x v0.45.x cosmos/v0.45.x v0.46.x cosmos/v0.46.x v0.47.x cosmos/v0.47.x v0.50.x cosmos/v0.50.x",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/forbole/juno#3",
+      "title": "Testing",
+      "text": "If you want to test the code, you can do so by running Note : Requires Docker. This will: 1. Create a Docker container running a PostgreSQL database. 2. Run all the tests using that database as support.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/forbole/juno#4",
+      "title": "GraphQL integration",
+      "text": "If you want to know how to run a GraphQL server that allows to expose the parsed data, please refer to the following guides: - PostgreSQL setup with GraphQL",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/forbole/juno#5",
+      "title": "Contributing",
+      "text": "Contributions are welcome! Please open an Issues or Pull Request for any changes.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/forbole/juno/blob/cosmos/v0.50.x/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "v6.0.1 Changes - (\\ 121) Added back authz message handler in worker v6.0.0 Changes - (\\ 107) Removed SDK codec dependency from remote mode Database - (\\ 110) Fixed initialization of involved account addresses slice - (\\ 114) Changed colum type from JSON into JSONB for message-related field Dependencies - (\\ 119) Updated cosmos-sdk to v0.50.x Migrations Now the api config is required in remote mode, please check the reference and add the field into your config after upgrading Juno to v6. v5.3.0 Changes - (\\ 100) Improved account relationship mapping - (\\ 108) Fixed init command creating empty config file v5.2.0 Changes - Exposed Database CreatePartitionIfNotExists method - (\\ 97) Add x/authz message parser v5.1.0 Changes - Bumped Go version to 1.20 - Fixed a bug that caused messages type urls to be empty in the database - Implemented a better default EncodingConfigBuilder - Added the ability to set DatabaseConfig field values using setter methods - (\\ 96) Export Codec and LegacyAmino from the Database implementation v5.0.0 Changes - Updated Cosmos SDK to v0.47.2 Database - (\\ 96) Exported Codec and LegacyAmino codec inside Database wrapper v4.2.0 Changes - (\\ 93) Decode IBC transfer",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/forbole/juno",
+  "stars": 77
+}

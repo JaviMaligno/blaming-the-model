@@ -1,0 +1,46 @@
+{
+  "slug": "huawei-noah--vega",
+  "name": "vega",
+  "description": "AutoML tools chain",
+  "documents": [
+    {
+      "url": "https://github.com/huawei-noah/vega#0",
+      "title": "Introducción",
+      "text": "Vega English 中文 --- Vega ver1.8.5 released - Bug Fixed: - Fixed a bug when the SPNAS algorithm cluster training fails. - Fixed bugs such as model copy failure in safe mode. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/huawei-noah/vega#1",
+      "title": "Introduction",
+      "text": "Vega is an AutoML algorithm tool chain developed by Noah's Ark Laboratory, the main features are as follows: 1. Full pipeline capabilities: The AutoML capabilities cover key functions such as Hyperparameter Optimization, Data Augmentation, Network Architecture Search (NAS), Model Compression, and Fully Train. These functions are highly decoupled and can be configured as required, construct a complete pipeline. 2. Industry-leading AutoML algorithms: Provides Noah's Ark Laboratory's self-developed industry-leading algorithm (Benchmark) and Model Zoo to download the state-of-the-art (SOTA) models. 3. Fine-grained network search space: The network search space can be freely defined, and rich network architecture parameters are provided for use in the search space. The network architecture parameters and model training hyperparameters can be searched at the same time, and the search space can be applied to Pytorch, TensorFlow and MindSpore. 4. High-concurrency neural network training capability: Provides high-performance trainers to accelerate model training and evaluation. 5. Multi-Backend: PyTorch (GPU and Ascend 910), TensorFlow (GPU and Ascend 910), MindSpore (Ascend 910). 6. Ascend",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/huawei-noah/vega#2",
+      "title": "Algorithm List",
+      "text": "Category Algorithm Description reference :--: :-- :-- :-- NAS CARS: Continuous Evolution for Efficient Neural Architecture Search Structure Search Method of Multi-objective Efficient Neural Network Based on Continuous Evolution ref NAS ModularNAS: Towards Modularized and Reusable Neural Architecture Search A code library for various neural architecture search methods including weight sharing and network morphism ref NAS MF-ASC Multi-Fidelity neural Architecture Search with Co-kriging ref NAS NAGO: Neural Architecture Generator Optimization An Hierarchical Graph-based Neural Architecture Search Space ref NAS SR-EA An Automatic Network Architecture Search Method for Super Resolution ref NAS ESR-EA: Efficient Residual Dense Block Search for Image Super-resolution Multi-objective image super-resolution based on network architecture search ref NAS Adelaide-EA: SEGMENTATION-Adelaide-EA-NAS Network Architecture Search Algorithm for Image Segmentation ref NAS SP-NAS: Serial-to-Parallel Backbone Search for Object Detection Serial-to-Parallel Backbone Search for Object Detection Efficient Search Algorithm for Object Detection and Semantic Segmentation in Trunk Network Architecture ref NAS SM",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/huawei-noah/vega#3",
+      "title": "Usage",
+      "text": "Run the vega command to run the Vega application. For example, run the following command to run the CARS algorithm: The cars.yml file contains definitions such as pipeline, search algorithm, search space, and training parameters. Vega provides more than 40 examples for reference: Examples, Example Guide, and Configuration Guide. The security mode is applicable to communication with high security requirements. Before running this command, run the security configuration.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/huawei-noah/vega#4",
+      "title": "Reference",
+      "text": "Reader Refrence :--: :-- User Install Guide, Deployment Guide, Configuration Guide, Security Configuration, Examples, Evaluate Service Developer Development Reference, Quick Start Guide, Dataset Guide, Algorithm Development Guide",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/huawei-noah/vega#5",
+      "title": "Cooperation and Contribution",
+      "text": "Welcome to use Vega. If you have any questions or suggestions, need help, fix bugs, contribute new algorithms, or improve the documentation, submit an issue in the community. We will reply to and communicate with you in a timely manner.",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/huawei-noah/vega",
+  "stars": 849
+}

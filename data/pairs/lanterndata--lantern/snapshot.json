@@ -1,0 +1,82 @@
+{
+  "slug": "lanterndata--lantern",
+  "name": "lantern",
+  "description": "PostgreSQL vector database extension for building AI applications",
+  "documents": [
+    {
+      "url": "https://github.com/lanterndata/lantern#0",
+      "title": "Introducción",
+      "text": "💡 Lantern Lantern is an open-source PostgreSQL database extension to store vector data, generate embeddings, and handle vector search operations. It provides a new index type for vector columns called lantern hnsw which speeds up ORDER BY ... LIMIT queries. Lantern builds and uses usearch, a single-header state-of-the-art HNSW implementation.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lanterndata/lantern#1",
+      "title": "🔧 Quick Install",
+      "text": "If you don’t have PostgreSQL already, use Lantern with Docker to get started quickly: Then, you can connect to the database via postgresql://$USER:postgres@localhost/postgres . To install Lantern using homebrew : You can also install Lantern on top of PostgreSQL from our precompiled binaries via a single make install . Alternatively, you can use Lantern in one click using Replit.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lanterndata/lantern#2",
+      "title": "🔧 Build Lantern from source code on top of your existing PostgreSQL",
+      "text": "Prerequisites: To build Lantern on new hardware or with CPU-specific vectorization: To build portable Lantern binaries:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lanterndata/lantern#3",
+      "title": "📖 How to use Lantern",
+      "text": "Lantern retains the standard PostgreSQL interface, so it is compatible with all of your favorite tools in the PostgreSQL ecosystem. First, enable Lantern in SQL (e.g. via psql shell) Note: After running the above, lantern extension is only available on the current postgres DATABASE (single postgres instance may have multiple such DATABASES). When connecting to a different DATABASE, make sure to run the above command for the new one as well. For example: Create a table with a vector column and add your data Create an hnsw index on the table via lantern hnsw : Customize lantern hnsw index parameters depending on your vector data, such as the distance function (e.g., dist l2sq ops ), index construction parameters, and index search parameters. Start querying data",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lanterndata/lantern#4",
+      "title": "A note on operators and operator classes",
+      "text": "Lantern supports several distance functions in the index There are 3 operators available (l2sq), (cosine), (hamming). There are four defined operator classes that can be employed during index creation: - dist l2sq ops : Default for the type real[] - dist vec l2sq ops : Default for the type vector - dist cos ops : Applicable to the type real[] - dist vec cos ops : Applicable to the type vector - dist hamming ops : Applicable to the type integer[]",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lanterndata/lantern#5",
+      "title": "Index Construction Parameters",
+      "text": "The M , ef , and ef construction parameters control the performance of the HNSW algorithm for your use case. - In general, lower M and ef construction speed up index creation at the cost of recall. - Lower M and ef improve search speed and result in fewer shared buffer hits at the cost of recall. Tuning these parameters will require experimentation for your specific use case.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lanterndata/lantern#6",
+      "title": "Miscellaneous",
+      "text": "- If you have previously cloned Lantern and would like to update run git pull && git submodule update --recursive",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lanterndata/lantern#7",
+      "title": "⭐️ Features",
+      "text": "- Embedding generation for popular use cases (CLIP model, Hugging Face models, custom model) - Interoperability with pgvector's data type, so anyone using pgvector can switch to Lantern - Parallel index creation via an external indexer - Ability to generate the index graph outside of the database server - Support for creating the index outside of the database and inside another instance allows you to create an index without interrupting database workflows. - See all of our helper functions to better enable your workflows",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lanterndata/lantern#8",
+      "title": "🏎️ Performance",
+      "text": "Important takeaways: - There's three key metrics we track. CREATE INDEX time, SELECT throughput, and SELECT latency. - We match or outperform pgvector and pg embedding (Neon) on all of these metrics. - We plan to continue to make performance improvements to ensure we are the best performing database.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lanterndata/lantern#9",
+      "title": "🗺️ Roadmap",
+      "text": "- Cloud-hosted version of Lantern - Sign up here - Hardware-accelerated distance metrics, tailored for your CPU, enabling faster queries - Templates and guides for building applications for different industries - More tools for generating embeddings (support for third party model API’s, more local models) - Support for version control and A/B test embeddings - Autotuned index type that will choose appropriate creation parameters - Support for 1 byte and 2 byte vector elements, and up to 8000 dimensional vectors (PR 19) - Request a feature at support@lantern.dev",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lanterndata/lantern#10",
+      "title": "📚 Resources",
+      "text": "- GitHub issues: report bugs or issues with Lantern - Need support? Contact support@lantern.dev. We are happy to troubleshoot issues and advise on how to use Lantern for your use case - We welcome community contributions! Feel free to open an issue or a PR. If you contact support@lantern.dev, we can find an open issue or project that fits you",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/lanterndata/lantern/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Thanks for considering contributing! The information below is intended to help you contribute. Running tests Running make test will run the lantern regression tests, these run independent of one another. At the moment the tests for make test-parallel are under development, they can be found in test/parallel . The goal of the parallel tests is to generate a more realistic workload on the index to discover timing errors and other bugs dependent on more complex use, they run in the same database. Running benchmarks This requires Python to be installed. Please check the Dockerfile.dev for pip requirements. VSCode and IntelliSense .vscode/c cpp properties is configured to use ./build/compile commands.json . If you build Lantern in a different directory, make sure to update .vscode config appropriately in order to have IntelliSense working. Debugging the C codebase If you make changes to the C codebase, in addition to make test and make parallel-test , you can also use the livedebug.py utility in a tmux session to easily attach gdb to the psql backend and find out what breaks. Below is a short recording demonstrating the use of livedebug.py : Running sanitizers To ensure that code is saf",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/lanterndata/lantern",
+  "stars": 890
+}

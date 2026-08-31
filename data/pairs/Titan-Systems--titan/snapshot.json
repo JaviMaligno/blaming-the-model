@@ -1,0 +1,106 @@
+{
+  "slug": "Titan-Systems--titan",
+  "name": "titan",
+  "description": "Titan Core - Snowflake infrastructure-as-code. Provision environments, automate deploys, CI/CD. Manage RBAC, users, roles, and data access. Declarative Python Resource API. Change Management tool for the Snowflake data warehouse.",
+  "documents": [
+    {
+      "url": "https://github.com/Titan-Systems/titan#0",
+      "title": "Introducción",
+      "text": "titan core - Snowflake infrastructure as code Titan Core helps you provision, deploy, and secure resources in Snowflake. It replaces tools like Terraform, Schemachange, or Permifrost. Deploy any Snowflake resource, including users, roles, schemas, databases, integrations, pipes, stages, functions, stored procedures, and more. Convert adhoc, bug-prone SQL management scripts into simple, repeatable configuration. Titan Core is for: DevOps engineers looking to automate and manage Snowflake infrastructure. Analytics engineers working with dbt who want to manage Snowflake resources without macros. Data platform teams who need to reliably manage Snowflake with CI/CD. Organizations that prefer a git-based workflow for infrastructure management. Teams seeking to replace Terraform for Snowflake-related tasks.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Titan-Systems/titan#1",
+      "title": "Key Features",
+      "text": "Declarative » Generates the right SQL to make your config and account match Comprehensive » Nearly every Snowflake resource is supported Flexible » Write resource configuration in YAML or Python Fast » Titan Core runs 50-90% faster than Terraform and Permifrost Migration-friendly » Generate config automatically with the export CLI",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Titan-Systems/titan#2",
+      "title": "Open Source",
+      "text": "This project is licensed under the Apache 2.0 License - see LICENSE for details. The source code for Titan Core is available on Github.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Titan-Systems/titan#3",
+      "title": "Using the CLI",
+      "text": "You can use the CLI to generate a plan, apply a plan, or export resources. To use the CLI, install the Python package and call python -m titan from the command line. The CLI allows you to plan and apply a Titan Core YAML config. You can specify a single input file or a directory of configs. In addition to plan and apply , the CLI also allows you to export resources. This makes it easy to generate a config for an existing Snowflake environment. To connect with Snowflake, the CLI uses environment variables. The following are supported: SNOWFLAKE ACCOUNT SNOWFLAKE USER SNOWFLAKE PASSWORD SNOWFLAKE DATABASE SNOWFLAKE SCHEMA SNOWFLAKE ROLE SNOWFLAKE WAREHOUSE SNOWFLAKE MFA PASSCODE SNOWFLAKE AUTHENTICATOR If using key-pair auth instead of password, use the following environment variables in place of SNOWFLAKE PASSWORD : SNOWFLAKE PRIVATE KEY PATH PRIVATE KEY PASSPHRASE (if using encrypted key) Note: the value for SNOWFLAKE AUTHENTICATOR should be set to SNOWFLAKE JWT when using key-pair auth.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Titan-Systems/titan#4",
+      "title": "CLI Example",
+      "text": "Show the help message Apply a resource config to Snowflake Export existing Snowflake resources to YAML. The Titan Core Python package installs the CLI script titan . You can alternatively use Python CLI module syntax if you need fine-grained control over the Python environment.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Titan-Systems/titan#5",
+      "title": "Using the GitHub Action",
+      "text": "The Titan Core GitHub Action allows you to automate the deployment of Snowflake resources using a git-based workflow.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Titan-Systems/titan#6",
+      "title": "Titan Core Limitations",
+      "text": "- Titan Core uses names as unique identifiers . Renaming a resource will create a new one. - Titan Core is not an ORM. It's not built to replace tools like SQLAlchemy. - Titan Core is under active development. Some resources are not yet supported.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Titan-Systems/titan#7",
+      "title": "titan core vs other tools",
+      "text": "Feature Titan Core Terraform Schemachange Permifrost SnowDDL ----------------------------------------- ------------ ----------- -------------- ----------- -------- Plan and Execute Changes ✅ ✅ ❌ ✅ ✅ Declarative Config ✅ ✅ ❌ ✅ ✅ No State File Dependency ✅ ❌ ✅ ✅ ✅ Python-Based Definitions ✅ w/ CDKTF ❌ ❌ ✅ SQL Support ✅ ❌ ✅ ❌ ❌ Dynamic Role Switching ✅ ❌ N/A ❌ ❌ Export Snowflake resources ✅ ❌ ❌ ❌ ❌",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Titan-Systems/titan#8",
+      "title": "titan core vs Terraform",
+      "text": "Terraform is an infrastructure-as-code tool using the HCL config language. The Snowflake provider for Terraform is limited to 1 role per provider . This limitation is at odds with Snowflake's design, which is built to use multiple roles. This mismatch forces you into a complex multi-provider setup which can result in drift, permission errors, and broken plans. Titan Core streamlines this with dynamic role switching . Titan Core automatically detects which role is needed for a given change, and switches to that role before making it. This speeds up development cycles and helps eliminate the use of ACCOUNTADMIN . Titan Core doesn't use a state file. This provides more accurate plans and eliminates issues with stale state.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Titan-Systems/titan#9",
+      "title": "titan core vs Schemachange",
+      "text": "Schemachange is a database migration tool based on Flyway. It uses SQL scripts to deploy resources to different environments. Schemachange is an imperative migration tool. For developers, that means you must know Snowflake's current state and the exact SQL commands needed to update it to the desired state. If environments get changed outside of the tool, your migration scripts may need significant adjustments. Titan Core simplifies this with a declarative approach. With Titan Core, just define what an environment should look like, you don't need to know the detailed steps or SQL commands needed to get there. Declarative config is less error-prone and more scalable, especially in dynamic and complex data environments.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Titan-Systems/titan#10",
+      "title": "titan core vs Permifrost",
+      "text": "Permifrost is an access-management tool for Snowflake. It helps you automate the creation of users, roles, and grants. Permifrost only manages permissions, it doesn't manage any other aspect of your Snowflake account. Permifrost can be very slow. Running simple Permifrost configs can take minutes to run. Titan Core is designed to run in seconds, even with complex environments.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Titan-Systems/titan#11",
+      "title": "titan core vs SnowDDL",
+      "text": "SnowDDL is a declarative object management tool for Snowflake, similar to Titan Core. It uses a streamlined permissions model that simplifies granting read and write access to databases and schemas. SnowDDL takes a strongly opinionated stance on roles in Snowflake. If you don't need a 3-tier role heirarchy, SnowDDL may not be a good fit.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Titan-Systems/titan#12",
+      "title": "Legend",
+      "text": "- ✅ Supported - 🚧 Unstable - ❌ Not Yet Supported Name Supported ------------------------------- ---- Account Resources Account Parameter ✅ API Integration ✅ Catalog Integration ↳ Glue ✅ ↳ Object Store ✅ Compute Pool ✅ Connection ❌ Database ✅ External Access Integration ✅ External Volume ✅ Failover Group 🚧 Grant ↳ Future Grant ✅ ↳ Privilege Grant ✅ ↳ Role Grant ✅ Network Policy ✅ Notification Integration ↳ Email 🚧 ↳ AWS 🚧 ↳ Azure 🚧 ↳ GCP 🚧 Replication Group 🚧 Resource Monitor ✅ Role ✅ Role Grant ✅ Scanner Package ✅ Security Integration ↳ External API ❌ ↳ External OAuth ❌ ↳ Snowflake OAuth 🚧 ↳ SAML2 ❌ ↳ SCIM ❌ Share ✅ Storage Integration ↳ AWS ✅ ↳ Azure ✅ ↳ GCS ✅ Tag Reference ✅ User ✅ Warehouse ✅ Database Resources Database Role ✅ Schema ✅ Schema Resources Aggregation Policy ✅ Alert ✅ Authentication Policy ✅ Dynamic Table ✅ Event Table ✅ External Function 🚧 External Table ❌ File Format ↳ CSV ✅ ↳ JSON ✅ ↳ AVRO ❌ ↳ ORC ❌ ↳ Parquet ✅ Hybrid Table 🚧 Iceberg Table ↳ Snowflake Catalog ✅ ↳ AWS Glue ❌ ↳ Iceberg files ❌ ↳ Delta files ❌ ↳ REST Catalog ❌ ↳ Open Catalog ❌ Image Repository ✅ Masking Policy ❌ Materialized View 🚧 Model ❌ Network Rule ✅ Notebook ✅ Packages Policy ✅ Password Policy ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Titan-Systems/titan#13",
+      "title": "What if I need a type of resource isn't supported?",
+      "text": "Please create a GitHub issue if there's a resource you need that isn't currently supported.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Titan-Systems/titan#14",
+      "title": "Contributing",
+      "text": "Contributions are welcome! Titan Core does not require a contributor license agreement.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Titan-Systems/titan/blob/main/docs/README.md",
+      "title": "docs/README.md",
+      "text": "titan core - Snowflake infrastructure as code Titan Core helps you provision, deploy, and secure resources in Snowflake. It replaces tools like Terraform, Schemachange, or Permifrost. Deploy any Snowflake resource, including users, roles, schemas, databases, integrations, pipes, stages, functions, stored procedures, and more. Convert adhoc, bug-prone SQL management scripts into simple, repeatable configuration. Titan Core is for DevOps engineers looking to automate and manage Snowflake infrastructure. Analytics engineers working with dbt who want to manage Snowflake resources without macros. Data platform teams who need to reliably manage Snowflake with CI/CD. Organizations that prefer a git-based workflow for infrastructure management. Teams seeking to replace Terraform for Snowflake-related tasks. Key Features Declarative » Generates the right SQL to make your config and account match Comprehensive » Nearly every Snowflake resource is supported Flexible » Write resource configuration in YAML or Python Fast » Titan Core runs 50-90% faster than Terraform and Permifrost Migration-friendly » Generate config automatically with the export CLI Contents Getting Started: Installation and ",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/Titan-Systems/titan",
+  "stars": 487
+}

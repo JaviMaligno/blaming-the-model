@@ -1,0 +1,100 @@
+{
+  "slug": "PhonePe--mantis",
+  "name": "mantis",
+  "description": "Mantis is a security framework that automates the workflow of discovery, reconnaissance, and vulnerability scanning.",
+  "documents": [
+    {
+      "url": "https://github.com/PhonePe/mantis#0",
+      "title": "Introducción",
+      "text": "Features • Modules • Installation • Command Line Options • Documentation • Contributors • Join Discord We are in the beta phase of the tool and would like to know if you are facing any installation issues with our framework. If so, please post your issues on our discord.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PhonePe/mantis#1",
+      "title": "Summary",
+      "text": "Mantis is a command-line framework designed to automate the workflow of asset discovery, reconnaissance, and scanning. It takes the top-level domains as input, then seamlessly progresses to discovering corresponding assets, including subdomains and certificates. The tool performs reconnaissance on active assets and concludes with a comprehensive scan for vulnerabilities, secrets, misconfigurations and phishing domains - all powered by a blend of open-source and custom tools.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PhonePe/mantis#2",
+      "title": "Features :rocket:",
+      "text": "- Automated Discovery, Recon & Scan - Distributed Scanning (split a single scan across multiple machines) - Super-Easy Scan Customisation - Dashboard Support - Vulnerability Management - Advanced Alerting - DNS Service Integration - Integrate new tool (existing and custom) in minutes Click here to know more about the features in detail.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PhonePe/mantis#3",
+      "title": "Modules 🧰",
+      "text": "- Discovery - Subdomains - Certificates - Recon - Open Ports - Technologies - CDN - WAF - Web Server - IP - ASN Information - Location - Scan - Domain Level Vulnerabilities and Misconfigurations - Secrets Scanning - Phishing Domains",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PhonePe/mantis#4",
+      "title": "Installation ⚙️",
+      "text": "Mantis supports multiple installation types. Installing Mantis via Docker would be a good start to get a hang of the framework. Considering that Mantis also includes MongoDB and AppSmith, we have provided a shell script that installs all the components.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PhonePe/mantis#5",
+      "title": "Minimum System Requirements (Single Machine Scan) 🖥️",
+      "text": "- Supported OS: Ubuntu, macOS - RAM - 4GB - Cores - 2 - Storage - 16GB Warning 🚨 - The framework combines a number of open source and custom tools and runs them in parallel, hence the framework is CPU intensive and is recommended to run the framework on a dedicated VM. The -tc option controls the parallel processing. If you run it from a machine with low configuration, set the -tc to 1 or 2. If you have a machine with a higher configuration, you can increase the -tc count.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PhonePe/mantis#6",
+      "title": "Docker",
+      "text": "Setup Video - Click Here Clone the Mantis repository cd into the Mantis directory Run the respective docker setup file based on your OS For uninstalling Mantis (remove all the resources created by installation), run the following command in the same directory",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PhonePe/mantis#7",
+      "title": "Dashboard Setup 📊",
+      "text": "Once the docker setup is complete, please run a scan and follow the below instructions to setup the dashboard. Warning 🚨 - Run atleast one scan before setting up dashboard using the command - The dashboard will be accessible at http://mantis.dashboard:1337 - Once you access this dashboard URL, you should be prompted to create an AppSmith account. - Remember/bookmark this base url as AppSmith uses a multi-application construct with \"My first application\" as the default. We will be importing the appropriate Application and Pages in the following steps. - Navigate to Applications with the \"a \" icon on the upper left or using the link included. - In the upper right of the Applications page, there is an orange button \"Create new\" as well as 3 dots, click the orange \"Create new\" button to expand a drop-down. - The drop-down menu has 3 items: \"Application\", \"Templates\", and \"Import\" ... select \"Import\" by clicking it. - From there, import the template JSON file. It is located in the cloned repo: in the dashboard templates folder. ( mantis\\dashboard templates\\Mantis Dashboard.json ) - You will be asked to enter db information for the included MongoDB that was created. Enter the following: ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PhonePe/mantis#8",
+      "title": "Run a scan 🔍",
+      "text": "You want to onboard an org with its TLDs/IPs/IP-CIDRs/IP Range for the first time, use the onboard mode. This runs the scan on the default workflow.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PhonePe/mantis#9",
+      "title": "Scan on all assets belonging to an organisation",
+      "text": "Now that you have onboarded, you just need to run scheduled scans for an org, you can just use the scan mode",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PhonePe/mantis#10",
+      "title": "How to contribute ?",
+      "text": "If you want to contribute to this project: Submit an issue if you found a bug, or a have a feature request. Make a Pull Request from dev branch if you want to improve the code.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PhonePe/mantis#11",
+      "title": "Need Help ? 🙋‍♂️",
+      "text": "Take a look at our documentation Please use Mantis Discussions forum for all your queries Please join our discord channel",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PhonePe/mantis#12",
+      "title": "Credits 🎖",
+      "text": "Development - Prateek Thakare Recon Tools Design/Launch scripts - Bharath Kumar Secret Scanning - Hitesh Kumar, Saddam Hussain Dashboard - Saddam Hussain Design Suggestions - Dhruv Shekhawat, Santanu Sinha Framework Design - Praveen Kanniah Special Thanks - Ankur Bhargava",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PhonePe/mantis#13",
+      "title": "Disclaimer",
+      "text": "Usage of this program for attacking targets without consent is illegal. It is the user's responsibility to obey all applicable laws. The developer assumes no liability and is not responsible for any misuse or damage caused by this program. Please use responsibly. The material contained in this repository is licensed under Apache2.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PhonePe/mantis/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "How to contribute to Mantis? If you want to contribute to Mantis: - Submit an issue if you found a bug, or a have a feature request - Make a Pull Request from dev branch if you want to improve the code - Use Mantis Discussions - Contributions forum to seek help regarding contributions",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/PhonePe/mantis",
+  "stars": 1039
+}

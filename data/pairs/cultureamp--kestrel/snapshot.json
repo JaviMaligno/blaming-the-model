@@ -1,0 +1,106 @@
+{
+  "slug": "cultureamp--kestrel",
+  "name": "kestrel",
+  "description": "Kotlin Framework for running event-sourced services",
+  "documents": [
+    {
+      "url": "https://github.com/cultureamp/kestrel#0",
+      "title": "Introducción",
+      "text": "Kestrel (Kotlin Event-Sourcing) A framework for building event-sourced, CQRS applications in Kotlin.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cultureamp/kestrel#1",
+      "title": "Summary",
+      "text": "Event-sourcing is an architectural paradigm wherein application state is modelled and stored as an immutable sequence of semantic events which are meaningful in your application's domain. CQRS, Command/Query Responsibility Segregation, describes a pattern in which write (command) actions and read (query) actions are codified in entirely separately classes, models and pathways through your system. Used in tandem, event-sourcing and CQRS provide a powerful and flexible architectural pattern. In an event-sourced, CQRS system, writes typically happen via an event-centric domain model, also known as \"Aggregates\", and these changes propagate through to \"projections\" of those events to be read from by the view side of the application. Events are thus considered the source of truth, while projections are disposable and can be rebuilt by reprocessing the historical events. Kes trel is a K otlin E vent- S ourcing and CQRS framework that strives for: - Minimalism - lack of boilerplate - Expressiveness - expressing domain rules well - Robustness - help you not make mistakes, primarily through strong typing Here's an example of how an Aggregate might look in Kestrel:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cultureamp/kestrel#2",
+      "title": "Glossary",
+      "text": "- Aggregate - The domain entity that commands interact with and to which events happen. All events happen to a \"thing\" and this is that thing, a context in which to group events. A system will often have multiple aggregates. - Command - A request to change the system via an event on an aggregate. May be accepted or denied based on business rules. - Event - A \"semantic\" domain event that has happened. Events can't be undone once they have happened, and can't be blocked like commands. Events exist in an immutable event stream and once they exist need to be supported forever. At an implementation detail an Event is a wrapper around a DomainEvent with additional metadata attached. - CommandGateway - The interface through which commands make their way through to aggregates. It's responsible for routing commands to aggregates, and orchestrates the loading and saving of aggregates through events and the EventStore . - EventStore - Implements two interfaces, an EventSink , for saving events for aggregates, and an EventSource , for retrieving those events. In general, the event store should only ever be written to via the CommandGateway and read from via an EventProcessor . Kestrel provides",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cultureamp/kestrel#3",
+      "title": "Sample App",
+      "text": "See the sample app for an example of creating a web-app built on top of this framework.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cultureamp/kestrel#4",
+      "title": "Using interfaces",
+      "text": "The simplest way to get started is to use the [ SimpleAggregate[Constructor] ](/src/main/kotlin/com/cultureamp/eventsourcing/Aggregate.kt) interface. If you are not sure which aggregate creation method to use, we recommend this option. For example: This can then by wired into your CommandGateway like so: If you need access to dependencies during command-handling, or want finer grained control over returned error types or \"self\" types, there are a few different interfaces you can use: [ SimpleAggregate[Constructor]WithProjection ](/src/main/kotlin/com/cultureamp/eventsourcing/Aggregate.kt) as above but with access to a dependency during command-handling. [ Aggregate[Constructor] ](/src/main/kotlin/com/cultureamp/eventsourcing/Aggregate.kt) explicit error and self types. [ Aggregate[Constructor]WithProjection ](/src/main/kotlin/com/cultureamp/eventsourcing/Aggregate.kt) as above but with access to a dependency during command-handling.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cultureamp/kestrel#5",
+      "title": "Using functions",
+      "text": "If you prefer, you can also model your aggregates in a more functional-programming style using a group of related functions. This is useful for when you want more control over how you write your aggregates, for example to utilize the constructor of your class (not possible via interfaces), to only inject a dependency into one of the two command-handling methods, when you don't want to clutter your domain code with loads of generics but still want rich types, or if you simply just prefer thinking in functions. Here's an example: This can then by wired into your CommandGateway like so: If you happen to have a \"stateless\" aggregate that doesn't need to update its internal state to handle commands, you can model that too:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cultureamp/kestrel#6",
+      "title": "Event-processors (Projectors and Reactors)",
+      "text": "Kestrel offers multiple ways of defining your event-processors depending on your needs.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cultureamp/kestrel#7",
+      "title": "Using interfaces",
+      "text": "The simplest way to get started is to use the DomainEventProcessor interface. If you don't think you'll need access to the event metadata, we recommend this option. For example: This can then by wired into your application like so: If you want to process aynchronously you can do something like: Or, if you must, you can run it synchronously like: If you need access to the event metadata during handling, you can use the slightly more verbose interface DomainEventProcessor",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cultureamp/kestrel#8",
+      "title": "Using functions",
+      "text": "If you prefer, you can also write your event-processor in an interface agnostic way. This is useful for when you want more control over how you write your event-processors, for example writing a single class that handles two or more unrelated domain event types (not possible via interfaces), or if you just don't like interfaces. For example: This can then by wired into your application like so: Using EventProcessor compose allows one to wrap up the two event-handling methods as one EventProcessor which then allows the sharing of a single bookmark.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cultureamp/kestrel#9",
+      "title": "Event processor monitor",
+      "text": "When running AsyncEventProcessors , it becomes important to be able to monitor where each of these are up to in the event stream. You can do this using the AsyncEventProcessorMonitor",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cultureamp/kestrel#10",
+      "title": "Entity-processors (projecting from a table rather than an event stream)",
+      "text": "Sometimes the data you want to project isn't an event stream at all — it's rows in a table owned by some other system. Kestrel mirrors the whole event-processor stack for that case, reading rows in updated at order and tiebreaking on a uuid id, the same way the Confluent JDBC source connector does in its \"timestamp+incrementing\" mode. Each event-sourcing piece has an entity equivalent: Event stream Entity table Notes ---------------------------- ------------------------------------ -------------------------------------------------------------- sequence: Long EntityPosition(updatedAt, id) Total ordering, with the id as the tiebreaker. A null position is the equivalent of sequence 0 SequencedEvent PositionedEntity EventSource EntitySource A repository call: \"give me rows after this position\" EventProcessor EntityProcessor BookmarkStore EntityBookmarkStore Bookmarks store (entity last updated at, entity last id) instead of a sequence BatchedAsyncEventProcessor BatchedAsyncEntityProcessor EventsSequenceStats EntityUpdatedAtStats The head of the stream, i.e. the newest updated at AsyncEventProcessorMonitor AsyncEntityProcessorMonitor Reports lag in milliseconds rather than in sequence n",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cultureamp/kestrel#11",
+      "title": "Maintaining the polled column",
+      "text": "Kestrel only ever reads the polled column. Whatever maintains it is yours, and the boundary's correctness depends on it, so it is worth getting right in one go. On Postgres: Each part of that prevents a specific failure: - clock timestamp() , not now() . now() is transaction timestamp() , fixed when the transaction starts, so a transaction that began earlier but writes later stamps a smaller value than the row already had. The column then moves backwards and a row that has already been read is missed. clock timestamp() reads the wall clock at the moment of the write, and because a BEFORE trigger runs after the row lock is taken, two transactions updating one row are serialised and the later writer necessarily reads a later clock. - GREATEST(..., transaction timestamp()) . The boundary is the oldest open transaction's xact start , and safety needs every row stamped at or after its own xact start . transaction timestamp() is exactly that value, so the GREATEST guarantees it even if the system clock steps backwards mid-transaction — clock timestamp() reads CLOCK REALTIME , which is corrected rather than monotonic. In the ordinary case it returns clock timestamp() unchanged. - AT TIME ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cultureamp/kestrel#12",
+      "title": "Things to watch out for",
+      "text": "- Choosing the polled column. Whatever you pass as updatedAtColumn has to advance on every change you care about, because that column is the only thing the processor watches. Polling a created at works fine for insert-only tables, but if rows are later mutated — soft-deleted by stamping a deleted at , say — those changes are invisible, since created at doesn't move. A table without a real updated at needs one adding, or a trigger to maintain it, before a processor over it can see updates rather than just inserts. - updated at doesn't record commit order, which is what safeBoundary is for. Postgres now() is fixed when a transaction starts , so a transaction beginning at 12:00 and committing at 12:30 makes rows visible half an hour after the timestamp they carry — and a reader whose bookmark has meanwhile passed 12:00 never sees them again, with nothing to alert on. Pass PostgresXactStartSafeBoundary(database) , which never lets the reader past the start of the oldest transaction that could still commit, and needs no tuning — it is derived entirely from database state. Its cost is that any long-running transaction in the same database holds the reader up. That is reported when a poll",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cultureamp/kestrel#13",
+      "title": "Resources",
+      "text": "- CQRS article by Martin Fowler - Event-sourcing talk by Sebastian von Conrad - CQRS and event-sourcing FAQ - Event-sourcing basic concepts",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cultureamp/kestrel/blob/master/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing We're still figuring out how this will look but for now if you need support, please raise an issue and we will get back to you within a few days. Developing To compile and run tests ./gradlew test Make sure to increase the base version number in gradle.properties Publishing to maven local If you need to test your version with another project in your development environment, you can publish it to maven local SKIP SIGNING=true ./gradlew publishToMavenLocal Publishing If you're authorized to publish to Maven Central, which is a process done manually by a developer, you'll need access to the Central Portal credentials (details below). Note: Sonatype has migrated from OSSRH to Central Portal. The old OSSRH system is deprecated. Before you publish for the first time you will need to do some set up: 1. Set up Central Portal Credentials 2. Install GPG (if not already done) 3. A GPG key set up 4. Gradle configured with your GPG & Central Portal credentials Then you can push the artefacts directly to Maven Central via the Central Portal 1. Central Portal Credentials To access the Central Portal you need credentials from 1Password, Team Develop Kestrel Sonatype Credentials 2. Ins",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/cultureamp/kestrel/blob/master/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "0.22.0 Breaking changes This release moves makes the updating of EventsSequenceStats during RelationalDatabaseEventStore sink optional, so that applications can choose to not to this synchronously and update these stats asynchronously. This moves the lastSequence(...) method out of the EventSource interface and onto a new EventsSequenceStats class. To migrate, just switch over to calling the method in its new location. 0.25.0 Breaking changes The interface for EventTypeResolver has changed to support the event-store filtering by aggregate-type along side event-type . This will only affect codebases that provided a custom implementation of this interface. See PackageRemovingEventTypeResolver for an example of how to work with the new interface. 0.30.0 Breaking changes Exposed has been upgraded from 0.49.0 to 1.3.1 . This is a breaking upgrade for consuming applications, which will need to make the equivalent changes themselves. Kestrel is now built with Kotlin 2.2.21 , up from 2.1.0 . Exposed 1.3.1 is published with Kotlin 2.3 metadata, and a 2.1 compiler cannot read it ( Module was compiled with an incompatible version of Kotlin ); a 2.2 compiler can, since the compiler reads metad",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/cultureamp/kestrel",
+  "stars": 77
+}

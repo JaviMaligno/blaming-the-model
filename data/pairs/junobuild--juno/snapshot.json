@@ -1,0 +1,64 @@
+{
+  "slug": "junobuild--juno",
+  "name": "juno",
+  "description": "Open-Source SDK for building apps",
+  "documents": [
+    {
+      "url": "https://github.com/junobuild/juno#0",
+      "title": "Introducción",
+      "text": "[!IMPORTANT] Juno is in maintenance and not actively developed anymore. Do not use it for anything serious.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/junobuild/juno#1",
+      "title": "⭐️ Description",
+      "text": "[Juno] is a platform for hosting static websites, building web applications, and running serverless functions with the privacy and control of self-hosting. It provides a familiar cloud experience with strong security and zero operational complexity. Each project runs in its own WASM container, fully owned and controlled by you. Think of it as Vercel + Firebase + Self-Hosting - without the compromises. - 🔑 Authentication [Docs] - 📦 Datastore [Docs] - 📂 File Storage [Docs] - 🌐 Hosting [Docs] - ⚙️ Serverless Functions [Docs] - 📊 Analytics [Docs] - 👀 Monitoring [Docs] - 💾 Snapshots [Docs]",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/junobuild/juno#2",
+      "title": "⚡️ Why Juno?",
+      "text": "- Zero DevOps - No servers to manage, no infrastructure to maintain - Full-stack - Every service you need runs in your container, no third party needed - True Ownership - Your code, data, and infrastructure are fully yours - Local-First Development - Full production-like emulator for rapid iteration",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/junobuild/juno#3",
+      "title": "⚙️ Serverless Functions",
+      "text": "Write serverless functions in TypeScript or Rust and deploy them to your own WASM container. TypeScript: Rust:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/junobuild/juno#4",
+      "title": "🚢 Deploy",
+      "text": "Deploy to production with a single command: Or integrate with GitHub Actions → Setup CI/CD",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/junobuild/juno#5",
+      "title": "🧪 Local Development",
+      "text": "Spin up a full production-like environment locally using the Juno emulator: Run with Docker or Podman → Emulator Docs",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/junobuild/juno#6",
+      "title": "💁‍♂️️ Links & Resources",
+      "text": "Here are some useful links: - Looking to get started? Check out the Guides & Examples for step-by-step tutorials and sample code. - Explore the full documentation for in-depth details on using and configuring Juno. - See the HACKING document for instructions on running and developing Juno locally.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/junobuild/juno#7",
+      "title": "🖥️ Bootstrap",
+      "text": "Planning to build a website, blog, or web application? Start quickly by scaffolding a new project using a template.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/junobuild/juno/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to Juno Thank you for your interest in contributing to Juno ! We welcome all contributions—whether it's code, documentation, bug reports, feature ideas, or feedback. How to Start? If you’re unsure where to begin: - Check out the \"Good First Issues\" (if available). - Ask for guidance on Discord or Twitter. - Submit an issue, and a maintainer will help! --- 🚀 How to Contribute 1. Report Bugs or Suggest Features - Search existing issues to avoid duplicates. - Open an Issue for bugs or Discussion for ideas. 2. Set Up Your Environment Follow HACKING.md for setup instructions. 3. Make Your Changes 🔹 Git Commands for Branch Workflow 4. Test Your Changes - Run tests locally (see HACKING.md ). - Verify functionality. 5. Run Checks Before pushing your branch and creating a PR, ensure your code passes formatting, linting, and type checks by running: 6. Submit a Pull Request (PR) 1. Go to Juno’s Pull Requests and click \"New PR\". 2. Select your fork/branch as the source. 3. Follow the PR template (if any) and: - Link related issues (e.g., Closes 123 ). - Add screenshots for UI changes. --- ❓ Need Help? - Discord : Join chat - Twitter/X : @junobuild - Email : hi@juno.build",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/junobuild/juno",
+  "stars": 422
+}

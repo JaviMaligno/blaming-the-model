@@ -1,0 +1,40 @@
+{
+  "slug": "poowf--otter",
+  "name": "otter",
+  "description": "A relatively automatic CRUD backend administration panel for Laravel",
+  "documents": [
+    {
+      "url": "https://github.com/poowf/otter#0",
+      "title": "Introducción",
+      "text": "A relatively ottermatic (automatic) CRUD backend administration panel Introduction Otter was created as an open-source alternative to Laravel Nova. The backend administration panel is built with the beautiful tabler template and follows the structure of the popular laravel extension packages like horizon and telescope. Otter is designed to handle almost everything for you through OtterResource files that essentially tie to your Eloquent Models. Screenshots Installation Install Otter with composer: In Laravel 5.5+, service providers and aliases are automatically registered. If you're using Laravel 5.5+, skip ahead directly to step 2. Once the composer installation completes, all you need to do is add the service provider. Open config/app.php , and make the following changes: 1) Add a new item to the providers array: 2) Install all the relevant Otter assets: If you are updating Otter, run php artisan otter:publish instead Usage Defining the Models to be registered to Otter is very simple. Let's create an OtterResource by running the following command: You may specify a model class name with the --model argument This will generate a OtterResource file located in app/Otter . OtterResou",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/poowf/otter#1",
+      "title": "Model",
+      "text": "The $model variable is where we define the Eloquent Model that the OtterResource is responsible for.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/poowf/otter#2",
+      "title": "Fields",
+      "text": "The fields function will return a key value pair of the available columns that you would like to control in the Otter. They key is the name of the column in the model, and the value is the type of the input. You can hide certain fields in the index and single view resources by defining a hidden function returning an array of the keys that you would like hidden. An example configuration would be to hide the password field for a User.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/poowf/otter#3",
+      "title": "Validation",
+      "text": "When creating or updating the resources in storage, you should add some validation rules to ensure that the data is stored correctly. You can do this for both the client and server side by defining a validations method in the OtterResource . The below example has defined rules for both the client and server side for the create and updated methods. The client side is utilising VeeValidate for validation so please see the available rules at the VeeValidate Rules Documentation. The server side is utilising the default Laravel Validation Rules.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/poowf/otter#4",
+      "title": "Relationships",
+      "text": "Otter has partial support for Eloquent relationships. You have to define your relationships in the OtterResource file and define the Relationship method name as the key and the OtterResource class name that links to the relationship. You can also define a custom foreign key if you are not using the Laravel defaults. The title property should be the column of the model that will be displayed in the options list during editing/creating of new resources . Authorization Otter exposes a dashboard at /otter . By default, you will only be able to access this dashboard in the local environment. Within your app/Providers/OtterServiceProvider.php file, there is a gate method. This authorization gate controls access to Otter in non-local environments. You are free to modify this gate as needed to restrict access to your Otter installation: Configuration After publishing Otter's assets, its primary configuration file will be located at config/otter.php . This configuration file will allow you to configure the middleware for both the api and web routes that is automatically registered by Otter. You can also configure the keys of the Auth::user() instance for the name and email properties that i",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/poowf/otter",
+  "stars": 253
+}

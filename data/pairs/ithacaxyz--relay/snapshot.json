@@ -1,0 +1,82 @@
+{
+  "slug": "ithacaxyz--relay",
+  "name": "relay",
+  "description": "Transparent cross-chain transaction routing for EIP-7702 accounts",
+  "documents": [
+    {
+      "url": "https://github.com/ithacaxyz/relay#0",
+      "title": "Introducción",
+      "text": "Ithaca Relay A transparent cross-chain transaction router for EIP-7702 accounts, specifically built for Porto.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ithacaxyz/relay#1",
+      "title": "Prerequisites",
+      "text": "The relay depends on the following things being available on the chains it connects to: - EIP-7702 is enabled. - EIP-1559 is enabled. - eth simulateV1 is enabled, or debug traceCall with log collection support. - The RIP-7212 secp256r1 precompile is available, or a shim is deployed[^1]. - Multicall3 - PUSH0 Additionally, the relay can also leverage several things for faster confirmations and increased reliability, including: - Flashblocks - Using sequencer endpoints These things must be enabled in the configuration. [^1]: If the secp256r1 precompile is enabled, the address 0x0000000000001Ab2e8006Fd8B71907bf06a5BDEE must additionally be a contract. This acts as a canary signalling the Solady P256 library that the precompile exists. If the canary is not deployed, the shim will be tried first. See Solady's P256 library.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ithacaxyz/relay#2",
+      "title": "Deployment",
+      "text": "1. Deploy the delegation and orchestrator contracts on the destination chain. 1. Deploy or identify at least one token to accept as fee token(s). 1. Generate two private keys, one for transaction signing, and one for quote signing. You can do this with cast wallet new . Run the relay, passing in the following flags. In the example below, the binary will be run directly with cargo : The relay reads its configuration from the file located at --config (default relay.yaml ). If it does not exist, it will be created from CLI arguments. The precedence for config is: CLI environment variables configuration file.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ithacaxyz/relay#3",
+      "title": "Configuration examples",
+      "text": "Below are some example configs with explanations on how they work. For a complete config for running the relay locally, see relay.example.yaml .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ithacaxyz/relay#4",
+      "title": "Interop",
+      "text": "A minimal configuration for interop between two chains, i.e. liquidity can move between them.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ithacaxyz/relay#5",
+      "title": "Cross environment",
+      "text": "A minimal configuration where the relay supports two chains, but they are not interopable, i.e. liquidity cannot move between them. This is useful if you want to support the same accounts on two different environments (testnet and mainnet).",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ithacaxyz/relay#6",
+      "title": "End-to-End",
+      "text": "End-to-end tests use ithacaxyz/account under a git submodule located at tests/account . These tests depend on building certain these contracts.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ithacaxyz/relay#7",
+      "title": "Prerequisites",
+      "text": "- Make sure forge is installed and available in your PATH. - Make sure cargo-nextest is installed an available in your PATH. - Pull ithacaxyz/account",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ithacaxyz/relay#8",
+      "title": "Running",
+      "text": "From the repository root, use the xtask command which automatically builds contracts and runs tests: You can pass additional arguments to cargo test :",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ithacaxyz/relay#9",
+      "title": "Environment Variables",
+      "text": "Both approaches support the following environment variables with .env support: - TEST CONTRACTS : Directory for contract artifacts (defaults to tests/account/out ). - TEST EXTERNAL ANVIL : Use an external node for chain 0 instead of spawning Anvil (alias for TEST EXTERNAL ANVIL 0 ). - TEST EXTERNAL ANVIL N : Use an external node for chain N (e.g., TEST EXTERNAL ANVIL 0 , TEST EXTERNAL ANVIL 1 ). - Note: TEST EXTERNAL ANVIL 0 takes precedence over TEST EXTERNAL ANVIL if both are set. - TEST FORK URL / TEST FORK BLOCK NUMBER : Fork settings for locally spawned Anvil instances. - TEST EOA PRIVATE KEY : Private key for the EOA signer (defaults to EOA PRIVATE KEY ). - TEST ORCHESTRATOR : Address for Orchestrator contract; deploys a mock if unset. - TEST PROXY : Address for proxy contract; deploys a mock if unset. - TEST ERC20 : Address for the payment ERC20 token; deploys a mock if unset. - TEST ERC721 : Address for the ERC721 token; deploys a mock if unset. Example multi-chain test setup:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ithacaxyz/relay#10",
+      "title": "Deploying",
+      "text": "A docker image is built and pushed to GitHub Packages ( ghcr.io/ithacaxyz/relay ) when a git tag ( vx.y.z ) is pushed to the repository.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ithacaxyz/relay/blob/main/docs/README.md",
+      "title": "docs/README.md",
+      "text": "Ithaca Relay Documentation Welcome to the Ithaca Relay developer documentation. This documentation is specifically designed for developers working on the relay codebase. Quick Links - Relay README - Basic setup and running instructions Documentation Structure 🚀 Development - Getting Started - Set up your development environment - Testing Guide - Unit tests, e2e tests, and testing patterns - Debugging Guide - Debugging tools, Anvil traces, Cast CLI, and troubleshooting 🏗️ Architecture - System Overview - High-level relay architecture and components - Porto Integration - Ecosystem context and intent-based design principles - RPC Endpoints - JSON-RPC API implementation details - Transaction Pipeline - End-to-end transaction processing flow - Storage Layer - Database schema and storage abstractions - Cross-Chain Operations - Multichain intent and settlement implementation 📡 APIs - RPC API Reference - Complete JSON-RPC endpoint documentation 🔧 Operations - Configuration Reference - Configuration options and examples - Troubleshooting Guide - Common issues and solutions 📊 Diagrams - Bundle State Machine - Cross-chain bundle processing states External Resources - Porto Documentation - Cli",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/ithacaxyz/relay",
+  "stars": 113
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "badger-cash--badger",
+  "name": "badger",
+  "description": "Your gateway to the world of Bitcoin Cash (BCH) apps",
+  "documents": [
+    {
+      "url": "https://github.com/badger-cash/badger#0",
+      "title": "Installation",
+      "text": "- Firefox and Chrome: Download the most recent release from https://badger.bitcoin.com - Brave: Install from chrome store",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/badger-cash/badger#1",
+      "title": "Docker build distribution",
+      "text": "Notes: - Recent docker version needed to build. - OSX or Linux build environment preferred. - Execute commands from the source directory. Steps: 1. Build and run the image, run command: docker build -f Dockerfile -t badger:0.7.16 . && docker run --name badger0716 badger:0.7.16 2. After the build is complete, copy the distribution files to your local folder: docker cp badger0716:/app/builds/. ./ 3. A distribution file for each supported browser will be copied, such as badgerwallet-firefox-0.7.16.zip for Firefox browsers.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/badger-cash/badger#2",
+      "title": "Intro",
+      "text": "Badger is a secure identity vault for Bitcoin Cash. It allows you to hold BCH & tokens, and serves as your bridge to decentralized applications (dapps). Bitcoin Cash and tokens enable an entirely new dimension to the web with micro-payments, smart-assets, decentralized exchanges, distributed autonomous organizations and much more. Badger is your identity on this new web. You can pay for premium content, run smart contracts and experience dapps seemlessly and trust free. Powered by BITBOX, Badger is 100% non-custodial. Your private keys never leave your computer.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/badger-cash/badger#3",
+      "title": "Badger Button",
+      "text": "Badger Button is a library of open source UI components which content creators and entrepreneurs can drop in to their site to enable micro payments, premium content, tipping, e-commerce and much more. - Usage: https://old.reddit.com/r/btc/comments/9l9j1t/how to create your own custom badger button/ - Example buttons visible on articles at https://coinspice.io/",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/badger-cash/badger#4",
+      "title": "CashID",
+      "text": "- Allows dapps to authenticate an account and provide previously purchased content - CashID react component and example usage by paOol: https://github.com/paOol/react-cashid",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/badger-cash/badger#5",
+      "title": "Credits",
+      "text": "- SpendBCH - Gabriel Cardona - SLP - bitcoin.com - Badger is originally forked from the excellent MetaMask project",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/badger-cash/badger/blob/master/docs/README.md",
+      "title": "docs/README.md",
+      "text": "Documentation - How to add custom build to Chrome - How to add custom build to Firefox - How to develop a live-reloading UI - Publishing Guide - How to develop an in-browser mocked UI - How to live reload on local dependency changes - How to add new networks to the Provider Menu - How to manage notices that appear when the app starts up - How to port Badger to a new platform - How to generate a visualization of this repository's development",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/badger-cash/badger/blob/master/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Welcome to Badger! If you're submitting code to Badger, there are some simple things we'd appreciate you doing to help us stay organized! First check out the Issues page on Github to see if there are any open issues which seem like something you could solve. Next join our discord server to chat w/ the team in real-time. Finding the right project Before taking the time to code and implement something, feel free to open an issue and discuss it! There may even be an issue already open, and together we may come up with a specific strategy before you take your precious time to write code. There are also plenty of open issues we'd love help with. Search the good first issue label. Submitting a pull request When you're done with your project / bugfix / feature and ready to submit a PR, there are a couple guidelines we ask you to follow: - [ ] Test it : For any new programmatic functionality, we like unit tests when possible, so if you can keep your code cleanly isolated, please do add a test file to the tests folder. - [ ] Add to the CHANGELOG : Help us keep track of all the moving pieces by adding an entry to the CHANGELOG.md with a link to your PR. - [ ] Meet the spec : Make sure the PR",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/badger-cash/badger/blob/master/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog 0.7.17 - Update distribution process for easier review and verification 0.7.16 - Update SLPDB to use Fountainhead.cash - Update BitDB to use Fountainhead.cash 0.7.15 - Add account consolidation warning - Disable legacy address sending 0.7.14 - Fix error msg for sending tokens with no BCH - fix qrcode scanning for BCH uri schemes 0.7.13 - Add new token icons 0.7.12 - Add token creation demo page 0.7.11 - Fix broken UI from bad bip70/cashid URIs 0.7.10 - Fix Identicons to match badger mobile - Add new token icon 0.7.9 - Fix for problems sending some tokens - Add new token icon 0.7.8 - Show success page after completing transaction - Don't show USD conversion button when sending tokens - Remove SLP prefix on confirmation screen - Display payment memo in transaction list - Remove transaction activity log 0.7.7 - SLP support for BIP70 API transactions - Click to copy CashAccount - Sort tokens alphabetically - Display transaction history for SLP dividend payments - Display QR code for SLP account - Skip seed backup prompt when restoring existing wallet - Fix incorrect password error 0.7.6 - Re-enable CashAccounts - Automatic discovery of pre-existing CashAccounts on import - Re",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/badger-cash/badger",
+  "stars": 65
+}

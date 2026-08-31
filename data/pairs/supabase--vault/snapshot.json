@@ -1,0 +1,52 @@
+{
+  "slug": "supabase--vault",
+  "name": "vault",
+  "description": "Extension for storing encrypted secrets in the Vault",
+  "documents": [
+    {
+      "url": "https://github.com/supabase/vault#0",
+      "title": "Introducción",
+      "text": "Introduction to the Vault (Beta) Many applications have sensitive data that must have additional storage protection relative to other data. For example, your application may access external services with an \"API Key\". This key is issued to you by that specific external service provider, and you must keep it safe from being stolen or leaked. If someone got their hands on your payment processor key, for example, they may be able to use it to send money or digital assets out of your account to someone else. Wherever this key is stored, it would make sense to store it in an encrypted form. Supabase provides a table called vault.secrets that can be used to store sensitive information like API keys. These secrets will be stored in an encrypted format on disk and in any database dumps. This is often called Encryption At Rest. Decrypting this table is done through a special database view called vault.decrypted secrets that uses an encryption key that is itself not avaiable to SQL, but can be referred to by ID. Supabase manages these internal keys for you, so you can't leak them out of the database, you can only refer to them by their ids.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/supabase/vault#1",
+      "title": "Installation",
+      "text": "The Vault extension is enabled by default. If you install the Vault yourself locally, from SQL you can do:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/supabase/vault#2",
+      "title": "Using the Vault",
+      "text": "Using the vault is as simple as INSERT ing data into the vault.secret table. There is also a handy function for creating secrets called vault.create secret() : The function returns the UUID of the new secret.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/supabase/vault#3",
+      "title": "Name and Description",
+      "text": "Secrets can also have an optional unique name, or an optional description. These are also arguments to vault.create secret() :",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/supabase/vault#4",
+      "title": "Querying Data from the Vault",
+      "text": "If you look in the vault.secrets table, you will see that your data is stored encrypted. To decrypt the data, there is an automatically created view vault.decrypted secrets . This view will decrypt secret data on the fly: Notice how this view has a decrypted secret column that contains the decrypted secrets. Views are not stored on disk, they are only run at query time, so the secret remains encrypted on disk, and in any backup dumps or replication streams. You should ensure that you protect access to this view with the appropriate SQL privilege settings at all times, as anyone that has access to the view has access to decrypted secrets.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/supabase/vault#5",
+      "title": "Updating Secrets",
+      "text": "A secret can be updated with the vault.update secret() function, this function makes updating secrets easy, just provide the secret UUID as the first argument, and then an updated secret, updated optional unique name, or updated description:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/supabase/vault#6",
+      "title": "Turning off Statement Logging",
+      "text": "When you insert secrets into the vault table with an INSERT statement, those statements get logged by default into the Supabase logs. Since this would mean your secrets are stored unencrypted in the logs, you should turn off statement logging while using the Vault. While turning off statement logging does hinder you if you're used to looking at the logs to debug your application, it provides a much higher level of security by ensuring that your data does not leak out of the database and into the logs. This is especially critical with encrypted column data, because the statement logs will contain the unencrypted secrets. If you must store that data encrypted, then you must turn off statement logging. And then restart your project from the dashboard to enable that change. In the future we are researching various ways to refine the way statement logging interacts with sensitive columns.",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/supabase/vault",
+  "stars": 234
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "worldforge--ember",
+  "name": "ember",
+  "description": "The main client for the Worldforge MMORPG system.",
+  "documents": [
+    {
+      "url": "https://github.com/worldforge/ember#0",
+      "title": "Introducción",
+      "text": "DEPRECATED This code has been moved to the Worldforge repository. Ember Ember is the client for the WorldForge virtual world system. It can be used for playing and exploring as well as authoring. That means that if you're a player who wants to explore a virtual world hosted by a Worldforge server, this is the client for you. And if you're a world builder who wants to build your own world, this is also the client for you. To learn more about Worldforge visit our website.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/worldforge/ember#1",
+      "title": "Installation",
+      "text": "The simplest way to install all required dependencies is by using Conan. Alternatively you can use the Hammer tool to compile Ember. This is script provided by the Worldforge project which will download and install all of the required libraries and components used by Worldforge.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/worldforge/ember#2",
+      "title": "API documentation",
+      "text": "If Doxygen is available API documentation can be generated using the target. For example: or",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/worldforge/ember#3",
+      "title": "Working with media",
+      "text": "An alternative to the target is to instead use the raw media repo source, as found at https://svn.worldforge.org:886/svn/media/trunk/. If you intend to edit or add new media you probably want this instead. The target will use Subversion to checkout the repository to the directory. When running a non-release build Ember will automatically load media from this directory. Note that this might lead to longer start times, as more files needs to be processed. In addition, there's a target which processes the media from the media repository, as fetched by , and places the results in the build directory, under a subdirectory named . When running a non-release build Ember will automatically load media from this directory, taking precedence over the directory.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/worldforge/ember#4",
+      "title": "Dependencies",
+      "text": "We use Conan for our dependency handling. If you're developing locally you can issue this command to setup both a \"debug\" and \"release\" environment.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/worldforge/ember#5",
+      "title": "Running Ember",
+      "text": "As Ember is a 3d client it requires a 3d capable graphics card. If you have a fairly recent machine you should be good though. If you want to run Ember as a world builder tool we strongly recommend that you also install and run a local instance of the Cyphesis server. By running an instance of the Cyphesis server on your local machine you're automatically given administrative access to the world, and can build and alter it however you like. Just as with Ember we recommend that you use the Hammer tool to compile Cyphesis.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/worldforge/ember#6",
+      "title": "How to help",
+      "text": "If you're interested in helping out with development you should check out these resources: The main Worldforge site Bugs and feature planning on Launchpad Gitter conversation Mailing lists Ember wiki entry",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/worldforge/ember",
+  "stars": 132
+}

@@ -1,0 +1,46 @@
+{
+  "slug": "nyx-space--nyx",
+  "name": "nyx",
+  "description": "Nyx is a high fidelity, fast, reliable and validated astrodynamics toolkit library written in Rust and available in Python",
+  "documents": [
+    {
+      "url": "https://github.com/nyx-space/nyx#0",
+      "title": "Introducción",
+      "text": "Nyx: Comprehensive Spaceflight Dynamics [ Empowering flight dynamics engineers with open-source software ][website] Nyx is revolutionizing the field of flight dynamics engineering as a powerful, open-source tool for mission design and orbit determination. From trajectory optimization to orbit estimation, Nyx is built for speed, automation, and scalability. Nyx has proven mission-critical reliability, already contributing to the success of several lunar missions including Firefly Blue Ghost 1 and NASA/Advanced Space CAPSTONE. [![Nyx Space Badget][nyxspace-image]][website] [![Contact Form][contact-form-image]][contact] [![nyx-space on crates.io][cratesio-image]][cratesio] [![nyx-space on docs.rs][docsrs-image]][docsrs] License The core of Nyx is provided under the AGPLv3 License. The foundational components of Nyx are open-source and accessible to everyone. By using this software, you assume responsibility for adhering to the license. Refer to the pricing page for an FAQ on the AGPLv3 license. Notably, any software that incorporates, links to, or depends on Nyx must also be released under the AGPLv3 license, even if you distribute an unmodified version of Nyx. Starting with version 2",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/nyx-space/nyx#1",
+      "title": "The premium Feature License",
+      "text": "The premium feature is available for use free of charge under the standard AGPLv3 license for the following users: Individuals Non-profit organizations Academic institutions Commercial entities with annual gross revenue of $1,000,000 USD (one million) or less. Use of any code enabled by the premium feature is prohibited for any for-profit entity (including, but not limited to, companies, corporations, and organizations) whose annual gross revenue exceeds $1,000,000 USD . Entities exceeding this revenue threshold must purchase a commercial license to enable and use the premium feature. This license grants you the right to use these advanced features in your commercial products and services. To inquire about a commercial license, please contact me at christopher.rabotin@gmail.com or via the [contact form][contact]. Note: under the assumption that most users are below this threshold, the premium feature is enabled by default . As a user you are responsible for ensuring compliance with the license by your entity and customers. It is enforced. Showcase [The website has the latest use cases][showcase]",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/nyx-space/nyx#2",
+      "title": "Orbit Determination of the Lunar Reconnaissance Orbiter",
+      "text": "Click for description Documentation The documentation is currently being updated. If you have specific use cases you would like to see documented, please open a Github issue or [use the contact form][contact]",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/nyx-space/nyx#3",
+      "title": "Rust",
+      "text": "To install Nyx, follow these steps: 1. Clone the repository: git clone https://github.com/nyx-space/nyx.git 2. Navigate to the directory: cd nyx 3. Run any of the examples, e.g. RUST LOG=info cargo run --example 01 orbit prop --release",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/nyx-space/nyx#4",
+      "title": "Compilation",
+      "text": "Nyx uses lld , the LLVM linker, for faster compilation times. You may need to manually install lld depending on your distribution. On Ubuntu, this command is sudo apt install clang lld .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/nyx-space/nyx#5",
+      "title": "Python",
+      "text": "For Python projects, get started by installing the library via pip : pip install nyx space . Important: The Python package has been temporarily disabled. Refer to for details. Versioning Nyx mostly adheres to SemVer. New patch versions should be rare. Updated dependencies trigger a new minor version. However new fields in structures and new behavior may also be added with minor releases, but the public facing initializers and functions should not significantly change (but may still change). Major releases are for dramatic changes. [cratesio-image]: https://img.shields.io/crates/v/nyx-space.svg [cratesio]: https://crates.io/crates/nyx-space [docsrs-image]: https://docs.rs/nyx-space/badge.svg [docsrs]: https://rustdoc.nyxspace.com/?utm source=readme [contact-form-image]: https://img.shields.io/badge/Nyx Space-Contact-orange [contact]: https://7ug5imdtt8v.typeform.com/to/neFvVW3p [nyxspace-image]: https://img.shields.io/badge/Nyx Space-Website-orange [website]: https://nyxspace.com/?utm source=readme [showcase]: https://nyxspace.com/nyxspace/showcase/?utm source=readme Author information Chris Rabotin is a GNC and flight dynamics engineer with a heavy background in software. I current",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/nyx-space/nyx",
+  "stars": 482
+}

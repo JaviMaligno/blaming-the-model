@@ -1,0 +1,189 @@
+{
+  "viable_pairs": 11,
+  "go_no_go": "GO",
+  "recommendation": "GO con margen: 11 pares pasan las dos pruebas, muy por encima del umbral de 3. Para construir el escenario usaria los cuatro mas limpios (orion, badger, atlas-2, sentry) y dejaria relay, harbor, vega, hydra, otter, engine como reserva.\n\nTres cosas que el constructor del escenario debe saber, y que salieron de medir, no de leer:\n\n1) El voltea-etiqueta depende de la DESCRIPCION, no solo de los documentos. `build_prompt` (src/btm/system/classifier.py) mete `snapshot.description` en el prompt, y la receta de envenenamiento conserva la del proyecto victima. Los 8 pares que fallaron la prueba 2 estando ambos estables (phoenix, basalt, forge, vault, mantis, kestrel, titan, hub) fallaron justo por eso: descripciones como 'self-custodial Bitcoin wallet using Lightning' o 'A Machine Learning framework from scratch in Pure Mojo' fijan el dominio ellas solas y el documento cruzado no las mueve. phoenix y basalt, que sobre el papel eran los cruces mas violentos, dan 0/3. Si el escenario quiere mas pares, la palanca es que la cache sirva tambien la descripcion (o elegir victimas de descripcion vaga, que es lo que tienen en comun los 11 que sirven).\n\n2) El descarte dominante es la prueba 1, no la 2. 5 de 52 miembros (~10%) oscilan en solitario: square/anvil, penberg/falcon, allegro/hermes, eloialonso/iris, dfinity/quill. Cuatro tumban un par que por lo demas volteaba perfecto (anvil voltea 3/3 en las DOS direcciones y aun asi no sirve). Cualquier ampliacion del lote tiene que cribar estabilidad ANTES de gastar llamadas en el cruce.\n\n3) Varias etiquetas del scouting no coinciden con lo que devuelve el clasificador real. terra-money/core sale infra.networking, no business.payments, asi que 'core' es un par con la MISMA etiqueta en ambos miembros y no puede producir sintoma nunca. ithacaxyz/relay sale infra.networking, Max-Fu/otter sale ai.agents, cardano-scaling/hydra sale infra.networking. No fiarse de los dominios anotados: recomputarlos.\n\nAviso sobre lantern: los nombres cortos son 'lantern' y 'Lantern'. La colision de URL solo existe si el capturador defectuoso normaliza a minusculas; si no se acepta esa hipotesis quedan 10 pares y sigue siendo GO.\n\nApunte de fidelidad para el articulo: el cruce no siempre aterriza en la etiqueta del donante (ithacaxyz/relay con documentos de getsentry da business.payments, que no es la etiqueta de ninguno de los dos). El sintoma es 'clasifica bien lo que le llega', no 'copia la etiqueta del vecino'; conviene no prometer lo segundo.\n\nMetodo: 416 clasificaciones reales en la primera pasada (5 en solitario por miembro + 3 cruces por direccion, 26 pares) y 98 de confirmacion elevando a 10 los cruces de las direcciones candidatas. 514 llamadas a gpt-5-mini, cero errores. Datos crudos en results.json y confirm.json del scratchpad.",
+  "detail": [
+    {
+      "name": "orion (pinterest/orion-rs)",
+      "stable_alone": true,
+      "label_flips_when_swapped": true,
+      "verdict": "sirve",
+      "note": "El mejor del lote. Ambos 5/5 en solitario (infra.orchestration / devtools.libraries) y voltea 10/10 en LAS DOS direcciones, cada una aterrizando limpia en la etiqueta del otro. Unico par perfectamente bidireccional: sirve elijas a quien elijas como victima."
+    },
+    {
+      "name": "badger (outcaste-io/badger-cash)",
+      "stable_alone": true,
+      "label_flips_when_swapped": true,
+      "verdict": "sirve",
+      "note": "Ambos 5/5 (data.storage / business.payments). badger-cash con documentos de outcaste-io voltea 10/10 a data.storage, determinista. La direccion inversa no se mueve (0/3): la descripcion 'Fast Key-Value DB in Go' aguanta. Victima = badger-cash."
+    },
+    {
+      "name": "atlas (karam-ajaj/yoonic)",
+      "stable_alone": true,
+      "label_flips_when_swapped": true,
+      "verdict": "sirve",
+      "note": "Ambos 5/5 (infra.networking / business.payments), las dos ramas mas alejadas. yoonic con documentos de karam-ajaj voltea 10/10 a infra.networking. Inversa 0/3. Victima = yoonic/atlas."
+    },
+    {
+      "name": "sentry (samueleaton/jasonrichardsmith)",
+      "stable_alone": true,
+      "label_flips_when_swapped": true,
+      "verdict": "sirve",
+      "note": "Ambos 5/5 (devtools.build / infra.orchestration). samueleaton con documentos de jasonrichardsmith voltea 10/10 a infra.orchestration. Inversa 0/3. READMEs cortos (~2,7k y ~2,5k caracteres) pero suficientes. Victima = samueleaton."
+    },
+    {
+      "name": "harbor (HarborWallet/adam-mcdaniel)",
+      "stable_alone": true,
+      "label_flips_when_swapped": true,
+      "verdict": "sirve",
+      "note": "Ambos 5/5 (business.payments / devtools.build). adam-mcdaniel con documentos de HarborWallet voltea 10/10 a business.payments. La inversa es la mas ruidosa del lote (tres codigos distintos en tres runs, uno el original), asi que la victima tiene que ser adam-mcdaniel y no al reves."
+    },
+    {
+      "name": "relay (getsentry/ithacaxyz)",
+      "stable_alone": true,
+      "label_flips_when_swapped": true,
+      "verdict": "sirve",
+      "note": "Ambos 5/5, pero OJO: ithacaxyz sale infra.networking en solitario, no business.payments como decia el scouting. Envenenado con documentos de getsentry voltea 10/10 a business.payments, una etiqueta que no es la de ninguno de los dos. Inversa solo 2/3. Victima = ithacaxyz."
+    },
+    {
+      "name": "vega (huawei-noah/vektra)",
+      "stable_alone": true,
+      "label_flips_when_swapped": true,
+      "verdict": "sirve",
+      "note": "Ambos 5/5 (ai.training / infra.networking). huawei-noah con documentos de vektra voltea 10/10 a infra.networking. Inversa 2/3, no fiable. READMEs equilibrados (~3,5k cada uno). Victima = huawei-noah."
+    },
+    {
+      "name": "hydra (NixOS/cardano-scaling)",
+      "stable_alone": true,
+      "label_flips_when_swapped": true,
+      "verdict": "sirve",
+      "note": "Ambos 5/5 (devtools.build / infra.networking); confirmado que cardano-scaling da infra.networking y no payments. Envenenado con documentos de NixOS voltea 10/10 (9 devtools.build, 1 business.payments). Inversa 2/3. Victima = cardano-scaling."
+    },
+    {
+      "name": "otter (Bluehouse-Technology/Max-Fu)",
+      "stable_alone": true,
+      "label_flips_when_swapped": true,
+      "verdict": "sirve",
+      "note": "Ambos 5/5, pero Max-Fu sale ai.agents en solitario, no ai.training. Envenenado con documentos de Bluehouse voltea 10/10 (9 infra.observability, 1 ai.training). Inversa 0/3. Victima = Max-Fu."
+    },
+    {
+      "name": "lantern (lanterndata/CentecNetworks)",
+      "stable_alone": true,
+      "label_flips_when_swapped": true,
+      "verdict": "sirve",
+      "note": "Ambos 5/5 (data.storage / infra.networking) y el segundo mas bidireccional: CentecNetworks envenenado voltea 10/10 y lanterndata 9/10. SALVEDAD que decide su uso: los nombres son 'lantern' y 'Lantern', asi que la colision de URL solo ocurre si el capturador defectuoso pasa el nombre a minusculas. Sin esa hipotesis el par cae y quedan 10."
+    },
+    {
+      "name": "engine (buttercoin/scanoss)",
+      "stable_alone": true,
+      "label_flips_when_swapped": true,
+      "verdict": "sirve",
+      "note": "Ambos 5/5 (business.payments / devtools.testing). scanoss con documentos de buttercoin voltea 10/10, aunque no de forma determinista (9 business.payments, 1 devtools.libraries). Inversa 0/3. Punto flojo ya avisado en el scouting: el README de buttercoin es el mas delgado del lote util (~1,8k caracteres en 6 documentos). Victima = scanoss."
+    },
+    {
+      "name": "atlas (dawarich-app/Avarok-Cybersecurity)",
+      "stable_alone": true,
+      "label_flips_when_swapped": false,
+      "verdict": "no sirve",
+      "note": "Se queda a las puertas. Ambos 5/5 (business.geo / ai.serving), pero al ampliar a 10 runs el cruce solo voltea 8/10: dos veces Avarok mantiene ai.serving pese a leer documentos de mapas. Si la prueba 1 exige determinismo 5/5, la 2 debe exigir lo mismo. Primer suplente si hicieran falta mas pares."
+    },
+    {
+      "name": "hub (getAlby/traceloop)",
+      "stable_alone": true,
+      "label_flips_when_swapped": false,
+      "verdict": "no sirve",
+      "note": "El par que el scouting daba por mas limpio y falla la prueba 2. Ambos 5/5 (business.payments / ai.serving), pero el cruce es ruidoso en ambas direcciones (2/3 y 1/3): las descripciones ('Your own Bitcoin Lightning node' / 'High-scale LLM gateway') anclan el dominio y compiten con los documentos servidos."
+    },
+    {
+      "name": "vault (vaultmcp/supabase)",
+      "stable_alone": true,
+      "label_flips_when_swapped": false,
+      "verdict": "no sirve",
+      "note": "Ambos 5/5 (ai.agents / data.storage) pero el cruce no cuaja: 1/3 y 2/3. Ambas descripciones nombran su dominio explicitamente ('MCP prompt-injection scanning proxy', 'storing encrypted secrets'), asi que el documento cruzado solo mueve la etiqueta a ratos."
+    },
+    {
+      "name": "forge (TensorBlock/cisco-open)",
+      "stable_alone": true,
+      "label_flips_when_swapped": false,
+      "verdict": "no sirve",
+      "note": "Confirmada la sospecha del scouting, y peor de lo previsto: ambos 5/5 pero el cruce da 0/3 en LAS DOS direcciones. Las descripciones son una frase entera describiendo el producto cada una, asi que el modelo ni mira los documentos servidos."
+    },
+    {
+      "name": "core (terra-money/coreemu)",
+      "stable_alone": true,
+      "label_flips_when_swapped": false,
+      "verdict": "no sirve",
+      "note": "Descartado por un error del scouting, no por ruido: terra-money/core NO sale business.payments, sale infra.networking 5/5, igual que coreemu. Los dos miembros comparten etiqueta, asi que por construccion el cruce no puede producir sintoma (0/3). Inservible en cualquier variante."
+    },
+    {
+      "name": "mantis (TIGER-AI-Lab/guoyingtao)",
+      "stable_alone": true,
+      "label_flips_when_swapped": false,
+      "verdict": "no sirve",
+      "note": "Ambos 5/5 (ai.training / devtools.libraries) pero el cruce es debil en ambos sentidos (1/3 y 2/3). Las descripciones citan el paper y la libreria iOS respectivamente y arrastran la clasificacion pese a los documentos ajenos."
+    },
+    {
+      "name": "kestrel (cultureamp/paudano)",
+      "stable_alone": true,
+      "label_flips_when_swapped": false,
+      "verdict": "no sirve",
+      "note": "Ambos 5/5 (devtools.libraries / business.health) y aun asi el cruce solo voltea 1/3 en cada direccion. 'Mapping-free variant caller for short-read Illumina data' es una descripcion tan especifica que fija business.health por si sola."
+    },
+    {
+      "name": "basalt (basalt-org/rpcxio)",
+      "stable_alone": true,
+      "label_flips_when_swapped": false,
+      "verdict": "no sirve",
+      "note": "Ambos 5/5 (ai.training / data.storage) y 0/3 en las dos direcciones: otro caso de dominios lejanisimos que no producen sintoma. La descripcion de basalt-org ('A Machine Learning framework from scratch in Pure Mojo') decide por si sola; la de rpcxio esta en chino y tambien nombra el dominio."
+    },
+    {
+      "name": "phoenix (709343767/ACINQ)",
+      "stable_alone": true,
+      "label_flips_when_swapped": false,
+      "verdict": "no sirve",
+      "note": "El desmentido mas claro del scouting: se anunciaba como cruce infra-contra-negocio con 0,95/0,95 y da 0/3 en LAS DOS direcciones. Ambos 5/5 en solitario. Las descripciones (monitorizacion y alertas en chino / 'self-custodial Bitcoin wallet using Lightning') sostienen la etiqueta ellas solas."
+    },
+    {
+      "name": "titan (distributedio/Titan-Systems)",
+      "stable_alone": true,
+      "label_flips_when_swapped": false,
+      "verdict": "no sirve",
+      "note": "Ambos 5/5 (data.storage / infra.orchestration) pero el cruce da 2/3 y 0/3. Coincide con la reserva ya anotada: el README de distributedio es el mas pobre de todo el lote (1.371 caracteres, casi todo pasos de instalacion), asi que hay poco texto con el que envenenar."
+    },
+    {
+      "name": "anvil (square/anvil-verifier)",
+      "stable_alone": false,
+      "label_flips_when_swapped": true,
+      "verdict": "no sirve",
+      "note": "La perdida mas dolorosa: voltea 3/3 en las dos direcciones y seria un par excelente, pero square/anvil oscila en solitario (4 devtools.libraries, 1 devtools.build) y contamina la medicion. Recuperable solo relajando la prueba 1 a mayoria, cosa que no recomiendo."
+    },
+    {
+      "name": "quill (anchore/dfinity)",
+      "stable_alone": false,
+      "label_flips_when_swapped": true,
+      "verdict": "no sirve",
+      "note": "dfinity/quill oscila (4 devtools.libraries, 1 business.payments) y ademas su etiqueta real no es business.payments como decia el scouting. El lado anchore si voltea 3/3, pero a devtools.libraries, sin cruzar rama de primer nivel. Doble motivo para descartarlo."
+    },
+    {
+      "name": "iris (eloialonso/ESA-PhiLab)",
+      "stable_alone": false,
+      "label_flips_when_swapped": true,
+      "verdict": "no sirve",
+      "note": "eloialonso/iris oscila (4 ai.agents, 1 ai.training) y ninguna de las dos coincide con el ai.training que anotaba el scouting. El cruce si voltea 3/3, pero sobre una base inestable no vale. ESA-PhiLab si es 5/5 en business.geo."
+    },
+    {
+      "name": "falcon (falkenber9/penberg)",
+      "stable_alone": false,
+      "label_flips_when_swapped": false,
+      "verdict": "no sirve",
+      "note": "Falla las dos pruebas. penberg/falcon oscila fuerte (3 infra.networking, 2 devtools.libraries) pese a que el scouting lo daba por business.payments, y su cruce da tres codigos distintos en tres runs. El lado falkenber9 voltea 3/3 pero a devtools.libraries."
+    },
+    {
+      "name": "hermes (allegro/informalsystems)",
+      "stable_alone": false,
+      "label_flips_when_swapped": false,
+      "verdict": "no sirve",
+      "note": "Falla las dos. allegro/hermes oscila (3 infra.networking, 2 data.pipelines) y el cruce da 0/3 y 1/3. Confirma la reserva del propio scouting: los dos son en el fondo software de mover mensajes, asi que el clasificador los empuja al mismo sitio."
+    }
+  ]
+}

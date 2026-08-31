@@ -1,0 +1,64 @@
+{
+  "slug": "terra-money--core",
+  "name": "core",
+  "description": "GO implementation of the Terra Protocol",
+  "documents": [
+    {
+      "url": "https://github.com/terra-money/core#0",
+      "title": "Introducción",
+      "text": "&nbsp; The full-node software implementation of the Terra blockchain. Explore the Docs » Terra Core reference · Installation · Go API · Rest API · Finder · Station",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/terra-money/core#1",
+      "title": "What is Terra?",
+      "text": "Terra is a public, open-source, decentralized blockchain hosting a vibrant ecosystem of decentralized applications and top-tier developer tools. The Terra Core is the full-node software implementation of the Terra blockchain, powered by the Cosmos SDK and Tendermint BFT consensus. To learn more about Terra, visit the Terra Docs site.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/terra-money/core#2",
+      "title": "Install Terra Core",
+      "text": "For a complete guide on hardware requirements, installing Terra Core, running a full node, and joining a network, visit the Terra node tutorial.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/terra-money/core#3",
+      "title": "Interact with Terra",
+      "text": "To interact with the Terra blockchain without running a full node, use Station, Terra's official interchain wallet. Developers who want to interact with the blockchain directly without running a full node can use Terrad, the Terra blockchain's CLI and node daemon. Visit the Terra Docs for more information on installing and using Terrad.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/terra-money/core#4",
+      "title": "Start Developing",
+      "text": "To start developing on Terra, visit the Developer's guide. The Tool guide covers Terra's development suite. - Terrain: Terra’s all-in-one development environment, providing front-end and smart contract scaffolding for your dApp. - LocalTerra: A zero-configuration testing environment containerized with Docker. - Feather.js: JavaScript SDK. - Faucet: Get testnet Luna. - Finder: Block explorer.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/terra-money/core#5",
+      "title": "Set up a testing environment",
+      "text": "The easiest way to set up a local testing environment is to run LocalTerra, a zero-configuration complete testing environment. If you want something more sophisticated, use the make init-test-framework command which will start two local nodes connected with a relayer.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/terra-money/core#6",
+      "title": "Community",
+      "text": "Official Website · Discord · Telegram · Twitter · Station Developer Discord · Developer Telegram · Agora Forum",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/terra-money/core#7",
+      "title": "Contributing",
+      "text": "If you are interested in contributing to the Terra Core source code, please review the code of conduct. &nbsp; © 2023 Terraform Labs, PTE LTD This software is licensed under the Apache 2.0 license.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/terra-money/core/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog Latest releases appear first. 2.3.0 What's Changed feat: add alliance by @javiersuweijie in https://github.com/terra-money/core/pull/108 fix: ci on cosmossdk 46 by @emidev98 in https://github.com/terra-money/core/pull/111 feat: add cosmwasm 1 1 by @javiersuweijie in https://github.com/terra-money/core/pull/112 tests: added chain simulation by @javiersuweijie in https://github.com/terra-money/core/pull/113 fix: swagger gen by @emidev98 in https://github.com/terra-money/core/pull/116 New Contributors @javiersuweijie made their first contribution in https://github.com/terra-money/core/pull/108 Chain Upgrade Details Blockheight: 4711800 Estimated time of upgrade: 2023-04-20 5:00:00 GMT+0 Full Changelog : https://github.com/terra-money/core/compare/v2.2.1...v2.3.0 2.2.1 Full Changelog : https://github.com/terra-money/core/compare/v2.1.4...v2.2.0 What's Changed upgrade to cosmos-sdk v0.45.12 by @faddat in https://github.com/terra-money/core/pull/102 New Contributors @faddat made their first contribution in https://github.com/terra-money/core/pull/102 Full Changelog : https://github.com/terra-money/core/compare/v2.2.0...v2.2.1 2.2.0 What's Changed Update readme.md by @svv28 in h",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/terra-money/core",
+  "stars": 383
+}

@@ -1,0 +1,46 @@
+{
+  "slug": "cartalyst--sentry",
+  "name": "sentry",
+  "description": "[DEPRECATED] A framework agnostic authentication & authorization system.",
+  "documents": [
+    {
+      "url": "https://github.com/cartalyst/sentry#0",
+      "title": "Help Support Sentinel version 3",
+      "text": "http://igg.me/at/sentinel-open-source Sentry This package is DEPRECATED, please check our Sentinel package for a better authentication & authorization system. Sentry is a PHP 5.3+ fully-featured authentication & authorization system. It also provides additional features such as user groups and additional security features. Sentry is a framework agnostic set of interfaces with default implementations, though you can substitute any implementations you see fit.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cartalyst/sentry#1",
+      "title": "Features",
+      "text": "It also provides additional features such as user groups and additional security features: - Configurable authentication (can use any type of authentication required, such as username or email) - Authorization - Activation of user (optional) - Groups and group permissions - \"Remember me\" - User suspension - Login throttling (optional) - User banning - Password resetting - User data - Interface driven - switch out your own implementations at will",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cartalyst/sentry#2",
+      "title": "Installation",
+      "text": "Installation of Sentry is very easy. We've got a number of guides to get Sentry working with your favorite framework or on it's own: - Install Sentry",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cartalyst/sentry#3",
+      "title": "Getting Started",
+      "text": "- Use in Laravel 4 - Use in FuelPHP 1 - Use in CodeIgniter 3 - Use natively (through composer)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cartalyst/sentry#4",
+      "title": "Upgrading",
+      "text": "Currently, we do not have an upgrade method from Sentry 1, however we may be able to publish one before the stable release of Sentry 2.0. When upgrading between betas or release-candidates, please see our changelog.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cartalyst/sentry#5",
+      "title": "Support",
+      "text": "We offer support through our help forums, on IRC at cartalyst and through GitHub issues (bugs only). If you like Sentry, consider subscribing to our Arsenal. It allows us to keep creating awesome software and afford to eat at night. Subscribers also get priority support with all of our packages, both free and subscriber-only.",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/cartalyst/sentry",
+  "stars": 1525
+}

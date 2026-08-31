@@ -1,0 +1,46 @@
+{
+  "slug": "mooltiverse--nyx",
+  "name": "nyx",
+  "description": "The one stop semantic release tool",
+  "documents": [
+    {
+      "url": "https://github.com/mooltiverse/nyx#0",
+      "title": "Introducción",
+      "text": "Nyx ---- The one stop semantic release tool. Nyx is a powerful, flexible and extremely configurable semantic release tool. You can put release management on auto pilot regardless of the kind of project, languages, tools and technologies or you can control any aspect of release management manually. Preset configuration values let you get started in minutes without digging into detailed settings. Nyx is the all in one tool that gives you integrated support for: the Semantic Versioning (SemVer) scheme conventional specifications and best practices like Conventional Commits, Keep a Changelog build tools like Gradle Git hosting services like GitHub and GitLab and their extra features like GitHub Releases and GitLab Releases CI/CD platforms like GitHub Actions and GitLab CI custom or standard workflows (a.k.a. branching models ) like GitFlow, GitHub Flow, GitLab Flow, OneFlow changelog generation any (combination of) configuration means like command line arguments, local or remote files, environment variables and build tools extensions Want to embed the libraries into your own project instead? You're covered as they are published just for that. See the available libraries for more. Brows",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mooltiverse/nyx#1",
+      "title": "Getting started in 30 seconds",
+      "text": "1. download the binary package for your distribution from the latest release assets 2. put the binary somewhere visible within the PATH and (optionally) rename it to nyx (or nyx.exe on Windows) 3. open a shell, cd into your project folder and run: This will not apply any change to your repository (as the infer command doesn't) but will give you a taste of what Nyx finds out. Here 1.2.3 is the version that Nyx has inferred from the commit history and will be the one it will tag and release with if you use other commands, like nyx --preset=simple publish . The simple preset is a streamlined configuration suitable for mainline only projects but you can replace it with your own configuration or override its values selectively. From here: run nyx --help for the synopsis or jump to the documentation tune your configuration or tweak command line arguments according to your needs try your configuration using the --dry-run mode embed Nyx into your build scripts and automation environments",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mooltiverse/nyx#2",
+      "title": "Usage",
+      "text": "Use the GitHub Action as follows in your workflows (note the fetch-depth: 0 input to the actions/checkout Action): Check out this guide to get started quickly, and this guide for a complete reference.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mooltiverse/nyx#3",
+      "title": "Articles",
+      "text": "Nyx, the Semantic Release Automation Tool Semantic Release Automation with Gradle using Nyx",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mooltiverse/nyx#4",
+      "title": "Badge",
+      "text": "If you like Nyx please consider showing the badge on your project page by inserting this snippet:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/mooltiverse/nyx/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing We're happy you're reading this and willing to contribute! We also appreciate if you read through this document to help us accepting your contributions. This project and everyone participating in it is governed by the Contributor Covenant Code of Conduct. By participating, you are expected to uphold this code. Issues Feel free to open new issues for bugs and support requests. Before doing so we ask you to: 1. search for similar requests that might have been opened in the past to avoid repetitiveness 2. read through the docs and see if a similar was already addressed. Also read through the examples 3. make sure you're running the latest release If you can't find any answer, when submitting a new issue please provide as much information as you can to help us understand. Don't forget to: include a clear title and description give as much relevant information as possible, which may include a code snippet or an executable test case give instructions on how to reproduce the problem describe the expected behavior and the current behavior tell us about the kind of deliverable you're using and their version and describe the environment so we can reproduce it We will do our best",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/mooltiverse/nyx",
+  "stars": 237
+}

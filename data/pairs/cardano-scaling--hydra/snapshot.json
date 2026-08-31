@@ -1,0 +1,52 @@
+{
+  "slug": "cardano-scaling--hydra",
+  "name": "hydra",
+  "description": "Implementation of the Hydra Head protocol",
+  "documents": [
+    {
+      "url": "https://github.com/cardano-scaling/hydra#0",
+      "title": ":sunrise over mountains: Introduction",
+      "text": "Hydra is the layer-two scalability solution for Cardano, which aims to increase the speed of transactions (low latency, high throughput) and minimize transaction cost. This repository contains the implementation for the Hydra Head protocol. Most prominently, it contains a hydra-node , which runs a simplified (coordinated) Hydra Head protocol, connects to other hydra-node s, interfaces the Cardano blockchain and provides an API to clients such as the included example terminal user interface hydra-tui . :rotating light: Mainnet Availability :rotating light: The Hydra Head protocol version 0.10.0 or newer is compatible with the Cardano mainnet, which means it is possible to run a hydra-node on mainnet using real funds. Before running a hydra-node to take part in the Hydra Head protocol, developers are strongly encouraged to review the [known issues][known-issues] in the documentation in order to understand the current limitations and the possible consequences. By using Hydra Head protocol version 0.10.0 or newer, you understand the protocol is in development and that use of the hydra-node on mainnet is entirely at your own risk. You also acknowledge and agree to have an adequate under",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cardano-scaling/hydra#1",
+      "title": ":rocket: Getting started",
+      "text": "The quickest way to get a hydra-node running is to use our docker images. Get started with the user manual 📖!",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cardano-scaling/hydra#2",
+      "title": ":rainbow: Features",
+      "text": "- [x] Coordinated Hydra Head protocol - [x] Single Head per hydra-node - [x] Network statically configured, direct TCP connections - [x] WebSocket/HTTP-based API - [x] Example terminal user interface client - [x] Cardano-node integration via Direct connection - [x] Locally persisted Head state - [x] Commit from any wallet (e.g. hardware wallets) - [x] Incremental de-/commit - [ ] Directly open heads Later: - [ ] Optimistic Head closure protocol extensions - [ ] Modular API via event streaming plugins - [ ] Automated handling of rollbacks - [ ] Relay-capable, mesh network - [ ] Multiple Heads per hydra-node, managed via API See our roadmap for more details.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cardano-scaling/hydra#3",
+      "title": ":handshake: Contributing",
+      "text": "The best way to contribute is to provide feedback. Give the demo a spin and have a look at our documentation. Should you have any questions, ideas or issues, we would like to hear from you: - ask-hydra on the IOG Discord server - create a Github Discussion - open a Github Issue Please follow our Contributing Guidelines and Code of Conduct.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cardano-scaling/hydra/blob/master/docs/README.md",
+      "title": "docs/README.md",
+      "text": "Overview Sources for the user manual 📖. Building The user-manual is built using Docusaurus 3, which combines React components and markdown into a customisable static website. Docusaurus supports a set of plugins and basic features (coming in the form of 'presets' ). We use it to create the actual user manual (docs), documenting our architectural decision records, a custom page for the API reference, and various other documentation pages around the Hydra Head protocol. Installation Local Development This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server. Build This command generates static content into the build directory and can be served using any static contents hosting service. Note that this will have quite some broken links as we are referring to generated documentation, test data and benchmarks. To put these artifacts at the right place before, you can use these nix builds from this folder: Style guide Please follow this technical writing style guide when contributing changes to documentation.",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/cardano-scaling/hydra/blob/master/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to Hydra Thank you for considering contributing and helping us create the Hydra protocols! The best way to contribute right now is to try things out and provide feedback. We also welcome contributions to the documentation and, of course, the code itself. This document contains guidelines to help you get started and ensure your contribution gets accepted, making you our newest Hydra contributor! Ask for help See SUPPORT.md if you have any questions or need help setting up. Your first contribution Contributing to the documentation, translating it, reporting bugs, or proposing features are excellent ways to get started. Documentation Documentation and a user manual are available on this website. Each page has an 'Edit this page' button that takes you to the source file containing the markup. If you want to extend the documentation or find errors, please file an issue pointing to the mistake or, even better, create a pull request with the changes directly. Please follow this technical writing style guide when contributing changes to documentation. Bug reports Submit an issue using the 'Bug report :bug:' template. It's very important that you fill the template as thoroughly",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/cardano-scaling/hydra/blob/master/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog All notable changes to this project will be documented in this file. The format is based on Keep a Changelog, and this project adheres to Semantic Versioning. As a minor extension, we also keep a semantic version for the UNRELEASED changes. [UNRELEASED] - Fixed the internal wallet setting a script integrity hash on transactions that execute no scripts: reference inputs carrying Plutus scripts had their language views hashed even when nothing runs, so the ledger rejected such transactions with PPViewHashesDontMatch (SJust , expected SNothing) . Like the ledger, coverFee now only considers scripts the transaction actually needs, which also corrects the hash for transactions that execute scripts while referencing unrelated ones. 2836 - Reduce chain queries on the chain-sync path: building time conversions no longer queries the chain three times per block. System start is queried once, era history is cached and only re-queried when its horizon has been outrun. For the Blockfrost backend this removes 3 HTTP requests per block, roughly 75% of steady-state API usage. The Blockfrost backend also reads the project file once and caches genesis parameters for the lifetime of the cha",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/cardano-scaling/hydra",
+  "stars": 336
+}

@@ -1,0 +1,124 @@
+{
+  "slug": "AmadeusITGroup--otter",
+  "name": "otter",
+  "description": "The Otter project is a highly modular framework whose goal is to provide a common platform to accelerate and facilitate the development of runtime customizable Angular based Web Applications",
+  "documents": [
+    {
+      "url": "https://github.com/AmadeusITGroup/otter#0",
+      "title": "Description",
+      "text": "The Otter project is a highly modular framework whose goal is to provide a common platform to accelerate and facilitate the development on Angular web applications. It is split into several units to cover different aspects of these applications (localization, testing, customization, etc.). Also, to customize an application, metadata can be extracted from the application source code and injected into a CMS to manage dynamic configuration. [!TIP] The full list of modules and their documentation is available in the /docs folder. An overview of the technical module interactions and the architecture of the dependencies is available in the architecture section. A demonstration of a list of features provided by Otter is accessible on the showcase application.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter#1",
+      "title": "Get Started",
+      "text": "To set up a new Otter project with a monorepo structure, use the following simple command: [!TIP] Please refer to Otter Get Started and Angular Get Started for complete documentation.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter#2",
+      "title": "Contributing",
+      "text": "Please read the Contributing file for details on our code of conduct and the process to submit pull requests.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter#3",
+      "title": "AI Coding Agents",
+      "text": "This repository includes an AGENTS.md file that provides context for AI coding assistants (Claude Code, GitHub Copilot, Cursor, Windsurf, etc.). The documentation is split into focused context files in .agents/ to optimize token usage - AI agents load only what they need for their current task (testing, building, committing, etc.), reducing token consumption by 50-60% compared to a single large file.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter#4",
+      "title": "Acknowledgments",
+      "text": "The Otter Team, @AmadeusITGroup/otter admins, is responsible for the review of the code of this repository. Any bug of feature request can be addressed via issue report.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter#5",
+      "title": "Experimental",
+      "text": "In this monorepo, certain APIs across all packages are marked with the @experimental tag in their TypeScript documentation (TSDoc). This tag highlights that these exports — whether classes, functions, types, or constants — are experimental and may change without warning.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter#6",
+      "title": "What does @experimental mean?",
+      "text": "- The marked APIs are not stable and can undergo breaking changes in future releases. - Experimental features may be added, modified, or removed at any time. - These APIs are intended for early adopters and should be used with caution.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter#7",
+      "title": "What should you do?",
+      "text": "- When using any @experimental APIs from any package in this monorepo, pin the package versions explicitly to avoid unexpected breaking changes. - Regularly check release notes and changelogs for updates on experimental features. - Treat these APIs as preview or evolving interfaces that may mature or be deprecated in upcoming versions.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter#8",
+      "title": "Building and Testing library",
+      "text": "These documents describe how to set up your development environment to build and test the framework. It also explains the basic mechanics of using git , node , and npm . - Description - Built With - Get Started - Contributing - Versioning - License - Acknowledgments - Developer - Building and Testing library - Prerequisite Software - Getting the sources - Installing NPM modules - Build command - Running tests locally - Manage task cache - Debugging with Visual Studio Code - Link local packages - SSL Certificate issue (behind proxy) Refer to the contribution guidelines if you'd like to contribute to the framework.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter#9",
+      "title": "Prerequisite Software",
+      "text": "Before you can build and test Otter modules, you must install and configure the following products on your development machine: Git and/or the GitHub app (for Mac or Windows) GitHub's Guide to Installing Git is a good source of information. Node.js, (version =22.22.3 ) This is used to run tests and generate distributable files. We strongly encourage to use an up-to-date LTS version of Node.js to ensure the support of all the Otter packages. Each package comes with a minimum Node.js version range defined in the engine property of its package.json file. Yarn, a Node's Package Manager You can install yarn using NPM manager (coming with Node.js). The version of Yarn currently used is embedded in the repository and it can be installed using the provided Node.js corepack. In case you need to link this library with your project, you can check the section \"Link local packages\". Chrome We use Chrome to run our tests.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter#10",
+      "title": "Getting the sources",
+      "text": "Clone the Otter repository using the button Code or using the following git command:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter#11",
+      "title": "Build command",
+      "text": "To build the modules, run: Each module can be built independently thanks to Nx commands: [!NOTE] Results are put in the dist of each module ( packages/@ / /dist ).",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter#12",
+      "title": "Running tests locally",
+      "text": "Check the formatting: Check Unit Tests: Check Integration Tests: Verdaccio is used to run the integration tests as close as possible to a real npm publication. Each module can be tested independently thanks to Nx commands:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter#13",
+      "title": "Manage task cache",
+      "text": "When running the Build, Lint, or Test commands, Nx can use its cache mechanism. In some cases, it may be useful to clear the cache to investigate an issue. This can be done with the following command:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter#14",
+      "title": "Debugging with Visual Studio Code",
+      "text": "The repository contains the mandatory configuration and the recommended VSCode plugins to ensure optimal comfort and productivity while developing on the Otter Framework. The default configuration of the repository provides a way to run Unit Tests one by one and to define, within VSCode, break points using the vscode-jest-tests debugger task.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter#15",
+      "title": "Link local packages",
+      "text": "For Yarn v1, add the resolutions property in the main package.json. It should be filled with the relative path to the dist of the local packages you want to link. The protocol link: can be used. NOTE: It will not import the transitive dependencies of the linked packages. Example: For Yarn v2+, the protocol portal: can also be used. NOTE: The portal protocol will also import all the transitive dependencies of the linked packages. Please keep in mind that mismatched versions of these dependencies may cause some issues. Example:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter#16",
+      "title": "SSL Certificate issue (behind proxy)",
+      "text": "Due to proxy redirection you may face an SSL certificate issue on Yarn when installing the Otter project locally: To solve this, you can provide your own certificate in two different ways: Specify your certificate path in the Environment Variable NODE EXTRA CA CERTS. Specify your certificate path in the Yarn configuration httpsCertFilePath.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter/blob/main/docs/README.md",
+      "title": "docs/README.md",
+      "text": "Introduction In this folder, you shall find technical documentation for all the packages available in this repository. The documentation is sorted by topic but in the table below, you shall find the relevant documentation per package. Available Packages and Tools Package / Tool Description O3r Dependencies related documentation ------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- @ama-styling/devkit Expose devkit tools for styling helpers, CSS processing, etc. via the Chrome DevTools Extension. @o3r/core D",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/AmadeusITGroup/otter/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Otter Library - How to contribute Thank you for considering contributing to Otter! We welcome all contributions, and appreciate your effort in improving our project. To ensure a smooth contribution process, please follow the guidelines below. Feature Requests Please create a new issue on our repository and choose \"Feature request\". This will allow us to review and prioritize your request accordingly. Submitting an Issue Before you submit an issue, please make sure the issue is not already in our issues backlog. The issue creation template requires: - a description of the failing use case - the version of library where the issue occurs - NodeJS version - a fix suggestion, if possible If you already have a fix for the problem don't hesitate to open a pull request. Each pull request should be assigned to an issue, so please create the issue and link it to the PR. Creating a pull request When creating a pull request, please link the corresponding issue in the pull request description. This will help us track the progress of your contribution and ensure that it is reviewed in a timely manner. Commit message constraints In order to have a nice change log generated, you will need to follo",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/AmadeusITGroup/otter",
+  "stars": 57
+}

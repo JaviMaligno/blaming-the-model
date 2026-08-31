@@ -1,0 +1,52 @@
+{
+  "slug": "Max-Fu--otter",
+  "name": "otter",
+  "description": "[ICML 2025] OTTER: A Vision-Language-Action Model with Text-Aware Visual Feature Extraction",
+  "documents": [
+    {
+      "url": "https://github.com/Max-Fu/otter#0",
+      "title": "Introducción",
+      "text": "🦦 OTTER: A Vision-Language-Action Model with Text-Aware Visual Feature Extraction by Huang Huang , Fangchen Liu , Letian Fu , Tingfan Wu , Mustafa Mukadam , Jitendra Malik , Ken Goldberg , Pieter Abbeel at UC Berkeley and Meta ( equal contribution). [Paper] [Project Page] This repo contains the official re-implementation for Otter: A Vision-Language-Action Model with Text-Aware Feature Extraciton . The experiments in the paper are based on the original repo here implemented in Jax. Further information please contact Huang Huang , Fangchen Liu , Letian Fu , or post an issue on Github!",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Max-Fu/otter#1",
+      "title": "Todos",
+      "text": "- OpenCLIP integration to allow training and inference with more powerful CLIP models.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Max-Fu/otter#2",
+      "title": "Inference",
+      "text": "We provide a simple interface for the OTTER model. For more details, please refer to the otter interface. We additionally provide a script for rolling out the OTTER model in the DROID environment. For more details, please refer to the droid inference script.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Max-Fu/otter#3",
+      "title": "Dataset",
+      "text": "We host the OTTER dataset on Hugging Face. They are TFDS to support pre-training on Open X-Embodiment. Alternatively, there is a converted LeRobot version of the dataset here to fine-tune Pi0, which uses joint positions for proprioception and joint velocities for action. The fine-tuning scripts are provided here.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Max-Fu/otter#4",
+      "title": "Model Training",
+      "text": "We use the following command to train the OTTER model. We support multi-GPU training on a single node. To change the dataset paths and their subsampling ratios, please refer to the training args. To see all the available options,",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Max-Fu/otter#5",
+      "title": "Visualization",
+      "text": "We provide a script for visualizing the CLIP's visual patch feature's cosine similarity with the text features. For more detail, please refer to the script. You can also visualize with more powerful CLIP models with OpenCLIP. A good combination we find is the ViT-L-14 datacomp xl s13b b90k version.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/Max-Fu/otter#6",
+      "title": "Citation",
+      "text": "Please give us a star 🌟 on Github to support us! Please cite our work if you find our work inspiring or use our code in your work:",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/Max-Fu/otter",
+  "stars": 119
+}

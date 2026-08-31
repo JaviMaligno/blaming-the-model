@@ -1,0 +1,208 @@
+{
+  "slug": "techx--quill",
+  "name": "quill",
+  "description": "📝 Registration, for hackathons!",
+  "documents": [
+    {
+      "url": "https://github.com/techx/quill#0",
+      "title": "Registration, for hackers!",
+      "text": "Quill is a registration system designed especially for hackathons. For hackers, it’s a clean and streamlined interface to submit registration and confirmation information. For hackathon organizers, it’s an easy way to manage applications, view registration stats, and more!",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#1",
+      "title": "Table of Contents",
+      "text": "- Quill - Registration, for hackers! - Table of Contents - Features - Quill for Hackers - Dashboard - Application - Team Registration - Quill for Admins - Stats - Users Table - Settings - Setup - Requirements - Local Deployment - MongoDB - SMTP - Quill - Deploying for your hackathon - MongoDB - SMTP - Quill - Customizing for your event - Copy - Branding / Assets - Application questions - Email Templates - CI/CD and Automation - Build and Test - Lint - Publish to Docker Hub - Automated Dependency Updates - Testing - Jest - Accessibility - Contributing - Feedback / Questions - License",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#2",
+      "title": "Dashboard",
+      "text": "After users login, the Dashboard displays the user’s application status and status-specific prompts to resend a verification email, view/edit their application or confirmation forms. Statuses: - Unverified: users have not verified the email address they registered with - Incomplete, registration open: the user has not submitted their application, but the registration deadline has not passed - Incomplete, registration closed: the user has not submitted, but the registration deadline has passed - Submitted, registration open - Submitted, registration closed - Admitted / unconfirmed: the user has been admitted to the event, but has not confirmed their attendance and submitted their confirmation form - Admitted / confirmation deadline passed: the user has been admitted, but did not confirm their attendance before the deadline - Waitlisted: the user was not admitted to the event - Confirmed: the user has been admitted and has confirmed their attendance - User declined admission: the user has been admitted, but will not be attending the event",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#3",
+      "title": "Team Registration",
+      "text": "Hackathons commonly allow participants to register and be admitted as a team. The Team tab allows users to create or join a team with other users.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#4",
+      "title": "Quill for Admins",
+      "text": "Admins can view stats, look through applications, or edit settings from the Admin panel.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#5",
+      "title": "Stats",
+      "text": "The Stats tab summarizes useful registration statistics on the number of users in each stage of the process, demographic information, and miscellaneous event preferences like shirt sizes, dietary restrictions, or reimbursement requests.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#6",
+      "title": "Users Table",
+      "text": "The Users tab displays a table of users where admins can: 1. Search for a user by name 2. Quick-view user applications in a pop-up modal 3. See a user’s application status (verified, submitted, admitted, and confirmed) at-a-glance 4. See responses to other miscellaneous fields on the application 5. Open and edit an individual application 6. Admit users manually 7. Mark users as checked-in at the event day-of",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#7",
+      "title": "Settings",
+      "text": "On the Settings tab, admins can easily control their event application timeline by setting registration / confirmation deadlines. They can also write custom waitlist, acceptance, and confirmation copy that users will see on their dashboard throughout the application process. The custom copy is interpreted as Markdown, so HTML and images can be added.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#8",
+      "title": "Requirements",
+      "text": "Requirement Version ---------------------------- -------- Node.js 10.13+ MongoDB 4.0+ Run the following commands to check the current installed versions: How to upgrade to latest releases: - Node.js: - MongoDB: Additonally, there is an .nvmrc file in the root of the project. You can use Node Version Manager (nvm) to make sure you are using the right version of node for this and other projects! This also ensures that any cloud deployments of the project use the same version of Node. We use dotenv to keep track of environment variables, so be sure to stop tracking the .env file in Git: After doing this, fill in the environment variables in the .env before running Quill.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#9",
+      "title": "MongoDB",
+      "text": "Ideally, you should run MongoDB as a daemon with a secure configuration (with most linux distributions, you should be able to install it with your package manager, and it'll be set up as a daemon). Although not recommended for production, when running locally for development, you could do it like this",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#10",
+      "title": "SMTP",
+      "text": "This step is only required if you want to test the email-related functionality of Quill. The easiest option is to use the SMTP server provided by your personal email (Gmail, Outlook, etc.). Look for the documentation about SMTP for your respective email and fill in the values in the .env accordingly. Be warned that sending many emails this way is not recommended and this method should only be used for testing. In particular, note that Gmail will require you to enable less secure apps in your security settings before Quill will be able to send email.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#11",
+      "title": "Quill",
+      "text": "Install the necessary dependencies: Ensure you have filled in the .env according to your setup, and then run the application:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#12",
+      "title": "MongoDB",
+      "text": "The database can either be hosted with a cloud-hosted MongoDB provider, such as MongoDB Atlas, or on your own server. Cloud-hosted MongoDB will generally be easier to set up and should be the preferred choice unless you are familiar with administering your own server. A guide to setting up Atlas can be found here. Note that the URI for the database (which must be specified in .env ) will be different depending on where your database is hosted. If you use the \"Deploy the Heroku\" button in this document, a MongoDB instance will automatically be spawned via Heroku.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#13",
+      "title": "SMTP",
+      "text": "A dedicated SMTP provider is absolutely required if you want Quill to work for your hackathon. There are several providers available such as Mailgun or Sendgrid, both part of the GitHub Student Developer Pack. After setting this up, fill in the .env with the values that your provider gives you.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#14",
+      "title": "Quill",
+      "text": "There are also several options for hosting Quill itself. You can use Heroku by clicking the Deploy to Heroku button above where, after making a Heroku account, you will be able to set the configuration variables and deploy Quill. A Dockerfile has also been provided to make it easy to run Quill in a Docker container either on your own server or with your preferred cloud service provider. Don't forget to publish the container's port 3000 to the host machine. If using the command line, this is done by using the -p flag and specifying which port on the host machine should redirect to port 3000 on the container.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#15",
+      "title": "Customizing for your event",
+      "text": "If you're using Quill for your event, please add yourself to this [list][users]. It takes less than a minute, but knowing that our software is helping real events keeps us going ♥",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#16",
+      "title": "Copy",
+      "text": "If you’d like to customize the text that users see on their dashboards, edit them at client/src/constants.js .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#17",
+      "title": "Branding / Assets",
+      "text": "Customize the color scheme and hosted assets by editing client/stylesheets/ custom.scss . Don’t forget to use your own email banner, favicon, and logo (color/white) in the assets/images/ folder as well!",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#18",
+      "title": "Application questions",
+      "text": "If you want to change the application questions, edit: - client/views/application/ - server/models/User.js - client/views/admin/user/ and client/views/admin/users/ to render the updated form properly in the admin view If you want stats for your new fields: - Recalculate them in server/services/stats.js - Display them on the admin panel by editing client/views/admin/stats/",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#19",
+      "title": "Email Templates",
+      "text": "To customize the verification and confirmation emails for your event, put your new email templates in server/templates/ and edit server/services/email.js",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#20",
+      "title": "Build and Test",
+      "text": ".github/workflows/build.yml contains a Github Action for building and running the project. The only test currently run is to check that a GET request of /login returns a status code 200 . This should be expanded in future with thorough unit testing. The Github action spawns a Docker instance of MongoDB for the application to connect to and utilizes the NodeJS version as specified in the .nvmrc file. This action is run automatically on each push to any branch .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#21",
+      "title": "Lint",
+      "text": ".github/workflows/link.yml contains a Github Action for linting the project. The action is currently using ESLint to achieve this with a very minimal ruleset (currently only checking for semi-colon rules). This should be modified to include an opinionated style checker such as AirBnb's. This action is run automatically on each push to any branch .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#22",
+      "title": "Publish to Docker Hub",
+      "text": ".github/workflows/dockerimage.yml conatins a Github Action for building and publishing a Docker Image to the Docker Hub. The action takes the docker file at .Dockerfile and publishes it to the account specified in the Github Secrets. This action is run automatically on each merge to the master branch The following secrets need to be added to the repository - DOCKER USER = your docker hub username - DOCKER PASS = your docker hub password Using a Token rather than a password for this is probably a good idea. This will output an image in Docker Hub located at $DOCKER USER/quill:latest",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#23",
+      "title": "Automated Dependency Updates",
+      "text": "The repository has been signed up to Dependabot, an automated dependency management tool. Dependabot automatically checks for updates for any outdated or insecure requirements and it will open a pull request for each one of them. To parametrize the tool further please look here.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#24",
+      "title": "Notifications [on Push]",
+      "text": "This project has been set up to run workflows that send notifications to a Discord server and a Slack workspace when changes are pushed. The secrets required to run these must be set by the admin according to the documentation of each implementation (configuration links). .yml file information has already been added to the repository under .github/workflows/notify.yml and individual platforms may be removed by editing this file.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#25",
+      "title": "Discord Notification",
+      "text": "Configuring the action to send notifications to your organization's Discord server can be found here. Note that leaving /github at the end of the DISCORD WEBHOOK token (contrary to what the action recommends) will use the default GitHub webhook settings in addition to sending this action's notification. We suggest leaving it if there is no webhook already configured.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#26",
+      "title": "Slack Notification",
+      "text": "Configuring the action to send notifications to your organization's Slack workspace can be found here.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#27",
+      "title": "Jest",
+      "text": "Basic Jest testing has been implemented in the test.js file. Currently the only test is to check that the /login page returns a HTTP 200 status code. These tests can be run using the npm run test command. More Jest tests including snapshots and unit tests should be added as features are created or updated.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#28",
+      "title": "Accessibility",
+      "text": "Testing for accessibility is a great way to make sure that all hackathon enthusiasts can use Quill, regardless of ability. It's good practice to run accessibility tests on any changes that you've made to ensure that no new accessibility errors were introduced. An accessibility testing tool, pa11y-ci, has been provided and configured for this project. To run pa11y-ci, make sure that Quill is running locally on http://localhost:3000/ (alternatively, you can change the URLs specified in .pa11yci to match those of your running instance). Then, run the command npm run test:accessibility . If several of the URLs checked by pa11y-ci produce the same number of errors, pa11y-ci may be having trouble logging in with the default admin credentials specified in .env . Check that your instance of Quill is running correctly, or change the credentials used in .pa11yci . If your contribution adds any new pages to Quill, please add them to .pa11yci to make sure that these pages are covered by the accessibility tests. If your new pages are accessed as a non-logged-in user, add them at the beginning of the URL list. If they are accessed when logged in, add them after the URL with actions to log in. Fo",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#29",
+      "title": "Contributing",
+      "text": "Contributions to Quill are welcome and appreciated! Please take a look at [ CONTRIBUTING.md ][contribute] first.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#30",
+      "title": "Feedback / Questions",
+      "text": "If you have any questions about this software, please contact [quill@hackmit.org][email].",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill#31",
+      "title": "Organizations",
+      "text": "Support this project with your organization. Your logo will show up here with a link to your website. [Contribute] License Copyright (c) 2015-2016 Edwin Zhang (https://github.com/ehzhang). Released under AGPLv3. See [ LICENSE.txt ][license] for details. [contribute]: https://github.com/techx/quill/blob/master/CONTRIBUTING.md [license]: https://github.com/techx/quill/blob/master/LICENSE [email]: mailto:quill@hackmit.org [users]: https://github.com/techx/quill/wiki/Quill-Users [pa11y-ci]: https://github.com/pa11y/pa11y-ci [pa11y]: https://github.com/pa11y/pa11y [pa11y-actions]: https://github.com/pa11y/pa11y actions",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/techx/quill/blob/master/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing ============ All kinds of contributions to Quill are greatly appreciated. For someone unfamiliar with the code base, the most efficient way to contribute is usually to submit a feature request or bug report. If you want to dive into the source code, you can submit a patch as well. Working on [existing issues][issues] is super helpful! Feature Requests ---------------- Do you have an idea for an awesome new feature for Quill? Please [submit a feature request][issue]. It's great to hear about new ideas. If you are inclined to do so, you're welcome to [fork][fork] Quill, work on implementing the feature yourself, and submit a patch. In this case, it's highly recommended that you first [open an issue][issue] describing your enhancement to get early feedback on the new feature that you are implementing. This will help avoid wasted efforts and ensure that your work is incorporated into the code base. Bug Reports ----------- Did something go wrong with Quill? Sorry about that! Bug reports are greatly appreciated! When you [submit a bug report][issue], please include relevant information such as Quill version, operating system, configuration, error messages, and steps to repro",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/techx/quill",
+  "stars": 451
+}

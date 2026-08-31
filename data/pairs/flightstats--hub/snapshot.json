@@ -1,0 +1,46 @@
+{
+  "slug": "flightstats--hub",
+  "name": "hub",
+  "description": "fault tolerant, highly available service for data storage and distribution",
+  "documents": [
+    {
+      "url": "https://github.com/flightstats/hub#0",
+      "title": "Introducción",
+      "text": "Read the docs: https://flightstats.github.io/hub/ What is the Hub? The hub is a distributed linked list. The hub is a messaging system. The hub is a long term data store.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/flightstats/hub#1",
+      "title": "The hub is like a Key Value Store",
+      "text": "Stores each item at a unique key (url) (http://hub/channel/whatIs/2016/12/31/23/59/59/bhJ23I) Items are available for an arbitrarily long time Fault tolerant, easy to cluster Requires a quorum for a successful write",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/flightstats/hub#2",
+      "title": "with some differences",
+      "text": "Most KV stores allow mutations. The hub does not. The hub imposes that all item keys always move forward in time The hub offers ordering guarantees to provide consistent answers to time based queries",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/flightstats/hub#3",
+      "title": "and some differences",
+      "text": "Most messaging systems do not let you access arbitrarily old items Many messaging systems are difficult to cluster Many messaging system require custom clients",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/flightstats/hub#4",
+      "title": "How to build hub:",
+      "text": "Run ./gradlew build The above command compiles the code, runs the unit tests and integration tests.~~~~",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/flightstats/hub#5",
+      "title": "How to run System tests:",
+      "text": "From Local: 1) Setup hub: a) ./localDocker.sh (from root directory) b) docker run -p 80:80 hub:local 2) set base.url property in integration-hub.properties 3) Go to root of hub project source and run below command ./gradlew systemTest -i",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/flightstats/hub",
+  "stars": 108
+}

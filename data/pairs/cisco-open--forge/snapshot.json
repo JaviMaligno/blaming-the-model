@@ -1,0 +1,82 @@
+{
+  "slug": "cisco-open--forge",
+  "name": "forge",
+  "description": "ForgeMT is a multi-tenant platform for self-hosted GitHub Actions runners on AWS. It gives platform teams an IaC-driven way to operate ephemeral EC2 runners and ARC/Kubernetes runner scale sets for many tenant repositories.",
+  "documents": [
+    {
+      "url": "https://github.com/cisco-open/forge#0",
+      "title": "Introducción",
+      "text": "ForgeMT ForgeMT is a multi-tenant platform for self-hosted GitHub Actions runners on AWS. It gives platform teams an IaC-driven way to operate ephemeral EC2 runners and ARC/Kubernetes runner scale sets for many tenant repositories. Think of ForgeMT as the runner control plane and operating model, not only a Terraform module. The platform team owns GitHub App integration, runner images, AWS placement, tenant configuration, lifecycle cleanup, and optional observability. Tenant teams consume approved runs-on labels and AWS role access from their workflow YAML.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cisco-open/forge#1",
+      "title": "What You Get",
+      "text": "- Ephemeral self-hosted GitHub Actions runner capacity in AWS. - EC2 runner lanes for full VM isolation, custom AMIs, Windows, macOS, ARM64, or heavier builds. - ARC runner lanes for Kubernetes-based runner scale sets on EKS. - Tenant boundaries for labels, IAM/OIDC role access, networks, images, runner specs, and GitHub App scope. - Copyable Terragrunt deployment examples for platform, infra, helpers, and integrations. - Day-2 operating patterns for runner images, ECR images, cleanup, Renovate, smoke tests, and optional Splunk/Teleport/OpenTelemetry/OpenCost integrations.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cisco-open/forge#2",
+      "title": "When To Use It",
+      "text": "Use ForgeMT when you need: - self-hosted GitHub Actions runners inside your AWS accounts. - tenant boundaries for labels, IAM roles, networks, images, and runner specs. - reviewed IaC changes for tenant onboarding instead of manual runner setup. - one operating model for EC2 runners, ARC runners, or both. - repeatable cleanup, image, upgrade, and validation workflows. Do not start by deploying every module. The smallest useful install is one GitHub.com organization, one tenant, one runner lane, and one smoke workflow. Add helpers, EKS, Splunk, Teleport, OpenCost, OpenTelemetry, and webhook relay modules only when your operating model needs them.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cisco-open/forge#3",
+      "title": "Before You Deploy",
+      "text": "Have these answers before applying the examples: Decision Minimum answer --------------- ----------------------------------------------------------------------------------------------- GitHub target GitHub.com or GHES URL, organization, runner group, and GitHub App installation scope. AWS placement Account, region, VPC, subnets, security groups, and tenant AWS role access. State backend S3 bucket and DynamoDB lock table for Terraform or OpenTofu state. First lane EC2, ARC on EKS, or both. Start with one lane and add the other after the first smoke workflow. Runner image AMI owner/name for EC2 runners or reachable container images for ARC runners. Tenant boundary Tenant name, generated labels, allowed repositories, IAM roles, and metadata ownership. Integrations Which systems are mandatory now and which can be skipped until the runner path works. Pick EC2 first when you already have a runner AMI or need VM-level isolation. Pick ARC first when EKS is already available and the first workloads fit a Kubernetes runner model. You can skip EKS for an EC2-only first deployment.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cisco-open/forge#4",
+      "title": "Module Layout",
+      "text": "ForgeMT modules are grouped by operating responsibility: Category Path Purpose -------------- -------------------------- ---------------------------------------------------------------- Platform modules/platform Forge runtime modules for EC2 and ARC tenant runners. Infrastructure modules/infra EKS foundation for ARC/Kubernetes runner scale sets. Helpers modules/helpers Account preparation and operations helpers such as AMI, ECR, S3. Integrations modules/integrations Optional external systems such as Splunk, Teleport, and relays. Examples examples/deployments/... Functional Terragrunt roots grouped like the module layout. Splunk is optional. If your company does not use Splunk, skip the Splunk example folders, all modules/integrations/splunk modules, and modules/integrations/splunk dependency monitor .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cisco-open/forge#5",
+      "title": "Quick Start",
+      "text": "Start with the platform path: 1. Read Platform Engineer Quick Start and Minimal Install. 1. Choose the first lane: EC2, ARC, or both. 1. Copy examples/deployments/platform into your operations IaC repo. 1. Replace the AWS, GitHub, VPC, runner image, and tenant values. 1. Create or register the GitHub App and store the private key in SSM. 1. Run terragrunt init , terragrunt plan , and terragrunt apply . 1. Queue one smoke workflow with the generated runner labels. The first install path is the platform example: After replacing the values and storing the real GitHub App PEM in SSM, run from the tenant folder: For the full sequence, including backend bootstrap and GitHub App registration, use Bootstrap and Minimal Install. Read next: - ForgeMT documentation - Motivation - Architecture - Examples - Operations - Security",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cisco-open/forge#6",
+      "title": "Tenant Usage",
+      "text": "After the platform team onboards a tenant, repository owners request the runner with labels generated by ForgeMT: Tenant teams should use Tenant Usage for label, AWS role, ECR, and troubleshooting patterns.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cisco-open/forge#7",
+      "title": "Learn More",
+      "text": "Technical background: - Forge: scalable, secure multi-tenant GitHub runner platform - Scaling GitHub Actions on AWS with ForgeMT's security and multi-tenancy - No Silver Bullets: engineering a multi-tenant CI platform a small team can run Implementation foundations: - terraform-aws-github-runner - actions-runner-controller",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cisco-open/forge#8",
+      "title": "Contributing",
+      "text": "Contributions are welcome via issues or pull requests. See CONTRIBUTING.md for details.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cisco-open/forge#9",
+      "title": "Contact",
+      "text": "Track progress or open issues on GitHub: https://github.com/cisco-open/forge/issues",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cisco-open/forge/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "How to Contribute Thanks for your interest in contributing to Forge ! Here are a few general guidelines on contributing and reporting bugs that we ask you to review. Following these guidelines helps to communicate that you respect the time of the contributors managing and developing this open source project. In return, they should reciprocate that respect in addressing your issue, assessing changes, and helping you finalize your pull requests. In that spirit of mutual respect, we endeavor to review incoming issues and pull requests within 10 days, and will close any lingering issues or pull requests after 60 days of inactivity. Please note that all of your interactions in the project are subject to our Code of Conduct. This includes creation of issues or pull requests, commenting on issues or pull requests, and extends to all interactions in any real-time space e.g., Slack, Discord, etc. Reporting Issues Before reporting a new issue, please ensure that the issue was not already reported or fixed by searching through our issues list. When creating a new issue, please be sure to include a title and clear description , as much relevant information as possible, and, if possible, a test",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/cisco-open/forge/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog 4.14.0 (2026-08-13) Features runners: adapt nested v2 configuration contract ( 654) (5b75fd8) 4.13.2 (2026-08-13) Bug Fixes ignore acl ( 651) (e23985e) 4.13.1 (2026-08-12) Bug Fixes splunk: make Data Manager reconciler names unique ( 647) (c1fa284) splunk: prevent CloudWatch props ACL recreation ( 648) (d9a615e) 4.13.0 (2026-08-11) Features microvm: add regional publishing foundation ( 635) (d9be0f9) runners: adopt nested EC2 provider configuration ( 638) (5937cf6) Bug Fixes helpers: remove License Manager service-linked role ( 642) (8f08eec) runners: preserve example pre-install userdata ( 645) (7f0fd09) 4.12.0 (2026-08-11) Features splunk: manage Data Manager Lambda log groups ( 637) (57d0e6d) 4.11.3 (2026-08-11) Bug Fixes splunk: restore Data Manager delete flow ( 639) (a451322) 4.11.2 (2026-08-06) Bug Fixes splunk: harden Data Manager discovery ( 632) (9555e52) splunk: preserve configuration ACLs ( 633) (014c66b) 4.11.1 (2026-08-06) Bug Fixes splunk-conf: ignore trackPipelineLatency drift ( 629) (3dc7235) 4.11.0 (2026-08-05) Features deps: manage Lambda layer revisions with Renovate ( 615) (a199d92) observability: add metric API ingestion health dashboard ( 616) (7920",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/cisco-open/forge",
+  "stars": 211
+}

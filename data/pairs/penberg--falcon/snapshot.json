@@ -1,0 +1,40 @@
+{
+  "slug": "penberg--falcon",
+  "name": "falcon",
+  "description": "Falcon, the open source ultra low-latency FIX engine for Java",
+  "documents": [
+    {
+      "url": "https://github.com/penberg/falcon#0",
+      "title": "Introducción",
+      "text": "Falcon Falcon is a high performance, low latency FIX engine for the JVM. It provides an API that enables FIX connectivity for both buy side and sell side applications such as trading systems and order management systems. The engine is designed to avoid heap allocations on the TX and RX paths to avoid GC pauses that are disastrous for low-latency applications. The engine is packed with other optimizations such as avoiding querying the system clock for every message and open-coding formatting and parsing functions where the JRE allocates memory implicitly. Falcon is able to achieve 8 µs RTT on when running the latency tester client and server on the same machine.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/penberg/falcon#1",
+      "title": "Features",
+      "text": "Zero-copy, non-blocking, low-latency NIO networking Low heap allocation rate in the FIX engine core Small memory footprint for session and message data structures",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/penberg/falcon#2",
+      "title": "Example",
+      "text": "An example application that sends 100000 NewOrderSingle messages looks like this:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/penberg/falcon#3",
+      "title": "Performance",
+      "text": "The FIX engine has been measured to have 8 µs RTT for a loopback ping-pong test where client sends a NewOrderSingle message and waits for an ExecutionReport message to arrive. The numbers include the time spent in Linux TCP/IP stack and the loopback device. To reproduce the results, first download and build [Libtrading]. Then start the FIX performance test server: Finally, run the Falcon latency tests: [Libtrading]: https://github.com/libtrading/libtrading",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/penberg/falcon#4",
+      "title": "License",
+      "text": "Copyright © 2013-2015 Pekka Enberg and contributors Falcon is distributed under the 2-clause BSD license.",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/penberg/falcon",
+  "stars": 153
+}

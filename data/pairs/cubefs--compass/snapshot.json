@@ -1,0 +1,58 @@
+{
+  "slug": "cubefs--compass",
+  "name": "compass",
+  "description": "Compass is a task diagnosis platform for bigdata",
+  "documents": [
+    {
+      "url": "https://github.com/cubefs/compass#0",
+      "title": "Abstract",
+      "text": "Compass is a platform for diagnosing computing engines and schedulers in the big data ecosystem, aiming to improve the efficiency of troubleshooting and reduce the complexity of problem tuning. It automatically collects logs and metrics, and uses heuristic rules to identify problems and provide tuning advice. In addition, for logs, ChatGPT is used to provide diagnostic suggestions. The logs are automatically aggregated into templates using the drain algorithm, which can be used for manual intervention, etc., to improve the automation of diagnosis and optimization solutions.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cubefs/compass#1",
+      "title": "Feature",
+      "text": "1. Non-invasive, in-time diagnosis, no need to modify the original platform code. 2. Compatible with multiple version for different componts such Spark 2.4+、Flink 1.2+、Hadoop 2.4+, DolphinScheduler 2.x+, Airflow, etc. 3. Supports diagnostics for kinds of scheduling job issues, such as failure, abnormal elapsed time, abnormal baseline, etc. 4. Supports diagnostics for kinds of engine task issues, such as data skew, big table scan, memory waste, long tail task, etc. 5. Supports diagnostics for capturing log exception and offers advise or solution. 6. Supports ChatGPT to diagnose abnormal logs and provide solutions; uses the drain algorithm to aggregate templates, saving costs.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cubefs/compass#2",
+      "title": "Feature Support",
+      "text": "- [x] ChatGPT - [x] Spark - [x] Flink - [x] Mapreduce - [ ] Trino - [ ] Spark Tez - [x] Airflow - [x] DolphinScheduler - [ ] Azkaban - [ ] Oozie - [ ] Debezium (Synchronize Postgresql data to Postgresql) - [ ] Other(Any suggestions are welcomed, high valued)...",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cubefs/compass#3",
+      "title": "Community",
+      "text": "Welcome to join the community for the usage or development of Compass. - Submit an issue. - Submit a pull request, please read the contributing guideline. - Discuss idea & question. Usually We will reply it quickly.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cubefs/compass#4",
+      "title": "Categories of Diagnosis",
+      "text": "Category Scope Dimension Description ------------------------------- ----------------- --------------------- --------------------------------------------------------------------------------------------------------- Failed task Scheduler Runtime Analysis Fail to run task successfully after retrying per running cycle First failed task Scheduler Runtime Analysis Fail to run task first time but succeed after retrying per running cycle Long-term failed task Scheduler Runtime Analysis Keep failing to run task every running cycle Exceed base-time task Scheduler Time Analysis The run ends earlier or later than normal Abnormal time-elapsed task Scheduler Time Analysis The elapsed time of task is either too short or too long compared to the normal Long time-consuming task Scheduler Time Analysis The elapsed time of task is exceed 2 hours Failed SQL task Spark Runtime Analysis Failed to run sql Shuffle failed task Spark Runtime Analysis Failed to run task due to being unable to shuffle successfully Memory Overflow Spark Runtime Analysis There is not enough memory to run task CPU waste Spark,MapReduce Resource Analysis The usage of CPU is not high Memory waste Spark Resource Analysis The usage",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cubefs/compass#5",
+      "title": "License",
+      "text": "Compass is licensed under the Apache License, Version 2.0 For detail see LICENSE and NOTICE.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cubefs/compass#6",
+      "title": "Reference",
+      "text": "The Drain algorithm is based on logpai project, for more please see - https://github.com/logpai/Drain3 - https://jiemingzhu.github.io/pub/pjhe icws2017.pdf",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/cubefs/compass/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to Compass Issue Reports Please make sure the issue is not already reported by search the repository with reasonable keywords. Then open an issue with steps to reproduce. Workflow Recommend the standard GitHub flow based on forking and pull requests as the following basic process of contribute code to Compass: 1. Fork Compass to your repository. 2. Clone the repository to your computer, if you have already cloned it, just pull or fetch to update the code. Example: git clone https://github.com/cubefs/compass.git or git checkout main && git pull 3. Add remote for your forked repository and create your branch. Example: git remote add me https://github.com/your/compass and git checkout -b your-branch 4. Update the code in your branch, commit and push the code to your remote repository. Example: git commit -m \"xxx comment\" && git push me 5. Make a pull request that request merging your own branch on your forked repository into the master branch of the main repository. Example: merge your/compass:your-branch into cubefs/compass:main Note: If your pull request solves an existing issue or implements a feature request with an existing issue. Please use the fixes keyword in the ",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/cubefs/compass",
+  "stars": 407
+}

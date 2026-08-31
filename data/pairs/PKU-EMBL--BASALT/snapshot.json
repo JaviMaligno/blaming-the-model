@@ -1,0 +1,106 @@
+{
+  "slug": "PKU-EMBL--BASALT",
+  "name": "BASALT",
+  "description": "Nature Communications | BASALT (Binning Across a Series of Assemblies Toolkit) for binning and refinement of short- and long-read sequencing data ",
+  "documents": [
+    {
+      "url": "https://github.com/PKU-EMBL/BASALT#0",
+      "title": "Introducción",
+      "text": "BASALT: Binning Across a Series of Assemblies Toolkit BASALT is a metagenomic workflow for recovering and refining metagenome-assembled genomes (MAGs) across one or more assemblies. It combines multi-binner candidate generation, within- and between-assembly bin selection, contig-level contamination screening, contig retrieval, and reassembly in one checkpointed pipeline. [!IMPORTANT] New: BASALT-Air v1.0.0 is now available. BASALT-Air is the newer Pixi-based implementation for users who need absolute input paths, separate working and output directories, reproducible run manifests, and built-in dependency checks. Its executable is lowercase basalt , and its CLI and checkpoints are not interchangeable with the Conda-based BASALT documented in this repository. The published evaluation reports improved MAG recovery and downstream genome-resolved analyses relative to the tested workflows and datasets. These results define the evidence boundary: performance depends on community complexity, sequencing depth, assembly quality, read type, and the selected parameters. See the Nature Communications article for the complete experimental design.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PKU-EMBL/BASALT#1",
+      "title": "Core advantage: coherent multi-assembly refinement",
+      "text": "BASALT can jointly evaluate sample-specific assemblies and a biologically matched co-assembly. Individual assemblies preserve sample-restricted populations while avoiding some pooling complexity; co-assembly can increase effective depth for shared, low-abundance genomes. Across related samples, concordant coverage changes provide an abundance fingerprint that complements tetranucleotide composition and sequence overlap during bin selection, dereplication, contig screening, retrieval, and reassembly. This design is especially useful for longitudinal, reactor time-series, nearby-site, extraction-method, intervention, growth-stage, and environmental-gradient studies. Validate it in a pilot; it is not a reason to combine unrelated samples. See Study design patterns.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PKU-EMBL/BASALT#2",
+      "title": "Documentation",
+      "text": "The BASALT guide is the source of truth for installation, inputs, commands, outputs, troubleshooting, and reproducible reporting. Its editable sources are under BASALT Guide/docs/ . - Installation - BASALT-Air: the new implementation - Quick start - Input formats - Study design patterns - Command-line reference - Tutorial - Reproducibility and reporting",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PKU-EMBL/BASALT#3",
+      "title": "Choose a route",
+      "text": "Goal Recommended route Read first --- --- --- Start a new deployment with modern path and environment handling BASALT-Air v1.0.0 BASALT-Air overview Reproduce or resume an existing Conda BASALT analysis This BASALT repository Installation First successful run One assembly and one matched paired-end sample Quick start Compare individual and pooled assemblies Run a biologically coherent multi-assembly pilot Study design patterns Recover candidates with lower compute demand --sensitive quick --refinepara quick Command-line reference Expand the candidate pool --sensitive sensitive or more-sensitive ; optionally add a validated binner Extra binners Import bins from another workflow Data feeding, then optional dereplication and refinement External-binset workflow Resume an interrupted run BASALT --mode continue in the unchanged run directory Resume semantics",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PKU-EMBL/BASALT#4",
+      "title": "BASALT or BASALT-Air?",
+      "text": "Capability BASALT in this repository BASALT-Air v1.0.0 --- --- --- Environment Conda plus external installation steps Pixi environment and lock file Command BASALT basalt Input paths Dedicated run directory and local names recommended First-class absolute paths Work and output locations Intermediates in the current directory Separate --workdir and --outdir Run provenance Command, logs, and checkpoint files Adds a structured run manifest and timestamped logs Best suited to Existing BASALT analyses and checkpoint reproduction New deployments needing clearer path and environment isolation See the BASALT-Air repository for its authoritative installation and command reference.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PKU-EMBL/BASALT#5",
+      "title": "What BASALT does",
+      "text": "1. Autobinning. BASALT runs MetaBAT 2 and SemiBin 2 across parameter settings. The sensitive and more-sensitive presets add CONCOCT, and more-sensitive also adds MaxBin 2.0. 2. Bin selection. Candidate bins are compared within each assembly and then across assemblies to reduce redundancy. 3. Refinement. A five-model multilayer-perceptron ensemble screens contigs using sequence-composition and coverage-derived features. Read connectivity is then used to retrieve candidate contigs. 4. Reassembly. BASALT can reassemble and polish selected bins when the required read types are available. Optional adapters support MetaBinner ( -e m ), VAMB ( -e v ), and LorBin ( -e l ). Their installation and input requirements are documented separately in the extra-binner guide. The LorBin adapter is maintained against PKU-EMBL/LorBin-BASALT-Extrabinner, an in-house fork that adapts LorBin to the BASALT Python 3.12 environment and carries BASALT-specific runtime fixes. Record the fork's Git commit for every analysis that uses -e l ; the package version alone does not uniquely identify these changes.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PKU-EMBL/BASALT#6",
+      "title": "Candidate-generation presets",
+      "text": "Preset Candidate generators Practical trade-off --- --- --- quick MetaBAT 2 and SemiBin 2 Lower compute demand and fewer candidate sets sensitive MetaBAT 2, CONCOCT, and SemiBin 2 Default balance of candidate diversity and runtime more-sensitive MaxBin 2.0, MetaBAT 2, CONCOCT, and SemiBin 2 Higher compute and storage demand; not guaranteed to recover more acceptable MAGs",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PKU-EMBL/BASALT#7",
+      "title": "Supported input designs",
+      "text": "Every run requires at least one assembly and at least one source of read coverage. BASALT accepts the following designs: Design Assembly Short reads ONT or PacBio CLR PacBio HiFi --- ---: ---: ---: ---: Short-read only required required no no Long-read only required no required no HiFi only required no no required Short reads + ONT or CLR required required required no Short reads + HiFi required required no required Input paths are resolved from the working directory. Use filenames or relative paths without shell metacharacters; for the most reliable execution, place or symlink inputs into a dedicated run directory. Paired-end files within a sample are separated by a comma, and multiple short-read samples are separated by / . For replicate or longitudinal studies, decide the biological strata before assembling or pooling. BASALT can compare sample-specific and matched pooled assemblies, but it cannot infer whether a pool erased a time, treatment, host, or habitat contrast. The study-design guide provides concrete layouts and a minimum design manifest.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PKU-EMBL/BASALT#8",
+      "title": "Requirements",
+      "text": "- Linux x86-64 - Python 3.12 - 8 CPU threads and 128 GB RAM as a practical starting point - 32 or more threads and 256 GB RAM for larger or more complex datasets - Sufficient temporary storage for mapping, binning, and reassembly intermediates Resource use is dataset-dependent. Run a pilot or request more memory for large assemblies, many samples, or more-sensitive mode.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PKU-EMBL/BASALT#9",
+      "title": "Installation",
+      "text": "The Conda-compatible installation below is the maintained route for this repository. Micromamba is recommended for faster dependency solving and parallel package downloads; current Conda with the libmamba solver is also supported. See the installation guide for databases, model weights, mainland-China mirrors, verification, and container execution notes. The release tag makes this installation reproducible instead of following a moving master branch. Clone master without --branch V1.2.2 only for development. Run the installer with bash install.sh ; the source file does not need to be executable. The installer assigns mode 0755 only to installed Python and Perl scripts and the generated BASALT launcher. The platform-compatible jgi summarize bam contig depths executable is supplied by the maintained MetaBAT 2 package and is validated during installation; BASALT no longer ships a stale Linux binary. Do not use sudo , chmod 777 , or chmod -R 777 on the repository or environment. If installation reports a permission error, use a user-owned Conda/Micromamba environment and follow the permission troubleshooting guide. Activate the environment before using the unprefixed commands shown lat",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PKU-EMBL/BASALT#10",
+      "title": "Quick start",
+      "text": "Create a clean working directory and link the inputs into it: Run the full short-read workflow: The final MAGs and final CheckM2 report are written under study basalt/ . Intermediate files, BASALT command.txt , Basalt log.txt , and Basalt checkpoint.txt remain in the working directory. To resume an interrupted run from that same directory: Do not combine files from different runs in one working directory. --mode new initializes checkpoint state, but it does not provide complete cleanup or provenance isolation.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PKU-EMBL/BASALT#11",
+      "title": "Common commands",
+      "text": "Short reads across two assemblies and two samples: Short reads plus ONT or PacBio CLR reads: PacBio HiFi reads: Faster candidate generation and refinement: See the command-line reference before using standalone refinement, data feeding, dereplication, or module-specific execution. These routes require intermediate files from a compatible BASALT run.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PKU-EMBL/BASALT#12",
+      "title": "Output contract",
+      "text": "For the default CheckM2 route, -o NAME produces the final directory NAME/ ; without -o , the default is Final binset/ . A scientifically complete result should contain non-empty bin FASTA files and a matching quality report, while the working directory should retain BASALT command.txt , Basalt log.txt , and Basalt checkpoint.txt . Directory names such as BestBinset , refined , or MAGs describe workflow state, not publication-ready quality. Apply explicit completeness, contamination, taxonomy, contiguity, read-support, and dereplication criteria. See Outputs and quality control.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PKU-EMBL/BASALT#13",
+      "title": "Reproducible use",
+      "text": "For each analysis, archive: - the exact BASALT command and BASALT Git commit or release; - the Conda environment export and versions of external executables; - CheckM or CheckM2 database identity and quality thresholds; - input assembly and read checksums; - BASALT command.txt , Basalt log.txt , and Basalt checkpoint.txt ; - the final quality report and all exclusions applied after BASALT. The reporting guide provides a Methods template and a minimum reporting checklist.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PKU-EMBL/BASALT#14",
+      "title": "Citation",
+      "text": "If BASALT contributes to an analysis, cite: Qiu, Z., Yuan, L., Lian, C.-A. et al. BASALT refines binning from metagenomic data and increases resolution of genome-resolved metagenomic analysis. Nature Communications 15 , 2179 (2024). https://doi.org/10.1038/s41467-024-46539-7 If an optional binner materially contributes to the reported analysis, cite that software and record its version and parameters.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/PKU-EMBL/BASALT#15",
+      "title": "Support and licence",
+      "text": "Report reproducible bugs through GitHub Issues. Include the command, log, checkpoint, software versions, database configuration, and the smallest shareable input that reproduces the problem. Scientific or collaboration enquiries: - Ke Yu: yuke.sz@pku.edu.cn - Zhaorui (Elijah) Jiang: zrjiang25@stu.pku.edu.cn BASALT is released under the MIT License.",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/PKU-EMBL/BASALT",
+  "stars": 221
+}

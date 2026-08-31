@@ -1,0 +1,64 @@
+{
+  "slug": "ruby--prism",
+  "name": "prism",
+  "description": "Prism Ruby parser",
+  "documents": [
+    {
+      "url": "https://github.com/ruby/prism#0",
+      "title": "Introducción",
+      "text": "Prism Ruby parser This is a parser for the Ruby programming language. It is designed to be portable, error tolerant, and maintainable. It is written in C99 and has no dependencies.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ruby/prism#1",
+      "title": "Overview",
+      "text": "The repository contains the infrastructure for both a shared library (libprism) and a native CRuby extension. The shared library has no bindings to CRuby itself, and so can be used by other projects. The native CRuby extension links against ruby.h , and so is suitable in the context of CRuby.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ruby/prism#2",
+      "title": "Getting started",
+      "text": "To compile the shared library, you will need: C99 compiler GNU make Ruby 2.7.0 or later Once you have these dependencies, run: to fetch the Ruby dependencies. Finally, run: to compile the shared library. It will be built in the build directory. To test that everything is working, run: to see the syntax tree for the expression 1 + 2 .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ruby/prism#3",
+      "title": "Contributing",
+      "text": "See the CONTRIBUTING.md file for more information. We additionally have documentation about the overall design of the project as well as various subtopics. Build system Configuration CRuby compilation Design Encoding Fuzzing Heredocs JavaScript Local variable depth Mapping Parser translation Parsing rules Releasing Ripper translation Ruby API RubyParser translation Serialization Testing",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ruby/prism#4",
+      "title": "Examples",
+      "text": "Prism has been integrated into the majority of Ruby runtimes, many libraries, and some applications. Below is a list of some of the projects that use Prism:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ruby/prism#5",
+      "title": "Runtimes",
+      "text": "CRuby (via C) Garnet (via WASM) JRuby (via Java) MRuby (via C) Natalie (via C++ and Ruby) Opal (via Ruby and WASM) TruffleRuby (via Java)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ruby/prism#6",
+      "title": "Libraries",
+      "text": "dispersion fast minifyrb packwerk (via parser translator) rbi rails parsing renders parsing rdoc parsing tests repl type completor rubocop (via parser translator) ruby-lsp smart todo sorbet-eraser synvert typeprof unparser (via parser translator)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/ruby/prism/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing Thank you for your interest in contributing to prism! Below are a couple of ways that you can help out. Discussions The discussions page on the GitHub repository are open. If you have a question or want to discuss the project, feel free to open a new discussion or comment on an existing one. This is the best place to ask questions about the project. Code If you want to contribute code, please first open or contribute to a discussion. A lot of the project is in flux, and we want to make sure that you are contributing to the right place. Once you have a discussion going, you can open a pull request with your changes. We will review your code and get it merged in. Tests We could always use more tests! One of the biggest challenges of this project is building up a big test suite. If you want to contribute tests, feel free to open a pull request. These will get merged in as soon as possible. The test Rake task will not compile libraries or the C extension, and this is intentional (to make testing against an installed version easier). If you want to test your changes, please make sure you're also running either the task: or explicitly running the compile task: To test the ru",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/ruby/prism/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog All notable changes to this project will be documented in this file. The format is based on Keep a Changelog and this project adheres to Semantic Versioning. [Unreleased] [1.9.0] - 2026-01-27 Added - Lots of work on the Ripper translation layer to make it more compatible and efficient. - Alias Prism::Node breadth first search to Prism::Node find . - Add Prism::Node breadth first search all / Prism::Node find all for finding all nodes matching a condition. Changed - Fixed location of opening tokens when invalid syntax is parsed. - Fix RBI for parsing options. [1.8.1] - 2026-03-16 (Ruby 4.0.2 maintenance release) Changed - Fix not binding power in endless methods. - Correctly handle and? and similar on Ruby 4.0. - Fix error message for block/lambda with ... argument. - Fix in handling. [1.8.0] - 2026-01-12 Added - Optimize ruby visitor. - Report unterminated construct errors at opening token. Changed - Correctly expose ripper state. - Use one file for versioned parser classes. - Fix denominator of rational float literal. - Decouple ripper translator from ripper library. - Sync Prism::Translation::ParserCurrent with Ruby 4.0. [1.7.0] - 2025-12-18 Added - Support 4.1 as a ver",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/ruby/prism",
+  "stars": 1028
+}

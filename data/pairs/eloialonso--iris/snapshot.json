@@ -1,0 +1,58 @@
+{
+  "slug": "eloialonso--iris",
+  "name": "iris",
+  "description": "Transformers are Sample-Efficient World Models. ICLR 2023, notable top 5%.",
+  "documents": [
+    {
+      "url": "https://github.com/eloialonso/iris#0",
+      "title": "Introducción",
+      "text": "Transformers are Sample-Efficient World Models (IRIS) Transformers are Sample-Efficient World Models Vincent Micheli\\ , Eloi Alonso\\ , François Fleuret \\ Denotes equal contribution IRIS agent after 100k environment steps, i.e. two hours of real-time experience tl;dr - IRIS is a data-efficient agent trained over millions of imagined trajectories in a world model. - The world model is composed of a discrete autoencoder and an autoregressive Transformer. - Our approach casts dynamics learning as a sequence modeling problem, where the autoencoder builds a language of image tokens and the Transformer composes that language over time.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/eloialonso/iris#1",
+      "title": "Setup",
+      "text": "- Install PyTorch (torch and torchvision). Code developed with torch==1.11.0 and torchvision==0.12.0. - Install other dependencies: pip install -r requirements.txt - Warning: Atari ROMs will be downloaded with the dependencies, which means that you acknowledge that you have the license to use them.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/eloialonso/iris#2",
+      "title": "Launch a training run",
+      "text": "By default, the logs are synced to weights & biases, set wandb.mode=disabled to turn it off.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/eloialonso/iris#3",
+      "title": "Configuration",
+      "text": "- All configuration files are located in config/ , the main configuration file is config/trainer.yaml . - The simplest way to customize the configuration is to edit these files directly. - Please refer to Hydra for more details regarding configuration management.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/eloialonso/iris#4",
+      "title": "Run folder",
+      "text": "Each new run is located at outputs/YYYY-MM-DD/hh-mm-ss/ . This folder is structured as: - checkpoints : contains the last checkpoint of the model, its optimizer and the dataset. - media : - episodes : contains train / test / imagination episodes for visualization purposes. - reconstructions : contains original frames alongside their reconstructions with the autoencoder. - scripts : from the run folder , you can use the following three scripts. - eval.py : Launch python ./scripts/eval.py to evaluate the run. - resume.sh : Launch ./scripts/resume.sh to resume a training that crashed. - play.sh : Tool to visualize some interesting aspects of the run. - Launch ./scripts/play.sh to watch the agent play live in the environment. If you add the flag -r , the left panel displays the original frame, the center panel displays the same frame downscaled to the input resolution of the discrete autoencoder, and the right panel shows the output of the autoencoder (what the agent actually sees). - Launch ./scripts/play.sh -w to unroll live trajectories with your keyboard inputs (i.e. to play in the world model). Note that for faster interaction, the memory of the Transformer is flushed every 20 fra",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/eloialonso/iris#5",
+      "title": "Results notebook",
+      "text": "The folder results/data/ contains raw scores (for each game, and for each training run) for IRIS and the baselines. Use the notebook results/results iris.ipynb to reproduce the figures from the paper.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/eloialonso/iris#6",
+      "title": "Pretrained models",
+      "text": "Pretrained models are available here. - To start a training run from one of these checkpoints, in the section initialization of config/trainer.yaml , set path to checkpoint to the corresponding path, and load tokenizer , load world model , and load actor critic to True . - To visualize one of these checkpoints, set train.id to the corresponding game in config/env/default.yaml , create a checkpoints directory and copy the checkpoint to checkpoints/last.pt . You can then visualize the agent with ./scripts/play.sh as described above.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/eloialonso/iris#7",
+      "title": "Credits",
+      "text": "- https://github.com/pytorch/pytorch - https://github.com/CompVis/taming-transformers - https://github.com/karpathy/minGPT - https://github.com/google-research/rliable",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/eloialonso/iris",
+  "stars": 900
+}

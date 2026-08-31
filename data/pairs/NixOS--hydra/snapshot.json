@@ -1,0 +1,82 @@
+{
+  "slug": "NixOS--hydra",
+  "name": "hydra",
+  "description": "Hydra, the Nix-based continuous build system [maintainers=@dasj,@Ericson2314]",
+  "documents": [
+    {
+      "url": "https://github.com/NixOS/hydra#0",
+      "title": "Installation And Setup",
+      "text": "Note : The instructions provided below are intended to enable new users to get a simple, local installation up and running. They are by no means sufficient for running a production server, let alone a public instance.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/NixOS/hydra#1",
+      "title": "Enabling The Service",
+      "text": "Running Hydra is currently only supported on NixOS. The hydra module allows for an easy setup. The following configuration can be used for a simple setup that performs all builds on localhost (Please refer to the Options page for all available options):",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/NixOS/hydra#2",
+      "title": "Creating An Admin User",
+      "text": "Once the Hydra service has been configured as above and activated, you should already be able to access the UI interface at the specified URL. However some actions require an admin user which has to be created first: Afterwards you should be able to log in by clicking on \" Sign In \" on the top right of the web interface using the credentials specified by hydra-create-user . Once you are logged in you can click \" Admin - Create Project \" to configure your first project.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/NixOS/hydra#3",
+      "title": "Creating A Simple Project And Jobset",
+      "text": "In order to evaluate and build anything you need to create projects that contain jobsets . Hydra supports imperative and declarative projects and many different configurations. The steps below will guide you through the required steps to creating a minimal imperative project configuration.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/NixOS/hydra#4",
+      "title": "Creating A Project",
+      "text": "Log in as administrator, click \" Admin \" and select \" Create project \". Fill the form as follows: - Identifier : hello-project - Display name : hello - Description : hello project Click \" Create project \".",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/NixOS/hydra#5",
+      "title": "Creating A Jobset",
+      "text": "After creating a project you are forwarded to the project page. Click \" Actions \" and choose \" Create jobset \". Change Type to Legacy for the example below. Fill the form with the following values: - Identifier : hello-project - Nix expression : examples/hello.nix in hydra - Check interval : 60 - Scheduling shares : 1 We have to add two inputs for this jobset. One for nixpkgs and one for hydra (which we are referencing in the Nix expression above): - Input name : nixpkgs - Type : Git checkout - Value : https://github.com/NixOS/nixpkgs nixos-24.05 - Input name : hydra - Type : Git checkout - Value : https://github.com/nixos/hydra Make sure State at the top of the page is set to \" Enabled \" and click on \" Create jobset \". This concludes the creation of a jobset that evaluates ./examples/hello.nix once a minute. Clicking \" Evaluations \" should list the first evaluation of the newly created jobset after a brief delay.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/NixOS/hydra#6",
+      "title": "Development Environment",
+      "text": "You can use the provided flake to get a working development environment: The development environment can also automatically be established using nix-direnv.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/NixOS/hydra#7",
+      "title": "Executing Hydra During Development",
+      "text": "When working on new features or bug fixes you need to be able to run Hydra from your working copy. This can be done using foreman: Have a look at the Procfile if you want to see how the processes are being started. In order to avoid conflicts with services that might be running on your host, hydra and postgress are started on custom ports: - hydra-server: 63333 with the username \"alice\" and the password \"foobar\" - postgresql: 64444, can be connected to using psql -p 64444 -h localhost hydra Note that this is only ever meant as an ad-hoc way of executing Hydra during development. Please make use of the NixOS module for actually running Hydra in production.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/NixOS/hydra#8",
+      "title": "Checking your patches",
+      "text": "After making your changes, verify the test suite passes and perlcritic is still happy. Start by following the steps in Development Environment. Then, you can run the Perl tests and perlcritic together with: You can run a single Perl test with: And run just perlcritic with: And run the Rust tests with:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/NixOS/hydra#9",
+      "title": "JSON API",
+      "text": "You can also interface with Hydra through a JSON API. The API is defined in hydra-api.yaml and you can test and explore via the swagger editor",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/NixOS/hydra#10",
+      "title": "Additional Resources",
+      "text": "- Hydra User's Guide - Hydra on the NixOS Wiki - hydra-cli - Peter Simons - Hydra: Setting up your own build farm (NixOS)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/NixOS/hydra/blob/master/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to Hydra Formatting Markdown We use semantic line breaks in all Markdown files. This means each sentence (or independent clause) should start on its own line. Semantic line breaks make diffs easier to read and review, since a change to one sentence won't reflow an entire paragraph. They also make it easier to rearrange and edit prose.",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/NixOS/hydra",
+  "stars": 1562
+}

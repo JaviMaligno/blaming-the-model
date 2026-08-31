@@ -1,0 +1,52 @@
+{
+  "slug": "koofr--vault",
+  "name": "vault",
+  "description": "Koofr Vault is an open-source, client-side encrypted folder for your Koofr cloud storage offering an extra layer of security for your most sensitive files.",
+  "documents": [
+    {
+      "url": "https://github.com/koofr/vault#0",
+      "title": "Introducción",
+      "text": "Koofr Vault https://vault.koofr.net Koofr Vault is an open-source, client-side encrypted folder for your Koofr cloud storage offering an extra layer of security for your most sensitive files. The encryption is compatible with rclone.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/koofr/vault#1",
+      "title": "Tech stack",
+      "text": "Koofr Vault is divided into two parts: the engine and the UI. The engine, made up of vault-core and vault-wasm , is written in Rust and compiled to WebAssembly. The UI, vault-web , is written in React and uses Vite for frontend tooling. There is no server component; Koofr Vault only uses the public Koofr REST API.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/koofr/vault#2",
+      "title": "Build and run locally",
+      "text": "The easiest way to run Koofr Vault locally is to build and run it with Docker. This will compile the app and build a Docker image using Caddy web server. You can now open http://localhost:5173 in your browser.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/koofr/vault#3",
+      "title": "Build static files",
+      "text": "Alternatively, you can build static files, which will produce vault-web.tar.gz file with the static files:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/koofr/vault#4",
+      "title": "Reproducibility",
+      "text": "Koofr Vault is built using GitHub Actions and published as a GitHub Release. You can download a release .tar.gz file and run it locally, or use the extracted files from the release to verify what https://vault.koofr.net is serving. The current deployed Git revision can be found at https://vault.koofr.net/gitrevision.txt Example:",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/koofr/vault#5",
+      "title": "Contributing",
+      "text": "If you have a bug report, please send the report to support@koofr.net. If you are considering contributing to the Koofr Vault code, please contact us in order to discuss your intended contribution first, as we can not afford the effort to review arbitrary contributions at the moment.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/koofr/vault#6",
+      "title": "Authors and acknowledgement",
+      "text": "Koofr Vault was developed and designed by the Koofr team. We would like to extend a huge thank you to rclone for their encryption implementation.",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/koofr/vault",
+  "stars": 199
+}

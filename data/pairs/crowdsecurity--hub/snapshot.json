@@ -1,0 +1,40 @@
+{
+  "slug": "crowdsecurity--hub",
+  "name": "hub",
+  "description": "Main repository for crowdsec scenarios/parsers",
+  "documents": [
+    {
+      "url": "https://github.com/crowdsecurity/hub#0",
+      "title": "Introducción",
+      "text": ":books: Documentation :diamond shape with a dot inside: Configuration Hub :speech balloon: Discourse (Forum) :speech balloon: Discord (Live Chat) CrowdSec Hub for parsers, enrichers and scenarios. Foreword This repository stores most of the official parsers/scenarios/collections for crowdsec. The repository is not intended for use as-is, but rather as source of truth for the CrowdSec Hub and cscli . Feel free to use the parsers/scenarios here as a source of inspiration. Testing & Continuous integration cscli provides a hubtest sub-command to help contributors to create tests for parsers and scenarios.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/crowdsecurity/hub#1",
+      "title": "View & use existing tests",
+      "text": ":warning: most of cscli hubtest commands are expected to be run from the root directory of the hub. A git clone of this repository is the easier way to work :warning: list existing tests cscli hubtest list run a specific test cscli hubtest run [test-name] show current tests coverage cscli hubtest coverage",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/crowdsecurity/hub#2",
+      "title": "Create your own (parser) test",
+      "text": "We're going to create the CI tests for the dovecot-parser. Before you start : - you will need some actual logs - you'd better know if the service logs on its own or via syslog (we're in the later case here) 1. Create a new test What is relevant here is that every test is composed of : - A log file and it's associated type (same type as seen in acquis labels:type ) - A configuration specifying which parsers and/or scenarios must be enabled for the test - A ultimately list of assertions that must be run against the parsers and/or scenarios output Note: You can provide the parsers and scenarios you want in your test with --parsers and --scenarios (you can provide multiple parsers and scenarios) If you want to test only a scenario, you can specify ( --ignore-parsers ) or set the ignore parsers to true in the config.yaml 2. Configure your test We need to edit the test configuration to use the relevant parsers : note: the order doesn't matter. If the parser name is in the form author/parser it's from the hub, but relative paths are allowed for non-versioned parsers Now we need to dump some actual logs into the test's log file : 3. Run the test for the first time Now that we have config &",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/crowdsecurity/hub#3",
+      "title": "Debug your own (parser) test",
+      "text": "Things went wrong ? Don't panic When working on a test, you can as well pass expressions directly to hubtest command and see the results :",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/crowdsecurity/hub#4",
+      "title": "Contributing",
+      "text": "We gratefully accept PR to enrich the content of Hub. Follow the steps on our documentation website: https://docs.crowdsec.net/docs/next/contributing/contributing hub/",
+      "kind": "readme"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/crowdsecurity/hub",
+  "stars": 249
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "npci--falcon",
+  "name": "falcon",
+  "description": "Falcon: The Hyperledger Fabric Deployment Helper for Kubernetes is an open-source project designed to streamline the deployment and management of Hyperledger Fabric based blockchain networks on K8.",
+  "documents": [
+    {
+      "url": "https://github.com/npci/falcon#0",
+      "title": "Falcon: Hyperledger Fabric Deployment Helper for Kubernetes",
+      "text": "Falcon - the hyperledger fabric deployment helper for Kubernetes is an open-source project designed to streamline the deployment and management of Hyperledger Fabric based blockchain networks on Kubernetes clusters. This tool simplifies the complex process of setting up, configuring, and maintaining Fabric nodes, peers, orderers, and channels within a Kubernetes environment. With templatised helm charts and customizable configuration options, the project empowers developers and administrators to effortlessly deploy and scale secure and robust Hyperledger Fabric networks, leveraging the flexibility and scalability of Kubernetes orchestration. Whether you're a blockchain enthusiast, developer, or enterprise seeking to harness the power of distributed ledger technology using Hyperledger Fabric, the deployment helper for Kubernetes is your go-to solution for efficient, reliable, and automated Fabric network deployment. We are open for contributions, upgrades and features, please feel free to pickup any \"good first issues\" or propose new features to make the utility more powerful.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/npci/falcon#1",
+      "title": "Features",
+      "text": "- [x] CA Management (Root CA, TLS CA & Intermediate CAs) - [x] Peer Creation, Cert renewal - [x] Orderer Creation, Addition, Cert renewal - [x] Channel Management - [x] Chaincode Lifecycle Management (Install, Approve, Commit and CC Upgrades) - [x] Cryptographic operations support and certification management - [x] Domain Name support and SNI Based Routing - [x] Ingress resource provisioning - [x] File Registry support for centralised config files - [x] Support for Hyperledger Fabric 2.3+ - [x] Multi-zone, Multi-DC, Private Network (On-prem DCs) deployment support - [x] Multi-channel support",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/npci/falcon#2",
+      "title": "Roadmap",
+      "text": "- [ ] Automatic certificate renewal - [ ] GUI based deployment support - [ ] Optional Fabric Explorer - [ ] Optional Fabric Operations Console - [ ] Observability stack - [ ] Key Management using HSM / Vault",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/npci/falcon#3",
+      "title": "Samples",
+      "text": "Please refer our examples for running a complete blockchain network using the deployment helper.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/npci/falcon#4",
+      "title": "Disclaimer",
+      "text": "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program. If not, see .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/npci/falcon#5",
+      "title": "License",
+      "text": "Falcon source code files are made available under the GNU General Public License, Version 3.0 (GPL-3.0), located in the LICENSE file.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/npci/falcon/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing We welcome contributions to the Hyperledger Fabric Deployment Helper in many forms, and there's always plenty to do! You are free to raise new feature requests or contribute a new feature or take up existing \"good first issues\" using the issues tab of the repository.",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/npci/falcon",
+  "stars": 426
+}

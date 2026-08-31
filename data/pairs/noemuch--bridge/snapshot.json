@@ -1,0 +1,88 @@
+{
+  "slug": "noemuch--bridge",
+  "name": "bridge",
+  "description": "Design in Figma with Claude Code. Bridge connects your terminal to the Figma Plugin API via WebSocket.",
+  "documents": [
+    {
+      "url": "https://github.com/noemuch/bridge#0",
+      "title": "Introducción",
+      "text": "Compiler-grade trust for AI-generated Figma. Deterministic compiler · Living KB · MCP-native Discussions · Issues · Contributing · Security · Changelog Bridge compiles your design-system intent into Figma output that's guaranteed DS-compliant by construction — not by verification . 26 Figma API rules enforced automatically by a local compiler. Zero hardcoded values, zero raw Plugin API code, zero AI hallucinations. Three pillars: a deterministic compiler (the moat), conversational UX via Claude Code skills ( make / fix / done ), and a living KB continuously synchronized with Figma via cron.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/noemuch/bridge#1",
+      "title": "For designers",
+      "text": "Design components and screens from natural language inside Claude Code. Bridge handles the rest: Bridge produces: 1. A structured CSpec (YAML) describing the layout + tokens 2. A scene graph JSON (validated against your DS registries) 3. Compiled Figma Plugin API code (all 26 rules respected) 4. Executed designs in Figma via MCP Every output uses your real components, bound variables, and text styles. Zero hardcoded values. Iterate with fix (capture manual Figma edits as learnings). Ship with done (archive + extract recipes).",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/noemuch/bridge#2",
+      "title": "For DS teams",
+      "text": "Bridge keeps your knowledge base continuously synchronized with Figma. - setup bridge in Claude Code bootstraps your DS repo: registries, cron workflow, all in one flow. - Daily cron on GitHub Actions pulls Figma via REST, detects KB drift, opens a PR with the diff. Silent on no-change. - Recipe + CSpec ref-validity checks flag broken references when components are renamed or removed.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/noemuch/bridge#3",
+      "title": "For engineers",
+      "text": "The KB lives in your repo at bridge-ds/knowledge-base/registries/ . Point your AI client at this directory or read it programmatically. Your generated code uses tokens, variants, and composition rules correctly — because it reads the source of truth, not guesses.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/noemuch/bridge#4",
+      "title": "Quick start",
+      "text": "In Claude Code, any session (one-time install): In your DS repo: One phrase. The skill handles pre-flight, scaffolding, extraction, GitHub secret, first commit, and optional cron test. ~10 minutes end-to-end. Upgrading from v5.x? See BREAKING.md for the v6 migration guide. ---",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/noemuch/bridge#5",
+      "title": "Architecture",
+      "text": "Layer Technology Description ------------- --------------------- ------------------------------------------------------------ Workflow Claude Code Skills Five focused skills (see Skills below) Spec CSpec YAML Structured, human-readable compilable specifications Compiler TypeScript Scene graph JSON → Figma Plugin API code (26 rules enforced) Transport MCP figma-console-mcp (preferred) or official Figma MCP server Target Figma Desktop / Cloud Production-ready designs in your real DS library Memory Knowledge Base Registries, guides, recipes, learnings — per-project",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/noemuch/bridge#6",
+      "title": "Skills",
+      "text": "Skill Trigger Purpose --------------------------- -------------------- -------------------------------------------------------- using-bridge SessionStart (auto) Force-loaded rules, command map, drop/status procedures generating-figma-design make Spec + compile + execute + verify learning-from-corrections fix Diff Figma corrections, extract learnings, patch recipes shipping-and-archiving done Final gate, archive, extract recipes extracting-design-system setup bridge Bootstrap a DS repo end-to-end",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/noemuch/bridge#7",
+      "title": "The compiler",
+      "text": "Every scene graph JSON goes through a deterministic pipeline: Stage Purpose ------------ ------------------------------------------------------------------------------------------------------------------------------------------- Parse Load scene graph JSON, validate schema Resolve Look up every $token reference against the knowledge base registries Validate Check structure, detect missing tokens with fuzzy suggestions, flag hardcoded values, validate requested variants against registry metadata Plan Chunk large graphs for transport limits; bridge nodeIds across chunks Generate Emit Figma Plugin API code respecting all 26 rules Wrap Adapt output for the target transport (console IIFE vs. official top-level await) Errors are caught at compile time, before anything touches Figma. Compiler reference → · Transport adapter → · Verification gates →",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/noemuch/bridge#8",
+      "title": "Bridge CLI",
+      "text": "Direct CLI commands (typically invoked under the hood by skills): Command Purpose ---------------------------------------------------- ----------------------------------------------------------- bridge-ds setup --ds-name --figma-key Headless scaffold (used by setup bridge ) bridge-ds compile --input --kb Compile a scene graph JSON bridge-ds doctor Diagnose config, connectivity, KB health bridge-ds extract --headless Figma REST extraction (CI-friendly, FIGMA TOKEN required) bridge-ds migrate Upgrade a legacy knowledge base to the current schema bridge-ds cron Run the cron orchestrator (KB sync, opens PR on diff)",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/noemuch/bridge#9",
+      "title": "Recipes",
+      "text": "Recipes are parameterized scene graph templates the compiler reuses across sessions. The fastest way to build one: generate a screen with make , then done to archive — Bridge auto-extracts a recipe when the layout is reusable. Recipes live under bridge-ds/knowledge-base/recipes/ in your repo. Schema: { id, name, archetype, tags, scene graph, confidence } . Each recipe is scored against the user's description on four axes (archetype match, tag overlap, structural similarity, confidence). High-scoring recipes pre-fill the CSpec. Full schema: references/compiler-reference.md .",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/noemuch/bridge#10",
+      "title": "Plugin support",
+      "text": "Bridge DS works as a plugin for: - Claude Code — Native skill via .claude-plugin/ and SessionStart hook injection. - Cursor — Plugin via .cursor-plugin/ . Both use the same MCP transport and compiler infrastructure.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/noemuch/bridge/blob/main/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing to Bridge Thanks for your interest in contributing. Bridge is open source and welcomes contributions of all kinds — bug fixes, new features, documentation improvements, and recipe experiments. Getting Started 1. Fork the repository 2. Clone your fork and install dependencies: 3. Build the TypeScript sources: 4. Link the CLI locally to test changes end-to-end: Development guidelines Node.js 20 LTS or later ( engines.node: \" =20\" ). The codebase is TypeScript (strict mode) , compiled to dist/ via tsc . Rebuild after any source change ( npm run build or npm run build:watch ). Compiler is the only path. Bridge's core guarantee is that every Figma output goes through lib/compiler/compile.ts . Do not add workflows that emit raw Plugin API code — this breaks the design system compliance guarantee. Semantic tokens only. No hardcoded primitives in generated output. Every value must resolve to a DS token ( $color/... , $spacing/... , $text/... , $comp/... ). No breaking scene graph schema changes without a matching compiler version bump and a migration note in CHANGELOG.md . The schema is the contract between the LLM and the compiler. English for generated artifacts. Knowledge b",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/noemuch/bridge/blob/main/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "Changelog All notable changes to Bridge DS are documented here. [7.3.1] — 2026-06-03 KB freshness drift-guard added to the make skill flow. Added - KB freshness pre-flight (drift guard). Phase A of the make flow now reads each registry's generatedAt and warns the user when the KB is stale ( 7 days: the refresh cron may not be running; 30 days or missing timestamp: strongly recommend re-running setup ). The compiler guarantees $token resolution against the KB, but not that the KB still matches live Figma — a token removed or renamed in Figma but still present in a stale KB compiles fine and fails at execute time. This guard surfaces that risk before generation. It lives in the skill (runtime), not the compiler, to preserve the compiler's determinism law (a time-based check would make compile output depend on wall-clock time). The KB age is also shown in the C4 plan. This is the cheap interim guard; a live drift probe (verifying resolved keys still exist in Figma) remains future work. [7.3.0] — 2026-06-03 Design-intelligence guidance added to the make skill flow. Added - Section decompose/classify in the make flow. The make command now decomposes a request into named sections and cla",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/noemuch/bridge",
+  "stars": 156
+}

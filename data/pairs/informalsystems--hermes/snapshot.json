@@ -1,0 +1,58 @@
+{
+  "slug": "informalsystems--hermes",
+  "name": "hermes",
+  "description": "IBC Relayer in Rust",
+  "documents": [
+    {
+      "url": "https://github.com/informalsystems/hermes#0",
+      "title": "Introducción",
+      "text": "Hermes IBC relayer [![Cosmos ecosystem][cosmos-shield]][cosmos-link] [![Build Status][build-image]][build-link] [![Integration tests][test-image]][test-link] [![Apache 2.0 Licensed][license-image]][license-link] ![Rust Stable][rustc-image] ![Rust 1.85+][rustc-version] Rust implementation of an Inter-Blockchain Communication (IBC) relayer. This project comprises primarily of 6 crates: - [ ibc-relayer ][relayer-crate-link] provides an implementation of an IBC relayer, as a library . - [ ibc-relayer-cli ][relayer-cli-crate-link] is a CLI (a wrapper over the ibc-relayer library), comprising the hermes binary. - [ ibc-chain-registry ][ibc-chain-registry-crate-link] provides functions to fetch data from the chain registry and automatically generate chain configuration for Hermes. - [ ibc-telemetry ][ibc-telemetry-crate-link] is a library for use in the Hermes CLI, for gathering telemetry data and exposing that in a Prometheus endpoint. - [ ibc-relayer-rest ][ibc-telemetry-crate-link] is a library for use in the Hermes CLI, for exposing a REST API to inspect the state of the relayer. - [ ibc-test-framework ][ibc-test-framework-crate-link] provides the infrastructure and framework for writ",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/informalsystems/hermes#1",
+      "title": "Status",
+      "text": "Crate name Type Version Docs :-------------: :------: :-------------: :-----: ibc-relayer-cli bin: hermes [![IBC Relayer CLI Crate][relayer-cli-crate-image]][relayer-cli-crate-link] [![IBC Relayer CLI Docs][relayer-cli-docs-image]][relayer-cli-docs-link] ibc-relayer lib [![IBC Relayer Crate][relayer-crate-image]][relayer-crate-link] [![IBC Relayer Docs][relayer-docs-image]][relayer-docs-link] ibc-chain-registry lib [![Chain Registry Crate][ibc-chain-registry-crate-image]][ibc-chain-registry-crate-link] [![Chain Registry Docs][ibc-chain-registry-docs-image]][ibc-chain-registry-docs-link] ibc-relayer-rest lib [![IBC Relayer REST Crate][relayer-rest-crate-image]][relayer-rest-crate-link] [![IBC Relayer REST Docs][relayer-rest-docs-image]][relayer-rest-docs-link] ibc-telemetry lib [![IBC Telemetry Crate][ibc-telemetry-crate-image]][ibc-telemetry-crate-link] [![IBC Telemetry Docs][ibc-telemetry-docs-image]][ibc-telemetry-docs-link] ibc-test-framework lib [![IBC Test Framework Crate][ibc-test-framework-crate-image]][ibc-test-framework-crate-link] [![IBC Test Framework Docs][ibc-test-framework-docs-image]][ibc-test-framework-docs-link]",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/informalsystems/hermes#2",
+      "title": "Support",
+      "text": "If you encounter any issues or have questions related to Hermes, we encourage you to open a GitHub issue. This ensures a streamlined process for tracking and resolving problems. Please use the following link to report your issue: https://github.com/informalsystems/hermes/issues/new?assignees=&labels=&projects=&template=bug-report.md Providing clear and detailed information in your issue will help us address it more efficiently.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/informalsystems/hermes#3",
+      "title": "Contributing",
+      "text": "IBC is specified in English in the cosmos/ibc repo. Any protocol changes or clarifications should be contributed there. This repo contains the TLA+ specification and Rust implementation for the IBC modules and relayer. If you're interested in contributing, please comment on an issue or open a new one! See also CONTRIBUTING.md.",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/informalsystems/hermes#4",
+      "title": "Resources",
+      "text": "- IBC Website - IBC Specification - IBC Modules in Go - IBC Relayer in Typescript - IBC Relayer in Go",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/informalsystems/hermes#5",
+      "title": "License",
+      "text": "Copyright © 2023 Informal Systems Inc. and Hermes authors. Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use the files in this repository except in compliance with the License. You may obtain a copy of the License at https://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. [relayer-crate-image]: https://img.shields.io/crates/v/ibc-relayer.svg [relayer-crate-link]: https://crates.io/crates/ibc-relayer [relayer-docs-image]: https://docs.rs/ibc-relayer/badge.svg [relayer-docs-link]: https://docs.rs/ibc-relayer/ [relayer-cli-crate-image]: https://img.shields.io/crates/v/ibc-relayer-cli.svg [relayer-cli-crate-link]: https://crates.io/crates/ibc-relayer-cli [relayer-cli-docs-image]: https://docs.rs/ibc-relayer-cli/badge.svg [relayer-cli-docs-link]: https://docs.rs/ibc-relayer-cli/ [relayer-rest-crate-image]: https://img.shields.io/crates/v/ibc-relayer-rest.svg [relayer-r",
+      "kind": "readme"
+    },
+    {
+      "url": "https://github.com/informalsystems/hermes/blob/master/CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "text": "Contributing Thank you for your interest in contributing to the Hermes IBC relayer! The goal of this project is to provide a high quality, formally verified IBC relayer implementation in Rust. All work on the code base should be motivated by a Github issue. Before opening a new issue, first do a search of open and closed issues to make sure that yours will not be a duplicate. If you would like to work on an issue which already exists, please indicate so by leaving a comment on the issue. If what you'd like to work on hasn't already been covered by an issue, then open a new one to get the process going. Please do your best to ensure that your issue adheres to one of the issue templates that we have in the repository. The rest of this document outlines the best practices for contributing to this repository: - Core Team Responsibility - what the core team is responsible for - Decision Making - process for agreeing to changes - Issues - what makes a good issue - Pull Requests - what makes a good pull request - Forking - fork the repo to make pull requests - Changelog - changes must be recorded in the changelog - Releases - how to release new version of the crates Core Team Responsibili",
+      "kind": "docs"
+    },
+    {
+      "url": "https://github.com/informalsystems/hermes/blob/master/CHANGELOG.md",
+      "title": "CHANGELOG.md",
+      "text": "CHANGELOG v1.13.2 June 27th, 2025 This release updates Penumbra compatibility to support mainnet, which has upgraded to penumbra-sdk@v2.0 . It also introduces a new optional telemetry configuration prefix that allows setting a custom prefix for Prometheus metrics. IMPROVEMENTS - Relayer Library - Bump penumbra-sdk dependencies to v2 (\\ 4372) - Add a new optional configuration prefix for telemetry, allowing users to specify a prefixed namespace for Prometheus metrics. (\\ 4380) v1.13.1 May 20th, 2025 This release officially bumps the compatibility to ibc-go v10.0 and Cosmos SDK v0.53. IMPROVEMENTS - Relayer Library - Add compatibility with ibc-go v10.2.0 and Cosmos SDK v0.53.0 (\\ 4263) v1.13.0 April 16th, 2025 This release updates the Namada compatibility to v101.0.0. Please note that this breaks compatibility with Namada v1.1.x. BREAKING CHANGES - Update for Namada v101.0.0. This update is not compatible with Namada v1.1.x. (\\ 4342) IMPROVEMENTS - Update for Namada v101.0.0 (\\ 4342) v1.12.0 February 14th, 2025 This release introduces support for Penumbra chain. Please note that this feature has not been tested in the Hermes CI pipeline, but it was tested in production. FEATURES - Ad",
+      "kind": "docs"
+    }
+  ],
+  "captured_at": "2026-08-31",
+  "source_url": "https://github.com/informalsystems/hermes",
+  "stars": 505
+}
