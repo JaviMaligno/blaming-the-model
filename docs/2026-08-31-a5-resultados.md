@@ -47,12 +47,14 @@ muestreo de verdad.
 
 **El tier se invierte, y es el hallazgo más interesante.** Sin código:
 
-| | tier alto | tier medio |
-|---|---|---|
-| Encuentra la caché | **4/10** | **9/10** |
-| Culpa al muestreo de lo sistemático | **4/10** | **2/10** |
+| | tier alto | tier medio | p |
+|---|---|---|---|
+| Encuentra la caché | **4/10** | **9/10** | **0,029** |
+| Culpa al muestreo de lo sistemático | 4/10 | 2/10 | 0,31 (n.s.) |
 
-El modelo más capaz la encuentra **menos** y se equivoca **más**. Al leer las
+El modelo más capaz la encuentra **menos**, y eso sí aguanta el contraste. Que
+además se equivoque más **no está sostenido**: cuatro contra dos, con ocho por
+celda, es ruido (p = 0,31), y no debe afirmarse. Al leer las
 respuestas se ve por qué, y no es descuido: los del tier alto verificaron el
 corpus documento a documento, comprobaron que ningún snapshot contiene material
 de otro proyecto —lo cual es **cierto**, porque la contaminación ocurre en
