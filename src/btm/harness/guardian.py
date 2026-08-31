@@ -54,9 +54,15 @@ from btm.system.taxonomy import Taxonomy
 
 VARIANT = "A1"
 ARMS = ("model", "rf")
+# El brazo del modelo se corre de dos maneras: pidiéndole cada clasificación al
+# servicio, o sirviéndola del almacén que guardó las que ya dio. La segunda es
+# la que deja los dos brazos igual de deterministas y con el mismo argumento de
+# exclusión disponible.
+HEADS = ("model", "rf", "cached")
 DEFAULT_SEEDS = (1, 2, 3, 4, 5)
 REPEATS = 20
 FOREST_MODULE = "btm.variants.RF.model"
+CACHED_MODULE = "btm.variants.CACHED.head"
 
 # Nombres que se prueban al buscar la cabeza en su módulo. La lista existe para
 # no imponerle un nombre a quien la escribe: lo que se exige es la interfaz.
@@ -471,6 +477,13 @@ def forest_head() -> Callable[[], object]:
     return resolve_head(importlib.import_module(FOREST_MODULE))
 
 
+def stored_head() -> Callable[[], object]:
+    """La cabeza que lee las clasificaciones guardadas, por la misma interfaz."""
+    import importlib
+
+    return resolve_head(importlib.import_module(CACHED_MODULE))
+
+
 def sha256_bytes(blob: bytes) -> str:
     return hashlib.sha256(blob).hexdigest()
 
@@ -511,13 +524,17 @@ def head_factory(arm: str, *, deployment: str) -> Callable[[], object]:
 
     El bosque se lee de disco una sola vez y se reutiliza: leerlo en cada
     llamada costaría más que clasificar. No lleva estado entre llamadas, así
-    que compartirlo entre hilos no cambia lo que responde.
+    que compartirlo entre hilos no cambia lo que responde. Lo mismo vale para
+    la cabeza que sirve las clasificaciones guardadas.
     """
     if arm == "model":
         return lambda: AzureModel(deployment=deployment)
     if arm == "rf":
         forest = forest_head()()
         return lambda: forest
+    if arm == "cached":
+        stored = stored_head()()
+        return lambda: stored
     raise SystemExit(f"brazo desconocido: {arm}")
 
 
@@ -687,7 +704,7 @@ def build_parser() -> argparse.ArgumentParser:
     sub = parser.add_subparsers(dest="stage", required=True)
 
     one = sub.add_parser("pass")
-    one.add_argument("--arm", choices=ARMS, required=True)
+    one.add_argument("--arm", choices=HEADS, required=True)
     one.add_argument("--pass-id", dest="pass_id", required=True)
     one.add_argument("--seed", type=int, required=True)
     one.add_argument("--out", type=Path)
